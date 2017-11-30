@@ -1,14 +1,55 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Mateo We Miss You</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-menu [content]="content">
+  <ion-header>
+    <ion-navbar>
+      <button ion-button menuToggle icon-only>
+        <ion-icon name='menu'></ion-icon>
+      </button>
+      <ion-title>Menus</ion-title>
+    </ion-navbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+        {{ p.title }}
+      </button>
+  </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-content>
+    <div>
+      <ion-list>
+        <ion-item>
+          <ion-searchbar placeholder="Origin" type="text" (ionInput)="showAddress1()" [(ngModel)]="address.origin"></ion-searchbar>
+          <ion-list [hidden]="autocompleteItems1.length == 0">
+            <ion-item *ngFor="let item1 of autocompleteItems1" tappable (click)="selectOrigin(item1)">
+              {{ item1 }}
+            </ion-item>
+          </ion-list>
+        </ion-item>
+        <ion-item>
+          <ion-searchbar placeholder="Destination" type="text" (ionInput)="showAddress2()" [(ngModel)]="address.destination"></ion-searchbar>
+          <ion-list [hidden]="autocompleteItems2.length == 0">
+            <ion-item *ngFor="let item2 of autocompleteItems2" tappable (click)="selectDest(item2)">
+              {{ item2 }}
+            </ion-item>
+          </ion-list>
+        </ion-item>
+      </ion-list>
+      <div text-center>
+        <button color=secondary ion-button block (click)="setOrgDes(address)">GO</button>
+      </div>
+    </div>
+    <div #map id="map"></div>
 </ion-content>
+
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

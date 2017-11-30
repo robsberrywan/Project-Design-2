@@ -1,0 +1,3 @@
+npm install xml2js --save
+typings install dt~xml2js --global --save
+
