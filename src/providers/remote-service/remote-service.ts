@@ -16,7 +16,7 @@ export class RemoteServiceProvider {
     console.log('Hello RemoteServiceProvider Provider');
   }
   load(origin, dest){
-    this.baseUrl = 'http://localhost:8080/otp/routers/default/plan?fromPlace='+origin+'&toPlace='+dest+'&mode=TRANSIT%2CWALK&maxWalkDistance=3000&arriveBy=false&wheelchair=false';
+    this.baseUrl = 'http://localhost:8080/otp/routers/default/plan?fromPlace='+origin+'&toPlace='+dest+'&mode=TRANSIT%2CWALK&maxWalkDistance=1000&arriveBy=false&wheelchair=false';
     if (this.data) {
       return Promise.resolve(this.data);
     }
@@ -32,7 +32,7 @@ export class RemoteServiceProvider {
       this.http.get(this.baseUrl, opt)
         .map(res => res.json())
         .subscribe(data => {
-          this.data = data;
+          this.data = data.plan;
           resolve(this.data);
         });
     });
