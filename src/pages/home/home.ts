@@ -164,6 +164,7 @@ export class HomePage {
   }
   processInput(data){
     let color = '';
+    console.log(data['itineraries'][0]['duration']);
     for(let i=0; i<data.itineraries[0].legs.length; i++){
       let legs = data['itineraries'][0]['legs'][i];
       if(legs['mode']=="WALK"){
