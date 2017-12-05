@@ -1,0 +1,27 @@
+<ion-header>
+    <ion-navbar>
+      <ion-title></ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+<ion-content>
+    <div>
+        <ion-list scrollable=true>
+            <ion-item>
+                <ion-select [(ngModel)]="type" interface="popover">
+                    <ion-option *ngFor="let type of routeType" selected="{{ type.name }}">{{type.name}}</ion-option>
+                </ion-select>
+            </ion-item>
+            <ion-list>
+                <ion-item text-wrap *ngFor="let t of trip; let i = index">
+                    <button ion-button item-start (click)="plotted(i)">Plot</button>
+                    <h2>Itinerary: {{ t.id+1 }}</h2>
+                    <p>No. of transfer: {{ t.transfer }}</p>
+                    <p>Total fare: P{{ t.fare }}</p>
+                    <button ion-button outline item-end (click)="seeDetails()">Details</button>
+                </ion-item>
+            </ion-list>
+        </ion-list>
+    </div>
+    <div #map id="map"></div>
+</ion-content>

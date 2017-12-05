@@ -16,7 +16,7 @@ export class RemoteServiceProvider {
     console.log('Hello RemoteServiceProvider Provider');
   }
   load(origin, dest){
-    this.baseUrl = 'http://localhost:8080/otp/routers/default/plan?fromPlace='+origin+'&toPlace='+dest+'&mode=TRANSIT%2CWALK&maxWalkDistance=1000&arriveBy=false&wheelchair=false';
+    this.baseUrl = 'http://localhost:8080/otp/routers/default/plan?fromPlace='+origin+'&toPlace='+dest+'&date=2017/01/09&time=11:00:00&mode=TRANSIT%2CWALK&maxWalkDistance=1000&arriveBy=false&wheelchair=false';
     if (this.data) {
       return Promise.resolve(this.data);
     }

@@ -7,15 +7,14 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { MytripPage } from '../myTrips/mytrip';
 import { SettingsPage } from '../settings/settings';
 import { LoginPage } from '../login/login';
+import { RoutesPage } from '../routes/routes';
 
 import { address } from "../../models/address";
-import { RemoteServiceProvider } from "../../providers/remote-service/remote-service";
 declare var google;
 
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html',
-  providers: [RemoteServiceProvider] 
+  templateUrl: 'home.html'
 })
 export class HomePage {
   address;
@@ -38,14 +37,14 @@ export class HomePage {
 	pages = [
     { title: 'My Trips', component: MytripPage },
     { title: 'Settings', component: SettingsPage },
-    { title: 'Sign Out', component: LoginPage }
+    { title: 'Sign Out', component: LoginPage },
+    { title: 'Routes', component: RoutesPage }
   ];
   constructor(
     public geolocation: Geolocation, 
     private afAuth: AngularFireAuth, 
     public navCtrl: NavController,
-    public zone: NgZone,
-    public rsp: RemoteServiceProvider) {
+    public zone: NgZone) {
       this.GoogleAutocomplete = new google.maps.places.AutocompleteService();
       this.autocompleteItems1 = [];
       this.autocompleteItems2= [];
@@ -53,9 +52,6 @@ export class HomePage {
         origin: '',
         destination: ''
       };
-      this.geocoder = new google.maps.Geocoder;
-      this.directionsService = new google.maps.DirectionsService;
-      this.directionsDisplay = []
       this.markers = [];
       this.originDir = '';
       this.destDir = '';
@@ -122,119 +118,9 @@ export class HomePage {
     this.address.destination = item;
     this.autocompleteItems2 = [];
   }
-  clearMarkers(){
-    for(let i=0; i<this.markers.length; i++)
-      this.markers[i].setMap(null);
-    this.markers = [];
-  }
-  setMapFocus(markers){
-    let bounds = new google.maps.LatLngBounds();
-    for(let i=0; i<markers.length; i++){
-      bounds.extend(markers[i].getPosition());
-    }
-    this.map.fitBounds(bounds);
-    this.map.setZoom(15);
-    this.rsp.load(markers[0].getPosition(), markers[1].getPosition())
-    .then(data => {
-      this.processInput(data);
-    })
-  }
-  setOrgDes(address: address){
-    this.clearMarkers();
-    this.geocoder.geocode({'address': address.origin}, (results, status) => {
-      if(status == 'OK' && results[0]){
-        let marker = new google.maps.Marker({
-          position: results[0].geometry.location,
-          map: this.map,
-        });
-        this.markers.push(marker);
-        console.log(this.markers.length);
-      }
-    })
-    this.geocoder.geocode({'address': address.destination}, (results, status) => {
-      if(status == 'OK' && results[0]){
-        let marker = new google.maps.Marker({
-          position: results[0].geometry.location,
-          map: this.map,
-        });
-        this.markers.push(marker);
-        this.setMapFocus(this.markers);
-      }
-    })
-  }
-  processInput(data){
-    let color = '';
-    console.log(data['itineraries'][0]['duration']);
-    for(let i=0; i<data.itineraries[0].legs.length; i++){
-      let legs = data['itineraries'][0]['legs'][i];
-      if(legs['mode']=="WALK"){
-        console.log(legs['mode']);
-        this.mode.push("WALKING");
-        this.lat.push(legs['steps'][0]['lat']);
-        this.lon.push(legs['steps'][0]['lon']);
-        if(data.itineraries[0].legs[data.itineraries[0].legs.length-1]){
-          if(data.itineraries[0].legs[i].steps.length>0){
-            this.mode.push("WALKING");
-            this.lat.push(legs['steps'][data.itineraries[0].legs[i].steps.length-1]['lat']);
-            this.lon.push(legs['steps'][data.itineraries[0].legs[i].steps.length-1]['lon']);
-            console.log("last step: " + legs['steps'][data.itineraries[0].legs[i].steps.length-1]['lon']);
-          }
-        }
-      }
-      else{
-        console.log(legs['mode']);
-        this.mode.push("TRANSIT");
-        this.lat.push(legs['from']['lat']);
-        this.lon.push(legs['from']['lon']);
-        this.lat.push(legs['to']['lat']);
-        this.lon.push(legs['to']['lon']);
-      }
-      console.log(this.lat[i]);
-    }
-
-    //start directions display and renderer
-    if(this.directionsDisplay.length>0){
-      this.directionsDisplay = [];
-      color = '';
-      for(let i=0; i<this.directionsDisplay.length; i++)
-        this.directionsDisplay[i].setMap(null);
-    }
-    for(let i = 0; i<this.mode.length; i++){
-      if(this.mode[i]=="WALKING"){
-        color = 'blue';
-        console.log(this.mode[i]);
-      }
-      else{
-        console.log(this.mode[i]);
-        color = 'red';
-      }
-      this.directionsDisplay[i] = new google.maps.DirectionsRenderer({
-        preserveViewport: true,
-        suppressMarkers: true,
-        polylineOptions: {
-          strokeColor: color
-        }
-      });
-    }
-    this.getDirections();
-  }
-  getDirections(){
-    for(let i=0; i<this.mode.length; i++){
-      let or = {lat: parseFloat(this.lat[i]), lng: parseFloat(this.lon[i])};
-      let de = {lat: parseFloat(this.lat[i+1]), lng: parseFloat(this.lon[i+1])};
-      this.directionsDisplay[i].setMap(this.map);
-      this.directionsService.route({
-        origin: or,
-        destination: de,
-        travelMode: "WALKING"
-      }, (response, status) => {
-        if (status === 'OK') {
-          this.directionsDisplay[i].setDirections(response);
-        } else {
-          window.alert('Directions request failed due to ' + status);
-        }
-      });
-    }
+  findRoute(address: address): void{
+    if((address.destination)&&(address.origin))
+      this.navCtrl.push(RoutesPage, {address});
   }
 	openPage(page) {
     if(page.component==LoginPage){
