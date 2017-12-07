@@ -16,12 +16,11 @@ declare var google;
 export class RoutesPage {
   address;
   geocoder;
-  directionsService;
-  directionsDisplay;
   markers;
-  lat = [];
-  lon = [];
-  mode = [];
+
+  snappedCoordinates = [];
+  placeIdArray = [];
+  polylines = [];
 
   trip: any = [{
     id: '',
@@ -35,28 +34,16 @@ export class RoutesPage {
     tripID: '',
     seq: '',
     distance: '',
-    flatLng: {
-      lat: '',
-      lon: ''
-    },
-    tlatLng: {
-      lat: '',
-      lon: ''
-    }
+    legGeom: '',
+    transMode: '',
   }];
   legTransit: any = [{
     tripID: '',
     seq: '',
     distance: '',
     legGeom: '',
-    flatLng: {
-      lat: '',
-      lon: ''
-    },
-    tlatLng: {
-      lat: '',
-      lon: ''
-    },
+    from: '',
+    to: '',
     transMode: '',
     route: ''
   }];
@@ -64,7 +51,6 @@ export class RoutesPage {
   map: any;
   @ViewChild('map') mapElement: ElementRef;
   routeType = [
-    { name: "..." },
     { name: "Less Transfer" }, 
     { name: "Less Fair" },
     { name: "Less Walking" },
@@ -78,10 +64,9 @@ export class RoutesPage {
     public navParams: NavParams) {
       this.address = this.navParams.get('address');
       this.geocoder = new google.maps.Geocoder;
-      this.directionsService = new google.maps.DirectionsService;
-      this.directionsDisplay = []
       this.markers = [];
       this.trip.length = 0;
+      this.points = [];
     }
 
   ionViewDidLoad(){
@@ -149,6 +134,8 @@ export class RoutesPage {
   processInput(data){
     let distance: any;
     this.trip.length = 0;
+    this.legWalk.length = 0;
+    this.legTransit.length = 0;
     for(let id=0; id<data.itineraries.length; id++){
       let fare: any;
       fare = 0;
@@ -161,50 +148,39 @@ export class RoutesPage {
           this.legWalk.push({
             tripID: id,
             seq: se,
-            distance: leg['distance'],
-            flatLng: {
-              lat: leg['from']['lat'],
-              lon: leg['from']['lon']
-            },
-            tlatLng: {
-              lat: leg['to']['lat'],
-              lon: leg['to']['lon']
-            }
+            distance: (leg['distance'])/1000,
+            legGeom: leg['legGeometry']['points'],
+            transMode: "WALK"
           });
           walkDistance+=leg['distance'];
         }
         else{
-          this.legTransit.push({
-            tripID: id,
-            seq: se,
-            distance: leg['distance'],
-            legGeom: leg['legGeometry']['points'],
-            flatLng: {
-              lat: leg['from']['lat'],
-              lon: leg['from']['lon']
-            },
-            tlatLng: {
-              lat: leg['to']['lat'],
-              lon: leg['to']['lon']
-            },
-            transMode: leg['routeId'],
-            route: leg['route']
-          });
+          distance = leg['distance']/1000;
           let mode: string = leg['routeId'];
-          distance = this.legTransit[se].distance/1000;
           if(mode.includes("PUJ")){
+            mode = "PUJ";
             if(distance>4)
               fare = (fare+(8.00+(distance-4)*1.50)).toPrecision(3);
             else
               fare = (fare+8.00).toPrecision(3);
-            console.log("PUJ distance: " + distance + "\n Fare: " + fare);
           }
           else if(mode.includes("PUB")){
+            mode = "PUB";
             if(distance>5)
-              fare = (fare+(10.00+(distance-5)*1.75)).toPrecision(3);
+              fare = parseFloat(fare+(10.00+(distance-5)*1.75)).toPrecision(3);
             else
-              fare = (fare+10.00).toPrecision(3);
+              fare = parseFloat(fare+10.00).toPrecision(3);
           }
+          this.legTransit.push({
+            tripID: id,
+            seq: se,
+            distance: distance,
+            legGeom: leg['legGeometry']['points'],
+            from: leg['from']['name'],
+            to: leg['to']['name'],
+            transMode: mode,
+            route: leg['route']
+          });
         }
       }
       this.trip.push({
@@ -215,87 +191,101 @@ export class RoutesPage {
         legs: data.itineraries[id].legs.length,
         roundtrip: false
       });
-      console.log("distance: " + walkDistance);
     }
   }
 
   plotted(index){
     console.log(index);
-    console.log(this.legWalk[0].seq);
-    let color = '';
-    
+    this.drawSnappedPolyline('blue', 0);
     for(let i=0; i<this.trip[index].legs; i++){
+      this.points = [];
       for(let j=0; j<this.legWalk.length; j++){
         console.log(this.legWalk[j].seq);
         if((this.legWalk[j].tripID==this.trip[index].id)&&(this.legWalk[j].seq==i)){
-          console.log("WALKING");
-          this.mode.push("WALKING");
-          if(i==this.trip[index].legs-1){
-            this.lat.push(this.legWalk[j].tlatLng.lat);
-            this.lon.push(this.legWalk[j].tlatLng.lon);
-          }
-          else{
-            this.lat.push(this.legWalk[j].flatLng.lat);
-            this.lon.push(this.legWalk[j].flatLng.lon);
-          }
+          console.log("walk");
+          this.decode(this.legWalk[j].legGeom)
+          this.drawSnappedPolyline('blue', 1);
         }
       }
       for(let k=0; k<this.legTransit.length; k++){
         if((this.legTransit[k].tripID==this.trip[index].id)&&(this.legTransit[k].seq==i)){
-          console.log("TRANSIT");
-          this.mode.push("TRANSIT");
-          this.lat.push(this.legTransit[k].flatLng.lat);
-          this.lon.push(this.legTransit[k].flatLng.lon);
-          this.lat.push(this.legTransit[k].tlatLng.lat);
-          this.lon.push(this.legTransit[k].tlatLng.lon);
+          console.log("transit");
+          this.decode(this.legTransit[k].legGeom);
+          this.drawSnappedPolyline('red', 1);
         }
       }
     }
-    //start directions display and renderer
-    console.log(this.mode.length + "   " + this.lat.length);
-    if(this.directionsDisplay.length>0){
-      this.directionsDisplay = [];
-      color = '';
-      for(let i=0; i<this.directionsDisplay.length; i++)
-        this.directionsDisplay[i].setMap(null);
-    }
-    for(let i = 0; i<this.mode.length; i++){
-      if(this.mode[i]=="WALKING"){
-        color = 'blue';
-      }
-      else{
-        color = 'red';
-      }
-      this.directionsDisplay[i] = new google.maps.DirectionsRenderer({
-        preserveViewport: true,
-        suppressMarkers: true,
-        polylineOptions: {
-          strokeColor: color
-        }
-      });
-    }
-    this.getDirections();
+    //this.getDirections();
   }
-  getDirections(){
-    for(let i=0; i<this.mode.length; i++){
-      let or = {lat: parseFloat(this.lat[i]), lng: parseFloat(this.lon[i])};
-      let de = {lat: parseFloat(this.lat[i+1]), lng: parseFloat(this.lon[i+1])};
-      this.directionsDisplay[i].setMap(this.map);
-      this.directionsService.route({
-        origin: or,
-        destination: de,
-        travelMode: "WALKING"
-      }, (response, status) => {
-        if (status === 'OK') {
-          this.directionsDisplay[i].setDirections(response);
-        } else {
-          console.log('Directions request failed due to ' + status);
-        }
-      });
+  points;
+  decode(leggeom){
+    // array that holds the points
+    let index = 0, len = leggeom.length;
+    let lat = 0, lng = 0;
+    while (index < len) {
+      let b, shift = 0, result = 0;
+      do {    
+        b = leggeom.charAt(index++).charCodeAt(0) - 63;//finds ascii                                                                                    //and substract it by 63
+        result |= (b & 0x1f) << shift;
+        shift += 5;
+      } while (b >= 0x20);
+    
+      let dlat = ((result & 1) != 0 ? ~(result >> 1) : (result >> 1));
+      lat += dlat;
+      shift = 0;
+      result = 0;
+      do {
+        b = leggeom.charAt(index++).charCodeAt(0) - 63;
+        result |= (b & 0x1f) << shift;
+        shift += 5;
+      } while (b >= 0x20);
+      let dlng = ((result & 1) != 0 ? ~(result >> 1) : (result >> 1));
+      lng += dlng;
+      let latlng = new google.maps.LatLng(( lat / 1E5),( lng / 1E5));
+      this.points.push(latlng);
+    }
+    /*this.rsp.runSnapToRoad(points)
+    .then(snap => {
+      if(snap){
+        console.log(snap);
+        this.processSnapToRoadResponse(snap);
+        this.drawSnappedPolyline();
+      }
+      else
+        console.log("No trip found.");
+    })*/
+  }
+  processSnapToRoadResponse(data) {
+    this.snappedCoordinates = [];
+    this.placeIdArray = [];
+    for (let i = 0; i < data.snappedPoints.length; i++) {
+      let latlng = new google.maps.LatLng(
+          data.snappedPoints[i].location.latitude,
+          data.snappedPoints[i].location.longitude);
+      this.snappedCoordinates.push(latlng);
+      this.placeIdArray.push(data.snappedPoints[i].placeId);
     }
   }
-  seeDetails(){
-    this.navCtrl.push(DetailsPage).catch( err => {
+  drawSnappedPolyline(color, num){
+    let snappedPolyline = new google.maps.Polyline({
+      path: this.points,
+      strokeColor: color,
+      strokeWeight: 3
+    });
+    
+    snappedPolyline.setMap(this.map);
+    this.polylines.push(snappedPolyline);
+    if(num==0){
+      snappedPolyline.setMap(null);
+      this.polylines = [];
+    }
+  }
+  seeDetails(i){
+    let trip: any;
+    let legW: any;
+    let legT: any;
+    trip = this.trip, legW = this.legWalk, legT  = this.legTransit;
+    this.navCtrl.push(DetailsPage, {"i": i, "trip": trip, "legW": legW, "legT": legT}).catch( err => {
       console.log(err)});
   }
 }

@@ -6,7 +6,7 @@ webpackJsonp([0],{
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__register_register__ = __webpack_require__(212);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__home_home__ = __webpack_require__(213);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angularfire2_auth__ = __webpack_require__(41);
@@ -90,7 +90,7 @@ var LoginPage = (function () {
     };
     LoginPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-login',template:/*ion-inline-start:"/home/robrobirobin/Documents/Project-Design/src/pages/login/login.html"*/'<ion-content padding>\n\n	<div text-center>\n\n		<ion-icon name="heart" class="loginlogo"></ion-icon>\n\n	</div>\n\n	<ion-list>\n\n		<ion-item>\n\n			<ion-label floating>Email</ion-label>\n\n			<ion-input type="text" [(ngModel)]="user.email"></ion-input>\n\n		</ion-item>\n\n		<ion-item>\n\n			<ion-label floating>Password</ion-label>\n\n			<ion-input type="password" [(ngModel)]="user.password"></ion-input>\n\n		</ion-item>\n\n	</ion-list>\n\n	<div text-center>\n\n  		<button color=secondary (click)="signIn(user);" ion-button block>Sign In</button>\n\n	</div>\n\n	<div text-center>\n\n		<ion-icon name="ios-arrow-dropdown-circle" class="or"></ion-icon>\n\n	</div>\n\n	<div text-center>\n\n		<ion-label>Sign In with:</ion-label>\n\n		<button ion-button><ion-icon name="logo-facebook"></ion-icon></button>\n\n		<button ion-button><ion-icon name="logo-twitter"></ion-icon></button>\n\n		<button ion-button><ion-icon name="logo-googleplus"></ion-icon></button>\n\n	</div>\n\n	<br/><br/><br/><br/><p (click)="register();"><u>Don\'t have an account?</u></p>\n\n</ion-content>\n\n'/*ion-inline-end:"/home/robrobirobin/Documents/Project-Design/src/pages/login/login.html"*/
+            selector: 'page-login',template:/*ion-inline-start:"/home/robrobirobin/Documents/Project-Design/src/pages/login/login.html"*/'<ion-content padding>\n\n	<div text-center>\n\n		<ion-icon name="bus" class="loginlogo"></ion-icon>\n\n	</div>\n\n	<ion-list>\n\n		<ion-item>\n\n			<ion-label floating>Email</ion-label>\n\n			<ion-input type="text" [(ngModel)]="user.email"></ion-input>\n\n		</ion-item>\n\n		<ion-item>\n\n			<ion-label floating>Password</ion-label>\n\n			<ion-input type="password" [(ngModel)]="user.password"></ion-input>\n\n		</ion-item>\n\n	</ion-list>\n\n	<div text-center>\n\n  		<button color=danger (click)="signIn(user);" ion-button block>Sign In</button>\n\n	</div>\n\n	<div text-center>\n\n		<ion-icon name="ios-arrow-dropdown-circle" class="or"></ion-icon>\n\n	</div>\n\n	<div text-center>\n\n		<ion-label>Sign In with:</ion-label>\n\n		<button ion-button><ion-icon name="logo-facebook"></ion-icon></button>\n\n		<button ion-button><ion-icon name="logo-twitter"></ion-icon></button>\n\n		<button ion-button><ion-icon name="logo-googleplus"></ion-icon></button>\n\n	</div>\n\n	<br/><br/><br/><br/><p (click)="register();"><u>Don\'t have an account?</u></p>\n\n</ion-content>\n\n'/*ion-inline-end:"/home/robrobirobin/Documents/Project-Design/src/pages/login/login.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_4_angularfire2_auth__["a" /* AngularFireAuth */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
     ], LoginPage);
@@ -141,7 +141,7 @@ webpackEmptyAsyncContext.id = 160;
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RegisterPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__ = __webpack_require__(41);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -259,7 +259,7 @@ var RegisterPage = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_geolocation__ = __webpack_require__(104);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__myTrips_mytrip__ = __webpack_require__(214);
@@ -295,8 +295,7 @@ var HomePage = (function () {
         this.pages = [
             { title: 'My Trips', component: __WEBPACK_IMPORTED_MODULE_4__myTrips_mytrip__["a" /* MytripPage */] },
             { title: 'Settings', component: __WEBPACK_IMPORTED_MODULE_5__settings_settings__["a" /* SettingsPage */] },
-            { title: 'Sign Out', component: __WEBPACK_IMPORTED_MODULE_6__login_login__["a" /* LoginPage */] },
-            { title: 'Routes', component: __WEBPACK_IMPORTED_MODULE_7__routes_routes__["a" /* RoutesPage */] }
+            { title: 'Sign Out', component: __WEBPACK_IMPORTED_MODULE_6__login_login__["a" /* LoginPage */] }
         ];
         this.GoogleAutocomplete = new google.maps.places.AutocompleteService();
         this.autocompleteItems1 = [];
@@ -391,7 +390,7 @@ var HomePage = (function () {
     ], HomePage.prototype, "mapElement", void 0);
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"/home/robrobirobin/Documents/Project-Design/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Mateo We Miss You</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-menu [content]="content">\n  <ion-header>\n    <ion-navbar>\n      <button ion-button menuToggle icon-only>\n        <ion-icon name=\'menu\'></ion-icon>\n      </button>\n      <ion-title>Menus</ion-title>\n    </ion-navbar>\n  </ion-header>\n  <ion-content>\n    <ion-list>\n      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n        {{ p.title }}\n      </button>\n  </ion-list>\n  </ion-content>\n</ion-menu>\n\n<ion-content>\n    <div>\n      <ion-list>\n        <ion-item>\n          <ion-searchbar placeholder="Origin" type="text" (ionInput)="showAddress1()" [(ngModel)]="address.origin"></ion-searchbar>\n          <ion-list [hidden]="autocompleteItems1.length == 0">\n            <ion-item *ngFor="let item1 of autocompleteItems1" tappable (click)="selectOrigin(item1)">\n              {{ item1 }}\n            </ion-item>\n          </ion-list>\n        </ion-item>\n        <ion-item>\n          <ion-searchbar placeholder="Destination" type="text" (ionInput)="showAddress2()" [(ngModel)]="address.destination"></ion-searchbar>\n          <ion-list [hidden]="autocompleteItems2.length == 0">\n            <ion-item *ngFor="let item2 of autocompleteItems2" tappable (click)="selectDest(item2)">\n              {{ item2 }}\n            </ion-item>\n          </ion-list>\n        </ion-item>\n      </ion-list>\n      <div text-center>\n        <button color=secondary ion-button block (click)="findRoute(address)">GO</button>\n      </div>\n    </div>\n    <div #map id="map"></div>\n</ion-content>\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>'/*ion-inline-end:"/home/robrobirobin/Documents/Project-Design/src/pages/home/home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"/home/robrobirobin/Documents/Project-Design/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar color="danger">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title></ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-menu [content]="content">\n  <ion-header>\n    <ion-navbar>\n      <button ion-button menuToggle icon-only>\n        <ion-icon name=\'menu\'></ion-icon>\n      </button>\n      <ion-title>Menus</ion-title>\n    </ion-navbar>\n  </ion-header>\n  <ion-content>\n    <ion-list>\n      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n        {{ p.title }}\n      </button>\n  </ion-list>\n  </ion-content>\n</ion-menu>\n\n<ion-content>\n    <div>\n      <ion-list>\n        <ion-item>\n          <ion-searchbar placeholder="Origin" type="text" (ionInput)="showAddress1()" [(ngModel)]="address.origin"></ion-searchbar>\n          <ion-list [hidden]="autocompleteItems1.length == 0">\n            <ion-item *ngFor="let item1 of autocompleteItems1" tappable (click)="selectOrigin(item1)">\n              {{ item1 }}\n            </ion-item>\n          </ion-list>\n        </ion-item>\n        <ion-item>\n          <ion-searchbar placeholder="Destination" type="text" (ionInput)="showAddress2()" [(ngModel)]="address.destination"></ion-searchbar>\n          <ion-list [hidden]="autocompleteItems2.length == 0">\n            <ion-item *ngFor="let item2 of autocompleteItems2" tappable (click)="selectDest(item2)">\n              {{ item2 }}\n            </ion-item>\n          </ion-list>\n        </ion-item>\n      </ion-list>\n      <div text-center>\n        <button color=danger ion-button block (click)="findRoute(address)">GO</button>\n      </div>\n    </div>\n    <div #map id="map"></div>\n</ion-content>\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>'/*ion-inline-end:"/home/robrobirobin/Documents/Project-Design/src/pages/home/home.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__ionic_native_geolocation__["a" /* Geolocation */],
             __WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__["a" /* AngularFireAuth */],
@@ -411,7 +410,7 @@ var HomePage = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MytripPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(18);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -446,7 +445,7 @@ var MytripPage = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SettingsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(18);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -481,11 +480,10 @@ var SettingsPage = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RoutesPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_geolocation__ = __webpack_require__(104);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_remote_service_remote_service__ = __webpack_require__(217);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__details_details__ = __webpack_require__(334);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__details_details___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__details_details__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__details_details__ = __webpack_require__(218);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -507,9 +505,9 @@ var RoutesPage = (function () {
         this.zone = zone;
         this.rsp = rsp;
         this.navParams = navParams;
-        this.lat = [];
-        this.lon = [];
-        this.mode = [];
+        this.snappedCoordinates = [];
+        this.placeIdArray = [];
+        this.polylines = [];
         this.trip = [{
                 id: '',
                 transfer: '',
@@ -522,33 +520,20 @@ var RoutesPage = (function () {
                 tripID: '',
                 seq: '',
                 distance: '',
-                flatLng: {
-                    lat: '',
-                    lon: ''
-                },
-                tlatLng: {
-                    lat: '',
-                    lon: ''
-                }
+                legGeom: '',
+                transMode: '',
             }];
         this.legTransit = [{
                 tripID: '',
                 seq: '',
                 distance: '',
                 legGeom: '',
-                flatLng: {
-                    lat: '',
-                    lon: ''
-                },
-                tlatLng: {
-                    lat: '',
-                    lon: ''
-                },
+                from: '',
+                to: '',
                 transMode: '',
                 route: ''
             }];
         this.routeType = [
-            { name: "..." },
             { name: "Less Transfer" },
             { name: "Less Fair" },
             { name: "Less Walking" },
@@ -556,10 +541,9 @@ var RoutesPage = (function () {
         ];
         this.address = this.navParams.get('address');
         this.geocoder = new google.maps.Geocoder;
-        this.directionsService = new google.maps.DirectionsService;
-        this.directionsDisplay = [];
         this.markers = [];
         this.trip.length = 0;
+        this.points = [];
     }
     RoutesPage.prototype.ionViewDidLoad = function () {
         this.loadMap();
@@ -627,6 +611,8 @@ var RoutesPage = (function () {
     RoutesPage.prototype.processInput = function (data) {
         var distance;
         this.trip.length = 0;
+        this.legWalk.length = 0;
+        this.legTransit.length = 0;
         for (var id = 0; id < data.itineraries.length; id++) {
             var fare = void 0;
             fare = 0;
@@ -639,50 +625,39 @@ var RoutesPage = (function () {
                     this.legWalk.push({
                         tripID: id,
                         seq: se,
-                        distance: leg['distance'],
-                        flatLng: {
-                            lat: leg['from']['lat'],
-                            lon: leg['from']['lon']
-                        },
-                        tlatLng: {
-                            lat: leg['to']['lat'],
-                            lon: leg['to']['lon']
-                        }
+                        distance: (leg['distance']) / 1000,
+                        legGeom: leg['legGeometry']['points'],
+                        transMode: "WALK"
                     });
                     walkDistance += leg['distance'];
                 }
                 else {
-                    this.legTransit.push({
-                        tripID: id,
-                        seq: se,
-                        distance: leg['distance'],
-                        legGeom: leg['legGeometry']['points'],
-                        flatLng: {
-                            lat: leg['from']['lat'],
-                            lon: leg['from']['lon']
-                        },
-                        tlatLng: {
-                            lat: leg['to']['lat'],
-                            lon: leg['to']['lon']
-                        },
-                        transMode: leg['routeId'],
-                        route: leg['route']
-                    });
+                    distance = leg['distance'] / 1000;
                     var mode = leg['routeId'];
-                    distance = this.legTransit[se].distance / 1000;
                     if (mode.includes("PUJ")) {
+                        mode = "PUJ";
                         if (distance > 4)
                             fare = (fare + (8.00 + (distance - 4) * 1.50)).toPrecision(3);
                         else
                             fare = (fare + 8.00).toPrecision(3);
-                        console.log("PUJ distance: " + distance + "\n Fare: " + fare);
                     }
                     else if (mode.includes("PUB")) {
+                        mode = "PUB";
                         if (distance > 5)
-                            fare = (fare + (10.00 + (distance - 5) * 1.75)).toPrecision(3);
+                            fare = parseFloat(fare + (10.00 + (distance - 5) * 1.75)).toPrecision(3);
                         else
-                            fare = (fare + 10.00).toPrecision(3);
+                            fare = parseFloat(fare + 10.00).toPrecision(3);
                     }
+                    this.legTransit.push({
+                        tripID: id,
+                        seq: se,
+                        distance: distance,
+                        legGeom: leg['legGeometry']['points'],
+                        from: leg['from']['name'],
+                        to: leg['to']['name'],
+                        transMode: mode,
+                        route: leg['route']
+                    });
                 }
             }
             this.trip.push({
@@ -693,91 +668,95 @@ var RoutesPage = (function () {
                 legs: data.itineraries[id].legs.length,
                 roundtrip: false
             });
-            console.log("distance: " + walkDistance);
         }
     };
     RoutesPage.prototype.plotted = function (index) {
         console.log(index);
-        console.log(this.legWalk[0].seq);
-        var color = '';
+        this.drawSnappedPolyline('blue', 0);
         for (var i = 0; i < this.trip[index].legs; i++) {
+            this.points = [];
             for (var j = 0; j < this.legWalk.length; j++) {
                 console.log(this.legWalk[j].seq);
                 if ((this.legWalk[j].tripID == this.trip[index].id) && (this.legWalk[j].seq == i)) {
-                    console.log("WALKING");
-                    this.mode.push("WALKING");
-                    if (i == this.trip[index].legs - 1) {
-                        this.lat.push(this.legWalk[j].tlatLng.lat);
-                        this.lon.push(this.legWalk[j].tlatLng.lon);
-                    }
-                    else {
-                        this.lat.push(this.legWalk[j].flatLng.lat);
-                        this.lon.push(this.legWalk[j].flatLng.lon);
-                    }
+                    console.log("walk");
+                    this.decode(this.legWalk[j].legGeom);
+                    this.drawSnappedPolyline('blue', 1);
                 }
             }
             for (var k = 0; k < this.legTransit.length; k++) {
                 if ((this.legTransit[k].tripID == this.trip[index].id) && (this.legTransit[k].seq == i)) {
-                    console.log("TRANSIT");
-                    this.mode.push("TRANSIT");
-                    this.lat.push(this.legTransit[k].flatLng.lat);
-                    this.lon.push(this.legTransit[k].flatLng.lon);
-                    this.lat.push(this.legTransit[k].tlatLng.lat);
-                    this.lon.push(this.legTransit[k].tlatLng.lon);
+                    console.log("transit");
+                    this.decode(this.legTransit[k].legGeom);
+                    this.drawSnappedPolyline('red', 1);
                 }
             }
         }
-        //start directions display and renderer
-        console.log(this.mode.length + "   " + this.lat.length);
-        if (this.directionsDisplay.length > 0) {
-            this.directionsDisplay = [];
-            color = '';
-            for (var i = 0; i < this.directionsDisplay.length; i++)
-                this.directionsDisplay[i].setMap(null);
-        }
-        for (var i = 0; i < this.mode.length; i++) {
-            if (this.mode[i] == "WALKING") {
-                color = 'blue';
-            }
-            else {
-                color = 'red';
-            }
-            this.directionsDisplay[i] = new google.maps.DirectionsRenderer({
-                preserveViewport: true,
-                suppressMarkers: true,
-                polylineOptions: {
-                    strokeColor: color
-                }
-            });
-        }
-        this.getDirections();
+        //this.getDirections();
     };
-    RoutesPage.prototype.getDirections = function () {
-        var _this = this;
-        var _loop_1 = function (i) {
-            var or = { lat: parseFloat(this_1.lat[i]), lng: parseFloat(this_1.lon[i]) };
-            var de = { lat: parseFloat(this_1.lat[i + 1]), lng: parseFloat(this_1.lon[i + 1]) };
-            this_1.directionsDisplay[i].setMap(this_1.map);
-            this_1.directionsService.route({
-                origin: or,
-                destination: de,
-                travelMode: "WALKING"
-            }, function (response, status) {
-                if (status === 'OK') {
-                    _this.directionsDisplay[i].setDirections(response);
-                }
-                else {
-                    console.log('Directions request failed due to ' + status);
-                }
-            });
-        };
-        var this_1 = this;
-        for (var i = 0; i < this.mode.length; i++) {
-            _loop_1(i);
+    RoutesPage.prototype.decode = function (leggeom) {
+        // array that holds the points
+        var index = 0, len = leggeom.length;
+        var lat = 0, lng = 0;
+        while (index < len) {
+            var b = void 0, shift = 0, result = 0;
+            do {
+                b = leggeom.charAt(index++).charCodeAt(0) - 63; //finds ascii                                                                                    //and substract it by 63
+                result |= (b & 0x1f) << shift;
+                shift += 5;
+            } while (b >= 0x20);
+            var dlat = ((result & 1) != 0 ? ~(result >> 1) : (result >> 1));
+            lat += dlat;
+            shift = 0;
+            result = 0;
+            do {
+                b = leggeom.charAt(index++).charCodeAt(0) - 63;
+                result |= (b & 0x1f) << shift;
+                shift += 5;
+            } while (b >= 0x20);
+            var dlng = ((result & 1) != 0 ? ~(result >> 1) : (result >> 1));
+            lng += dlng;
+            var latlng = new google.maps.LatLng((lat / 1E5), (lng / 1E5));
+            this.points.push(latlng);
+        }
+        /*this.rsp.runSnapToRoad(points)
+        .then(snap => {
+          if(snap){
+            console.log(snap);
+            this.processSnapToRoadResponse(snap);
+            this.drawSnappedPolyline();
+          }
+          else
+            console.log("No trip found.");
+        })*/
+    };
+    RoutesPage.prototype.processSnapToRoadResponse = function (data) {
+        this.snappedCoordinates = [];
+        this.placeIdArray = [];
+        for (var i = 0; i < data.snappedPoints.length; i++) {
+            var latlng = new google.maps.LatLng(data.snappedPoints[i].location.latitude, data.snappedPoints[i].location.longitude);
+            this.snappedCoordinates.push(latlng);
+            this.placeIdArray.push(data.snappedPoints[i].placeId);
         }
     };
-    RoutesPage.prototype.seeDetails = function () {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__details_details__["DetailsPage"]).catch(function (err) {
+    RoutesPage.prototype.drawSnappedPolyline = function (color, num) {
+        var snappedPolyline = new google.maps.Polyline({
+            path: this.points,
+            strokeColor: color,
+            strokeWeight: 3
+        });
+        snappedPolyline.setMap(this.map);
+        this.polylines.push(snappedPolyline);
+        if (num == 0) {
+            snappedPolyline.setMap(null);
+            this.polylines = [];
+        }
+    };
+    RoutesPage.prototype.seeDetails = function (i) {
+        var trip;
+        var legW;
+        var legT;
+        trip = this.trip, legW = this.legWalk, legT = this.legTransit;
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__details_details__["a" /* DetailsPage */], { "i": i, "trip": trip, "legW": legW, "legT": legT }).catch(function (err) {
             console.log(err);
         });
     };
@@ -787,7 +766,7 @@ var RoutesPage = (function () {
     ], RoutesPage.prototype, "mapElement", void 0);
     RoutesPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-routes',template:/*ion-inline-start:"/home/robrobirobin/Documents/Project-Design/src/pages/routes/routes.html"*/'<ion-header>\n    <ion-navbar>\n      <ion-title></ion-title>\n    </ion-navbar>\n  </ion-header>\n  \n<ion-content>\n    <div>\n        <ion-list scrollable=true>\n            <ion-item>\n                <ion-select [(ngModel)]="type" interface="popover">\n                    <ion-option *ngFor="let type of routeType" selected="{{ type.name }}">{{type.name}}</ion-option>\n                </ion-select>\n            </ion-item>\n            <ion-list>\n                <ion-item text-wrap *ngFor="let t of trip; let i = index">\n                    <button ion-button item-start (click)="plotted(i)">Plot</button>\n                    <h2>Itinerary: {{ t.id+1 }}</h2>\n                    <p>No. of transfer: {{ t.transfer }}</p>\n                    <p>Total fare: P{{ t.fare }}</p>\n                    <button ion-button outline item-end (click)="seeDetails()">Details</button>\n                </ion-item>\n            </ion-list>\n        </ion-list>\n    </div>\n    <div #map id="map"></div>\n</ion-content>'/*ion-inline-end:"/home/robrobirobin/Documents/Project-Design/src/pages/routes/routes.html"*/,
+            selector: 'page-routes',template:/*ion-inline-start:"/home/robrobirobin/Documents/Project-Design/src/pages/routes/routes.html"*/'<ion-header>\n    <ion-navbar color="danger">\n      <ion-title></ion-title>\n    </ion-navbar>\n  </ion-header>\n  \n<ion-content>\n    <div>\n        <ion-list scrollable=true>\n            <ion-item>\n                <!--<ion-select [(ngModel)]="type" interface="popover">\n                    <ion-option *ngFor="let type of routeType" selected="{{ type.name }}">{{type.name}}</ion-option>\n                </ion-select> -->\n                <ion-toolbar>\n                    <ion-segment color="danger">\n                        <ion-segment-button class="lessfare" value="lessfare">\n                            <!--<ion-icon name="camera"></ion-icon>-->\n                        </ion-segment-button>\n                        <ion-segment-button value="lesswalk">\n                            <ion-icon name="bookmark"></ion-icon>\n                        </ion-segment-button>\n                        <ion-segment-button value="lesstransfer">\n                            <ion-icon name="bookmark"></ion-icon>\n                        </ion-segment-button>\n                        <ion-segment-button value="round-trip">\n                            <ion-icon name="bookmark"></ion-icon>\n                        </ion-segment-button>\n                    </ion-segment>\n                </ion-toolbar>\n            </ion-item>\n            <ion-list>\n                <ion-item text-wrap *ngFor="let t of trip; let i = index">\n                    <button ion-button item-start (click)="plotted(i)">Plot</button>\n                    <h2>Itinerary: {{ t.id+1 }}</h2>\n                    <p>No. of transfer: {{ t.transfer }}</p>\n                    <p>Total fare: P{{ t.fare }}</p>\n                    <button ion-button outline item-end (click)="seeDetails(i)">Details</button>\n                </ion-item>\n            </ion-list>\n        </ion-list>\n    </div>\n    <div #map id="map"></div>\n</ion-content>'/*ion-inline-end:"/home/robrobirobin/Documents/Project-Design/src/pages/routes/routes.html"*/,
             providers: [__WEBPACK_IMPORTED_MODULE_3__providers_remote_service_remote_service__["a" /* RemoteServiceProvider */]]
         }),
         __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_geolocation__["a" /* Geolocation */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_geolocation__["a" /* Geolocation */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* NgZone */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* NgZone */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__providers_remote_service_remote_service__["a" /* RemoteServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_remote_service_remote_service__["a" /* RemoteServiceProvider */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]) === "function" && _f || Object])
@@ -811,7 +790,7 @@ var RoutesPage = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RemoteServiceProvider; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(117);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(333);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(334);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -834,11 +813,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var RemoteServiceProvider = (function () {
     function RemoteServiceProvider(http) {
         this.http = http;
-        console.log('Hello RemoteServiceProvider Provider');
     }
     RemoteServiceProvider.prototype.load = function (origin, dest) {
         var _this = this;
-        this.baseUrl = 'http://localhost:8080/otp/routers/default/plan?fromPlace=' + origin + '&toPlace=' + dest + '&date=2017/01/09&time=12:00:00&mode=TRANSIT%2CWALK&maxWalkDistance=1000&arriveBy=false&wheelchair=false';
+        this.baseUrl = 'http://localhost:8080/otp/routers/default/plan?fromPlace=' + origin + '&toPlace=' + dest + '&date=2017/01/09&time=11:00:00&mode=TRANSIT%2CWALK&maxWalkDistance=1000&arriveBy=false&wheelchair=false';
         if (this.data) {
             return Promise.resolve(this.data);
         }
@@ -858,6 +836,36 @@ var RemoteServiceProvider = (function () {
             });
         });
     };
+    RemoteServiceProvider.prototype.runSnapToRoad = function (path) {
+        var _this = this;
+        var url;
+        url = 'https://roads.googleapis.com/v1/snapToRoads?path=';
+        for (var i = 0; i < path.length; i++) {
+            if (i == 0)
+                url = url + path[i].latitude + "," + path[i].longitude;
+            else
+                url = url + '|' + path[i].latitude + "," + path[i].longitude;
+        }
+        url = url + '&interpolate=true&key=AIzaSyCEGIORWkWAkATmL3elnWiGD3SnVCYQzyU';
+        if (this.snap) {
+            return Promise.resolve(this.snap);
+        }
+        var opt;
+        var myHeaders = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */];
+        myHeaders.set('Accept', 'application/json');
+        myHeaders.append('Content-type', 'application/json');
+        opt = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]({
+            headers: myHeaders
+        });
+        return new Promise(function (resolve) {
+            _this.http.get(url, opt)
+                .map(function (res) { return res.json(); })
+                .subscribe(function (snap) {
+                _this.snap = snap;
+                resolve(_this.snap);
+            });
+        });
+    };
     RemoteServiceProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]])
@@ -873,9 +881,122 @@ var RemoteServiceProvider = (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DetailsPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(18);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var DetailsPage = (function () {
+    function DetailsPage(navCtrl, navParams) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.index = this.navParams.get("i");
+        this.trip = this.navParams.get("trip");
+        this.legWalk = this.navParams.get("legW");
+        this.legTransit = this.navParams.get("legT");
+        this.description = [];
+        this.iosicon = [];
+        this.mdicon = [];
+        this.leg = [];
+    }
+    DetailsPage.prototype.ionViewDidLoad = function () {
+        console.log(this.trip[this.index].legs);
+        this.buildlist();
+    };
+    DetailsPage.prototype.buildlist = function () {
+        this.leg.length = 0;
+        this.description.length = 0;
+        var des = "";
+        for (var i = 0; i < this.trip[this.index].legs; i++) {
+            des = "";
+            for (var j = 0; j < this.legWalk.length; j++) {
+                if ((this.legWalk[j].tripID == this.trip[this.index].id) && (this.legWalk[j].seq == i)) {
+                    console.log("walk");
+                    var distance = this.legWalk[j].distance;
+                    des = "Distance: " + parseFloat(distance).toPrecision(2) + " km\n";
+                    this.description.push(des);
+                    this.iosicon.push("ios-walk");
+                    this.mdicon.push("md-walk");
+                    des = "";
+                }
+            }
+            for (var k = 0; k < this.legTransit.length; k++) {
+                var fare = void 0;
+                var fare2 = void 0;
+                console.log("transit");
+                if ((this.legTransit[k].tripID == this.trip[this.index].id) && (this.legTransit[k].seq == i) && (this.legTransit[k].seq)) {
+                    fare = 0;
+                    fare2 = 0;
+                    var distance = this.legTransit[k].distance;
+                    if (this.legTransit[k].transMode == "PUJ") {
+                        if (distance > 4)
+                            fare = (8.00 + (distance - 4) * 1.50).toPrecision(3);
+                        else
+                            fare = (8.00).toPrecision(3);
+                        des = "Fare: P" + fare + "\n";
+                        des = des + "Route: PUJ - " + this.legTransit[k].route + "\n";
+                        des = des + "Board at: " + this.legTransit[k].from + "\n";
+                        des = des + "Alight at: " + this.legTransit[k].to + "\n";
+                        this.iosicon.push("ios-car");
+                        this.mdicon.push("md-car");
+                    }
+                    else if (this.legTransit[k].transMode == "PUB") {
+                        if (distance > 5) {
+                            fare = (10.00 + (distance - 5) * 1.75).toPrecision(4);
+                            fare2 = (12.00 + (distance - 5) * 2.35).toPrecision(4);
+                        }
+                        else {
+                            fare = (10.00).toPrecision(4);
+                            fare2 = (12.00).toPrecision(4);
+                        }
+                        des = "Fare (Ordinary): P" + fare + "\n";
+                        des = des + "Fare (Air-con): P" + fare2 + "\n";
+                        des = des + "Route: PUB - " + this.legTransit[k].route + "\n";
+                        des = des + "Board at: " + this.legTransit[k].from + "\n";
+                        des = des + "Alight at: " + this.legTransit[k].to + "\n";
+                        this.iosicon.push("ios-bus");
+                        this.mdicon.push("md-bus");
+                    }
+                    else {
+                        des = "Distance: " + parseFloat(distance).toPrecision(2) + " km";
+                        this.iosicon.push("ios-train");
+                        this.mdicon.push("md-train");
+                    }
+                    this.description.push(des);
+                    des = "";
+                }
+            }
+        }
+    };
+    DetailsPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-details',template:/*ion-inline-start:"/home/robrobirobin/Documents/Project-Design/src/pages/details/details.html"*/'<ion-header>\n    <ion-navbar color="danger">\n      <ion-title></ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <div>\n    <ion-list>\n        <ion-item text-wrap *ngFor="let item of description; let i = index;" ng-style="{\'min-height\':\'150px\'}">\n          <!-- <ion-icon [name]="iosicon[i]" md="mdicon[i]"></ion-icon>-->\n          <button [class.button-disabled]="true" ion-button item-start>\n              <ion-icon [name]="iosicon[i]" class="legIcon"></ion-icon>\n          </button>\n          {{ description[i] }}\n        </ion-item>\n    </ion-list>\n  </div>\n</ion-content>'/*ion-inline-end:"/home/robrobirobin/Documents/Project-Design/src/pages/details/details.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]])
+    ], DetailsPage);
+    return DetailsPage;
+}());
+
+//# sourceMappingURL=details.js.map
+
+/***/ }),
+
+/***/ 219:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(219);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(241);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(220);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(242);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -883,7 +1004,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 241:
+/***/ 242:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -892,26 +1013,28 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(117);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_splash_screen__ = __webpack_require__(200);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_status_bar__ = __webpack_require__(202);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_angularfire2__ = __webpack_require__(102);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_angularfire2_auth__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_geolocation__ = __webpack_require__(104);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__app_component__ = __webpack_require__(332);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__app_component__ = __webpack_require__(333);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_login_login__ = __webpack_require__(105);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_register_register__ = __webpack_require__(212);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_home_home__ = __webpack_require__(213);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_myTrips_mytrip__ = __webpack_require__(214);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_settings_settings__ = __webpack_require__(215);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_routes_routes__ = __webpack_require__(216);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__providers_remote_service_remote_service__ = __webpack_require__(217);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_details_details__ = __webpack_require__(218);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__providers_remote_service_remote_service__ = __webpack_require__(217);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -950,7 +1073,8 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_12__pages_home_home__["a" /* HomePage */],
                 __WEBPACK_IMPORTED_MODULE_13__pages_myTrips_mytrip__["a" /* MytripPage */],
                 __WEBPACK_IMPORTED_MODULE_14__pages_settings_settings__["a" /* SettingsPage */],
-                __WEBPACK_IMPORTED_MODULE_15__pages_routes_routes__["a" /* RoutesPage */]
+                __WEBPACK_IMPORTED_MODULE_15__pages_routes_routes__["a" /* RoutesPage */],
+                __WEBPACK_IMPORTED_MODULE_16__pages_details_details__["a" /* DetailsPage */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -969,7 +1093,8 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_12__pages_home_home__["a" /* HomePage */],
                 __WEBPACK_IMPORTED_MODULE_13__pages_myTrips_mytrip__["a" /* MytripPage */],
                 __WEBPACK_IMPORTED_MODULE_14__pages_settings_settings__["a" /* SettingsPage */],
-                __WEBPACK_IMPORTED_MODULE_15__pages_routes_routes__["a" /* RoutesPage */]
+                __WEBPACK_IMPORTED_MODULE_15__pages_routes_routes__["a" /* RoutesPage */],
+                __WEBPACK_IMPORTED_MODULE_16__pages_details_details__["a" /* DetailsPage */]
             ],
             providers: [
                 __WEBPACK_IMPORTED_MODULE_5__ionic_native_status_bar__["a" /* StatusBar */],
@@ -977,7 +1102,7 @@ var AppModule = (function () {
                 { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["u" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["c" /* IonicErrorHandler */] },
                 __WEBPACK_IMPORTED_MODULE_7_angularfire2_auth__["a" /* AngularFireAuth */],
                 __WEBPACK_IMPORTED_MODULE_8__ionic_native_geolocation__["a" /* Geolocation */],
-                __WEBPACK_IMPORTED_MODULE_16__providers_remote_service_remote_service__["a" /* RemoteServiceProvider */]
+                __WEBPACK_IMPORTED_MODULE_17__providers_remote_service_remote_service__["a" /* RemoteServiceProvider */]
             ]
         })
     ], AppModule);
@@ -988,13 +1113,13 @@ var AppModule = (function () {
 
 /***/ }),
 
-/***/ 332:
+/***/ 333:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(202);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(200);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_login_login__ = __webpack_require__(105);
@@ -1032,14 +1157,7 @@ var MyApp = (function () {
 
 //# sourceMappingURL=app.component.js.map
 
-/***/ }),
-
-/***/ 334:
-/***/ (function(module, exports) {
-
-//# sourceMappingURL=details.js.map
-
 /***/ })
 
-},[218]);
+},[219]);
 //# sourceMappingURL=main.js.map

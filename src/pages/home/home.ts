@@ -31,14 +31,13 @@ export class HomePage {
   originDir;
   destDir;
 
-
+  
   map: any;
   @ViewChild('map') mapElement: ElementRef;
 	pages = [
     { title: 'My Trips', component: MytripPage },
     { title: 'Settings', component: SettingsPage },
-    { title: 'Sign Out', component: LoginPage },
-    { title: 'Routes', component: RoutesPage }
+    { title: 'Sign Out', component: LoginPage }
   ];
   constructor(
     public geolocation: Geolocation, 

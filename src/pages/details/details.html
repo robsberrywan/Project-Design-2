@@ -1,7 +1,19 @@
 <ion-header>
-    <ion-navbar>
+    <ion-navbar color="danger">
       <ion-title></ion-title>
     </ion-navbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+  <div>
+    <ion-list>
+        <ion-item text-wrap *ngFor="let item of description; let i = index;" ng-style="{'min-height':'150px'}">
+          <!-- <ion-icon [name]="iosicon[i]" md="mdicon[i]"></ion-icon>-->
+          <button [class.button-disabled]="true" ion-button item-start>
+              <ion-icon [name]="iosicon[i]" class="legIcon"></ion-icon>
+          </button>
+          {{ description[i] }}
+        </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

@@ -1,5 +1,5 @@
 <ion-header>
-    <ion-navbar>
+    <ion-navbar color="danger">
       <ion-title></ion-title>
     </ion-navbar>
   </ion-header>
@@ -8,9 +8,25 @@
     <div>
         <ion-list scrollable=true>
             <ion-item>
-                <ion-select [(ngModel)]="type" interface="popover">
+                <!--<ion-select [(ngModel)]="type" interface="popover">
                     <ion-option *ngFor="let type of routeType" selected="{{ type.name }}">{{type.name}}</ion-option>
-                </ion-select>
+                </ion-select> -->
+                <ion-toolbar>
+                    <ion-segment color="danger">
+                        <ion-segment-button class="lessfare" value="lessfare">
+                            <!--<ion-icon name="camera"></ion-icon>-->
+                        </ion-segment-button>
+                        <ion-segment-button value="lesswalk">
+                            <ion-icon name="bookmark"></ion-icon>
+                        </ion-segment-button>
+                        <ion-segment-button value="lesstransfer">
+                            <ion-icon name="bookmark"></ion-icon>
+                        </ion-segment-button>
+                        <ion-segment-button value="round-trip">
+                            <ion-icon name="bookmark"></ion-icon>
+                        </ion-segment-button>
+                    </ion-segment>
+                </ion-toolbar>
             </ion-item>
             <ion-list>
                 <ion-item text-wrap *ngFor="let t of trip; let i = index">
@@ -18,7 +34,7 @@
                     <h2>Itinerary: {{ t.id+1 }}</h2>
                     <p>No. of transfer: {{ t.transfer }}</p>
                     <p>Total fare: P{{ t.fare }}</p>
-                    <button ion-button outline item-end (click)="seeDetails()">Details</button>
+                    <button ion-button outline item-end (click)="seeDetails(i)">Details</button>
                 </ion-item>
             </ion-list>
         </ion-list>

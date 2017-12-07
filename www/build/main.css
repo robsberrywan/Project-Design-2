@@ -25678,6 +25678,14 @@ ion-navbar.toolbar {
   min-height: calc(46px + env(safe-area-inset-bottom));
 }
 
+page-details ion-item {
+  white-space: pre-line;
+}
+
+page-details .legIcon {
+  font-size: 30px;
+}
+
 page-home #map {
   width: 100%;
   height: 330px;
@@ -25705,4 +25713,10 @@ page-login .or {
 page-routes #map {
   width: 100%;
   height: 500px;
+}
+
+page-routes .lessfare {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url("../icons/lessfare.png");
 }
