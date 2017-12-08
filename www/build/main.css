@@ -25678,6 +25678,11 @@ ion-navbar.toolbar {
   min-height: calc(46px + env(safe-area-inset-bottom));
 }
 
+page-details #map {
+  width: 100%;
+  height: 400px;
+}
+
 page-details ion-item {
   white-space: pre-line;
 }
@@ -25702,6 +25707,10 @@ page-details ion-row {
   border-top-left-radius: 15px;
   border-left: 10px;
   border-top: 10px;
+}
+
+page-details ion-img {
+  background-color: transparent !important;
 }
 
 page-home #map {
@@ -25748,11 +25757,6 @@ page-login .or {
 
 page-login ion-label {
   font-size: 18px;
-}
-
-page-routes #map {
-  width: 100%;
-  height: 500px;
 }
 
 page-routes ion-content, page-routes ion-header {
