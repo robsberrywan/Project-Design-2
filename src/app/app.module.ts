@@ -20,6 +20,10 @@ import { RoutesPage } from '../pages/routes/routes';
 import { DetailsPage } from '../pages/details/details';
 import { RemoteServiceProvider } from '../providers/remote-service/remote-service';
 
+import { GooglePlus } from '@ionic-native/google-plus';
+import firebase from 'firebase';
+import { Facebook } from '@ionic-native/facebook';
+
 export const FIREBASE_CONF = {
   apiKey: "AIzaSyDXJtxVDEFknxJYwWAjKCce-mHuDxY2gqU",
   authDomain: "project-design-2018d.firebaseapp.com",
@@ -28,6 +32,8 @@ export const FIREBASE_CONF = {
   storageBucket: "project-design-2018d.appspot.com",
   messagingSenderId: "308539296287"
 }
+
+firebase.initializeApp(FIREBASE_CONF)
 
 @NgModule({
   declarations: [
@@ -64,7 +70,9 @@ export const FIREBASE_CONF = {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AngularFireAuth,
     Geolocation,
-    RemoteServiceProvider
+    RemoteServiceProvider,
+    GooglePlus,
+    Facebook
   ]
 })
 export class AppModule {}
