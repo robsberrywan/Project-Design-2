@@ -10,23 +10,22 @@
                 <ion-toolbar>
                     <ion-segment color=secondary>
                         <ion-segment-button value="lessfare">
-                            <ion-img width="10" height="10" src="./assets/imgs/lessfare.png">Less Fare</ion-img>
+                            <ion-img width="20" height="20" src="./assets/imgs/lessfare.png">Less Fare</ion-img>
                         </ion-segment-button>
                         <ion-segment-button value="lesswalk">
-                            <ion-img width="10" height="10" src="./assets/imgs/lesswalk.png">Less Walk</ion-img>
+                            <ion-img width="20" height="20" src="./assets/imgs/lesswalk.png">Less Walk</ion-img>
                         </ion-segment-button>
                         <ion-segment-button value="lesstransfer">
                             Less Transfer
                         </ion-segment-button>
                         <ion-segment-button value="round-trip">
-                            <ion-img width="10" height="10" src="./assets/imgs/roundtrip.png">Round-trip</ion-img>
+                            <ion-img width="20" height="20" src="./assets/imgs/roundtrip.png">Round-trip</ion-img>
                         </ion-segment-button>
                     </ion-segment>
                 </ion-toolbar>
             </ion-item>
             <ion-list>
                 <ion-item text-wrap *ngFor="let t of trip; let i = index" tappable (click)="seeDetails(i)">
-                    <button ion-button item-start (click)="plotted(i)">Plot</button>
                     <h2>Itinerary: {{ t.id+1 }}</h2>
                     <p>No. of transfer: {{ t.transfer }}</p>
                     <p>Total fare: P{{ t.fare }}</p>
@@ -34,4 +33,5 @@
             </ion-list>
         </ion-list>
     </div>
+    <div #map [hidden]=true id="map"></div>
 </ion-content>

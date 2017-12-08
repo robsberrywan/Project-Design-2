@@ -5,13 +5,11 @@
 
 <ion-content>
   <div #map id="map"></div>
-  <div>
+  <div scrollable=true>
     <ion-grid>
       <ion-row *ngFor="let item of description; let i = index;" no-padding no-margin>
         <ion-col col-2 class="col icon-col">
-          <button [class.button-disabled]="true" ion-button item-start>
-            <ion-icon [name]="iosicon[i]" class="legIcon"></ion-icon>
-          </button>
+          <ion-img width="50" height="50" [src]="modeIcons[i]">Less Fare</ion-img>
         </ion-col>
         <ion-col col-95>
           <p>{{ description[i].route }}</p>

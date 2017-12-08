@@ -1,4 +1,8 @@
 page-details {
+    #map {
+        width: 100%;
+        height: 400px;
+    }
     ion-item{
         white-space: pre-line;
     }
@@ -17,5 +21,8 @@ page-details {
         border-top-left-radius: 15px;
         border-left: 10px;
         border-top: 10px;
+    }
+    ion-img {
+        background-color: transparent !important;
     }
 }
