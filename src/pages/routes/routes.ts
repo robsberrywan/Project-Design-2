@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef, NgZone } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ViewController } from 'ionic-angular';
 
 import { Geolocation } from '@ionic-native/geolocation';
 import { RemoteServiceProvider } from "../../providers/remote-service/remote-service";
@@ -28,6 +28,7 @@ export class RoutesPage {
     fare: '',
     totalWalkDistance: '',
     legs: '',
+    totalTime: '',
     roundtrip: ''
   }];
   legWalk: any = [{
@@ -35,6 +36,7 @@ export class RoutesPage {
     seq: '',
     distance: '',
     legGeom: '',
+    time: '',
     transMode: '',
   }];
   legTransit: any = [{
@@ -44,6 +46,7 @@ export class RoutesPage {
     legGeom: '',
     from: '',
     to: '',
+    time: '',
     transMode: '',
     route: ''
   }];
@@ -61,7 +64,8 @@ export class RoutesPage {
     public navCtrl: NavController,
     public zone: NgZone,
     public rsp: RemoteServiceProvider,
-    public navParams: NavParams) {
+    public navParams: NavParams,
+    public viewCtrl: ViewController) {
       this.address = this.navParams.get('address');
       this.geocoder = new google.maps.Geocoder;
       this.markers = [];
@@ -150,6 +154,7 @@ export class RoutesPage {
             seq: se,
             distance: (leg['distance'])/1000,
             legGeom: leg['legGeometry']['points'],
+            time: leg['duration'],
             transMode: "WALK"
           });
           walkDistance+=leg['distance'];
@@ -178,6 +183,7 @@ export class RoutesPage {
             legGeom: leg['legGeometry']['points'],
             from: leg['from']['name'],
             to: leg['to']['name'],
+            time: leg['duration'],
             transMode: mode,
             route: leg['route']
           });
@@ -189,6 +195,7 @@ export class RoutesPage {
         fare: fare,
         totalWalkDistance: walkDistance,
         legs: data.itineraries[id].legs.length,
+        totalTime: (data.itineraries[id].duration)/60,
         roundtrip: false
       });
     }
@@ -215,7 +222,6 @@ export class RoutesPage {
         }
       }
     }
-    //this.getDirections();
   }
   points;
   decode(leggeom){
@@ -287,6 +293,9 @@ export class RoutesPage {
     trip = this.trip, legW = this.legWalk, legT  = this.legTransit;
     this.navCtrl.push(DetailsPage, {"i": i, "trip": trip, "legW": legW, "legT": legT}).catch( err => {
       console.log(err)});
+  }
+  closeModal(){
+    this.viewCtrl.dismiss();
   }
 }
 /*

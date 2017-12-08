@@ -25686,9 +25686,31 @@ page-details .legIcon {
   font-size: 30px;
 }
 
+page-details .icon-col {
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+}
+
+page-details ion-grid {
+  background-color: lightcyan;
+}
+
+page-details ion-row {
+  background-color: lightcyan;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 15px;
+  border-left: 10px;
+  border-top: 10px;
+}
+
 page-home #map {
   width: 100%;
-  height: 330px;
+  height: 100%;
+}
+
+page-home .menu-button {
+  float: right;
 }
 
 page-home .searchbar-search-icon {
@@ -25698,16 +25720,34 @@ page-home .searchbar-search-icon {
 }
 
 page-home .searchbar-input {
-  padding-left: 9px !important;
+  padding-left: 0px !important;
 }
 
-page-login .loginlogo {
-  color: red;
-  font-size: 100px;
+page-home ion-item {
+  padding: 0px !important;
+  background-color: transparent !important;
+}
+
+page-home .no-padding {
+  padding: 0px !important;
+}
+
+page-home .limit-item {
+  width: 83%;
+  margin-left: 17%;
+}
+
+page-login ion-img {
+  background-color: transparent !important;
+  size: 200px;
 }
 
 page-login .or {
   font-size: 40px;
+}
+
+page-login ion-label {
+  font-size: 18px;
 }
 
 page-routes #map {
@@ -25715,8 +25755,16 @@ page-routes #map {
   height: 500px;
 }
 
-page-routes .lessfare {
-  background-repeat: no-repeat;
-  background-position: center;
-  background-image: url("../icons/lessfare.png");
+page-routes ion-content, page-routes ion-header {
+  width: 100%;
+  height: 87%;
+  top: 13%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+page-routes .close-button {
+  width: 83%;
+  margin-left: 17%;
 }

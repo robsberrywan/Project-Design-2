@@ -1,43 +1,37 @@
-<ion-header>
-    <ion-navbar color="danger">
-      <ion-title></ion-title>
-    </ion-navbar>
-  </ion-header>
+
   
 <ion-content>
-    <div>
+    <ion-navbar color=primary>
+        <button class="close-button" color=dark ion-button block (click)="closeModal()">New Route</button>
+    </ion-navbar>
+    <div no-padding>
         <ion-list scrollable=true>
             <ion-item>
-                <!--<ion-select [(ngModel)]="type" interface="popover">
-                    <ion-option *ngFor="let type of routeType" selected="{{ type.name }}">{{type.name}}</ion-option>
-                </ion-select> -->
                 <ion-toolbar>
-                    <ion-segment color="danger">
-                        <ion-segment-button class="lessfare" value="lessfare">
-                            <!--<ion-icon name="camera"></ion-icon>-->
+                    <ion-segment color=secondary>
+                        <ion-segment-button value="lessfare">
+                            <ion-img width="10" height="10" src="./assets/imgs/lessfare.png">Less Fare</ion-img>
                         </ion-segment-button>
                         <ion-segment-button value="lesswalk">
-                            <ion-icon name="bookmark"></ion-icon>
+                            <ion-img width="10" height="10" src="./assets/imgs/lesswalk.png">Less Walk</ion-img>
                         </ion-segment-button>
                         <ion-segment-button value="lesstransfer">
-                            <ion-icon name="bookmark"></ion-icon>
+                            Less Transfer
                         </ion-segment-button>
                         <ion-segment-button value="round-trip">
-                            <ion-icon name="bookmark"></ion-icon>
+                            <ion-img width="10" height="10" src="./assets/imgs/roundtrip.png">Round-trip</ion-img>
                         </ion-segment-button>
                     </ion-segment>
                 </ion-toolbar>
             </ion-item>
             <ion-list>
-                <ion-item text-wrap *ngFor="let t of trip; let i = index">
+                <ion-item text-wrap *ngFor="let t of trip; let i = index" tappable (click)="seeDetails(i)">
                     <button ion-button item-start (click)="plotted(i)">Plot</button>
                     <h2>Itinerary: {{ t.id+1 }}</h2>
                     <p>No. of transfer: {{ t.transfer }}</p>
                     <p>Total fare: P{{ t.fare }}</p>
-                    <button ion-button outline item-end (click)="seeDetails(i)">Details</button>
                 </ion-item>
             </ion-list>
         </ion-list>
     </div>
-    <div #map id="map"></div>
 </ion-content>

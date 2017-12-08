@@ -19,7 +19,15 @@ export class DetailsPage {
       this.trip = this.navParams.get("trip");
       this.legWalk = this.navParams.get("legW");
       this.legTransit = this.navParams.get("legT");
-      this.description = [];
+      this.description = [{
+        distance: '',
+        time: '',
+        fare: '',
+        fare2: '',
+        route: '',
+        from: '',
+        to: ''
+      }];
       this.iosicon = [];
       this.mdicon = [];
       this.leg = [];
@@ -31,18 +39,20 @@ export class DetailsPage {
     buildlist(){
       this.leg.length = 0;
       this.description.length = 0;
-      let des = "";
       for(let i=0; i<this.trip[this.index].legs; i++){
-        des = "";
         for(let j=0; j<this.legWalk.length; j++){
           if((this.legWalk[j].tripID==this.trip[this.index].id)&&(this.legWalk[j].seq==i)){
-            console.log("walk");
-            let distance = this.legWalk[j].distance;
-            des = "Distance: " + parseFloat(distance).toPrecision(2)+ " km\n";
-            this.description.push(des);
+            this.description.push({
+              distance: parseFloat(this.legWalk[j].distance).toPrecision(2)+ " km\n",
+              time: this.legWalk[j].time + " min",
+              fare: '',
+              fare2: '',
+              route: '',
+              from: '',
+              to: ''
+            });
             this.iosicon.push("ios-walk");
             this.mdicon.push("md-walk");
-            des = "";
           }
         }
         for(let k=0; k<this.legTransit.length; k++){
@@ -58,10 +68,15 @@ export class DetailsPage {
                 fare = (8.00+(distance-4)*1.50).toPrecision(3);
               else
                 fare = (8.00).toPrecision(3);
-              des = "Fare: P" + fare + "\n";
-              des = des + "Route: PUJ - " + this.legTransit[k].route + "\n";
-              des = des + "Board at: " + this.legTransit[k].from + "\n";
-              des = des + "Alight at: " + this.legTransit[k].to + "\n";
+              this.description.push({
+                distance: parseFloat(this.legTransit[k].distance).toPrecision(2)+ " km\n",
+                time: this.legTransit[k].time + " min",
+                fare: "P"+fare,
+                fare2: '',
+                route: '',
+                from: this.legTransit[k].from,
+                to: this.legTransit[k].to
+              });
               this.iosicon.push("ios-car");
               this.mdicon.push("md-car");
             }
@@ -73,26 +88,31 @@ export class DetailsPage {
               }
               else{
                 fare = (10.00).toPrecision(4);
-                fare2 = (12.00).toPrecision(4);                
+                fare2 = (12.00).toPrecision(4);             
               }
-
-              des = "Fare (Ordinary): P" + fare + "\n";
-              des = des + "Fare (Air-con): P" + fare2 + "\n";
-              des = des + "Route: PUB - " + this.legTransit[k].route + "\n";
-              des = des + "Board at: " + this.legTransit[k].from + "\n";
-              des = des + "Alight at: " + this.legTransit[k].to + "\n";
+              this.description.push({
+                distance: parseFloat(this.legTransit[k].distance).toPrecision(2)+ " km\n",
+                time: this.legTransit[k].time + " min",
+                fare: "Ordinary: P"+fare,
+                fare2: "Aircon: P"+fare2,
+                route: this.legTransit[k].route,
+                from: this.legTransit[k].from,
+                to: this.legTransit[k].to
+              });
               this.iosicon.push("ios-bus");
               this.mdicon.push("md-bus");
             }
             else{
-              des = "Distance: " + parseFloat(distance).toPrecision(2) + " km";
               this.iosicon.push("ios-train");
               this.mdicon.push("md-train");
             }
-            this.description.push(des);
-            des = "";
           }
         }
       }
     }
 }
+
+/*
+-arrange details output
+-transfer map from routes to details
+*/

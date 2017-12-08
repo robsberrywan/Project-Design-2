@@ -90,9 +90,9 @@ var LoginPage = (function () {
     };
     LoginPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-login',template:/*ion-inline-start:"/home/robrobirobin/Documents/Project-Design/src/pages/login/login.html"*/'<ion-content padding>\n\n	<div text-center>\n\n		<ion-icon name="bus" class="loginlogo"></ion-icon>\n\n	</div>\n\n	<ion-list>\n\n		<ion-item>\n\n			<ion-label floating>Email</ion-label>\n\n			<ion-input type="text" [(ngModel)]="user.email"></ion-input>\n\n		</ion-item>\n\n		<ion-item>\n\n			<ion-label floating>Password</ion-label>\n\n			<ion-input type="password" [(ngModel)]="user.password"></ion-input>\n\n		</ion-item>\n\n	</ion-list>\n\n	<div text-center>\n\n  		<button color=danger (click)="signIn(user);" ion-button block>Sign In</button>\n\n	</div>\n\n	<div text-center>\n\n		<ion-icon name="ios-arrow-dropdown-circle" class="or"></ion-icon>\n\n	</div>\n\n	<div text-center>\n\n		<ion-label>Sign In with:</ion-label>\n\n		<button ion-button><ion-icon name="logo-facebook"></ion-icon></button>\n\n		<button ion-button><ion-icon name="logo-twitter"></ion-icon></button>\n\n		<button ion-button><ion-icon name="logo-googleplus"></ion-icon></button>\n\n	</div>\n\n	<br/><br/><br/><br/><p (click)="register();"><u>Don\'t have an account?</u></p>\n\n</ion-content>\n\n'/*ion-inline-end:"/home/robrobirobin/Documents/Project-Design/src/pages/login/login.html"*/
+            selector: 'page-login',template:/*ion-inline-start:"/home/robrobirobin/Documents/Project-Design/src/pages/login/login.html"*/'<ion-content padding>\n\n	<br /><br />\n\n	<div text-center>\n\n		<ion-img width="120" height="120" src="./assets/imgs/login.png"></ion-img>\n\n	</div>\n\n	<br /><br />\n\n	<ion-list>\n\n		<ion-item>\n\n			<ion-label floating>Email</ion-label>\n\n			<ion-input type="text" [(ngModel)]="user.email"></ion-input>\n\n		</ion-item>\n\n		<ion-item>\n\n			<ion-label floating>Password</ion-label>\n\n			<ion-input type="password" [(ngModel)]="user.password"></ion-input>\n\n		</ion-item>\n\n	</ion-list>\n\n	<div text-center>\n\n  		<button color=primary (click)="signIn(user);" ion-button block>Sign In</button>\n\n	</div>\n\n	<br /><br />\n\n	<div text-center>\n\n		<ion-icon name="ios-arrow-dropdown-circle" class="or"></ion-icon>\n\n	</div>\n\n	<br /><br />\n\n	<div text-center>\n\n		<ion-label>Sign In with:</ion-label>\n\n		<button ion-button><ion-icon name="logo-facebook"></ion-icon></button>\n\n		<button ion-button><ion-icon name="logo-twitter"></ion-icon></button>\n\n		<button ion-button><ion-icon name="logo-googleplus"></ion-icon></button>\n\n	</div>\n\n	<br/><br/><br/><br/><p (click)="register();"><u>Don\'t have an account?</u></p>\n\n</ion-content>\n\n'/*ion-inline-end:"/home/robrobirobin/Documents/Project-Design/src/pages/login/login.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_4_angularfire2_auth__["a" /* AngularFireAuth */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_4_angularfire2_auth__["a" /* AngularFireAuth */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
     ], LoginPage);
     return LoginPage;
 }());
@@ -244,7 +244,7 @@ var RegisterPage = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-register',template:/*ion-inline-start:"/home/robrobirobin/Documents/Project-Design/src/pages/register/register.html"*/'<ion-content padding>\n\n	<div text-right>\n\n		<ion-icon name="heart" class="reglogo"></ion-icon>\n\n	</div>\n\n	<ion-list>\n\n		<ion-item>\n\n			<ion-label floating>Email</ion-label>\n\n			<ion-input type="text" [(ngModel)]="user.email"></ion-input>\n\n		</ion-item>\n\n		<ion-item>\n\n			<ion-label floating>Password</ion-label>\n\n			<ion-input type="password" [(ngModel)]="user.password"></ion-input>\n\n		</ion-item>\n\n		<ion-item>\n\n			<ion-label floating>Re-type Password</ion-label>\n\n			<ion-input type="password" [(ngModel)]="cpass"></ion-input>\n\n		</ion-item>\n\n	</ion-list>\n\n	<div text-center>\n\n  		<button color=dark ion-button round (click)="signUp(user, cpass);">Sign me up!</button>\n\n	</div>\n\n	<br/><br/><br/><br/><p (click)="toSignIn();">Already have an account? <u>Sign In</u></p>\n\n</ion-content>'/*ion-inline-end:"/home/robrobirobin/Documents/Project-Design/src/pages/register/register.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__["a" /* AngularFireAuth */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__["a" /* AngularFireAuth */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
     ], RegisterPage);
     return RegisterPage;
 }());
@@ -284,14 +284,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var HomePage = (function () {
-    function HomePage(geolocation, afAuth, navCtrl, zone) {
+    function HomePage(geolocation, afAuth, navCtrl, zone, modCtrl) {
         this.geolocation = geolocation;
         this.afAuth = afAuth;
         this.navCtrl = navCtrl;
         this.zone = zone;
+        this.modCtrl = modCtrl;
         this.lat = [];
         this.lon = [];
-        this.mode = [];
         this.pages = [
             { title: 'My Trips', component: __WEBPACK_IMPORTED_MODULE_4__myTrips_mytrip__["a" /* MytripPage */] },
             { title: 'Settings', component: __WEBPACK_IMPORTED_MODULE_5__settings_settings__["a" /* SettingsPage */] },
@@ -305,8 +305,6 @@ var HomePage = (function () {
             destination: ''
         };
         this.markers = [];
-        this.originDir = '';
-        this.destDir = '';
     }
     HomePage.prototype.ionViewDidLoad = function () {
         this.loadMap();
@@ -369,9 +367,21 @@ var HomePage = (function () {
         this.address.destination = item;
         this.autocompleteItems2 = [];
     };
+    HomePage.prototype.checkFocus = function (num) {
+        if (num == 1)
+            this.autocompleteItems2 = [];
+        else
+            this.autocompleteItems1 = [];
+    };
     HomePage.prototype.findRoute = function (address) {
-        if ((address.destination) && (address.origin))
-            this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_7__routes_routes__["a" /* RoutesPage */], { address: address });
+        /*
+        if((address.destination)&&(address.origin))
+          this.navCtrl.push(RoutesPage, {address});
+          */
+        var modal = this.modCtrl.create(__WEBPACK_IMPORTED_MODULE_7__routes_routes__["a" /* RoutesPage */], { address: address });
+        if ((address.destination) && (address.origin)) {
+            modal.present();
+        }
     };
     HomePage.prototype.openPage = function (page) {
         var _this = this;
@@ -390,12 +400,13 @@ var HomePage = (function () {
     ], HomePage.prototype, "mapElement", void 0);
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"/home/robrobirobin/Documents/Project-Design/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar color="danger">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title></ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-menu [content]="content">\n  <ion-header>\n    <ion-navbar>\n      <button ion-button menuToggle icon-only>\n        <ion-icon name=\'menu\'></ion-icon>\n      </button>\n      <ion-title>Menus</ion-title>\n    </ion-navbar>\n  </ion-header>\n  <ion-content>\n    <ion-list>\n      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n        {{ p.title }}\n      </button>\n  </ion-list>\n  </ion-content>\n</ion-menu>\n\n<ion-content>\n    <div>\n      <ion-list>\n        <ion-item>\n          <ion-searchbar placeholder="Origin" type="text" (ionInput)="showAddress1()" [(ngModel)]="address.origin"></ion-searchbar>\n          <ion-list [hidden]="autocompleteItems1.length == 0">\n            <ion-item *ngFor="let item1 of autocompleteItems1" tappable (click)="selectOrigin(item1)">\n              {{ item1 }}\n            </ion-item>\n          </ion-list>\n        </ion-item>\n        <ion-item>\n          <ion-searchbar placeholder="Destination" type="text" (ionInput)="showAddress2()" [(ngModel)]="address.destination"></ion-searchbar>\n          <ion-list [hidden]="autocompleteItems2.length == 0">\n            <ion-item *ngFor="let item2 of autocompleteItems2" tappable (click)="selectDest(item2)">\n              {{ item2 }}\n            </ion-item>\n          </ion-list>\n        </ion-item>\n      </ion-list>\n      <div text-center>\n        <button color=danger ion-button block (click)="findRoute(address)">GO</button>\n      </div>\n    </div>\n    <div #map id="map"></div>\n</ion-content>\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>'/*ion-inline-end:"/home/robrobirobin/Documents/Project-Design/src/pages/home/home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"/home/robrobirobin/Documents/Project-Design/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar color="primary">\n    <ion-grid no-padding no-margin>\n      <ion-row>\n        <ion-col col-2>\n          <button ion-button menuToggle>\n            <ion-icon name="menu"></ion-icon>\n          </button>\n        </ion-col>\n      <ion-col col-98>\n        <ion-row>\n          <ion-col>\n            <ion-searchbar placeholder="Origin" type="text" (ionInput)="showAddress1()" (ionFocus)="checkFocus(1)" [(ngModel)]="address.origin"></ion-searchbar>\n          </ion-col>\n        </ion-row>\n        <ion-row>\n          <ion-col>\n            <ion-searchbar placeholder="Destination" type="text" (ionInput)="showAddress2()" (ionFocus)="checkFocus(2)" [(ngModel)]="address.destination"></ion-searchbar>\n          </ion-col>\n        </ion-row>\n        <ion-row>\n          <ion-col text-center no-padding>\n            <button color=dark ion-button block (click)="findRoute(address)">GO</button>\n          </ion-col>\n        </ion-row>\n      </ion-col>\n    </ion-row>\n    </ion-grid>\n  </ion-navbar>\n</ion-header>\n\n<ion-menu [content]="content">\n  <ion-header>\n    <ion-navbar>\n      <button ion-button menuToggle icon-only class="menu-button" >\n        <ion-icon name=\'menu\'></ion-icon>\n      </button>\n      <ion-title>Menus</ion-title>\n    </ion-navbar>\n  </ion-header>\n  <ion-content>\n    <ion-list>\n      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n        {{ p.title }}\n      </button>\n  </ion-list>\n  </ion-content>\n</ion-menu>\n\n<ion-content>\n    <div>\n      <ion-list [hidden]="autocompleteItems1.length == 0">\n        <ion-item class="limit-item" *ngFor="let item1 of autocompleteItems1" tappable (click)="selectOrigin(item1)">\n          {{ item1 }}\n        </ion-item>\n      </ion-list>\n      <ion-list [hidden]="autocompleteItems2.length == 0">\n        <ion-item class="limit-item" *ngFor="let item2 of autocompleteItems2" tappable (click)="selectDest(item2)">\n          {{ item2 }}\n        </ion-item>\n      </ion-list>\n    </div>\n    <div #map id="map"></div>\n</ion-content>\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>'/*ion-inline-end:"/home/robrobirobin/Documents/Project-Design/src/pages/home/home.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__ionic_native_geolocation__["a" /* Geolocation */],
             __WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__["a" /* AngularFireAuth */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* NgZone */]])
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* NgZone */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* ModalController */]])
     ], HomePage);
     return HomePage;
 }());
@@ -430,7 +441,7 @@ var MytripPage = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-mytrip',template:/*ion-inline-start:"/home/robrobirobin/Documents/Project-Design/src/pages/myTrips/mytrip.html"*/'<ion-header>\n\n    <ion-navbar>\n\n    </ion-navbar>\n\n</ion-header>'/*ion-inline-end:"/home/robrobirobin/Documents/Project-Design/src/pages/myTrips/mytrip.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]])
     ], MytripPage);
     return MytripPage;
 }());
@@ -465,7 +476,7 @@ var SettingsPage = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-settings',template:/*ion-inline-start:"/home/robrobirobin/Documents/Project-Design/src/pages/settings/settings.html"*/'<ion-header>\n\n    <ion-navbar>\n\n    </ion-navbar>\n\n</ion-header>'/*ion-inline-end:"/home/robrobirobin/Documents/Project-Design/src/pages/settings/settings.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]])
     ], SettingsPage);
     return SettingsPage;
 }());
@@ -499,12 +510,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var RoutesPage = (function () {
-    function RoutesPage(geolocation, navCtrl, zone, rsp, navParams) {
+    function RoutesPage(geolocation, navCtrl, zone, rsp, navParams, viewCtrl) {
         this.geolocation = geolocation;
         this.navCtrl = navCtrl;
         this.zone = zone;
         this.rsp = rsp;
         this.navParams = navParams;
+        this.viewCtrl = viewCtrl;
         this.snappedCoordinates = [];
         this.placeIdArray = [];
         this.polylines = [];
@@ -514,6 +526,7 @@ var RoutesPage = (function () {
                 fare: '',
                 totalWalkDistance: '',
                 legs: '',
+                totalTime: '',
                 roundtrip: ''
             }];
         this.legWalk = [{
@@ -521,6 +534,7 @@ var RoutesPage = (function () {
                 seq: '',
                 distance: '',
                 legGeom: '',
+                time: '',
                 transMode: '',
             }];
         this.legTransit = [{
@@ -530,6 +544,7 @@ var RoutesPage = (function () {
                 legGeom: '',
                 from: '',
                 to: '',
+                time: '',
                 transMode: '',
                 route: ''
             }];
@@ -627,6 +642,7 @@ var RoutesPage = (function () {
                         seq: se,
                         distance: (leg['distance']) / 1000,
                         legGeom: leg['legGeometry']['points'],
+                        time: leg['duration'],
                         transMode: "WALK"
                     });
                     walkDistance += leg['distance'];
@@ -655,6 +671,7 @@ var RoutesPage = (function () {
                         legGeom: leg['legGeometry']['points'],
                         from: leg['from']['name'],
                         to: leg['to']['name'],
+                        time: leg['duration'],
                         transMode: mode,
                         route: leg['route']
                     });
@@ -666,6 +683,7 @@ var RoutesPage = (function () {
                 fare: fare,
                 totalWalkDistance: walkDistance,
                 legs: data.itineraries[id].legs.length,
+                totalTime: (data.itineraries[id].duration) / 60,
                 roundtrip: false
             });
         }
@@ -691,7 +709,6 @@ var RoutesPage = (function () {
                 }
             }
         }
-        //this.getDirections();
     };
     RoutesPage.prototype.decode = function (leggeom) {
         // array that holds the points
@@ -760,19 +777,26 @@ var RoutesPage = (function () {
             console.log(err);
         });
     };
+    RoutesPage.prototype.closeModal = function () {
+        this.viewCtrl.dismiss();
+    };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('map'),
-        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* ElementRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* ElementRef */]) === "function" && _a || Object)
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* ElementRef */])
     ], RoutesPage.prototype, "mapElement", void 0);
     RoutesPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-routes',template:/*ion-inline-start:"/home/robrobirobin/Documents/Project-Design/src/pages/routes/routes.html"*/'<ion-header>\n    <ion-navbar color="danger">\n      <ion-title></ion-title>\n    </ion-navbar>\n  </ion-header>\n  \n<ion-content>\n    <div>\n        <ion-list scrollable=true>\n            <ion-item>\n                <!--<ion-select [(ngModel)]="type" interface="popover">\n                    <ion-option *ngFor="let type of routeType" selected="{{ type.name }}">{{type.name}}</ion-option>\n                </ion-select> -->\n                <ion-toolbar>\n                    <ion-segment color="danger">\n                        <ion-segment-button class="lessfare" value="lessfare">\n                            <!--<ion-icon name="camera"></ion-icon>-->\n                        </ion-segment-button>\n                        <ion-segment-button value="lesswalk">\n                            <ion-icon name="bookmark"></ion-icon>\n                        </ion-segment-button>\n                        <ion-segment-button value="lesstransfer">\n                            <ion-icon name="bookmark"></ion-icon>\n                        </ion-segment-button>\n                        <ion-segment-button value="round-trip">\n                            <ion-icon name="bookmark"></ion-icon>\n                        </ion-segment-button>\n                    </ion-segment>\n                </ion-toolbar>\n            </ion-item>\n            <ion-list>\n                <ion-item text-wrap *ngFor="let t of trip; let i = index">\n                    <button ion-button item-start (click)="plotted(i)">Plot</button>\n                    <h2>Itinerary: {{ t.id+1 }}</h2>\n                    <p>No. of transfer: {{ t.transfer }}</p>\n                    <p>Total fare: P{{ t.fare }}</p>\n                    <button ion-button outline item-end (click)="seeDetails(i)">Details</button>\n                </ion-item>\n            </ion-list>\n        </ion-list>\n    </div>\n    <div #map id="map"></div>\n</ion-content>'/*ion-inline-end:"/home/robrobirobin/Documents/Project-Design/src/pages/routes/routes.html"*/,
+            selector: 'page-routes',template:/*ion-inline-start:"/home/robrobirobin/Documents/Project-Design/src/pages/routes/routes.html"*/'\n  \n<ion-content>\n    <ion-navbar color=primary>\n        <button class="close-button" color=dark ion-button block (click)="closeModal()">New Route</button>\n    </ion-navbar>\n    <div no-padding>\n        <ion-list scrollable=true>\n            <ion-item>\n                <ion-toolbar>\n                    <ion-segment color=secondary>\n                        <ion-segment-button value="lessfare">\n                            <ion-img width="10" height="10" src="./assets/imgs/lessfare.png">Less Fare</ion-img>\n                        </ion-segment-button>\n                        <ion-segment-button value="lesswalk">\n                            <ion-img width="10" height="10" src="./assets/imgs/lesswalk.png">Less Walk</ion-img>\n                        </ion-segment-button>\n                        <ion-segment-button value="lesstransfer">\n                            Less Transfer\n                        </ion-segment-button>\n                        <ion-segment-button value="round-trip">\n                            <ion-img width="10" height="10" src="./assets/imgs/roundtrip.png">Round-trip</ion-img>\n                        </ion-segment-button>\n                    </ion-segment>\n                </ion-toolbar>\n            </ion-item>\n            <ion-list>\n                <ion-item text-wrap *ngFor="let t of trip; let i = index" tappable (click)="seeDetails(i)">\n                    <button ion-button item-start (click)="plotted(i)">Plot</button>\n                    <h2>Itinerary: {{ t.id+1 }}</h2>\n                    <p>No. of transfer: {{ t.transfer }}</p>\n                    <p>Total fare: P{{ t.fare }}</p>\n                </ion-item>\n            </ion-list>\n        </ion-list>\n    </div>\n</ion-content>'/*ion-inline-end:"/home/robrobirobin/Documents/Project-Design/src/pages/routes/routes.html"*/,
             providers: [__WEBPACK_IMPORTED_MODULE_3__providers_remote_service_remote_service__["a" /* RemoteServiceProvider */]]
         }),
-        __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_geolocation__["a" /* Geolocation */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_geolocation__["a" /* Geolocation */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* NgZone */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* NgZone */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__providers_remote_service_remote_service__["a" /* RemoteServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_remote_service_remote_service__["a" /* RemoteServiceProvider */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]) === "function" && _f || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__ionic_native_geolocation__["a" /* Geolocation */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* NgZone */],
+            __WEBPACK_IMPORTED_MODULE_3__providers_remote_service_remote_service__["a" /* RemoteServiceProvider */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ViewController */]])
     ], RoutesPage);
     return RoutesPage;
-    var _a, _b, _c, _d, _e, _f;
 }());
 
 /*
@@ -903,7 +927,15 @@ var DetailsPage = (function () {
         this.trip = this.navParams.get("trip");
         this.legWalk = this.navParams.get("legW");
         this.legTransit = this.navParams.get("legT");
-        this.description = [];
+        this.description = [{
+                distance: '',
+                time: '',
+                fare: '',
+                fare2: '',
+                route: '',
+                from: '',
+                to: ''
+            }];
         this.iosicon = [];
         this.mdicon = [];
         this.leg = [];
@@ -915,18 +947,20 @@ var DetailsPage = (function () {
     DetailsPage.prototype.buildlist = function () {
         this.leg.length = 0;
         this.description.length = 0;
-        var des = "";
         for (var i = 0; i < this.trip[this.index].legs; i++) {
-            des = "";
             for (var j = 0; j < this.legWalk.length; j++) {
                 if ((this.legWalk[j].tripID == this.trip[this.index].id) && (this.legWalk[j].seq == i)) {
-                    console.log("walk");
-                    var distance = this.legWalk[j].distance;
-                    des = "Distance: " + parseFloat(distance).toPrecision(2) + " km\n";
-                    this.description.push(des);
+                    this.description.push({
+                        distance: parseFloat(this.legWalk[j].distance).toPrecision(2) + " km\n",
+                        time: this.legWalk[j].time + " min",
+                        fare: '',
+                        fare2: '',
+                        route: '',
+                        from: '',
+                        to: ''
+                    });
                     this.iosicon.push("ios-walk");
                     this.mdicon.push("md-walk");
-                    des = "";
                 }
             }
             for (var k = 0; k < this.legTransit.length; k++) {
@@ -942,10 +976,15 @@ var DetailsPage = (function () {
                             fare = (8.00 + (distance - 4) * 1.50).toPrecision(3);
                         else
                             fare = (8.00).toPrecision(3);
-                        des = "Fare: P" + fare + "\n";
-                        des = des + "Route: PUJ - " + this.legTransit[k].route + "\n";
-                        des = des + "Board at: " + this.legTransit[k].from + "\n";
-                        des = des + "Alight at: " + this.legTransit[k].to + "\n";
+                        this.description.push({
+                            distance: parseFloat(this.legTransit[k].distance).toPrecision(2) + " km\n",
+                            time: this.legTransit[k].time + " min",
+                            fare: "P" + fare,
+                            fare2: '',
+                            route: '',
+                            from: this.legTransit[k].from,
+                            to: this.legTransit[k].to
+                        });
                         this.iosicon.push("ios-car");
                         this.mdicon.push("md-car");
                     }
@@ -958,34 +997,39 @@ var DetailsPage = (function () {
                             fare = (10.00).toPrecision(4);
                             fare2 = (12.00).toPrecision(4);
                         }
-                        des = "Fare (Ordinary): P" + fare + "\n";
-                        des = des + "Fare (Air-con): P" + fare2 + "\n";
-                        des = des + "Route: PUB - " + this.legTransit[k].route + "\n";
-                        des = des + "Board at: " + this.legTransit[k].from + "\n";
-                        des = des + "Alight at: " + this.legTransit[k].to + "\n";
+                        this.description.push({
+                            distance: parseFloat(this.legTransit[k].distance).toPrecision(2) + " km\n",
+                            time: this.legTransit[k].time + " min",
+                            fare: "Ordinary: P" + fare,
+                            fare2: "Aircon: P" + fare2,
+                            route: this.legTransit[k].route,
+                            from: this.legTransit[k].from,
+                            to: this.legTransit[k].to
+                        });
                         this.iosicon.push("ios-bus");
                         this.mdicon.push("md-bus");
                     }
                     else {
-                        des = "Distance: " + parseFloat(distance).toPrecision(2) + " km";
                         this.iosicon.push("ios-train");
                         this.mdicon.push("md-train");
                     }
-                    this.description.push(des);
-                    des = "";
                 }
             }
         }
     };
     DetailsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-details',template:/*ion-inline-start:"/home/robrobirobin/Documents/Project-Design/src/pages/details/details.html"*/'<ion-header>\n    <ion-navbar color="danger">\n      <ion-title></ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <div>\n    <ion-list>\n        <ion-item text-wrap *ngFor="let item of description; let i = index;" ng-style="{\'min-height\':\'150px\'}">\n          <!-- <ion-icon [name]="iosicon[i]" md="mdicon[i]"></ion-icon>-->\n          <button [class.button-disabled]="true" ion-button item-start>\n              <ion-icon [name]="iosicon[i]" class="legIcon"></ion-icon>\n          </button>\n          {{ description[i] }}\n        </ion-item>\n    </ion-list>\n  </div>\n</ion-content>'/*ion-inline-end:"/home/robrobirobin/Documents/Project-Design/src/pages/details/details.html"*/
+            selector: 'page-details',template:/*ion-inline-start:"/home/robrobirobin/Documents/Project-Design/src/pages/details/details.html"*/'<ion-header>\n    <ion-navbar>\n    </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <div #map id="map"></div>\n  <div>\n    <ion-grid>\n      <ion-row *ngFor="let item of description; let i = index;" no-padding no-margin>\n        <ion-col col-2 class="col icon-col">\n          <button [class.button-disabled]="true" ion-button item-start>\n            <ion-icon [name]="iosicon[i]" class="legIcon"></ion-icon>\n          </button>\n        </ion-col>\n        <ion-col col-95>\n          <p>{{ description[i].route }}</p>\n          <p>{{ description[i].fare }} {{ description[i].fare2 }}</p>\n          <p>Directions:</p>\n        </ion-col>\n        <ion-col col-2 no-padding>\n          <p>{{ description[i].distance }}</p>\n          <p>{{ description[i].time }}</p>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </div>\n</ion-content>'/*ion-inline-end:"/home/robrobirobin/Documents/Project-Design/src/pages/details/details.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
     ], DetailsPage);
     return DetailsPage;
 }());
 
+/*
+-arrange details output
+-transfer map from routes to details
+*/ 
 //# sourceMappingURL=details.js.map
 
 /***/ }),
@@ -1150,7 +1194,7 @@ var MyApp = (function () {
     MyApp = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/home/robrobirobin/Documents/Project-Design/src/app/app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"/home/robrobirobin/Documents/Project-Design/src/app/app.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
     ], MyApp);
     return MyApp;
 }());

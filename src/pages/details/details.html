@@ -1,19 +1,28 @@
 <ion-header>
-    <ion-navbar color="danger">
-      <ion-title></ion-title>
+    <ion-navbar>
     </ion-navbar>
 </ion-header>
 
 <ion-content>
+  <div #map id="map"></div>
   <div>
-    <ion-list>
-        <ion-item text-wrap *ngFor="let item of description; let i = index;" ng-style="{'min-height':'150px'}">
-          <!-- <ion-icon [name]="iosicon[i]" md="mdicon[i]"></ion-icon>-->
+    <ion-grid>
+      <ion-row *ngFor="let item of description; let i = index;" no-padding no-margin>
+        <ion-col col-2 class="col icon-col">
           <button [class.button-disabled]="true" ion-button item-start>
-              <ion-icon [name]="iosicon[i]" class="legIcon"></ion-icon>
+            <ion-icon [name]="iosicon[i]" class="legIcon"></ion-icon>
           </button>
-          {{ description[i] }}
-        </ion-item>
-    </ion-list>
+        </ion-col>
+        <ion-col col-95>
+          <p>{{ description[i].route }}</p>
+          <p>{{ description[i].fare }} {{ description[i].fare2 }}</p>
+          <p>Directions:</p>
+        </ion-col>
+        <ion-col col-2 no-padding>
+          <p>{{ description[i].distance }}</p>
+          <p>{{ description[i].time }}</p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </div>
 </ion-content>

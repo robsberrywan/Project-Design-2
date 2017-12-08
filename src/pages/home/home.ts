@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef, NgZone } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ModalController } from 'ionic-angular';
 
 import { AngularFireAuth } from "angularfire2/auth";
 import { Geolocation } from '@ionic-native/geolocation';
@@ -27,9 +27,6 @@ export class HomePage {
   markers;
   lat = [];
   lon = [];
-  mode = [];
-  originDir;
-  destDir;
 
   
   map: any;
@@ -43,7 +40,8 @@ export class HomePage {
     public geolocation: Geolocation, 
     private afAuth: AngularFireAuth, 
     public navCtrl: NavController,
-    public zone: NgZone) {
+    public zone: NgZone,
+    public modCtrl: ModalController) {
       this.GoogleAutocomplete = new google.maps.places.AutocompleteService();
       this.autocompleteItems1 = [];
       this.autocompleteItems2= [];
@@ -52,8 +50,6 @@ export class HomePage {
         destination: ''
       };
       this.markers = [];
-      this.originDir = '';
-      this.destDir = '';
     }
 
   ionViewDidLoad(){
@@ -117,9 +113,21 @@ export class HomePage {
     this.address.destination = item;
     this.autocompleteItems2 = [];
   }
+  checkFocus(num){
+    if(num==1)
+      this.autocompleteItems2 = [];
+    else
+      this.autocompleteItems1 = [];
+  }
   findRoute(address: address): void{
+    /*
     if((address.destination)&&(address.origin))
       this.navCtrl.push(RoutesPage, {address});
+      */
+      let modal = this.modCtrl.create(RoutesPage, {address});
+      if((address.destination)&&(address.origin)){
+        modal.present();
+      }
   }
 	openPage(page) {
     if(page.component==LoginPage){

@@ -1,16 +1,38 @@
 <ion-header>
-  <ion-navbar color="danger">
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title></ion-title>
+  <ion-navbar color="primary">
+    <ion-grid no-padding no-margin>
+      <ion-row>
+        <ion-col col-2>
+          <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+          </button>
+        </ion-col>
+      <ion-col col-98>
+        <ion-row>
+          <ion-col>
+            <ion-searchbar placeholder="Origin" type="text" (ionInput)="showAddress1()" (ionFocus)="checkFocus(1)" [(ngModel)]="address.origin"></ion-searchbar>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-searchbar placeholder="Destination" type="text" (ionInput)="showAddress2()" (ionFocus)="checkFocus(2)" [(ngModel)]="address.destination"></ion-searchbar>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col text-center no-padding>
+            <button color=dark ion-button block (click)="findRoute(address)">GO</button>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+    </ion-grid>
   </ion-navbar>
 </ion-header>
 
 <ion-menu [content]="content">
   <ion-header>
     <ion-navbar>
-      <button ion-button menuToggle icon-only>
+      <button ion-button menuToggle icon-only class="menu-button" >
         <ion-icon name='menu'></ion-icon>
       </button>
       <ion-title>Menus</ion-title>
@@ -27,27 +49,16 @@
 
 <ion-content>
     <div>
-      <ion-list>
-        <ion-item>
-          <ion-searchbar placeholder="Origin" type="text" (ionInput)="showAddress1()" [(ngModel)]="address.origin"></ion-searchbar>
-          <ion-list [hidden]="autocompleteItems1.length == 0">
-            <ion-item *ngFor="let item1 of autocompleteItems1" tappable (click)="selectOrigin(item1)">
-              {{ item1 }}
-            </ion-item>
-          </ion-list>
-        </ion-item>
-        <ion-item>
-          <ion-searchbar placeholder="Destination" type="text" (ionInput)="showAddress2()" [(ngModel)]="address.destination"></ion-searchbar>
-          <ion-list [hidden]="autocompleteItems2.length == 0">
-            <ion-item *ngFor="let item2 of autocompleteItems2" tappable (click)="selectDest(item2)">
-              {{ item2 }}
-            </ion-item>
-          </ion-list>
+      <ion-list [hidden]="autocompleteItems1.length == 0">
+        <ion-item class="limit-item" *ngFor="let item1 of autocompleteItems1" tappable (click)="selectOrigin(item1)">
+          {{ item1 }}
         </ion-item>
       </ion-list>
-      <div text-center>
-        <button color=danger ion-button block (click)="findRoute(address)">GO</button>
-      </div>
+      <ion-list [hidden]="autocompleteItems2.length == 0">
+        <ion-item class="limit-item" *ngFor="let item2 of autocompleteItems2" tappable (click)="selectDest(item2)">
+          {{ item2 }}
+        </ion-item>
+      </ion-list>
     </div>
     <div #map id="map"></div>
 </ion-content>
