@@ -54,7 +54,7 @@ export class LoginPage {
       this.facebook.login(['email']).then(res=>{
         const fc=firebase.auth.FacebookAuthProvider.credential(res.authResponse.accessToken)
         firebase.auth().signInWithCredential(fc).then(fs=>{
-          alert("firebase sec")
+          this.navCtrl.setRoot(HomePage);
         }).catch(ferr=>{
           alert("firebase error")
         })
