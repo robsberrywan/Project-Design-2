@@ -15,12 +15,53 @@ page-details {
     ion-grid {
         background-color: lightcyan;
     }
-    ion-row {
-        background-color: lightcyan;
-        border-bottom-left-radius: 10px;
-        border-top-left-radius: 15px;
-        border-left: 10px;
-        border-top: 10px;
+    .cell-0{
+        background-color: rgb(229, 226, 226); 
+        border-bottom-left-radius: 10px; 
+        border-top-left-radius: 15px; 
+        border-left: 10px; border-top: 10px;
+        display: flex;
+        justify-content: center;
+    }
+    .cell-1{
+        background-color: rgb(199, 200, 201); 
+        border-bottom-left-radius: 10px; 
+        border-top-left-radius: 15px; 
+        border-left: 10px; border-top: 10px;
+        display: flex;
+        justify-content: center;
+    }
+    .cell-2{
+        background-color: rgb(154, 154, 156); 
+        border-bottom-left-radius: 10px; 
+        border-top-left-radius: 15px; 
+        border-left: 10px; border-top: 10px;
+        display: flex;
+        justify-content: center;
+    }
+    .cell-3{
+        background-color: rgb(229, 226, 226); 
+        border-bottom-left-radius: 10px; 
+        border-top-left-radius: 15px; 
+        border-left: 10px; border-top: 10px;
+        display: flex;
+        justify-content: center;
+    }
+    .cell-4{
+        background-color: rgb(199, 200, 201); 
+        border-bottom-left-radius: 10px; 
+        border-top-left-radius: 15px; 
+        border-left: 10px; border-top: 10px;
+        display: flex;
+        justify-content: center;
+    }
+    .cell-5{
+        background-color: rgb(154, 154, 156); 
+        border-bottom-left-radius: 10px; 
+        border-top-left-radius: 15px; 
+        border-left: 10px; border-top: 10px;
+        display: flex;
+        justify-content: center;
     }
     ion-img {
         background-color: transparent !important;

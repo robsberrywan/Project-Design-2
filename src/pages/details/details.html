@@ -7,7 +7,7 @@
   <div #map id="map"></div>
   <div scrollable=true>
     <ion-grid>
-      <ion-row *ngFor="let item of description; let i = index;" no-padding no-margin>
+      <ion-row *ngFor="let item of description; let i = index;" class='cell-{{i}}' text-wrap no-padding no-margin>
         <ion-col col-2 class="col icon-col">
           <ion-img width="50" height="50" [src]="modeIcons[i]">Less Fare</ion-img>
         </ion-col>

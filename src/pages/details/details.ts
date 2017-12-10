@@ -166,6 +166,7 @@ export class DetailsPage {
           let fare: any;
           let fare2: any;
           console.log("transit");
+          console.log(this.legTransit[k].route);
           if((this.legTransit[k].tripID==this.trip[this.index].id)&&(this.legTransit[k].seq==i)&&(this.legTransit[k].seq)){
             fare = 0;
             fare2 = 0;
@@ -180,7 +181,7 @@ export class DetailsPage {
                 time: this.legTransit[k].time + " min",
                 fare: "P"+fare,
                 fare2: '',
-                route: '',
+                route: this.legTransit[k].route,
                 from: this.legTransit[k].from,
                 to: this.legTransit[k].to
               });
