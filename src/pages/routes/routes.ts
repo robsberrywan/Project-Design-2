@@ -158,15 +158,9 @@ export class RoutesPage {
           if(mode.includes("PUJ")){
             mode = "PUJ";
             if(distance>4)
-<<<<<<< HEAD
               fare += 8+((distance-4)*1.50);
             else
               fare += 8;
-=======
-              fare = parseFloat(fare+8.00+(distance-4)*1.50).toPrecision(3);
-            else
-              fare = parseFloat(fare+8.00).toPrecision(3);
->>>>>>> ae4ad7e9130b883b1aaddd7aebb734da516797f9
           }
           else if(mode.includes("PUB")){
             mode = "PUB";
