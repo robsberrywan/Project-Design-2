@@ -25701,12 +25701,100 @@ page-details ion-grid {
   background-color: lightcyan;
 }
 
-page-details ion-row {
-  background-color: lightcyan;
+page-details .cell-0 {
+  background-color: #e5e2e2;
   border-bottom-left-radius: 10px;
   border-top-left-radius: 15px;
   border-left: 10px;
   border-top: 10px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+page-details .cell-1 {
+  background-color: #c7c8c9;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 15px;
+  border-left: 10px;
+  border-top: 10px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+page-details .cell-2 {
+  background-color: #9a9a9c;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 15px;
+  border-left: 10px;
+  border-top: 10px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+page-details .cell-3 {
+  background-color: #e5e2e2;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 15px;
+  border-left: 10px;
+  border-top: 10px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+page-details .cell-4 {
+  background-color: #c7c8c9;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 15px;
+  border-left: 10px;
+  border-top: 10px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+page-details .cell-5 {
+  background-color: #9a9a9c;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 15px;
+  border-left: 10px;
+  border-top: 10px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
 }
 
 page-details ion-img {
@@ -25762,7 +25850,7 @@ page-login ion-label {
 page-routes ion-content, page-routes ion-header {
   width: 100%;
   height: 87%;
-  top: 13%;
+  top: 17%;
   left: 0;
   right: 0;
   bottom: 0;
