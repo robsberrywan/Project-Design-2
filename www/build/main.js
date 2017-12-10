@@ -556,7 +556,6 @@ var RoutesPage = (function () {
                 transfer: '',
                 fare: '',
                 totalWalkDistance: '',
-                totaldistance: '',
                 legs: '',
                 totalTime: '',
                 roundtrip: ''
@@ -568,7 +567,6 @@ var RoutesPage = (function () {
                 legGeom: '',
                 time: '',
                 transMode: '',
-                steps: [],
             }];
         this.legTransit = [{
                 tripID: '',
@@ -590,6 +588,7 @@ var RoutesPage = (function () {
         this.address = this.navParams.get('address');
         this.geocoder = new google.maps.Geocoder;
         this.markers = [];
+        this.trip.length = 0;
     }
     RoutesPage.prototype.ionViewDidLoad = function () {
         this.loadMap();
@@ -651,47 +650,37 @@ var RoutesPage = (function () {
             var fare = void 0;
             fare = 0;
             var walkDistance = 0;
-            var totaldistance = 0;
             console.log("Itinerary: " + id);
             for (var se = 0; se < data.itineraries[id].legs.length; se++) {
                 var leg = data.itineraries[id].legs[se];
                 console.log("Seq: " + se + " Mode: " + leg['mode']);
                 if (leg['mode'] == "WALK") {
-                    var steps = [];
-                    for (var num = 0; num < leg['steps'].length; num++) {
-                        if ((leg['steps'][num]['absoluteDirection'] == "RIGHT") || (leg['steps'][num]['absoluteDirection'] == "LEFT"))
-                            steps.push("Turn " + leg['steps'][num]['absoluteDirection'] + " onto " + leg['steps'][num]['streetName']);
-                        else
-                            steps.push("Head " + leg['steps'][num]['absoluteDirection'] + " on " + leg['steps'][num]['streetName']);
-                    }
                     this.legWalk.push({
                         tripID: id,
                         seq: se,
                         distance: (leg['distance']) / 1000,
                         legGeom: leg['legGeometry']['points'],
-                        time: leg['duration'] / 60,
-                        transMode: "WALK",
-                        steps: steps
+                        time: leg['duration'],
+                        transMode: "WALK"
                     });
-                    walkDistance += (leg['distance']) / 1000;
-                    totaldistance += (leg['distance']) / 1000;
+                    walkDistance += leg['distance'];
                 }
                 else {
-                    distance = (leg['distance']) / 1000;
+                    distance = leg['distance'] / 1000;
                     var mode = leg['routeId'];
                     if (mode.includes("PUJ")) {
                         mode = "PUJ";
                         if (distance > 4)
-                            fare += 8 + ((distance - 4) * 1.50);
+                            fare = parseFloat(fare + 8.00 + (distance - 4) * 1.50).toPrecision(3);
                         else
-                            fare += 8;
+                            fare = parseFloat(fare + 8.00).toPrecision(3);
                     }
                     else if (mode.includes("PUB")) {
                         mode = "PUB";
                         if (distance > 5)
-                            fare += 10 + ((distance - 5) * 1.75);
+                            fare = parseFloat(fare + (10.00 + (distance - 5) * 1.75)).toPrecision(3);
                         else
-                            fare += 10;
+                            fare = parseFloat(fare + 10.00).toPrecision(3);
                     }
                     this.legTransit.push({
                         tripID: id,
@@ -700,24 +689,19 @@ var RoutesPage = (function () {
                         legGeom: leg['legGeometry']['points'],
                         from: leg['from']['name'],
                         to: leg['to']['name'],
-                        time: leg['duration'] / 60,
+                        time: leg['duration'],
                         transMode: mode,
                         route: leg['route']
                     });
-                    totaldistance += distance;
                 }
             }
-            totaldistance = parseFloat(totaldistance.toPrecision(3));
-            walkDistance = parseFloat(walkDistance.toPrecision(2));
-            fare = parseFloat(fare.toPrecision(3));
             this.trip.push({
                 id: id,
                 transfer: data.itineraries[id].transfers,
                 fare: fare,
                 totalWalkDistance: walkDistance,
-                totaldistance: totaldistance,
                 legs: data.itineraries[id].legs.length,
-                totalTime: ((data.itineraries[id].duration) / 60).toPrecision(3),
+                totalTime: (data.itineraries[id].duration) / 60,
                 roundtrip: false
             });
         }
@@ -736,17 +720,21 @@ var RoutesPage = (function () {
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('map'),
-        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* ElementRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* ElementRef */]) === "function" && _a || Object)
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* ElementRef */])
     ], RoutesPage.prototype, "mapElement", void 0);
     RoutesPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-routes',template:/*ion-inline-start:"/home/robrobirobin/Documents/backup/Project-Design-2/src/pages/routes/routes.html"*/'\n  \n<ion-content>\n    <ion-navbar color=primary>\n        <button class="close-button" color=dark ion-button block (click)="closeModal()">New Route</button>\n    </ion-navbar>\n    <div no-padding>\n        <ion-list scrollable=true>\n            <ion-item>\n                <ion-toolbar>\n                    <ion-segment color=secondary>\n                        <ion-segment-button value="lessfare">\n                            <ion-img width="20" height="20" src="./assets/imgs/lessfare.png">Less Fare</ion-img>\n                        </ion-segment-button>\n                        <ion-segment-button value="lesswalk">\n                            <ion-img width="20" height="20" src="./assets/imgs/lesswalk.png">Less Walk</ion-img>\n                        </ion-segment-button>\n                        <ion-segment-button value="lesstransfer">\n                            Less Transfer\n                        </ion-segment-button>\n                        <ion-segment-button value="round-trip">\n                            <ion-img width="20" height="20" src="./assets/imgs/roundtrip.png">Round-trip</ion-img>\n                        </ion-segment-button>\n                    </ion-segment>\n                </ion-toolbar>\n            </ion-item>\n            <ion-list>\n                <ion-item text-wrap *ngFor="let t of trip; let i = index" tappable (click)="seeDetails(i)">\n                    <p item-end>{{ t.totalTime }} min</p>\n                    <p>Transfers: {{ t.transfer }}</p>\n                    <p>Fare: P{{ t.fare }}</p>\n                    <p>Distance: {{ t.totaldistance }} km</p>\n                    <p>Walk, about {{ t.totalWalkDistance }} km</p>\n                </ion-item>\n            </ion-list>\n        </ion-list>\n    </div>\n    <div #map [hidden]=true id="map"></div>\n</ion-content>'/*ion-inline-end:"/home/robrobirobin/Documents/backup/Project-Design-2/src/pages/routes/routes.html"*/,
             providers: [__WEBPACK_IMPORTED_MODULE_3__providers_remote_service_remote_service__["a" /* RemoteServiceProvider */]]
         }),
-        __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_geolocation__["a" /* Geolocation */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_geolocation__["a" /* Geolocation */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* NgZone */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* NgZone */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__providers_remote_service_remote_service__["a" /* RemoteServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_remote_service_remote_service__["a" /* RemoteServiceProvider */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ViewController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ViewController */]) === "function" && _g || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__ionic_native_geolocation__["a" /* Geolocation */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* NgZone */],
+            __WEBPACK_IMPORTED_MODULE_3__providers_remote_service_remote_service__["a" /* RemoteServiceProvider */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ViewController */]])
     ], RoutesPage);
     return RoutesPage;
-    var _a, _b, _c, _d, _e, _f, _g;
 }());
 
 //# sourceMappingURL=routes.js.map
@@ -786,7 +774,7 @@ var RemoteServiceProvider = (function () {
     }
     RemoteServiceProvider.prototype.load = function (origin, dest) {
         var _this = this;
-        this.baseUrl = 'http://192.168.1.6:8080/otp/routers/default/plan?fromPlace=' + origin + '&toPlace=' + dest + '&date=2017/01/09&time=11:00:00&mode=TRANSIT%2CWALK&maxWalkDistance=1000&arriveBy=false&wheelchair=false';
+        this.baseUrl = 'http://localhost:8080/otp/routers/default/plan?fromPlace=' + origin + '&toPlace=' + dest + '&date=2017/01/09&time=11:00:00&mode=TRANSIT%2CWALK&maxWalkDistance=1000&arriveBy=false&wheelchair=false';
         if (this.data) {
             return Promise.resolve(this.data);
         }
@@ -889,7 +877,6 @@ var DetailsPage = (function () {
             }];
         this.modeIcons = [];
         this.leg = [];
-        this.drop = true;
     }
     DetailsPage.prototype.ionViewDidLoad = function () {
         this.loadMap();
@@ -997,13 +984,12 @@ var DetailsPage = (function () {
                 if ((this.legWalk[j].tripID == this.trip[this.index].id) && (this.legWalk[j].seq == i)) {
                     this.description.push({
                         distance: parseFloat(this.legWalk[j].distance).toPrecision(2) + " km\n",
-                        time: parseFloat(this.legWalk[j].time.toPrecision(2)) + " min",
+                        time: this.legWalk[j].time + " min",
                         fare: '',
                         fare2: '',
                         route: '',
                         from: '',
-                        to: '',
-                        steps: this.legWalk[j].steps
+                        to: ''
                     });
                     this.modeIcons.push("./assets/imgs/walk.png");
                 }
@@ -1024,7 +1010,7 @@ var DetailsPage = (function () {
                             fare = (8.00).toPrecision(3);
                         this.description.push({
                             distance: parseFloat(this.legTransit[k].distance).toPrecision(2) + " km\n",
-                            time: parseFloat(this.legTransit[k].time.toPrecision(2)) + " min",
+                            time: this.legTransit[k].time + " min",
                             fare: "P" + fare,
                             fare2: '',
                             route: this.legTransit[k].route,
@@ -1044,7 +1030,7 @@ var DetailsPage = (function () {
                         }
                         this.description.push({
                             distance: parseFloat(this.legTransit[k].distance).toPrecision(2) + " km\n",
-                            time: parseFloat(this.legTransit[k].time.toPrecision(2)) + " min",
+                            time: this.legTransit[k].time + " min",
                             fare: "Ordinary: P" + fare,
                             fare2: "Aircon: P" + fare2,
                             route: this.legTransit[k].route,
@@ -1060,24 +1046,17 @@ var DetailsPage = (function () {
             }
         }
     };
-    DetailsPage.prototype.setDrop = function () {
-        if (this.drop)
-            this.drop = false;
-        else
-            this.drop = true;
-    };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('map'),
-        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* ElementRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* ElementRef */]) === "function" && _a || Object)
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* ElementRef */])
     ], DetailsPage.prototype, "mapElement", void 0);
     DetailsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-details',template:/*ion-inline-start:"/home/robrobirobin/Documents/backup/Project-Design-2/src/pages/details/details.html"*/'<ion-header>\n    <ion-navbar>\n    </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <div #map id="map"></div>\n  <div scrollable=true>\n    <ion-grid>\n      <ion-row *ngFor="let item of description; let i = index;" class=\'cell-{{i}}\' text-wrap no-padding no-margin>\n        <ion-col col-2 class="col icon-col">\n          <ion-img width="50" height="50" [src]="modeIcons[i]">Less Fare</ion-img>\n        </ion-col>\n        <ion-col col-95>\n          <p>{{ description[i].route }}</p>\n          <p>{{ description[i].fare }}</p>\n          <p>{{ description[i].fare2 }}</p>\n          <button (click)="setDrop()">\n            <ion-icon ios="ios-arrow-dropdown" md="md-arrow-dropdown"></ion-icon>\n          </button>\n\n          <ion-list [hidden]="drop" no-padding>\n            <ion-item *ngFor="let step of description[i].steps">{{ step }}</ion-item>\n          </ion-list>\n        </ion-col>\n        <ion-col col-2 no-padding>\n          <p>{{ description[i].distance }}</p>\n          <p>{{ description[i].time }}</p>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n\n  </div>\n</ion-content>'/*ion-inline-end:"/home/robrobirobin/Documents/backup/Project-Design-2/src/pages/details/details.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _c || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
     ], DetailsPage);
     return DetailsPage;
-    var _a, _b, _c;
 }());
 
 /*
