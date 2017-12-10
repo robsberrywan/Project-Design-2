@@ -889,6 +889,7 @@ var DetailsPage = (function () {
             }];
         this.modeIcons = [];
         this.leg = [];
+        this.drop = true;
     }
     DetailsPage.prototype.ionViewDidLoad = function () {
         this.loadMap();
@@ -996,12 +997,13 @@ var DetailsPage = (function () {
                 if ((this.legWalk[j].tripID == this.trip[this.index].id) && (this.legWalk[j].seq == i)) {
                     this.description.push({
                         distance: parseFloat(this.legWalk[j].distance).toPrecision(2) + " km\n",
-                        time: this.legWalk[j].time + " min",
+                        time: parseFloat(this.legWalk[j].time.toPrecision(2)) + " min",
                         fare: '',
                         fare2: '',
                         route: '',
                         from: '',
-                        to: ''
+                        to: '',
+                        steps: this.legWalk[j].steps
                     });
                     this.modeIcons.push("./assets/imgs/walk.png");
                 }
@@ -1022,7 +1024,7 @@ var DetailsPage = (function () {
                             fare = (8.00).toPrecision(3);
                         this.description.push({
                             distance: parseFloat(this.legTransit[k].distance).toPrecision(2) + " km\n",
-                            time: this.legTransit[k].time + " min",
+                            time: parseFloat(this.legTransit[k].time.toPrecision(2)) + " min",
                             fare: "P" + fare,
                             fare2: '',
                             route: this.legTransit[k].route,
@@ -1042,7 +1044,7 @@ var DetailsPage = (function () {
                         }
                         this.description.push({
                             distance: parseFloat(this.legTransit[k].distance).toPrecision(2) + " km\n",
-                            time: this.legTransit[k].time + " min",
+                            time: parseFloat(this.legTransit[k].time.toPrecision(2)) + " min",
                             fare: "Ordinary: P" + fare,
                             fare2: "Aircon: P" + fare2,
                             route: this.legTransit[k].route,
@@ -1058,17 +1060,24 @@ var DetailsPage = (function () {
             }
         }
     };
+    DetailsPage.prototype.setDrop = function () {
+        if (this.drop)
+            this.drop = false;
+        else
+            this.drop = true;
+    };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('map'),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* ElementRef */])
+        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* ElementRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* ElementRef */]) === "function" && _a || Object)
     ], DetailsPage.prototype, "mapElement", void 0);
     DetailsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-details',template:/*ion-inline-start:"/home/robrobirobin/Documents/backup/Project-Design-2/src/pages/details/details.html"*/'<ion-header>\n    <ion-navbar>\n    </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <div #map id="map"></div>\n  <div scrollable=true>\n    <ion-grid>\n      <ion-row *ngFor="let item of description; let i = index;" class=\'cell-{{i}}\' text-wrap no-padding no-margin>\n        <ion-col col-2 class="col icon-col">\n          <ion-img width="50" height="50" [src]="modeIcons[i]">Less Fare</ion-img>\n        </ion-col>\n        <ion-col col-95>\n          <p>{{ description[i].route }}</p>\n          <p>{{ description[i].fare }}</p>\n          <p>{{ description[i].fare2 }}</p>\n          <button (click)="setDrop()">\n            <ion-icon ios="ios-arrow-dropdown" md="md-arrow-dropdown"></ion-icon>\n          </button>\n\n          <ion-list [hidden]="drop" no-padding>\n            <ion-item *ngFor="let step of description[i].steps">{{ step }}</ion-item>\n          </ion-list>\n        </ion-col>\n        <ion-col col-2 no-padding>\n          <p>{{ description[i].distance }}</p>\n          <p>{{ description[i].time }}</p>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n\n  </div>\n</ion-content>'/*ion-inline-end:"/home/robrobirobin/Documents/backup/Project-Design-2/src/pages/details/details.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
+        __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _c || Object])
     ], DetailsPage);
     return DetailsPage;
+    var _a, _b, _c;
 }());
 
 /*
