@@ -21,6 +21,7 @@ export class DetailsPage {
   modeIcons;
   leg;
 
+  drop;
   map: any;
   @ViewChild('map') mapElement: ElementRef;
     constructor(public navCtrl: NavController, public navParams: NavParams){
@@ -42,6 +43,7 @@ export class DetailsPage {
       }];
       this.modeIcons = [];
       this.leg = [];
+      this.drop = true;
     }
     ionViewDidLoad(){
       this.loadMap();
@@ -152,12 +154,13 @@ export class DetailsPage {
           if((this.legWalk[j].tripID==this.trip[this.index].id)&&(this.legWalk[j].seq==i)){
             this.description.push({
               distance: parseFloat(this.legWalk[j].distance).toPrecision(2)+ " km\n",
-              time: this.legWalk[j].time + " min",
+              time: parseFloat(this.legWalk[j].time.toPrecision(2)) + " min",
               fare: '',
               fare2: '',
               route: '',
               from: '',
-              to: ''
+              to: '',
+              steps: this.legWalk[j].steps
             });
             this.modeIcons.push("./assets/imgs/walk.png");
           }
@@ -166,6 +169,7 @@ export class DetailsPage {
           let fare: any;
           let fare2: any;
           console.log("transit");
+          console.log(this.legTransit[k].route);
           if((this.legTransit[k].tripID==this.trip[this.index].id)&&(this.legTransit[k].seq==i)&&(this.legTransit[k].seq)){
             fare = 0;
             fare2 = 0;
@@ -177,10 +181,10 @@ export class DetailsPage {
                 fare = (8.00).toPrecision(3);
               this.description.push({
                 distance: parseFloat(this.legTransit[k].distance).toPrecision(2)+ " km\n",
-                time: this.legTransit[k].time + " min",
+                time: parseFloat(this.legTransit[k].time.toPrecision(2)) + " min",
                 fare: "P"+fare,
                 fare2: '',
-                route: '',
+                route: this.legTransit[k].route,
                 from: this.legTransit[k].from,
                 to: this.legTransit[k].to
               });
@@ -198,7 +202,7 @@ export class DetailsPage {
               }
               this.description.push({
                 distance: parseFloat(this.legTransit[k].distance).toPrecision(2)+ " km\n",
-                time: this.legTransit[k].time + " min",
+                time: parseFloat(this.legTransit[k].time.toPrecision(2)) + " min",
                 fare: "Ordinary: P"+fare,
                 fare2: "Aircon: P"+fare2,
                 route: this.legTransit[k].route,
@@ -213,6 +217,12 @@ export class DetailsPage {
           }
         }
       }
+    }
+    setDrop(){
+      if(this.drop)
+        this.drop = false;
+      else
+        this.drop = true;
     }
 }
 

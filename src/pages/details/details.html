@@ -7,14 +7,21 @@
   <div #map id="map"></div>
   <div scrollable=true>
     <ion-grid>
-      <ion-row *ngFor="let item of description; let i = index;" no-padding no-margin>
+      <ion-row *ngFor="let item of description; let i = index;" class='cell-{{i}}' text-wrap no-padding no-margin>
         <ion-col col-2 class="col icon-col">
           <ion-img width="50" height="50" [src]="modeIcons[i]">Less Fare</ion-img>
         </ion-col>
         <ion-col col-95>
           <p>{{ description[i].route }}</p>
-          <p>{{ description[i].fare }} {{ description[i].fare2 }}</p>
-          <p>Directions:</p>
+          <p>{{ description[i].fare }}</p>
+          <p>{{ description[i].fare2 }}</p>
+          <button (click)="setDrop()">
+            <ion-icon ios="ios-arrow-dropdown" md="md-arrow-dropdown"></ion-icon>
+          </button>
+
+          <ion-list [hidden]="drop" no-padding>
+            <ion-item *ngFor="let step of description[i].steps">{{ step }}</ion-item>
+          </ion-list>
         </ion-col>
         <ion-col col-2 no-padding>
           <p>{{ description[i].distance }}</p>
@@ -22,5 +29,6 @@
         </ion-col>
       </ion-row>
     </ion-grid>
+
   </div>
 </ion-content>

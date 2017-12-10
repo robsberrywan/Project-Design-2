@@ -23,6 +23,7 @@ export class RoutesPage {
     transfer : '',
     fare: '',
     totalWalkDistance: '',
+    totaldistance: '',
     legs: '',
     totalTime: '',
     roundtrip: ''
@@ -34,6 +35,7 @@ export class RoutesPage {
     legGeom: '',
     time: '',
     transMode: '',
+    steps: [],
   }];
   legTransit: any = [{
     tripID: '',
@@ -65,7 +67,6 @@ export class RoutesPage {
       this.address = this.navParams.get('address');
       this.geocoder = new google.maps.Geocoder;
       this.markers = [];
-      this.trip.length = 0;
     }
 
   ionViewDidLoad(){
@@ -126,37 +127,47 @@ export class RoutesPage {
       let fare: any;
       fare = 0;
       let walkDistance = 0;
+      let totaldistance = 0;
       console.log("Itinerary: " + id);
       for(let se=0; se<data.itineraries[id].legs.length; se++){
         let leg = data.itineraries[id].legs[se];
         console.log("Seq: " + se + " Mode: " + leg['mode']);
         if(leg['mode']=="WALK"){
+          let steps = [];
+          for(let num=0; num<leg['steps'].length; num++){
+            if((leg['steps'][num]['absoluteDirection']=="RIGHT")||(leg['steps'][num]['absoluteDirection']=="LEFT"))
+              steps.push("Turn " + leg['steps'][num]['absoluteDirection'] + " onto " + leg['steps'][num]['streetName']);
+            else
+            steps.push("Head " + leg['steps'][num]['absoluteDirection'] + " on " + leg['steps'][num]['streetName']);
+          }
           this.legWalk.push({
             tripID: id,
             seq: se,
             distance: (leg['distance'])/1000,
             legGeom: leg['legGeometry']['points'],
-            time: leg['duration'],
-            transMode: "WALK"
+            time: leg['duration']/60,
+            transMode: "WALK",
+            steps: steps
           });
-          walkDistance+=leg['distance'];
+          walkDistance+=(leg['distance'])/1000;
+          totaldistance+=(leg['distance'])/1000;
         }
         else{
-          distance = leg['distance']/1000;
+          distance = (leg['distance'])/1000;
           let mode: string = leg['routeId'];
           if(mode.includes("PUJ")){
             mode = "PUJ";
             if(distance>4)
-              fare = (fare+(8.00+(distance-4)*1.50)).toPrecision(3);
+              fare += 8+((distance-4)*1.50);
             else
-              fare = (fare+8.00).toPrecision(3);
+              fare += 8;
           }
           else if(mode.includes("PUB")){
             mode = "PUB";
             if(distance>5)
-              fare = parseFloat(fare+(10.00+(distance-5)*1.75)).toPrecision(3);
+              fare += 10+((distance-5)*1.75);
             else
-              fare = parseFloat(fare+10.00).toPrecision(3);
+              fare += 10;
           }
           this.legTransit.push({
             tripID: id,
@@ -165,19 +176,24 @@ export class RoutesPage {
             legGeom: leg['legGeometry']['points'],
             from: leg['from']['name'],
             to: leg['to']['name'],
-            time: leg['duration'],
+            time: leg['duration']/60,
             transMode: mode,
             route: leg['route']
           });
+          totaldistance+=distance;
         }
       }
+      totaldistance = parseFloat(totaldistance.toPrecision(3));
+      walkDistance = parseFloat(walkDistance.toPrecision(2));
+      fare = parseFloat(fare.toPrecision(3));
       this.trip.push({
         id: id,
         transfer: data.itineraries[id].transfers,
         fare: fare,
         totalWalkDistance: walkDistance,
+        totaldistance: totaldistance,
         legs: data.itineraries[id].legs.length,
-        totalTime: (data.itineraries[id].duration)/60,
+        totalTime: ((data.itineraries[id].duration)/60).toPrecision(3),
         roundtrip: false
       });
     }
