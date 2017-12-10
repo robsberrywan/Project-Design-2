@@ -33,6 +33,8 @@ export class RoutesPage {
     seq: '',
     distance: '',
     legGeom: '',
+    from: '',
+    to: '',
     time: '',
     transMode: '',
     steps: [],
@@ -140,11 +142,13 @@ export class RoutesPage {
             else
             steps.push("Head " + leg['steps'][num]['absoluteDirection'] + " on " + leg['steps'][num]['streetName']);
           }
-          this.legWalk.push({
+          this.legWalk.push({ 
             tripID: id,
             seq: se,
             distance: (leg['distance'])/1000,
             legGeom: leg['legGeometry']['points'],
+            from: leg['from']['name'],
+            to: leg['to']['name'],
             time: leg['duration']/60,
             transMode: "WALK",
             steps: steps

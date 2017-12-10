@@ -147,19 +147,27 @@ export class DetailsPage {
       this.polylines.push(snappedPolyline);
     }
     buildlist(){
+      let orig: any;
+      let dest: any;
       this.leg.length = 0;
       this.description.length = 0;
       for(let i=0; i<this.trip[this.index].legs; i++){
         for(let j=0; j<this.legWalk.length; j++){
           if((this.legWalk[j].tripID==this.trip[this.index].id)&&(this.legWalk[j].seq==i)){
+
+            if(this.description.length==0)
+              orig = this.address.origin;
+            else
+              orig = this.legWalk[j].from;
+              
             this.description.push({
               distance: parseFloat(this.legWalk[j].distance).toPrecision(2)+ " km\n",
               time: parseFloat(this.legWalk[j].time.toPrecision(2)) + " min",
               fare: '',
               fare2: '',
               route: '',
-              from: '',
-              to: '',
+              from: orig,
+              to: this.legWalk[j].to,
               steps: this.legWalk[j].steps
             });
             this.modeIcons.push("./assets/imgs/walk.png");
@@ -168,24 +176,31 @@ export class DetailsPage {
         for(let k=0; k<this.legTransit.length; k++){
           let fare: any;
           let fare2: any;
-          console.log("transit");
-          console.log(this.legTransit[k].route);
+          
           if((this.legTransit[k].tripID==this.trip[this.index].id)&&(this.legTransit[k].seq==i)&&(this.legTransit[k].seq)){
             fare = 0;
             fare2 = 0;
             let distance = this.legTransit[k].distance;
+
+            if(this.description.length==0)
+              orig = this.address.origin;
+            else
+              orig = this.legTransit[k].from;
+
             if(this.legTransit[k].transMode=="PUJ"){
               if(distance>4)
                 fare = (8.00+(distance-4)*1.50).toPrecision(3);
               else
                 fare = (8.00).toPrecision(3);
+              
+
               this.description.push({
                 distance: parseFloat(this.legTransit[k].distance).toPrecision(2)+ " km\n",
                 time: parseFloat(this.legTransit[k].time.toPrecision(2)) + " min",
                 fare: "P"+fare,
                 fare2: '',
                 route: this.legTransit[k].route,
-                from: this.legTransit[k].from,
+                from: orig,
                 to: this.legTransit[k].to
               });
               this.modeIcons.push("./assets/imgs/jeep.png");
