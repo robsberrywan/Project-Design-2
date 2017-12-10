@@ -786,7 +786,7 @@ var RemoteServiceProvider = (function () {
     }
     RemoteServiceProvider.prototype.load = function (origin, dest) {
         var _this = this;
-        this.baseUrl = 'http://localhost:8080/otp/routers/default/plan?fromPlace=' + origin + '&toPlace=' + dest + '&date=2017/01/09&time=11:00:00&mode=TRANSIT%2CWALK&maxWalkDistance=1000&arriveBy=false&wheelchair=false';
+        this.baseUrl = 'http://192.168.1.6:8080/otp/routers/default/plan?fromPlace=' + origin + '&toPlace=' + dest + '&date=2017/01/09&time=11:00:00&mode=TRANSIT%2CWALK&maxWalkDistance=1000&arriveBy=false&wheelchair=false';
         if (this.data) {
             return Promise.resolve(this.data);
         }
