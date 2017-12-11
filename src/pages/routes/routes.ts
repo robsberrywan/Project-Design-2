@@ -200,7 +200,7 @@ export class RoutesPage {
             if((leg['steps'][num]['absoluteDirection']=="RIGHT")||(leg['steps'][num]['absoluteDirection']=="LEFT"))
               steps.push("Turn " + leg['steps'][num]['absoluteDirection'] + " onto " + leg['steps'][num]['streetName']);
             else
-            steps.push("Head " + leg['steps'][num]['absoluteDirection'] + " on " + leg['steps'][num]['streetName']);
+              steps.push("Head " + leg['steps'][num]['absoluteDirection'] + " on " + leg['steps'][num]['streetName']);
           }
           this.legWalk.push({ 
             tripID: id,
@@ -277,7 +277,7 @@ export class RoutesPage {
               console.log(this.lrtLine2[x][y]);
             }
           }
-          
+
           this.legTransit.push({
             tripID: id,
             seq: se,

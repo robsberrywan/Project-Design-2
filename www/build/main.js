@@ -111,10 +111,11 @@ var LoginPage = (function () {
         });
     };
     LoginPage.prototype.facebooklogin = function () {
+        var _this = this;
         this.facebook.login(['email']).then(function (res) {
             var fc = __WEBPACK_IMPORTED_MODULE_6_firebase___default.a.auth.FacebookAuthProvider.credential(res.authResponse.accessToken);
             __WEBPACK_IMPORTED_MODULE_6_firebase___default.a.auth().signInWithCredential(fc).then(function (fs) {
-                alert("firebase sec");
+                _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__home_home__["a" /* HomePage */]);
             }).catch(function (ferr) {
                 alert("firebase error");
             });
@@ -941,10 +942,9 @@ var RemoteServiceProvider = (function () {
     };
     RemoteServiceProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]])
     ], RemoteServiceProvider);
     return RemoteServiceProvider;
-    var _a;
 }());
 
 //# sourceMappingURL=remote-service.js.map
@@ -988,7 +988,6 @@ var DetailsPage = (function () {
                 fare2: '',
                 route: '',
                 from: '',
-                fromAdd: '',
                 to: '',
                 steps: []
             }];
@@ -1157,8 +1156,26 @@ var DetailsPage = (function () {
                 if ((this.legWalk[j].tripID == this.trip[this.index].id) && (this.legWalk[j].seq == i)) {
                     if (this.description.length == 0)
                         orig = this.address.origin;
-                    else
+                    else {
                         orig = this.legWalk[j].from;
+                        if (orig.includes("MRT")) {
+                            for (var i_1 = 0; i_1 < this.mrt3.length; i_1++) {
+                                if (orig.includes(this.mrt3[0][i_1]))
+                                    orig = "MRT - " + this.mrt3[0][i_1] + " Station";
+                            }
+                        }
+                        else if (orig.includes("LRT")) {
+                            var line = 1;
+                            for (var i_2 = 0; i_2 < this.lrtLine1.length; i_2++) {
+                                if (orig.includes(this.lrtLine1[0][i_2]))
+                                    orig = "LRT-1 - " + this.lrtLine1[0][i_2] + " Station";
+                            }
+                            for (var i_3 = 0; i_3 < this.lrtLine2.length; i_3++) {
+                                if (orig.includes(this.lrtLine2[0][i_3]))
+                                    orig = "LRT-2 - " + this.lrtLine2[0][i_3] + " Station";
+                            }
+                        }
+                    }
                     this.description.push({
                         distance: parseFloat(this.legWalk[j].distance).toPrecision(2) + " km\n",
                         time: parseFloat(this.legWalk[j].time.toPrecision(2)) + " min",
@@ -1175,21 +1192,37 @@ var DetailsPage = (function () {
             for (var k = 0; k < this.legTransit.length; k++) {
                 var fare = void 0;
                 var fare2 = void 0;
-                var step = [];
                 if ((this.legTransit[k].tripID == this.trip[this.index].id) && (this.legTransit[k].seq == i) && (this.legTransit[k].seq)) {
                     fare = 0;
                     fare2 = 0;
                     var distance = this.legTransit[k].distance;
                     if (this.description.length == 0)
                         orig = this.address.origin;
-                    else
+                    else {
                         orig = this.legTransit[k].from;
+                        if (orig.includes("MRT")) {
+                            for (var i_4 = 0; i_4 < this.mrt3.length; i_4++) {
+                                if (orig.includes(this.mrt3[0][i_4]))
+                                    orig = "MRT - " + this.mrt3[0][i_4] + " Station";
+                            }
+                        }
+                        else if (orig.includes("LRT")) {
+                            var line = 1;
+                            for (var i_5 = 0; i_5 < this.lrtLine1.length; i_5++) {
+                                if (orig.includes(this.lrtLine1[0][i_5]))
+                                    orig = "LRT-1 - " + this.lrtLine1[0][i_5] + " Station";
+                            }
+                            for (var i_6 = 0; i_6 < this.lrtLine2.length; i_6++) {
+                                if (orig.includes(this.lrtLine2[0][i_6]))
+                                    orig = "LRT-2 - " + this.lrtLine2[0][i_6] + " Station";
+                            }
+                        }
+                    }
                     if (this.legTransit[k].transMode == "PUJ") {
                         if (distance > 4)
                             fare = (8.00 + (distance - 4) * 1.50).toPrecision(3);
                         else
                             fare = (8.00).toPrecision(3);
-                        step.push("Board at: " + orig);
                         this.description.push({
                             distance: parseFloat(this.legTransit[k].distance).toPrecision(2) + " km\n",
                             time: parseFloat(this.legTransit[k].time.toPrecision(2)) + " min",
@@ -1198,7 +1231,7 @@ var DetailsPage = (function () {
                             route: this.legTransit[k].route,
                             from: orig,
                             to: this.legTransit[k].to,
-                            steps: step
+                            steps: []
                         });
                         this.modeIcons.push("./assets/imgs/jeep.png");
                     }
@@ -1219,40 +1252,40 @@ var DetailsPage = (function () {
                         var railOrig = this.legTransit[k].from;
                         var railDest = this.legTransit[k].to;
                         if (railOrig.includes("MRT")) {
-                            for (var i_1 = 0; i_1 < this.mrt3.length; i_1++) {
-                                if (railOrig.includes(this.mrt3[0][i_1])) {
-                                    railOrig = "MRT " + this.mrt3[0][i_1];
-                                    x = i_1;
+                            for (var i_7 = 0; i_7 < this.mrt3.length; i_7++) {
+                                if (railOrig.includes(this.mrt3[0][i_7])) {
+                                    railOrig = "MRT " + this.mrt3[0][i_7];
+                                    x = i_7;
                                 }
-                                else if (railDest.includes(this.mrt3[i_1][0])) {
-                                    railDest = "MRT " + this.mrt3[i_1][0];
-                                    y = i_1;
+                                else if (railDest.includes(this.mrt3[i_7][0])) {
+                                    railDest = "MRT " + this.mrt3[i_7][0];
+                                    y = i_7;
                                 }
                             }
                             fare = this.mrt3[x][y];
                         }
                         else {
                             var line = 1;
-                            for (var i_2 = 0; i_2 < this.lrtLine1.length; i_2++) {
-                                if (railOrig.includes(this.lrtLine1[0][i_2])) {
-                                    railOrig = "LRT-1 " + this.lrtLine1[0][i_2];
-                                    x = i_2;
+                            for (var i_8 = 0; i_8 < this.lrtLine1.length; i_8++) {
+                                if (railOrig.includes(this.lrtLine1[0][i_8])) {
+                                    railOrig = "LRT-1 " + this.lrtLine1[0][i_8];
+                                    x = i_8;
                                     line = 1;
                                 }
-                                else if (railDest.includes(this.lrtLine1[i_2][0])) {
-                                    railDest = "LRT-1 " + this.lrtLine1[i_2][0];
-                                    y = i_2;
+                                else if (railDest.includes(this.lrtLine1[i_8][0])) {
+                                    railDest = "LRT-1 " + this.lrtLine1[i_8][0];
+                                    y = i_8;
                                 }
                             }
-                            for (var i_3 = 0; i_3 < this.lrtLine2.length; i_3++) {
-                                if (railOrig.includes(this.lrtLine2[0][i_3])) {
-                                    railOrig = "LRT-2 " + this.lrtLine2[0][i_3];
-                                    x = i_3;
+                            for (var i_9 = 0; i_9 < this.lrtLine2.length; i_9++) {
+                                if (railOrig.includes(this.lrtLine2[0][i_9])) {
+                                    railOrig = "LRT-2 " + this.lrtLine2[0][i_9];
+                                    x = i_9;
                                     line = 2;
                                 }
-                                else if (railDest.includes(this.lrtLine2[i_3][0])) {
-                                    railDest = "LRT-2 " + this.lrtLine2[i_3][0];
-                                    y = i_3;
+                                else if (railDest.includes(this.lrtLine2[i_9][0])) {
+                                    railDest = "LRT-2 " + this.lrtLine2[i_9][0];
+                                    y = i_9;
                                 }
                             }
                             if (line == 1)
@@ -1265,7 +1298,7 @@ var DetailsPage = (function () {
                             time: parseFloat(this.legTransit[k].time.toPrecision(2)) + " min",
                             fare: "P" + fare,
                             fare2: '',
-                            route: this.legTransit[k].route,
+                            route: '',
                             from: railOrig + " Station",
                             to: railDest + " Station"
                         });
@@ -1287,7 +1320,7 @@ var DetailsPage = (function () {
     ], DetailsPage.prototype, "mapElement", void 0);
     DetailsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-details',template:/*ion-inline-start:"/home/robrobirobin/Documents/backup/Project-Design-2/src/pages/details/details.html"*/'<ion-header>\n    <ion-navbar>\n    </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <div #map id="map"></div>\n  <div scrollable=true>\n    <ion-grid>\n      <ion-row *ngFor="let item of description; let i = index;" class=\'cell-{{i}}\' text-wrap no-padding no-margin>\n        <ion-col col-2 class="col icon-col">\n          <ion-img width="50" height="50" [src]="modeIcons[i]">Less Fare</ion-img>\n        </ion-col>      \n        <ion-col col-95>\n          <p>{{ description[i].from }}</p>\n          <p>{{ description[i].fromAdd }}</p>\n          <p>{{ description[i].route }}</p>\n          <p>{{ description[i].fare }}</p>\n          <p>{{ description[i].fare2 }}</p>\n          <button (click)="setDrop()">\n            <ion-icon ios="ios-arrow-dropdown" md="md-arrow-dropdown"></ion-icon>\n          </button>\n\n          <ion-list [hidden]="drop" no-padding>\n            <ion-item *ngFor="let step of description[i].steps">{{ step }}</ion-item>\n          </ion-list>\n        </ion-col>\n        <ion-col col-2 no-padding>\n          <p>{{ description[i].distance }}</p>\n          <p>{{ description[i].time }}</p>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n\n  </div>\n</ion-content>'/*ion-inline-end:"/home/robrobirobin/Documents/backup/Project-Design-2/src/pages/details/details.html"*/
+            selector: 'page-details',template:/*ion-inline-start:"/home/robrobirobin/Documents/backup/Project-Design-2/src/pages/details/details.html"*/'<ion-header>\n    <ion-navbar>\n    </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <div #map id="map"></div>\n  <div scrollable=true>\n    <ion-grid>\n      <ion-row *ngFor="let item of description; let i = index;" class=\'cell-{{i}}\' text-wrap no-padding no-margin>\n        <ion-col col-2 class="col icon-col">\n          <ion-img width="50" height="50" [src]="modeIcons[i]"></ion-img>\n        </ion-col>      \n        <ion-col col-95>\n          <p>{{ description[i].from }}</p>\n          <p>{{ description[i].fromAdd }}</p>\n          <p>{{ description[i].route }}</p>\n          <p>{{ description[i].fare }}</p>\n          <p>{{ description[i].fare2 }}</p>\n          <button [hidden]="!description[i].steps" (click)="setDrop()">\n            <ion-icon ios="ios-arrow-dropdown" md="md-arrow-dropdown"></ion-icon>\n          </button>\n\n          <ion-list [hidden]="drop" no-padding>\n            <ion-item *ngFor="let step of description[i].steps">{{ step }}</ion-item>\n          </ion-list>\n        </ion-col>\n        <ion-col col-2 no-padding>\n          <p>{{ description[i].distance }}</p>\n          <p>{{ description[i].time }}</p>\n        </ion-col>\n      </ion-row>\n      <ion-row class=\'cell-{{ description.length }}\' text-wrap no-padding no-margin>\n        <ion-col col-2 class="col icon-col">\n          <ion-img width="50" height="50" [src]="modeIcons[description.length-1]"></ion-img>\n        </ion-col>\n        <ion-col col-95>\n          <p>{{ address.destination }}</p>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n\n  </div>\n</ion-content>'/*ion-inline-end:"/home/robrobirobin/Documents/backup/Project-Design-2/src/pages/details/details.html"*/
         }),
         __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _c || Object])
     ], DetailsPage);

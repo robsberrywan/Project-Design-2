@@ -216,8 +216,26 @@ export class DetailsPage {
 
             if(this.description.length==0)
               orig = this.address.origin;
-            else
+            else{
               orig = this.legWalk[j].from;
+              if(orig.includes("MRT")){
+                for(let i = 0; i<this.mrt3.length; i++){
+                  if(orig.includes(this.mrt3[0][i]))
+                    orig = "MRT - " + this.mrt3[0][i] + " Station";
+                }
+              }
+              else if(orig.includes("LRT")){
+                let line = 1;
+                for(let i = 0; i<this.lrtLine1.length; i++){
+                  if(orig.includes(this.lrtLine1[0][i]))
+                    orig = "LRT-1 - " + this.lrtLine1[0][i] + " Station";
+                }
+                for(let i = 0; i<this.lrtLine2.length; i++){
+                  if(orig.includes(this.lrtLine2[0][i]))
+                    orig = "LRT-2 - " + this.lrtLine2[0][i] + " Station";
+                }
+              }
+            }
               
             this.description.push({
               distance: parseFloat(this.legWalk[j].distance).toPrecision(2)+ " km\n",
@@ -235,7 +253,6 @@ export class DetailsPage {
         for(let k=0; k<this.legTransit.length; k++){
           let fare: any;
           let fare2: any;
-          let step = [];
 
           if((this.legTransit[k].tripID==this.trip[this.index].id)&&(this.legTransit[k].seq==i)&&(this.legTransit[k].seq)){
             fare = 0;
@@ -244,16 +261,32 @@ export class DetailsPage {
 
             if(this.description.length==0)
               orig = this.address.origin;
-            else
+            else{
               orig = this.legTransit[k].from;
+              if(orig.includes("MRT")){
+                for(let i = 0; i<this.mrt3.length; i++){
+                  if(orig.includes(this.mrt3[0][i]))
+                    orig = "MRT - " + this.mrt3[0][i] + " Station";
+                }
+              }
+              else if(orig.includes("LRT")){
+                let line = 1;
+                for(let i = 0; i<this.lrtLine1.length; i++){
+                  if(orig.includes(this.lrtLine1[0][i]))
+                    orig = "LRT-1 - " + this.lrtLine1[0][i] + " Station";
+                }
+                for(let i = 0; i<this.lrtLine2.length; i++){
+                  if(orig.includes(this.lrtLine2[0][i]))
+                    orig = "LRT-2 - " + this.lrtLine2[0][i] + " Station";
+                }
+              }
+            }
             
             if(this.legTransit[k].transMode=="PUJ"){
               if(distance>4)
                 fare = (8.00+(distance-4)*1.50).toPrecision(3);
               else
                 fare = (8.00).toPrecision(3);  
-
-              step.push("Board at: " + orig);
 
               this.description.push({
                 distance: parseFloat(this.legTransit[k].distance).toPrecision(2)+ " km\n",
@@ -263,7 +296,7 @@ export class DetailsPage {
                 route: this.legTransit[k].route,
                 from: orig,
                 to: this.legTransit[k].to,
-                steps: step
+                steps: []
               });
               this.modeIcons.push("./assets/imgs/jeep.png");
             }
@@ -332,7 +365,7 @@ export class DetailsPage {
                 time: parseFloat(this.legTransit[k].time.toPrecision(2)) + " min",
                 fare: "P" + fare,
                 fare2: '',
-                route: this.legTransit[k].route,
+                route: '',
                 from: railOrig + " Station",
                 to: railDest + " Station"
               });
