@@ -151,7 +151,6 @@ export class DetailsPage {
       for(let i=0; i<this.trip[index].legs; i++){
         this.points = [];
         for(let j=0; j<this.legWalk.length; j++){
-          console.log(this.legWalk[j].seq);
           if((this.legWalk[j].tripID==this.trip[index].id)&&(this.legWalk[j].seq==i)){
             console.log("walk");
             this.decode(this.legWalk[j].legGeom)
@@ -225,7 +224,6 @@ export class DetailsPage {
                 }
               }
               else if(orig.includes("LRT")){
-                let line = 1;
                 for(let i = 0; i<this.lrtLine1.length; i++){
                   if(orig.includes(this.lrtLine1[0][i]))
                     orig = "LRT-1 - " + this.lrtLine1[0][i] + " Station";
@@ -270,7 +268,6 @@ export class DetailsPage {
                 }
               }
               else if(orig.includes("LRT")){
-                let line = 1;
                 for(let i = 0; i<this.lrtLine1.length; i++){
                   if(orig.includes(this.lrtLine1[0][i]))
                     orig = "LRT-1 - " + this.lrtLine1[0][i] + " Station";
@@ -296,7 +293,6 @@ export class DetailsPage {
                 route: this.legTransit[k].route,
                 from: orig,
                 to: this.legTransit[k].to,
-                steps: []
               });
               this.modeIcons.push("./assets/imgs/jeep.png");
             }
