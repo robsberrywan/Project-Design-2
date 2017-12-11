@@ -21,7 +21,7 @@
           </button>
 
           <ion-list [hidden]="drop" no-padding>
-            <ion-item *ngFor="let step of description[i].steps">{{ step }}</ion-item>
+            <ion-item no-padding *ngFor="let step of description[i].steps">{{ step }}</ion-item>
           </ion-list>
         </ion-col>
         <ion-col col-2 no-padding>

@@ -24,6 +24,7 @@ export class DetailsPage {
   lrtLine2;
   lrtLine1;
   mrt3;
+  pnr;
 
   drop;
   map: any;
@@ -103,6 +104,31 @@ export class DetailsPage {
         ["Magallanes", 28, 24, 24, 24, 24, 20, 20, 16, 16, 13, 13, 0, 13],
         ["Taft Ave", 28, 28, 24, 24, 24, 20, 20, 20, 16, 16, 13, 13, 0]
       ]
+      this.pnr = [
+        [0, "Tutuban", "Blumentritt", "Dapitan/Laon Laan", "España", "Santa Mesa", "Pandacan", "Paco", "San Andres", "Vito Cruz", "Buendia", "Pasay Road", "EDSA", "Nichols", "FTI", "Bicutan", "Sucat", "Alabang", "Muntinlupa", "San Pedro", "Pacita", "Golden City 1", "Biñan"],
+        ["Tutuban", 0, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 16, 16, 16, 20, 24, 28, 32, 32, 32, 36, 36, 40, 44, 44],
+        ["Blumentritt", 12, 0, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 16, 20, 24, 24, 28, 28, 32, 32, 36, 40, 44, 44],
+        ["Dapitan/Laon Laan", 12, 12, 0, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 16, 20, 20, 24, 28, 28, 28, 32, 36, 36, 44, 44],
+        ["España", 12, 12, 12, 0, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 16, 16, 20, 24, 28, 28, 28, 28, 32, 36, 40, 44],
+        ["Santa Mesa", 12, 12, 12, 12, 0, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 16, 20, 20, 24, 24, 28, 28, 32, 36, 40, 40],
+        ["Pandacan", 12, 12, 12, 12, 12, 0, 12, 12, 12, 12, 12, 12, 12, 12, 12, 16, 16, 20, 24, 24, 28, 24, 32, 36, 40, 40],
+        ["Paco", 12, 12, 12, 12, 12, 12, 0, 12, 12, 12, 12, 12, 12, 12, 12, 12, 16, 20, 24, 24, 24, 24, 28, 32, 36, 40],
+        ["San Andres", 12, 12, 12, 12, 12, 12, 12, 0, 12, 12, 12, 12, 12, 12, 12, 12, 16, 20, 20, 24, 24, 24, 28, 32, 36, 40],
+        ["Vito Cruz", 12, 12, 12, 12, 12, 12, 12, 12, 0, 12, 12, 12, 12, 12, 12, 12, 16, 16, 20, 20, 24, 24, 28, 32, 36, 36],
+        ["Buendia", 12, 12, 12, 12, 12, 12, 12, 12, 12, 0, 12, 12, 12, 12, 12, 12, 16, 16, 20, 20, 24, 24, 28, 32, 36, 36],
+        ["Pasay Road", 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 0, 12, 12, 12, 12, 12, 12, 16, 20, 20, 20, 20, 28, 32, 36, 36],
+        ["EDSA", 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 0, 12, 12, 12, 12, 12, 16, 20, 16, 20, 20, 24, 28, 32, 32],
+        ["Nichols", 16, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 0, 12, 12, 12, 12, 12, 20, 16, 16, 20, 24, 24, 32, 32],
+        ["FTI", 16, 16, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 0, 12, 12, 12, 12, 20, 16, 16, 20, 20, 24, 28, 32],
+        ["Bicutan", 16, 20, 16, 16, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 0, 12, 12, 12, 12, 16, 16, 20, 20, 24, 28, 28],
+        ["Sucat", 20, 24, 20, 16, 16, 16, 12, 12, 12, 12, 12, 12, 12, 12, 12, 0, 12, 12, 12, 12, 12, 12, 16, 20, 24, 24],
+        ["Alabang", 24, 24, 20, 20, 20, 16, 16, 16, 16, 16, 12, 12, 12, 12, 12, 12, 0, 12, 12, 12, 12, 12, 12, 16, 20, 20],
+        ["Muntinlupa", 28, 24, 24, 24, 20, 20, 20, 20, 16, 16, 16, 16, 12, 12, 12, 12, 12, 0, 12, 12, 12, 12, 12, 12, 16, 16],
+        ["San Pedro", 32, 28, 28, 28, 24, 24, 24, 20, 20, 20, 20, 20, 16, 16, 12, 12, 12, 12, 0, 12, 12, 12, 12, 12, 16, 16],
+        ["Pacita", 32, 28, 28, 28, 28, 24, 24, 24, 24, 20, 20, 20, 16, 16, 16, 12, 12, 12, 12, 0, 12, 12, 12, 12, 12, 16],
+        ["Golden City 1", 32, 32, 28, 28, 28, 28, 24, 24, 24, 24, 20, 20, 16, 16, 16, 12, 12, 12, 12, 12, 0, 12, 12, 12, 12, 16],
+        ["Biñan", 36, 32, 32, 32, 28, 28, 24, 24, 24, 24, 24, 20, 20, 20, 16, 12, 12, 12, 12, 12, 12, 0, 12, 12, 12, 12]
+      ];
     }
     ionViewDidLoad(){
       this.loadMap();
@@ -242,6 +268,12 @@ export class DetailsPage {
                     orig = "LRT-2 - " + this.lrtLine2[0][i] + " Station";
                 }
               }
+              else if(orig.includes("PNR")){
+                for(let i = 0; i<this.pnr.length; i++){
+                  if(orig.includes(this.pnr[0][i]))
+                    orig = "PNR - " + this.pnr[0][i] + " Station";
+                }
+              }
             }
               
             this.description.push({
@@ -286,6 +318,12 @@ export class DetailsPage {
                     orig = "LRT-2 - " + this.lrtLine2[0][i] + " Station";
                 }
               }
+              else if(orig.includes("PNR")){
+                for(let i = 0; i<this.pnr.length; i++){
+                  if(orig.includes(this.pnr[0][i]))
+                    orig = "PNR - " + this.pnr[0][i] + " Station";
+                }
+              }
             }
             
             if(this.legTransit[k].transMode=="PUJ"){
@@ -297,7 +335,7 @@ export class DetailsPage {
               this.description.push({
                 distance: parseFloat(this.legTransit[k].distance).toPrecision(2)+ " km\n",
                 time: parseFloat(this.legTransit[k].time.toPrecision(2)) + " min",
-                fare: "P"+fare,
+                fare: "P" + parseInt(fare) + ".00",
                 fare2: '',
                 route: this.legTransit[k].route,
                 from: orig,
@@ -318,8 +356,8 @@ export class DetailsPage {
               this.description.push({
                 distance: parseFloat(this.legTransit[k].distance).toPrecision(2)+ " km\n",
                 time: parseFloat(this.legTransit[k].time.toPrecision(2)) + " min",
-                fare: "Ordinary: P"+fare,
-                fare2: "Aircon: P"+fare2,
+                fare: "Ordinary: P"+ parseInt(fare) + ".00",
+                fare2: "Aircon: P"+ parseInt(fare2)  + ".00",
                 route: this.legTransit[k].route,
                 from: orig,
                 to: this.legTransit[k].to
@@ -344,6 +382,20 @@ export class DetailsPage {
                   }
                 }
                 fare = this.mrt3[x][y];
+                console.log(x + " " + y);
+              }
+              else if(railOrig.includes("PNR")){
+                for(let i = 0; i<this.pnr.length; i++){
+                  if(railOrig.includes(this.pnr[0][i])){
+                    railOrig = "PNR " + this.pnr[0][i];
+                    x = i
+                  }
+                  else if(railDest.includes(this.pnr[i][0])){
+                    railDest = "PNR " + this.pnr[i][0];
+                    y = i
+                  }
+                }
+                fare = this.pnr[x][y];
               }
               else{
                 let line = 1;

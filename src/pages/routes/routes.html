@@ -28,7 +28,7 @@
                 <ion-item text-wrap *ngFor="let t of trip; let i = index" tappable (click)="seeDetails(i)">
                     <p item-end>{{ t.totalTime }} min</p>
                     <p>Transfers: {{ t.transfer }}</p>
-                    <p>Fare: P{{ t.fare }}</p>
+                    <p>Fare: P{{ t.fare }}.00</p>
                     <p>Distance: {{ t.totaldistance }} km</p>
                     <p>Walk, about {{ t.totalWalkDistance }} km</p>
                 </ion-item>
