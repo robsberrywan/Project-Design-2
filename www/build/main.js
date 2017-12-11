@@ -556,6 +556,7 @@ var RoutesPage = (function () {
                 transfer: '',
                 fare: '',
                 totalWalkDistance: '',
+                totaldistance: '',
                 legs: '',
                 totalTime: '',
                 roundtrip: ''
@@ -565,8 +566,11 @@ var RoutesPage = (function () {
                 seq: '',
                 distance: '',
                 legGeom: '',
+                from: '',
+                to: '',
                 time: '',
                 transMode: '',
+                steps: [],
             }];
         this.legTransit = [{
                 tripID: '',
@@ -588,7 +592,59 @@ var RoutesPage = (function () {
         this.address = this.navParams.get('address');
         this.geocoder = new google.maps.Geocoder;
         this.markers = [];
-        this.trip.length = 0;
+        this.lrtLine2 = [
+            [0, "Recto", "Legarda", "Pureza", "V. Mapa", "J. Ruiz", "Gilmore", "Betty-Go", "Cubao", "Anonas", "Katipunan", "Santolan"],
+            ["Recto", 0, 15, 15, 15, 20, 20, 20, 20, 25, 25, 25],
+            ["Legarda", 15, 0, 15, 15, 15, 20, 20, 20, 20, 25, 25],
+            ["Pureza", 15, 15, 0, 15, 15, 15, 20, 20, 20, 20, 25],
+            ["V. Mapa", 15, 15, 15, 0, 15, 15, 15, 20, 20, 20, 25],
+            ["J. Ruiz", 20, 15, 15, 15, 0, 15, 15, 15, 20, 20, 20],
+            ["Gilmore", 20, 20, 15, 15, 15, 0, 15, 15, 15, 20, 20],
+            ["Betty-Go", 20, 20, 20, 15, 15, 15, 0, 15, 15, 15, 20],
+            ["Cubao", 20, 20, 20, 20, 15, 15, 15, 0, 15, 15, 15],
+            ["Anonas", 25, 20, 20, 20, 20, 15, 15, 15, 0, 15, 15],
+            ["Katipunan", 25, 25, 20, 20, 20, 20, 15, 15, 15, 0, 15],
+            ["Santolan", 25, 25, 25, 25, 20, 20, 20, 15, 15, 15, 0]
+        ];
+        this.lrtLine1 = [
+            [0, "Baclaran", "EDSA", "Libertad", "Gil Puyat", "V. Cruz", "Quirino", "P. Gil", "United Nations", "C. Terminal", "Carriedo", "D. Jose", "Bambang", "Tayuman", "Blumentritt", "A. Santos", "R. Papa", "5th Avenue", "Monumento", "Balintawak", "Roosevelt"],
+            ["Baclaran", 0, 15, 15, 15, 15, 15, 20, 20, 20, 20, 20, 20, 30, 30, 30, 30, 30, 30, 30, 30],
+            ["EDSA", 15, 0, 15, 15, 15, 15, 15, 20, 20, 20, 20, 20, 20, 30, 30, 30, 30, 30, 30, 30],
+            ["Libertad", 15, 15, 0, 15, 15, 15, 15, 15, 20, 20, 20, 20, 20, 20, 30, 30, 30, 30, 30, 30],
+            ["Gil Puyat", 15, 15, 15, 0, 15, 15, 15, 15, 20, 20, 20, 20, 20, 20, 20, 30, 30, 30, 30, 30],
+            ["V. Cruz", 15, 15, 15, 15, 0, 15, 15, 15, 15, 15, 20, 20, 20, 20, 20, 20, 30, 30, 30, 30],
+            ["Quirino", 15, 15, 15, 15, 15, 0, 15, 15, 15, 15, 15, 20, 20, 20, 20, 20, 20, 30, 30, 30],
+            ["P. Gil", 20, 15, 15, 15, 15, 15, 0, 15, 15, 15, 15, 15, 20, 20, 20, 20, 20, 20, 30, 30],
+            ["United Nations", 20, 20, 15, 15, 15, 15, 15, 0, 15, 15, 15, 15, 15, 20, 20, 20, 20, 20, 30, 30],
+            ["C. Terminal", 20, 20, 20, 20, 15, 15, 15, 15, 0, 15, 15, 15, 15, 15, 15, 20, 20, 20, 20, 30],
+            ["Carriedo", 20, 20, 20, 20, 15, 15, 15, 15, 15, 0, 15, 15, 15, 15, 15, 15, 20, 20, 20, 30],
+            ["D. Jose", 20, 20, 20, 20, 20, 15, 15, 15, 15, 15, 0, 15, 15, 15, 15, 15, 15, 20, 20, 30],
+            ["Bambang", 20, 20, 20, 20, 20, 20, 15, 15, 15, 15, 15, 0, 15, 15, 15, 15, 15, 20, 20, 20],
+            ["Tayuman", 30, 20, 20, 20, 20, 20, 20, 15, 15, 15, 15, 15, 0, 15, 15, 15, 15, 15, 20, 20],
+            ["Blumentritt", 30, 30, 20, 20, 20, 20, 20, 20, 15, 15, 15, 15, 15, 0, 15, 15, 15, 15, 20, 20],
+            ["A. Santos", 30, 30, 30, 20, 20, 20, 20, 20, 15, 15, 15, 15, 15, 15, 0, 15, 15, 15, 20, 20],
+            ["R. Papa", 30, 30, 30, 30, 20, 20, 20, 20, 20, 15, 15, 15, 15, 15, 15, 0, 15, 15, 15, 20],
+            ["5th Avenue", 30, 30, 30, 30, 30, 20, 20, 20, 20, 20, 15, 15, 15, 15, 15, 15, 0, 15, 15, 20],
+            ["Monumento", 30, 30, 30, 30, 30, 30, 20, 20, 20, 20, 20, 20, 15, 15, 15, 15, 15, 0, 15, 15],
+            ["Balintawak", 30, 30, 30, 30, 30, 30, 30, 30, 20, 20, 20, 20, 20, 20, 20, 15, 15, 15, 0, 15],
+            ["Roosevelt", 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 20, 20, 20, 20, 20, 20, 15, 15, 0]
+        ];
+        this.mrt3 = [
+            [0, "North Ave", "Quezon Ave", "GMA Kamuning", "Cubao", "Santolan", "Ortigas", "Shaw Blvd", "Boni Ave", "Guadalupe", "Buendia", "Ayala Ave", "Magallanes", "Taft"],
+            ["North Ave", 0, 13, 13, 16, 16, 20, 20, 20, 24, 24, 24, 28, 28],
+            ["Quezon Ave", 13, 0, 13, 13, 16, 16, 20, 20, 20, 24, 24, 24, 28],
+            ["GMA Kamuning", 13, 13, 0, 13, 13, 16, 16, 20, 20, 20, 24, 24, 24],
+            ["Cubao", 16, 13, 13, 0, 13, 13, 16, 16, 20, 20, 20, 24, 24],
+            ["Santolan", 16, 16, 13, 13, 0, 13, 13, 16, 16, 20, 20, 20, 24],
+            ["Ortigas", 20, 16, 16, 13, 13, 0, 13, 13, 16, 16, 20, 20, 20],
+            ["Shaw Blvd", 20, 20, 16, 16, 16, 13, 0, 13, 13, 16, 16, 20, 20],
+            ["Boni Ave", 20, 20, 20, 16, 16, 13, 13, 0, 13, 13, 16, 16, 20],
+            ["Guadalupe", 24, 20, 20, 20, 20, 16, 13, 13, 0, 13, 13, 16, 16],
+            ["Buendia", 24, 24, 20, 20, 20, 16, 16, 13, 13, 0, 13, 13, 16],
+            ["Ayala Ave", 24, 24, 24, 20, 20, 20, 16, 16, 13, 13, 0, 13, 13],
+            ["Magallanes", 28, 24, 24, 24, 24, 20, 20, 16, 16, 13, 13, 0, 13],
+            ["Taft", 28, 28, 24, 24, 24, 20, 20, 20, 16, 16, 13, 13, 0]
+        ];
     }
     RoutesPage.prototype.ionViewDidLoad = function () {
         this.loadMap();
@@ -646,41 +702,99 @@ var RoutesPage = (function () {
         this.trip.length = 0;
         this.legWalk.length = 0;
         this.legTransit.length = 0;
+        var x;
+        var y;
         for (var id = 0; id < data.itineraries.length; id++) {
             var fare = void 0;
             fare = 0;
             var walkDistance = 0;
+            var totaldistance = 0;
             console.log("Itinerary: " + id);
             for (var se = 0; se < data.itineraries[id].legs.length; se++) {
                 var leg = data.itineraries[id].legs[se];
                 console.log("Seq: " + se + " Mode: " + leg['mode']);
                 if (leg['mode'] == "WALK") {
+                    var steps = [];
+                    for (var num = 0; num < leg['steps'].length; num++) {
+                        if ((leg['steps'][num]['absoluteDirection'] == "RIGHT") || (leg['steps'][num]['absoluteDirection'] == "LEFT"))
+                            steps.push("Turn " + leg['steps'][num]['absoluteDirection'] + " onto " + leg['steps'][num]['streetName']);
+                        else
+                            steps.push("Head " + leg['steps'][num]['absoluteDirection'] + " on " + leg['steps'][num]['streetName']);
+                    }
                     this.legWalk.push({
                         tripID: id,
                         seq: se,
                         distance: (leg['distance']) / 1000,
                         legGeom: leg['legGeometry']['points'],
-                        time: leg['duration'],
-                        transMode: "WALK"
+                        from: leg['from']['name'],
+                        to: leg['to']['name'],
+                        time: leg['duration'] / 60,
+                        transMode: "WALK",
+                        steps: steps
                     });
-                    walkDistance += leg['distance'];
+                    walkDistance += (leg['distance']) / 1000;
+                    totaldistance += (leg['distance']) / 1000;
                 }
                 else {
-                    distance = leg['distance'] / 1000;
+                    distance = (leg['distance']) / 1000;
                     var mode = leg['routeId'];
+                    var toStation = "";
+                    var frStation = "";
                     if (mode.includes("PUJ")) {
                         mode = "PUJ";
                         if (distance > 4)
-                            fare = parseFloat(fare + 8.00 + (distance - 4) * 1.50).toPrecision(3);
+                            fare += 8 + ((distance - 4) * 1.50);
                         else
-                            fare = parseFloat(fare + 8.00).toPrecision(3);
+                            fare += 8;
                     }
                     else if (mode.includes("PUB")) {
                         mode = "PUB";
                         if (distance > 5)
-                            fare = parseFloat(fare + (10.00 + (distance - 5) * 1.75)).toPrecision(3);
+                            fare += 10 + ((distance - 5) * 1.75);
                         else
-                            fare = parseFloat(fare + 10.00).toPrecision(3);
+                            fare += 10;
+                    }
+                    else {
+                        var orig = leg['from']['name'];
+                        var dest = leg['to']['name'];
+                        x = 0, y = 0;
+                        if (orig.includes("MRT")) {
+                            for (var i = 0; i < this.mrt3.length; i++) {
+                                if (orig.includes(this.mrt3[0][i])) {
+                                    x = i;
+                                }
+                                else if (dest.includes(this.mrt3[i][0])) {
+                                    y = i;
+                                }
+                            }
+                            fare += this.mrt3[x][y];
+                        }
+                        else {
+                            var line = 1;
+                            for (var i = 0; i < this.lrtLine1.length; i++) {
+                                if (orig.includes(this.lrtLine1[0][i])) {
+                                    x = i;
+                                    line = 1;
+                                }
+                                else if (dest.includes(this.lrtLine1[i][0])) {
+                                    y = i;
+                                }
+                            }
+                            for (var i = 0; i < this.lrtLine2.length; i++) {
+                                if (orig.includes(this.lrtLine2[0][i])) {
+                                    x = i;
+                                    line = 2;
+                                }
+                                else if (dest.includes(this.lrtLine2[i][0])) {
+                                    y = i;
+                                }
+                            }
+                            if (line == 1)
+                                fare += this.lrtLine1[x][y];
+                            else
+                                fare += this.lrtLine2[x][y];
+                            console.log(this.lrtLine2[x][y]);
+                        }
                     }
                     this.legTransit.push({
                         tripID: id,
@@ -689,19 +803,24 @@ var RoutesPage = (function () {
                         legGeom: leg['legGeometry']['points'],
                         from: leg['from']['name'],
                         to: leg['to']['name'],
-                        time: leg['duration'],
+                        time: leg['duration'] / 60,
                         transMode: mode,
                         route: leg['route']
                     });
+                    totaldistance += distance;
                 }
             }
+            totaldistance = parseFloat(totaldistance.toPrecision(3));
+            walkDistance = parseFloat(walkDistance.toPrecision(2));
+            fare = parseFloat(fare.toPrecision(3));
             this.trip.push({
                 id: id,
                 transfer: data.itineraries[id].transfers,
                 fare: fare,
                 totalWalkDistance: walkDistance,
+                totaldistance: totaldistance,
                 legs: data.itineraries[id].legs.length,
-                totalTime: (data.itineraries[id].duration) / 60,
+                totalTime: ((data.itineraries[id].duration) / 60).toPrecision(3),
                 roundtrip: false
             });
         }
@@ -720,21 +839,17 @@ var RoutesPage = (function () {
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('map'),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* ElementRef */])
+        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* ElementRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* ElementRef */]) === "function" && _a || Object)
     ], RoutesPage.prototype, "mapElement", void 0);
     RoutesPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-routes',template:/*ion-inline-start:"/home/robrobirobin/Documents/backup/Project-Design-2/src/pages/routes/routes.html"*/'\n  \n<ion-content>\n    <ion-navbar color=primary>\n        <button class="close-button" color=dark ion-button block (click)="closeModal()">New Route</button>\n    </ion-navbar>\n    <div no-padding>\n        <ion-list scrollable=true>\n            <ion-item>\n                <ion-toolbar>\n                    <ion-segment color=secondary>\n                        <ion-segment-button value="lessfare">\n                            <ion-img width="20" height="20" src="./assets/imgs/lessfare.png">Less Fare</ion-img>\n                        </ion-segment-button>\n                        <ion-segment-button value="lesswalk">\n                            <ion-img width="20" height="20" src="./assets/imgs/lesswalk.png">Less Walk</ion-img>\n                        </ion-segment-button>\n                        <ion-segment-button value="lesstransfer">\n                            Less Transfer\n                        </ion-segment-button>\n                        <ion-segment-button value="round-trip">\n                            <ion-img width="20" height="20" src="./assets/imgs/roundtrip.png">Round-trip</ion-img>\n                        </ion-segment-button>\n                    </ion-segment>\n                </ion-toolbar>\n            </ion-item>\n            <ion-list>\n                <ion-item text-wrap *ngFor="let t of trip; let i = index" tappable (click)="seeDetails(i)">\n                    <p item-end>{{ t.totalTime }} min</p>\n                    <p>Transfers: {{ t.transfer }}</p>\n                    <p>Fare: P{{ t.fare }}</p>\n                    <p>Distance: {{ t.totaldistance }} km</p>\n                    <p>Walk, about {{ t.totalWalkDistance }} km</p>\n                </ion-item>\n            </ion-list>\n        </ion-list>\n    </div>\n    <div #map [hidden]=true id="map"></div>\n</ion-content>'/*ion-inline-end:"/home/robrobirobin/Documents/backup/Project-Design-2/src/pages/routes/routes.html"*/,
             providers: [__WEBPACK_IMPORTED_MODULE_3__providers_remote_service_remote_service__["a" /* RemoteServiceProvider */]]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__ionic_native_geolocation__["a" /* Geolocation */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* NgZone */],
-            __WEBPACK_IMPORTED_MODULE_3__providers_remote_service_remote_service__["a" /* RemoteServiceProvider */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ViewController */]])
+        __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_geolocation__["a" /* Geolocation */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_geolocation__["a" /* Geolocation */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* NgZone */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* NgZone */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__providers_remote_service_remote_service__["a" /* RemoteServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_remote_service_remote_service__["a" /* RemoteServiceProvider */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ViewController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ViewController */]) === "function" && _g || Object])
     ], RoutesPage);
     return RoutesPage;
+    var _a, _b, _c, _d, _e, _f, _g;
 }());
 
 //# sourceMappingURL=routes.js.map
@@ -774,7 +889,7 @@ var RemoteServiceProvider = (function () {
     }
     RemoteServiceProvider.prototype.load = function (origin, dest) {
         var _this = this;
-        this.baseUrl = 'http://192.168.1.6:8080/otp/routers/default/plan?fromPlace=' + origin + '&toPlace=' + dest + '&date=2017/01/09&time=11:00:00&mode=TRANSIT%2CWALK&maxWalkDistance=1000&arriveBy=false&wheelchair=false';
+        this.baseUrl = 'http://localhost:8080/otp/routers/default/plan?fromPlace=' + origin + '&toPlace=' + dest + '&date=2017/01/09&time=11:00:00&mode=TRANSIT%2CWALK&maxWalkDistance=1000&arriveBy=false&wheelchair=false';
         if (this.data) {
             return Promise.resolve(this.data);
         }
@@ -826,9 +941,10 @@ var RemoteServiceProvider = (function () {
     };
     RemoteServiceProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object])
     ], RemoteServiceProvider);
     return RemoteServiceProvider;
+    var _a;
 }());
 
 //# sourceMappingURL=remote-service.js.map
@@ -872,10 +988,66 @@ var DetailsPage = (function () {
                 fare2: '',
                 route: '',
                 from: '',
-                to: ''
+                fromAdd: '',
+                to: '',
+                steps: []
             }];
         this.modeIcons = [];
         this.leg = [];
+        this.drop = true;
+        this.lrtLine2 = [
+            [0, "Recto", "Legarda", "Pureza", "V. Mapa", "J. Ruiz", "Gilmore", "Betty-Go", "Cubao", "Anonas", "Katipunan", "Santolan"],
+            ["Recto", 0, 15, 15, 15, 20, 20, 20, 20, 25, 25, 25],
+            ["Legarda", 15, 0, 15, 15, 15, 20, 20, 20, 20, 25, 25],
+            ["Pureza", 15, 15, 0, 15, 15, 15, 20, 20, 20, 20, 25],
+            ["V. Mapa", 15, 15, 15, 0, 15, 15, 15, 20, 20, 20, 25],
+            ["J. Ruiz", 20, 15, 15, 15, 0, 15, 15, 15, 20, 20, 20],
+            ["Gilmore", 20, 20, 15, 15, 15, 0, 15, 15, 15, 20, 20],
+            ["Betty-Go", 20, 20, 20, 15, 15, 15, 0, 15, 15, 15, 20],
+            ["Cubao", 20, 20, 20, 20, 15, 15, 15, 0, 15, 15, 15],
+            ["Anonas", 25, 20, 20, 20, 20, 15, 15, 15, 0, 15, 15],
+            ["Katipunan", 25, 25, 20, 20, 20, 20, 15, 15, 15, 0, 15],
+            ["Santolan", 25, 25, 25, 25, 20, 20, 20, 15, 15, 15, 0]
+        ];
+        this.lrtLine1 = [
+            [0, "Baclaran", "EDSA", "Libertad", "Gil Puyat", "V. Cruz", "Quirino", "P. Gil", "United Nations", "C. Terminal", "Carriedo", "D. Jose", "Bambang", "Tayuman", "Blumentritt", "A. Santos", "R. Papa", "5th Avenue", "Monumento", "Balintawak", "Roosevelt"],
+            ["Baclaran", 0, 15, 15, 15, 15, 15, 20, 20, 20, 20, 20, 20, 30, 30, 30, 30, 30, 30, 30, 30],
+            ["EDSA", 15, 0, 15, 15, 15, 15, 15, 20, 20, 20, 20, 20, 20, 30, 30, 30, 30, 30, 30, 30],
+            ["Libertad", 15, 15, 0, 15, 15, 15, 15, 15, 20, 20, 20, 20, 20, 20, 30, 30, 30, 30, 30, 30],
+            ["Gil Puyat", 15, 15, 15, 0, 15, 15, 15, 15, 20, 20, 20, 20, 20, 20, 20, 30, 30, 30, 30, 30],
+            ["V. Cruz", 15, 15, 15, 15, 0, 15, 15, 15, 15, 15, 20, 20, 20, 20, 20, 20, 30, 30, 30, 30],
+            ["Quirino", 15, 15, 15, 15, 15, 0, 15, 15, 15, 15, 15, 20, 20, 20, 20, 20, 20, 30, 30, 30],
+            ["P. Gil", 20, 15, 15, 15, 15, 15, 0, 15, 15, 15, 15, 15, 20, 20, 20, 20, 20, 20, 30, 30],
+            ["United Nations", 20, 20, 15, 15, 15, 15, 15, 0, 15, 15, 15, 15, 15, 20, 20, 20, 20, 20, 30, 30],
+            ["C. Terminal", 20, 20, 20, 20, 15, 15, 15, 15, 0, 15, 15, 15, 15, 15, 15, 20, 20, 20, 20, 30],
+            ["Carriedo", 20, 20, 20, 20, 15, 15, 15, 15, 15, 0, 15, 15, 15, 15, 15, 15, 20, 20, 20, 30],
+            ["D. Jose", 20, 20, 20, 20, 20, 15, 15, 15, 15, 15, 0, 15, 15, 15, 15, 15, 15, 20, 20, 30],
+            ["Bambang", 20, 20, 20, 20, 20, 20, 15, 15, 15, 15, 15, 0, 15, 15, 15, 15, 15, 20, 20, 20],
+            ["Tayuman", 30, 20, 20, 20, 20, 20, 20, 15, 15, 15, 15, 15, 0, 15, 15, 15, 15, 15, 20, 20],
+            ["Blumentritt", 30, 30, 20, 20, 20, 20, 20, 20, 15, 15, 15, 15, 15, 0, 15, 15, 15, 15, 20, 20],
+            ["A. Santos", 30, 30, 30, 20, 20, 20, 20, 20, 15, 15, 15, 15, 15, 15, 0, 15, 15, 15, 20, 20],
+            ["R. Papa", 30, 30, 30, 30, 20, 20, 20, 20, 20, 15, 15, 15, 15, 15, 15, 0, 15, 15, 15, 20],
+            ["5th Avenue", 30, 30, 30, 30, 30, 20, 20, 20, 20, 20, 15, 15, 15, 15, 15, 15, 0, 15, 15, 20],
+            ["Monumento", 30, 30, 30, 30, 30, 30, 20, 20, 20, 20, 20, 20, 15, 15, 15, 15, 15, 0, 15, 15],
+            ["Balintawak", 30, 30, 30, 30, 30, 30, 30, 30, 20, 20, 20, 20, 20, 20, 20, 15, 15, 15, 0, 15],
+            ["Roosevelt", 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 20, 20, 20, 20, 20, 20, 15, 15, 0]
+        ];
+        this.mrt3 = [
+            [0, "North Ave", "Quezon Ave", "GMA Kamuning", "Cubao", "Santolan", "Ortigas", "Shaw Blvd", "Boni Ave", "Guadalupe", "Buendia", "Ayala Ave", "Magallanes", "Taft"],
+            ["North Ave", 0, 13, 13, 16, 16, 20, 20, 20, 24, 24, 24, 28, 28],
+            ["Quezon Ave", 13, 0, 13, 13, 16, 16, 20, 20, 20, 24, 24, 24, 28],
+            ["GMA Kamuning", 13, 13, 0, 13, 13, 16, 16, 20, 20, 20, 24, 24, 24],
+            ["Cubao", 16, 13, 13, 0, 13, 13, 16, 16, 20, 20, 20, 24, 24],
+            ["Santolan", 16, 16, 13, 13, 0, 13, 13, 16, 16, 20, 20, 20, 24],
+            ["Ortigas", 20, 16, 16, 13, 13, 0, 13, 13, 16, 16, 20, 20, 20],
+            ["Shaw Blvd", 20, 20, 16, 16, 16, 13, 0, 13, 13, 16, 16, 20, 20],
+            ["Boni Ave", 20, 20, 20, 16, 16, 13, 13, 0, 13, 13, 16, 16, 20],
+            ["Guadalupe", 24, 20, 20, 20, 20, 16, 13, 13, 0, 13, 13, 16, 16],
+            ["Buendia", 24, 24, 20, 20, 20, 16, 16, 13, 13, 0, 13, 13, 16],
+            ["Ayala Ave", 24, 24, 24, 20, 20, 20, 16, 16, 13, 13, 0, 13, 13],
+            ["Magallanes", 28, 24, 24, 24, 24, 20, 20, 16, 16, 13, 13, 0, 13],
+            ["Taft", 28, 28, 24, 24, 24, 20, 20, 20, 16, 16, 13, 13, 0]
+        ];
     }
     DetailsPage.prototype.ionViewDidLoad = function () {
         this.loadMap();
@@ -976,19 +1148,26 @@ var DetailsPage = (function () {
         this.polylines.push(snappedPolyline);
     };
     DetailsPage.prototype.buildlist = function () {
+        var orig;
+        var dest;
         this.leg.length = 0;
         this.description.length = 0;
         for (var i = 0; i < this.trip[this.index].legs; i++) {
             for (var j = 0; j < this.legWalk.length; j++) {
                 if ((this.legWalk[j].tripID == this.trip[this.index].id) && (this.legWalk[j].seq == i)) {
+                    if (this.description.length == 0)
+                        orig = this.address.origin;
+                    else
+                        orig = this.legWalk[j].from;
                     this.description.push({
                         distance: parseFloat(this.legWalk[j].distance).toPrecision(2) + " km\n",
-                        time: this.legWalk[j].time + " min",
+                        time: parseFloat(this.legWalk[j].time.toPrecision(2)) + " min",
                         fare: '',
                         fare2: '',
                         route: '',
-                        from: '',
-                        to: ''
+                        from: orig,
+                        to: this.legWalk[j].to,
+                        steps: this.legWalk[j].steps
                     });
                     this.modeIcons.push("./assets/imgs/walk.png");
                 }
@@ -996,25 +1175,30 @@ var DetailsPage = (function () {
             for (var k = 0; k < this.legTransit.length; k++) {
                 var fare = void 0;
                 var fare2 = void 0;
-                console.log("transit");
-                console.log(this.legTransit[k].route);
+                var step = [];
                 if ((this.legTransit[k].tripID == this.trip[this.index].id) && (this.legTransit[k].seq == i) && (this.legTransit[k].seq)) {
                     fare = 0;
                     fare2 = 0;
                     var distance = this.legTransit[k].distance;
+                    if (this.description.length == 0)
+                        orig = this.address.origin;
+                    else
+                        orig = this.legTransit[k].from;
                     if (this.legTransit[k].transMode == "PUJ") {
                         if (distance > 4)
                             fare = (8.00 + (distance - 4) * 1.50).toPrecision(3);
                         else
                             fare = (8.00).toPrecision(3);
+                        step.push("Board at: " + orig);
                         this.description.push({
                             distance: parseFloat(this.legTransit[k].distance).toPrecision(2) + " km\n",
-                            time: this.legTransit[k].time + " min",
+                            time: parseFloat(this.legTransit[k].time.toPrecision(2)) + " min",
                             fare: "P" + fare,
                             fare2: '',
                             route: this.legTransit[k].route,
-                            from: this.legTransit[k].from,
-                            to: this.legTransit[k].to
+                            from: orig,
+                            to: this.legTransit[k].to,
+                            steps: step
                         });
                         this.modeIcons.push("./assets/imgs/jeep.png");
                     }
@@ -1027,35 +1211,88 @@ var DetailsPage = (function () {
                             fare = (10.00).toPrecision(4);
                             fare2 = (12.00).toPrecision(4);
                         }
-                        this.description.push({
-                            distance: parseFloat(this.legTransit[k].distance).toPrecision(2) + " km\n",
-                            time: this.legTransit[k].time + " min",
-                            fare: "Ordinary: P" + fare,
-                            fare2: "Aircon: P" + fare2,
-                            route: this.legTransit[k].route,
-                            from: this.legTransit[k].from,
-                            to: this.legTransit[k].to
-                        });
                         this.modeIcons.push("./assets/imgs/bus.png");
                     }
                     else {
+                        var x = 0;
+                        var y = 0;
+                        var railOrig = this.legTransit[k].from;
+                        var railDest = this.legTransit[k].to;
+                        if (railOrig.includes("MRT")) {
+                            for (var i_1 = 0; i_1 < this.mrt3.length; i_1++) {
+                                if (railOrig.includes(this.mrt3[0][i_1])) {
+                                    railOrig = "MRT " + this.mrt3[0][i_1];
+                                    x = i_1;
+                                }
+                                else if (railDest.includes(this.mrt3[i_1][0])) {
+                                    railDest = "MRT " + this.mrt3[i_1][0];
+                                    y = i_1;
+                                }
+                            }
+                            fare = this.mrt3[x][y];
+                        }
+                        else {
+                            var line = 1;
+                            for (var i_2 = 0; i_2 < this.lrtLine1.length; i_2++) {
+                                if (railOrig.includes(this.lrtLine1[0][i_2])) {
+                                    railOrig = "LRT-1 " + this.lrtLine1[0][i_2];
+                                    x = i_2;
+                                    line = 1;
+                                }
+                                else if (railDest.includes(this.lrtLine1[i_2][0])) {
+                                    railDest = "LRT-1 " + this.lrtLine1[i_2][0];
+                                    y = i_2;
+                                }
+                            }
+                            for (var i_3 = 0; i_3 < this.lrtLine2.length; i_3++) {
+                                if (railOrig.includes(this.lrtLine2[0][i_3])) {
+                                    railOrig = "LRT-2 " + this.lrtLine2[0][i_3];
+                                    x = i_3;
+                                    line = 2;
+                                }
+                                else if (railDest.includes(this.lrtLine2[i_3][0])) {
+                                    railDest = "LRT-2 " + this.lrtLine2[i_3][0];
+                                    y = i_3;
+                                }
+                            }
+                            if (line == 1)
+                                fare = this.lrtLine1[x][y];
+                            else
+                                fare = this.lrtLine2[x][y];
+                        }
+                        this.description.push({
+                            distance: parseFloat(this.legTransit[k].distance).toPrecision(2) + " km\n",
+                            time: parseFloat(this.legTransit[k].time.toPrecision(2)) + " min",
+                            fare: "P" + fare,
+                            fare2: '',
+                            route: this.legTransit[k].route,
+                            from: railOrig + " Station",
+                            to: railDest + " Station"
+                        });
                         this.modeIcons.push("./assets/imgs/train.png");
                     }
                 }
             }
         }
     };
+    DetailsPage.prototype.setDrop = function () {
+        if (this.drop)
+            this.drop = false;
+        else
+            this.drop = true;
+    };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('map'),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* ElementRef */])
+        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* ElementRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* ElementRef */]) === "function" && _a || Object)
     ], DetailsPage.prototype, "mapElement", void 0);
     DetailsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-details',template:/*ion-inline-start:"/home/robrobirobin/Documents/backup/Project-Design-2/src/pages/details/details.html"*/'<ion-header>\n    <ion-navbar>\n    </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <div #map id="map"></div>\n  <div scrollable=true>\n    <ion-grid>\n      <ion-row *ngFor="let item of description; let i = index;" class=\'cell-{{i}}\' text-wrap no-padding no-margin>\n        <ion-col col-2 class="col icon-col">\n          <ion-img width="50" height="50" [src]="modeIcons[i]">Less Fare</ion-img>\n        </ion-col>      \n        <ion-col col-95>\n          <p>{{ description[i].from }}</p>\n          <p>{{ description[i].route }}</p>\n          <p>{{ description[i].fare }}</p>\n          <p>{{ description[i].fare2 }}</p>\n          <button (click)="setDrop()">\n            <ion-icon ios="ios-arrow-dropdown" md="md-arrow-dropdown"></ion-icon>\n          </button>\n\n          <ion-list no-padding>\n            <ion-item [hidden]="drop" *ngFor="let step of description[i].steps">{{ step }}</ion-item>\n          </ion-list>\n        </ion-col>\n        <ion-col col-2 no-padding>\n          <p>{{ description[i].distance }}</p>\n          <p>{{ description[i].time }}</p>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n\n  </div>\n</ion-content>'/*ion-inline-end:"/home/robrobirobin/Documents/backup/Project-Design-2/src/pages/details/details.html"*/
+            selector: 'page-details',template:/*ion-inline-start:"/home/robrobirobin/Documents/backup/Project-Design-2/src/pages/details/details.html"*/'<ion-header>\n    <ion-navbar>\n    </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <div #map id="map"></div>\n  <div scrollable=true>\n    <ion-grid>\n      <ion-row *ngFor="let item of description; let i = index;" class=\'cell-{{i}}\' text-wrap no-padding no-margin>\n        <ion-col col-2 class="col icon-col">\n          <ion-img width="50" height="50" [src]="modeIcons[i]">Less Fare</ion-img>\n        </ion-col>      \n        <ion-col col-95>\n          <p>{{ description[i].from }}</p>\n          <p>{{ description[i].fromAdd }}</p>\n          <p>{{ description[i].route }}</p>\n          <p>{{ description[i].fare }}</p>\n          <p>{{ description[i].fare2 }}</p>\n          <button (click)="setDrop()">\n            <ion-icon ios="ios-arrow-dropdown" md="md-arrow-dropdown"></ion-icon>\n          </button>\n\n          <ion-list [hidden]="drop" no-padding>\n            <ion-item *ngFor="let step of description[i].steps">{{ step }}</ion-item>\n          </ion-list>\n        </ion-col>\n        <ion-col col-2 no-padding>\n          <p>{{ description[i].distance }}</p>\n          <p>{{ description[i].time }}</p>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n\n  </div>\n</ion-content>'/*ion-inline-end:"/home/robrobirobin/Documents/backup/Project-Design-2/src/pages/details/details.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
+        __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _c || Object])
     ], DetailsPage);
     return DetailsPage;
+    var _a, _b, _c;
 }());
 
 /*

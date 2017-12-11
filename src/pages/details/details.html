@@ -13,6 +13,7 @@
         </ion-col>      
         <ion-col col-95>
           <p>{{ description[i].from }}</p>
+          <p>{{ description[i].fromAdd }}</p>
           <p>{{ description[i].route }}</p>
           <p>{{ description[i].fare }}</p>
           <p>{{ description[i].fare2 }}</p>
@@ -20,8 +21,8 @@
             <ion-icon ios="ios-arrow-dropdown" md="md-arrow-dropdown"></ion-icon>
           </button>
 
-          <ion-list no-padding>
-            <ion-item [hidden]="drop" *ngFor="let step of description[i].steps">{{ step }}</ion-item>
+          <ion-list [hidden]="drop" no-padding>
+            <ion-item *ngFor="let step of description[i].steps">{{ step }}</ion-item>
           </ion-list>
         </ion-col>
         <ion-col col-2 no-padding>

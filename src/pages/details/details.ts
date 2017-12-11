@@ -21,6 +21,10 @@ export class DetailsPage {
   modeIcons;
   leg;
 
+  lrtLine2;
+  lrtLine1;
+  mrt3;
+
   drop;
   map: any;
   @ViewChild('map') mapElement: ElementRef;
@@ -39,11 +43,66 @@ export class DetailsPage {
         fare2: '',
         route: '',
         from: '',
-        to: ''
+        to: '',
+        steps: []
       }];
       this.modeIcons = [];
       this.leg = [];
       this.drop = true;
+
+      this.lrtLine2 = [
+        [0, "Recto", "Legarda", "Pureza", "V. Mapa", "J. Ruiz", "Gilmore", "Betty-Go", "Cubao", "Anonas", "Katipunan", "Santolan"],
+        ["Recto", 0, 15, 15, 15, 20, 20, 20, 20, 25, 25, 25],
+        ["Legarda", 15, 0, 15, 15, 15, 20, 20, 20, 20, 25, 25],
+        ["Pureza", 15, 15, 0, 15, 15, 15, 20, 20, 20, 20, 25],
+        ["V. Mapa", 15, 15, 15, 0, 15, 15, 15, 20, 20, 20, 25],
+        ["J. Ruiz", 20, 15, 15, 15, 0, 15, 15, 15, 20, 20, 20],
+        ["Gilmore", 20, 20, 15, 15, 15, 0, 15, 15, 15, 20, 20],
+        ["Betty-Go", 20, 20, 20, 15, 15, 15, 0, 15, 15, 15, 20],
+        ["Cubao", 20, 20, 20, 20, 15, 15, 15, 0, 15, 15, 15],
+        ["Anonas", 25, 20, 20, 20, 20, 15, 15, 15, 0, 15, 15],
+        ["Katipunan", 25, 25, 20, 20, 20, 20, 15, 15, 15, 0, 15],
+        ["Santolan", 25, 25, 25, 25, 20, 20, 20, 15, 15, 15, 0]
+      ];
+      this.lrtLine1 = [
+        [0,"Baclaran","EDSA","Libertad","Gil Puyat","V. Cruz","Quirino","P. Gil","United Nations","C. Terminal","Carriedo","D. Jose","Bambang","Tayuman","Blumentritt","A. Santos","R. Papa","5th Avenue","Monumento","Balintawak","Roosevelt"],
+        ["Baclaran",0,15,15,15,15,15,20,20,20,20,20,20,30,30,30,30,30,30,30,30],
+        ["EDSA",15,0,15,15,15,15,15,20,20,20,20,20,20,30,30,30,30,30,30,30],
+        ["Libertad",15,15,0,15,15,15,15,15,20,20,20,20,20,20,30,30,30,30,30,30],
+        ["Gil Puyat",15,15,15,0,15,15,15,15,20,20,20,20,20,20,20,30,30,30,30,30],
+        ["V. Cruz",15,15,15,15,0,15,15,15,15,15,20,20,20,20,20,20,30,30,30,30],
+        ["Quirino",15,15,15,15,15,0,15,15,15,15,15,20,20,20,20,20,20,30,30,30],
+        ["P. Gil",20,15,15,15,15,15,0,15,15,15,15,15,20,20,20,20,20,20,30,30],
+        ["United Nations",20,20,15,15,15,15,15,0,15,15,15,15,15,20,20,20,20,20,30,30],
+        ["C. Terminal",20,20,20,20,15,15,15,15,0,15,15,15,15,15,15,20,20,20,20,30],
+        ["Carriedo",20,20,20,20,15,15,15,15,15,0,15,15,15,15,15,15,20,20,20,30],
+        ["D. Jose",20,20,20,20,20,15,15,15,15,15,0,15,15,15,15,15,15,20,20,30],
+        ["Bambang",20,20,20,20,20,20,15,15,15,15,15,0,15,15,15,15,15,20,20,20],
+        ["Tayuman",30,20,20,20,20,20,20,15,15,15,15,15,0,15,15,15,15,15,20,20],
+        ["Blumentritt",30,30,20,20,20,20,20,20,15,15,15,15,15,0,15,15,15,15,20,20],
+        ["A. Santos",30,30,30,20,20,20,20,20,15,15,15,15,15,15,0,15,15,15,20,20],
+        ["R. Papa",30,30,30,30,20,20,20,20,20,15,15,15,15,15,15,0,15,15,15,20],
+        ["5th Avenue",30,30,30,30,30,20,20,20,20,20,15,15,15,15,15,15,0,15,15,20],
+        ["Monumento",30,30,30,30,30,30,20,20,20,20,20,20,15,15,15,15,15,0,15,15],
+        ["Balintawak",30,30,30,30,30,30,30,30,20,20,20,20,20,20,20,15,15,15,0,15],
+        ["Roosevelt",30,30,30,30,30,30,30,30,30,30,30,20,20,20,20,20,20,15,15,0]
+      ];
+      this.mrt3 = [
+        [0, "North Ave", "Quezon Ave", "GMA Kamuning", "Cubao", "Santolan", "Ortigas", "Shaw Blvd", "Boni Ave", "Guadalupe", "Buendia", "Ayala Ave", "Magallanes", "Taft"],
+        ["North Ave", 0, 13, 13, 16, 16, 20, 20, 20, 24, 24, 24, 28, 28],
+        ["Quezon Ave", 13, 0, 13, 13, 16, 16, 20, 20, 20, 24, 24, 24, 28],
+        ["GMA Kamuning", 13, 13, 0, 13, 13, 16, 16, 20, 20, 20, 24, 24, 24],
+        ["Cubao", 16, 13, 13, 0, 13, 13, 16, 16, 20, 20, 20, 24, 24],
+        ["Santolan", 16, 16, 13, 13, 0, 13, 13, 16, 16, 20, 20, 20, 24],
+        ["Ortigas", 20, 16, 16, 13, 13, 0, 13, 13, 16, 16, 20, 20, 20],
+        ["Shaw Blvd", 20, 20, 16, 16, 16, 13, 0, 13, 13, 16, 16, 20, 20],
+        ["Boni Ave", 20, 20, 20, 16, 16, 13, 13, 0, 13, 13, 16, 16, 20],
+        ["Guadalupe", 24, 20, 20, 20, 20, 16, 13, 13, 0, 13, 13, 16, 16],
+        ["Buendia", 24, 24, 20, 20, 20, 16, 16, 13, 13, 0, 13, 13, 16],
+        ["Ayala Ave", 24, 24, 24, 20, 20, 20, 16, 16, 13, 13, 0, 13, 13],
+        ["Magallanes", 28, 24, 24, 24, 24, 20, 20, 16, 16, 13, 13, 0, 13],
+        ["Taft", 28, 28, 24, 24, 24, 20, 20, 20, 16, 16, 13, 13, 0]
+      ]
     }
     ionViewDidLoad(){
       this.loadMap();
@@ -176,7 +235,8 @@ export class DetailsPage {
         for(let k=0; k<this.legTransit.length; k++){
           let fare: any;
           let fare2: any;
-          
+          let step = [];
+
           if((this.legTransit[k].tripID==this.trip[this.index].id)&&(this.legTransit[k].seq==i)&&(this.legTransit[k].seq)){
             fare = 0;
             fare2 = 0;
@@ -186,13 +246,14 @@ export class DetailsPage {
               orig = this.address.origin;
             else
               orig = this.legTransit[k].from;
-
+            
             if(this.legTransit[k].transMode=="PUJ"){
               if(distance>4)
                 fare = (8.00+(distance-4)*1.50).toPrecision(3);
               else
-                fare = (8.00).toPrecision(3);
-              
+                fare = (8.00).toPrecision(3);  
+
+              step.push("Board at: " + orig);
 
               this.description.push({
                 distance: parseFloat(this.legTransit[k].distance).toPrecision(2)+ " km\n",
@@ -201,7 +262,8 @@ export class DetailsPage {
                 fare2: '',
                 route: this.legTransit[k].route,
                 from: orig,
-                to: this.legTransit[k].to
+                to: this.legTransit[k].to,
+                steps: step
               });
               this.modeIcons.push("./assets/imgs/jeep.png");
             }
@@ -215,18 +277,65 @@ export class DetailsPage {
                 fare = (10.00).toPrecision(4);
                 fare2 = (12.00).toPrecision(4);             
               }
-              this.description.push({
-                distance: parseFloat(this.legTransit[k].distance).toPrecision(2)+ " km\n",
-                time: parseFloat(this.legTransit[k].time.toPrecision(2)) + " min",
-                fare: "Ordinary: P"+fare,
-                fare2: "Aircon: P"+fare2,
-                route: this.legTransit[k].route,
-                from: this.legTransit[k].from,
-                to: this.legTransit[k].to
-              });
               this.modeIcons.push("./assets/imgs/bus.png");
             }
             else{
+              let x = 0;
+              let y = 0;
+              let railOrig: string = this.legTransit[k].from;
+              let railDest: string = this.legTransit[k].to;
+
+              if(railOrig.includes("MRT")){
+                for(let i = 0; i<this.mrt3.length; i++){
+                  if(railOrig.includes(this.mrt3[0][i])){
+                    railOrig = "MRT " + this.mrt3[0][i];
+                    x = i
+                  }
+                  else if(railDest.includes(this.mrt3[i][0])){
+                    railDest = "MRT " + this.mrt3[i][0];
+                    y = i
+                  }
+                }
+                fare = this.mrt3[x][y];
+              }
+              else{
+                let line = 1;
+                for(let i = 0; i<this.lrtLine1.length; i++){
+                  if(railOrig.includes(this.lrtLine1[0][i])){
+                    railOrig = "LRT-1 " + this.lrtLine1[0][i];
+                    x = i;
+                    line = 1;
+                  }
+                  else if(railDest.includes(this.lrtLine1[i][0])){
+                    railDest = "LRT-1 " + this.lrtLine1[i][0];
+                    y = i
+                  }
+                }
+                for(let i = 0; i<this.lrtLine2.length; i++){
+                  if(railOrig.includes(this.lrtLine2[0][i])){
+                    railOrig = "LRT-2 " + this.lrtLine2[0][i];
+                    x = i;
+                    line = 2;
+                  }
+                  else if(railDest.includes(this.lrtLine2[i][0])){
+                    railDest = "LRT-2 " + this.lrtLine2[i][0];
+                    y = i
+                  }
+                }
+                if(line==1)
+                  fare = this.lrtLine1[x][y];
+                else
+                  fare = this.lrtLine2[x][y];
+              }
+              this.description.push({
+                distance: parseFloat(this.legTransit[k].distance).toPrecision(2)+ " km\n",
+                time: parseFloat(this.legTransit[k].time.toPrecision(2)) + " min",
+                fare: "P" + fare,
+                fare2: '',
+                route: this.legTransit[k].route,
+                from: railOrig + " Station",
+                to: railDest + " Station"
+              });
               this.modeIcons.push("./assets/imgs/train.png");
             }
           }
