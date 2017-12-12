@@ -9,7 +9,7 @@
     <ion-grid>
       <ion-row *ngFor="let item of description; let i = index;" class='cell-{{i}}' text-wrap no-padding no-margin>
         <ion-col col-2 class="col icon-col">
-          <ion-img width="50" height="50" [src]="modeIcons[i]"></ion-img>
+          <img width="50" height="50" src="{{ modeIcons[i] }}" />
         </ion-col>      
         <ion-col col-95>
           <p>{{ description[i].from }}</p>
@@ -34,6 +34,16 @@
         </ion-col>
         <ion-col col-95>
           <p>{{ address.destination }}</p>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <p>Travel Summary:</p>
+          <p>Estimated Time: {{trip[index].fare }} min</p>
+          <p>Total Fare: P{{ trip[index].fare }}.00</p>
+          <p>Distance: {{ trip[index].totaldistance }} km</p>
+          <p>Walk Distance: {{ trip[index].totalWalkDistance }} km</p>
+          <p>Transfers: {{ trip[index].transfer }}</p>
         </ion-col>
       </ion-row>
     </ion-grid>

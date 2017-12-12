@@ -10,8 +10,14 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class RemoteServiceProvider {
   data: any;
+  rounddata: any;
+  data1: any;
+  data2: any;
   snap: any;
   baseUrl;
+  rbaseUrl;
+  baseUrl1;
+  baseUrl2;
   constructor(public http: Http) {
   }
   load(origin, dest){
@@ -64,6 +70,72 @@ export class RemoteServiceProvider {
         .subscribe(snap => {
           this.snap = snap;
           resolve(this.snap);
+        });
+    });
+  }
+  loadRound(origin, dest){
+    this.rbaseUrl = 'http://localhost:8080/otp/routers/default/plan?fromPlace='+origin+'&toPlace='+dest+'&date=2017/01/09&time=11:00:00&mode=TRANSIT%2CWALK&maxWalkDistance=1000&arriveBy=false&wheelchair=false';
+    if (this.rounddata) {
+      return Promise.resolve(this.rounddata);
+    }
+    let opt: RequestOptions;
+    let myHeaders: Headers = new Headers;
+
+    myHeaders.set('Accept', 'application/json');
+    myHeaders.append('Content-type', 'application/json');
+    opt = new RequestOptions({
+      headers: myHeaders
+    })
+    return new Promise(resolve => {
+      this.http.get(this.rbaseUrl, opt)
+        .map(res => res.json())
+        .subscribe(rounddata => {
+          this.rounddata = rounddata.plan;
+          resolve(this.rounddata);
+        });
+    });
+  }
+  load1(origin, dest){
+    this.baseUrl1 = 'http://localhost:8080/otp/routers/default/plan?fromPlace='+origin+'&toPlace='+dest+'&date=2017/01/09&time=11:00:00&mode=TRANSIT%2CWALK&maxWalkDistance=1000&arriveBy=false&wheelchair=false';
+    if (this.data1) {
+      return Promise.resolve(this.data1);
+    }
+    let opt: RequestOptions;
+    let myHeaders: Headers = new Headers;
+
+    myHeaders.set('Accept', 'application/json');
+    myHeaders.append('Content-type', 'application/json');
+    opt = new RequestOptions({
+      headers: myHeaders
+    })
+    return new Promise(resolve => {
+      this.http.get(this.baseUrl1, opt)
+        .map(res => res.json())
+        .subscribe(data1 => {
+          this.data1 = data1.plan;
+          resolve(this.data1);
+        });
+    });
+  }
+  load2(origin, dest){
+    this.baseUrl2 = 'http://localhost:8080/otp/routers/default/plan?fromPlace='+origin+'&toPlace='+dest+'&date=2017/01/09&time=11:00:00&mode=TRANSIT%2CWALK&maxWalkDistance=1000&arriveBy=false&wheelchair=false';
+    if (this.data2) {
+      return Promise.resolve(this.data2);
+    }
+    let opt: RequestOptions;
+    let myHeaders: Headers = new Headers;
+
+    myHeaders.set('Accept', 'application/json');
+    myHeaders.append('Content-type', 'application/json');
+    opt = new RequestOptions({
+      headers: myHeaders
+    })
+    return new Promise(resolve => {
+      this.http.get(this.baseUrl2, opt)
+        .map(res => res.json())
+        .subscribe(data2 => {
+          this.data2 = data2.plan;
+          resolve(this.data2);
         });
     });
   }

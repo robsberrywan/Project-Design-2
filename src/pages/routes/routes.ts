@@ -194,10 +194,11 @@ export class RoutesPage {
   setMapFocus(markers){
     this.rsp.load(markers[0].getPosition(), markers[1].getPosition())
     .then(data => {
-      if(data)
+      if(data){
         this.processInput(data);
+      }
       else
-        console.log("No trip found.");
+        alert("No route found.");
     })
   }
   /*
@@ -262,8 +263,6 @@ export class RoutesPage {
           else{
             let orig: string = leg['from']['name'];
             let dest: string = leg['to']['name'];
-            console.log(orig);
-            console.log(dest);
             x = 0, y = 0;
             if(orig.includes("MRT")){
               for(let i = 0; i<this.mrt3.length; i++){
@@ -342,6 +341,592 @@ export class RoutesPage {
         roundtrip: false
       });
     }
+    this.createTrip(this.trip[this.trip.length-1].id);
+  }
+  
+  createTrip(id){
+    let seq = 0;
+    let start: string = "";
+    let end: string = "";
+    let markers = [];
+
+    for(let i = 0; i<this.legTransit.length; i++){
+      //console.log(this.legTransit[i].route);
+      if((this.legTransit[i].tripID==id)&&(this.legTransit[i].distance>2)){
+        start = this.legTransit[i].route;
+        end = this.legTransit[i].route;
+        if(start.indexOf("/")>-1)
+          start = start.slice(0, start.indexOf("/"));
+        else if(start.indexOf("-")>-1)
+          start = start.slice(0,start.indexOf("-"));
+        
+        if(end.includes("via"))
+          end = end.slice(end.indexOf("-")+1, end.indexOf("via"));
+        else
+          end = end.slice(end.indexOf("-")+1);
+        
+        start = start + ", Metro Manila";
+        end = end + ", Metro Manila";
+        console.log(this.address.destination);
+        console.log(start);
+        console.log(end);
+
+        this.geocoder.geocode({'address': this.address.origin}, (results, status) => {
+          if(status == 'OK' && results[0]){
+            let marker = new google.maps.Marker({
+              position: results[0].geometry.location
+            });
+            markers.push(marker);
+          }
+        })
+        this.geocoder.geocode({'address': this.address.destination}, (results, status) => {
+          if(status == 'OK' && results[0]){
+            let marker = new google.maps.Marker({
+              position: results[0].geometry.location
+            });
+            markers.push(marker);
+          }
+        })
+        this.geocoder.geocode({'address': start}, (results, status) => {
+          if(status == 'OK' && results[0]){
+            let marker = new google.maps.Marker({
+              position: results[0].geometry.location
+            });
+            markers.push(marker);
+          }
+        })
+        this.geocoder.geocode({'address': end}, (results, status) => {
+          if(status == 'OK' && results[0]){
+            let marker = new google.maps.Marker({
+              position: results[0].geometry.location
+            });
+            markers.push(marker);
+            this.getRest(start, end, id, markers);
+          }
+        })
+      }
+    }
+  }
+  getRest(start, end, id, markers){
+    
+    let walkDistance = 0;
+    let totaldistance = 0;
+    let fare: any;
+    let transfers = 0;
+    let time: any;
+    fare = 0;
+    this.rsp.loadRound(markers[2].getPosition(), markers[1].getPosition())
+    .then(rounddata => {
+      let distance = 0;
+      if(rounddata){
+        for(let i=0; i<rounddata.itineraries[0].legs.length; i++){
+          let leg = rounddata.itineraries[0].legs[i];
+          distance += (leg['distance'])/1000;
+        }
+        console.log(distance);
+        console.log(this.trip[id].totaldistance);
+        if(distance>this.trip[id].totaldistance){
+          //get direction from origin to terminal
+          let lastIndex = 0 ;
+          this.rsp.load1(markers[0].getPosition(), markers[2].getPosition())
+          .then(data1 => {
+            console.log(data1);
+            lastIndex = data1.itineraries[0].legs.length;
+            transfers = data1.itineraries[0].transfers;
+            time  = ((data1.itineraries[0].duration)/60).toPrecision(3);
+            console.log(lastIndex);
+            for(let i=0; i<data1.itineraries[0].legs.length; i++){
+              let leg = data1.itineraries[0].legs[i];
+              if(leg['mode']=="WALK"){
+                let steps = [];
+                for(let num=0; num<leg['steps'].length; num++){
+                  if((leg['steps'][num]['absoluteDirection']=="RIGHT")||(leg['steps'][num]['absoluteDirection']=="LEFT"))
+                    steps.push("Turn " + leg['steps'][num]['absoluteDirection'] + " onto " + leg['steps'][num]['streetName']);
+                  else
+                    steps.push("Head " + leg['steps'][num]['absoluteDirection'] + " on " + leg['steps'][num]['streetName']);
+                }
+                this.legWalk.push({ 
+                  tripID: id+1,
+                  seq: i,
+                  distance: (leg['distance'])/1000,
+                  legGeom: leg['legGeometry']['points'],
+                  from: leg['from']['name'],
+                  to: leg['to']['name'],
+                  time: leg['duration']/60,
+                  transMode: "WALK",
+                  steps: steps
+                });
+                walkDistance+=(leg['distance'])/1000;
+                totaldistance+=(leg['distance'])/1000;
+              }
+              else{
+                distance = (leg['distance'])/1000;
+                let mode: string = leg['routeId'];
+                if(mode.includes("PUJ")){
+                  mode = "PUJ";
+                  if(distance>4)
+                    fare += 8+((distance-4)*1.50);
+                  else
+                    fare += 8;
+                }
+                else if(mode.includes("PUB")){
+                  mode = "PUB";
+                  if(distance>5)
+                    fare += 10+((distance-5)*1.75);
+                  else
+                    fare += 10;
+                }
+                else{
+                  let orig: string = leg['from']['name'];
+                  let dest: string = leg['to']['name'];
+                  let x = 0, y = 0;
+                  if(orig.includes("MRT")){
+                    for(let i = 0; i<this.mrt3.length; i++){
+                      if(orig.includes(this.mrt3[0][i])){
+                        y = i
+                      }
+                      if(dest.includes(this.mrt3[0][i])){
+                        x = i
+                      }
+                    }
+                    fare += this.mrt3[x][y];
+                  }
+                  else if(orig.includes("PNR")){
+                    for(let i = 0; i<this.pnr.length; i++){
+                      if(orig.includes(this.pnr[0][i])){
+                        y = i
+                      }
+                      if(dest.includes(this.pnr[0][i])){
+                        x = i
+                      }
+                    }
+                    fare += this.pnr[x][y];
+                  }
+                  else{
+                    let line = 1;
+                    for(let i = 0; i<this.lrtLine1.length; i++){
+                      if(orig.includes(this.lrtLine1[0][i])){
+                        y = i;
+                        line = 1;
+                      }
+                      if(dest.includes(this.lrtLine1[i][0])){
+                        x = i
+                      }
+                    }
+                    for(let i = 0; i<this.lrtLine2.length; i++){
+                      if(orig.includes(this.lrtLine2[0][i])){
+                        y = i;
+                        line = 2;
+                      }
+                      if(dest.includes(this.lrtLine2[i][0])){
+                        x = i
+                      }
+                    }
+                    if(line==1)
+                      fare += this.lrtLine1[x][y];
+                    else
+                      fare += this.lrtLine2[x][y];
+                  }
+                }
+      
+                this.legTransit.push({
+                  tripID: id+1,
+                  seq: i,
+                  distance: distance,
+                  legGeom: leg['legGeometry']['points'],
+                  from: leg['from']['name'],
+                  to: leg['to']['name'],
+                  time: leg['duration']/60,
+                  transMode: mode,
+                  route: leg['route']
+                });
+                totaldistance+=distance;
+              }
+            }
+          })
+
+          this.rsp.load2(markers[2].getPosition(), markers[1].getPosition())
+          .then(data2 => {
+            let ind: any;
+            ind = 1;
+            console.log(lastIndex);
+            for(let i=lastIndex; i<data2.itineraries[0].legs.length+lastIndex-1; i++){
+              let leg = data2.itineraries[0].legs[ind];
+              if(leg['mode']=="WALK"){
+                let steps = [];
+                for(let num=0; num<leg['steps'].length; num++){
+                  if((leg['steps'][num]['absoluteDirection']=="RIGHT")||(leg['steps'][num]['absoluteDirection']=="LEFT"))
+                    steps.push("Turn " + leg['steps'][num]['absoluteDirection'] + " onto " + leg['steps'][num]['streetName']);
+                  else
+                    steps.push("Head " + leg['steps'][num]['absoluteDirection'] + " on " + leg['steps'][num]['streetName']);
+                }
+                this.legWalk.push({ 
+                  tripID: id+1,
+                  seq: i,
+                  distance: (leg['distance'])/1000,
+                  legGeom: leg['legGeometry']['points'],
+                  from: leg['from']['name'],
+                  to: leg['to']['name'],
+                  time: leg['duration']/60,
+                  transMode: "WALK",
+                  steps: steps
+                });
+                walkDistance+=(leg['distance'])/1000;
+                totaldistance+=(leg['distance'])/1000;
+              }
+              else{
+                distance = (leg['distance'])/1000;
+                let mode: string = leg['routeId'];
+                if(mode.includes("PUJ")){
+                  mode = "PUJ";
+                  if(distance>4)
+                    fare += 8+((distance-4)*1.50);
+                  else
+                    fare += 8;
+                }
+                else if(mode.includes("PUB")){
+                  mode = "PUB";
+                  if(distance>5)
+                    fare += 10+((distance-5)*1.75);
+                  else
+                    fare += 10;
+                }
+                else{
+                  let orig: string = leg['from']['name'];
+                  let dest: string = leg['to']['name'];
+                  let x = 0, y = 0;
+                  if(orig.includes("MRT")){
+                    for(let i = 0; i<this.mrt3.length; i++){
+                      if(orig.includes(this.mrt3[0][i])){
+                        y = i
+                      }
+                      if(dest.includes(this.mrt3[0][i])){
+                        x = i
+                      }
+                    }
+                    fare += this.mrt3[x][y];
+                  }
+                  else if(orig.includes("PNR")){
+                    for(let i = 0; i<this.pnr.length; i++){
+                      if(orig.includes(this.pnr[0][i])){
+                        y = i
+                      }
+                      if(dest.includes(this.pnr[0][i])){
+                        x = i
+                      }
+                    }
+                    fare += this.pnr[x][y];
+                  }
+                  else{
+                    let line = 1;
+                    for(let i = 0; i<this.lrtLine1.length; i++){
+                      if(orig.includes(this.lrtLine1[0][i])){
+                        y = i;
+                        line = 1;
+                      }
+                      if(dest.includes(this.lrtLine1[i][0])){
+                        x = i
+                      }
+                    }
+                    for(let i = 0; i<this.lrtLine2.length; i++){
+                      if(orig.includes(this.lrtLine2[0][i])){
+                        y = i;
+                        line = 2;
+                      }
+                      if(dest.includes(this.lrtLine2[i][0])){
+                        x = i
+                      }
+                    }
+                    if(line==1)
+                      fare += this.lrtLine1[x][y];
+                    else
+                      fare += this.lrtLine2[x][y];
+                  }
+                }
+      
+                this.legTransit.push({
+                  tripID: id+1,
+                  seq: i,
+                  distance: distance,
+                  legGeom: leg['legGeometry']['points'],
+                  from: leg['from']['name'],
+                  to: leg['to']['name'],
+                  time: leg['duration']/60,
+                  transMode: mode,
+                  route: leg['route']
+                });
+                totaldistance+=distance;
+              }
+              ind++;
+            }
+            totaldistance = parseFloat(totaldistance.toPrecision(3));
+            walkDistance = parseFloat(walkDistance.toPrecision(2));
+            fare = parseInt(fare);
+            this.trip.push({
+              id: id+1,
+              transfer: data2.itineraries[0].transfers + transfers,
+              fare: fare,
+              totalWalkDistance: walkDistance,
+              totaldistance: totaldistance,
+              legs: data2.itineraries[0].legs.length + lastIndex,
+              totalTime: ((data2.itineraries[0].duration)/60).toPrecision(3) + time,
+              roundtrip: true
+            });
+          })
+        }
+        else{
+          //get direction from origin to terminal
+          let lastIndex = 0 ;
+          this.rsp.load1(markers[0].getPosition(), markers[3].getPosition())
+          .then(data1 => {
+            console.log(data1);
+            lastIndex = data1.itineraries[0].legs.length;
+            transfers = data1.itineraries[0].transfers;
+            time  = ((data1.itineraries[0].duration)/60).toPrecision(3);
+            console.log(lastIndex);
+            for(let i=0; i<data1.itineraries[0].legs.length; i++){
+              let leg = data1.itineraries[0].legs[i];
+              if(leg['mode']=="WALK"){
+                let steps = [];
+                for(let num=0; num<leg['steps'].length; num++){
+                  if((leg['steps'][num]['absoluteDirection']=="RIGHT")||(leg['steps'][num]['absoluteDirection']=="LEFT"))
+                    steps.push("Turn " + leg['steps'][num]['absoluteDirection'] + " onto " + leg['steps'][num]['streetName']);
+                  else
+                    steps.push("Head " + leg['steps'][num]['absoluteDirection'] + " on " + leg['steps'][num]['streetName']);
+                }
+                this.legWalk.push({ 
+                  tripID: id+1,
+                  seq: i,
+                  distance: (leg['distance'])/1000,
+                  legGeom: leg['legGeometry']['points'],
+                  from: leg['from']['name'],
+                  to: leg['to']['name'],
+                  time: leg['duration']/60,
+                  transMode: "WALK",
+                  steps: steps
+                });
+                walkDistance+=(leg['distance'])/1000;
+                totaldistance+=(leg['distance'])/1000;
+              }
+              else{
+                distance = (leg['distance'])/1000;
+                let mode: string = leg['routeId'];
+                if(mode.includes("PUJ")){
+                  mode = "PUJ";
+                  if(distance>4)
+                    fare += 8+((distance-4)*1.50);
+                  else
+                    fare += 8;
+                }
+                else if(mode.includes("PUB")){
+                  mode = "PUB";
+                  if(distance>5)
+                    fare += 10+((distance-5)*1.75);
+                  else
+                    fare += 10;
+                }
+                else{
+                  let orig: string = leg['from']['name'];
+                  let dest: string = leg['to']['name'];
+                  let x = 0, y = 0;
+                  if(orig.includes("MRT")){
+                    for(let i = 0; i<this.mrt3.length; i++){
+                      if(orig.includes(this.mrt3[0][i])){
+                        y = i
+                      }
+                      if(dest.includes(this.mrt3[0][i])){
+                        x = i
+                      }
+                    }
+                    fare += this.mrt3[x][y];
+                  }
+                  else if(orig.includes("PNR")){
+                    for(let i = 0; i<this.pnr.length; i++){
+                      if(orig.includes(this.pnr[0][i])){
+                        y = i
+                      }
+                      if(dest.includes(this.pnr[0][i])){
+                        x = i
+                      }
+                    }
+                    fare += this.pnr[x][y];
+                  }
+                  else{
+                    let line = 1;
+                    for(let i = 0; i<this.lrtLine1.length; i++){
+                      if(orig.includes(this.lrtLine1[0][i])){
+                        y = i;
+                        line = 1;
+                      }
+                      if(dest.includes(this.lrtLine1[i][0])){
+                        x = i
+                      }
+                    }
+                    for(let i = 0; i<this.lrtLine2.length; i++){
+                      if(orig.includes(this.lrtLine2[0][i])){
+                        y = i;
+                        line = 2;
+                      }
+                      if(dest.includes(this.lrtLine2[i][0])){
+                        x = i
+                      }
+                    }
+                    if(line==1)
+                      fare += this.lrtLine1[x][y];
+                    else
+                      fare += this.lrtLine2[x][y];
+                  }
+                }
+      
+                this.legTransit.push({
+                  tripID: id+1,
+                  seq: i,
+                  distance: distance,
+                  legGeom: leg['legGeometry']['points'],
+                  from: leg['from']['name'],
+                  to: leg['to']['name'],
+                  time: leg['duration']/60,
+                  transMode: mode,
+                  route: leg['route']
+                });
+                totaldistance+=distance;
+              }
+            }
+          })
+
+          this.rsp.load2(markers[3].getPosition(), markers[1].getPosition())
+          .then(data2 => {
+            let ind: any;
+            ind = 1;
+            console.log(lastIndex);
+            for(let i=lastIndex; i<data2.itineraries[0].legs.length+lastIndex-1; i++){
+              let leg = data2.itineraries[0].legs[ind];
+              if(leg['mode']=="WALK"){
+                let steps = [];
+                for(let num=0; num<leg['steps'].length; num++){
+                  if((leg['steps'][num]['absoluteDirection']=="RIGHT")||(leg['steps'][num]['absoluteDirection']=="LEFT"))
+                    steps.push("Turn " + leg['steps'][num]['absoluteDirection'] + " onto " + leg['steps'][num]['streetName']);
+                  else
+                    steps.push("Head " + leg['steps'][num]['absoluteDirection'] + " on " + leg['steps'][num]['streetName']);
+                }
+                this.legWalk.push({ 
+                  tripID: id+1,
+                  seq: i,
+                  distance: (leg['distance'])/1000,
+                  legGeom: leg['legGeometry']['points'],
+                  from: leg['from']['name'],
+                  to: leg['to']['name'],
+                  time: leg['duration']/60,
+                  transMode: "WALK",
+                  steps: steps
+                });
+                walkDistance+=(leg['distance'])/1000;
+                totaldistance+=(leg['distance'])/1000;
+              }
+              else{
+                distance = (leg['distance'])/1000;
+                let mode: string = leg['routeId'];
+                if(mode.includes("PUJ")){
+                  mode = "PUJ";
+                  if(distance>4)
+                    fare += 8+((distance-4)*1.50);
+                  else
+                    fare += 8;
+                }
+                else if(mode.includes("PUB")){
+                  mode = "PUB";
+                  if(distance>5)
+                    fare += 10+((distance-5)*1.75);
+                  else
+                    fare += 10;
+                }
+                else{
+                  let orig: string = leg['from']['name'];
+                  let dest: string = leg['to']['name'];
+                  let x = 0, y = 0;
+                  if(orig.includes("MRT")){
+                    for(let i = 0; i<this.mrt3.length; i++){
+                      if(orig.includes(this.mrt3[0][i])){
+                        y = i
+                      }
+                      if(dest.includes(this.mrt3[0][i])){
+                        x = i
+                      }
+                    }
+                    fare += this.mrt3[x][y];
+                  }
+                  else if(orig.includes("PNR")){
+                    for(let i = 0; i<this.pnr.length; i++){
+                      if(orig.includes(this.pnr[0][i])){
+                        y = i
+                      }
+                      if(dest.includes(this.pnr[0][i])){
+                        x = i
+                      }
+                    }
+                    fare += this.pnr[x][y];
+                  }
+                  else{
+                    let line = 1;
+                    for(let i = 0; i<this.lrtLine1.length; i++){
+                      if(orig.includes(this.lrtLine1[0][i])){
+                        y = i;
+                        line = 1;
+                      }
+                      if(dest.includes(this.lrtLine1[i][0])){
+                        x = i
+                      }
+                    }
+                    for(let i = 0; i<this.lrtLine2.length; i++){
+                      if(orig.includes(this.lrtLine2[0][i])){
+                        y = i;
+                        line = 2;
+                      }
+                      if(dest.includes(this.lrtLine2[i][0])){
+                        x = i
+                      }
+                    }
+                    if(line==1)
+                      fare += this.lrtLine1[x][y];
+                    else
+                      fare += this.lrtLine2[x][y];
+                  }
+                }
+      
+                this.legTransit.push({
+                  tripID: id+1,
+                  seq: i,
+                  distance: distance,
+                  legGeom: leg['legGeometry']['points'],
+                  from: leg['from']['name'],
+                  to: leg['to']['name'],
+                  time: leg['duration']/60,
+                  transMode: mode,
+                  route: leg['route']
+                });
+                totaldistance+=distance;
+              }
+              ind++;
+            }
+            totaldistance = parseFloat(totaldistance.toPrecision(3));
+            walkDistance = parseFloat(walkDistance.toPrecision(2));
+            fare = parseInt(fare);
+            this.trip.push({
+              id: id+1,
+              transfer: data2.itineraries[0].transfers + transfers,
+              fare: fare,
+              totalWalkDistance: walkDistance,
+              totaldistance: totaldistance,
+              legs: data2.itineraries[0].legs.length + lastIndex,
+              totalTime: ((data2.itineraries[0].duration)/60).toPrecision(3) + time,
+              roundtrip: true
+            });
+          })
+        }
+      }
+      else
+        alert("No route found.");
+    })
   }
   seeDetails(i){
     let trip: any;

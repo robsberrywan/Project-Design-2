@@ -20,6 +20,7 @@ export class DetailsPage {
   description;
   modeIcons;
   leg;
+  points;
 
   lrtLine2;
   lrtLine1;
@@ -202,7 +203,6 @@ export class DetailsPage {
         }
       }
     }
-    points;
     decode(leggeom){
       // array that holds the points
       let index = 0, len = leggeom.length;
@@ -382,7 +382,6 @@ export class DetailsPage {
                   }
                 }
                 fare = this.mrt3[x][y];
-                console.log(x + " " + y);
               }
               else if(railOrig.includes("PNR")){
                 for(let i = 0; i<this.pnr.length; i++){
