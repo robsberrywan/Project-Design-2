@@ -274,26 +274,28 @@ export class DetailsPage {
               orig = this.address.origin;
             else{
               orig = this.legWalk[j].from;
-              if(orig.includes("MRT")){
-                for(let i = 0; i<this.mrt3.length; i++){
-                  if(orig.includes(this.mrt3[0][i]))
-                    orig = "MRT - " + this.mrt3[0][i] + " Station";
+              if(this.trip[this.index].transMode=="RAIL"){
+                if(orig.includes("MRT")){
+                  for(let i = 0; i<this.mrt3.length; i++){
+                    if(orig.includes(this.mrt3[0][i]))
+                      orig = "MRT - " + this.mrt3[0][i] + " Station";
+                  }
                 }
-              }
-              else if(orig.includes("LRT")){
-                for(let i = 0; i<this.lrtLine1.length; i++){
-                  if(orig.includes(this.lrtLine1[0][i]))
-                    orig = "LRT-1 - " + this.lrtLine1[0][i] + " Station";
+                else if(orig.includes("LRT")){
+                  for(let i = 0; i<this.lrtLine1.length; i++){
+                    if(orig.includes(this.lrtLine1[0][i]))
+                      orig = "LRT-1 - " + this.lrtLine1[0][i] + " Station";
+                  }
+                  for(let i = 0; i<this.lrtLine2.length; i++){
+                    if(orig.includes(this.lrtLine2[0][i]))
+                      orig = "LRT-2 - " + this.lrtLine2[0][i] + " Station";
+                  }
                 }
-                for(let i = 0; i<this.lrtLine2.length; i++){
-                  if(orig.includes(this.lrtLine2[0][i]))
-                    orig = "LRT-2 - " + this.lrtLine2[0][i] + " Station";
-                }
-              }
-              else if(orig.includes("PNR")){
-                for(let i = 0; i<this.pnr.length; i++){
-                  if(orig.includes(this.pnr[0][i]))
-                    orig = "PNR - " + this.pnr[0][i] + " Station";
+                else if(orig.includes("PNR")){
+                  for(let i = 0; i<this.pnr.length; i++){
+                    if(orig.includes(this.pnr[0][i]))
+                      orig = "PNR - " + this.pnr[0][i] + " Station";
+                  }
                 }
               }
             }

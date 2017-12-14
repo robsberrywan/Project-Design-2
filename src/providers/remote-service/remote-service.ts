@@ -21,7 +21,11 @@ export class RemoteServiceProvider {
   constructor(public http: Http) {
   }
   load(origin, dest){
+<<<<<<< HEAD
     this.baseUrl = 'http://192.168.0.106:8080/otp/routers/default/plan?fromPlace='+origin+'&toPlace='+dest+'&date=2017/01/09&time=11:00:00&mode=TRANSIT%2CWALK&maxWalkDistance=1000&arriveBy=false&wheelchair=false';
+=======
+    this.baseUrl = 'http://localhost:8080/otp/routers/default/plan?fromPlace='+origin+'&toPlace='+dest+'&date=2017/01/09&time=11:00:00&mode=TRANSIT%2CWALK&numItineraries=5&maxWalkDistance=1000&arriveBy=false&wheelchair=false';
+>>>>>>> ad577537882ad8eafd28ec896de7fb67cf454c51
     if (this.data) {
       return Promise.resolve(this.data);
     }
@@ -74,7 +78,11 @@ export class RemoteServiceProvider {
     });
   }
   loadRound(origin, dest){
+<<<<<<< HEAD
     this.rbaseUrl = 'http://192.168.0.106:8080/otp/routers/default/plan?fromPlace='+origin+'&toPlace='+dest+'&date=2017/01/09&time=11:00:00&mode=TRANSIT%2CWALK&maxWalkDistance=1000&arriveBy=false&wheelchair=false';
+=======
+    this.rbaseUrl = 'http://localhost:8080/otp/routers/default/plan?fromPlace='+origin+'&toPlace='+dest+'&date=2017/01/09&time=11:00:00&mode=TRANSIT%2CWALK&numItineraries=5&maxWalkDistance=1000&arriveBy=false&wheelchair=false';
+>>>>>>> ad577537882ad8eafd28ec896de7fb67cf454c51
     if (this.rounddata) {
       return Promise.resolve(this.rounddata);
     }
@@ -96,7 +104,11 @@ export class RemoteServiceProvider {
     });
   }
   load1(origin, dest){
+<<<<<<< HEAD
     this.baseUrl1 = 'http://192.168.0.106:8080/otp/routers/default/plan?fromPlace='+origin+'&toPlace='+dest+'&date=2017/01/09&time=11:00:00&mode=TRANSIT%2CWALK&maxWalkDistance=1000&arriveBy=false&wheelchair=false';
+=======
+    this.baseUrl1 = 'http://localhost:8080/otp/routers/default/plan?fromPlace='+origin+'&toPlace='+dest+'&date=2017/01/09&time=11:00:00&mode=TRANSIT%2CWALK&numItineraries=5&maxWalkDistance=1000&arriveBy=false&wheelchair=false';
+>>>>>>> ad577537882ad8eafd28ec896de7fb67cf454c51
     if (this.data1) {
       return Promise.resolve(this.data1);
     }
@@ -117,8 +129,13 @@ export class RemoteServiceProvider {
         });
     });
   }
+  
   load2(origin, dest){
+<<<<<<< HEAD
     this.baseUrl2 = 'http://192.168.0.106:8080/otp/routers/default/plan?fromPlace='+origin+'&toPlace='+dest+'&date=2017/01/09&time=11:00:00&mode=TRANSIT%2CWALK&maxWalkDistance=1000&arriveBy=false&wheelchair=false';
+=======
+    this.baseUrl2 = 'http://localhost:8080/otp/routers/default/plan?fromPlace='+origin+'&toPlace='+dest+'&date=2017/01/09&time=11:00:00&mode=TRANSIT%2CWALK&numItineraries=5&maxWalkDistance=1000&arriveBy=false&wheelchair=false';
+>>>>>>> ad577537882ad8eafd28ec896de7fb67cf454c51
     if (this.data2) {
       return Promise.resolve(this.data2);
     }
