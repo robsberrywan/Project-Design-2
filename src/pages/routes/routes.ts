@@ -324,6 +324,14 @@ export class RoutesPage {
             else
               fare += 10;
           }
+          else if(mode.includes("TODA")){
+            mode = "TODA";
+            if(distance>1)
+              fare += 9+(distance-1);
+            else
+              fare += 9;
+            console.log("Tryke");
+          }
           else{
             let orig: string = leg['from']['name'];
             let dest: string = leg['to']['name'];
@@ -413,12 +421,24 @@ export class RoutesPage {
     let start: string = "";
     let end: string = "";
     let markers = [];
-
+    let index: any;
+    let highDistance: any;
+    highDistance = 0;
     for(let i = 0; i<this.legTransit.length; i++){
-      if((this.legTransit[i].tripID==id)&&(this.legTransit[i].distance>2)){
-        console.log(this.legTransit[i].route);
-        start = this.legTransit[i].route;
-        end = this.legTransit[i].route;
+      if(this.legTransit[i].tripID==id){
+        highDistance = this.legTransit[i].distance;
+        for(let j=0; j<this.legTransit.length; j++){
+          if(highDistance<this.legTransit[j].distance){
+            index = j;
+            highDistance = this.legTransit[j].distance;
+          }
+        }
+      }
+    }
+      if((this.legTransit[index].tripID==id)&&(this.legTransit[index].distance>2)){
+        console.log(this.legTransit[index].route);
+        start = this.legTransit[index].route;
+        end = this.legTransit[index].route;
         if(start.indexOf("/")>-1)
           start = start.slice(0, start.indexOf("/"));
         else if(start.indexOf("-")>-1)
@@ -429,8 +449,8 @@ export class RoutesPage {
         else
           end = end.slice(end.indexOf("-")+1);
         
-        start = start + ", Metro Manila";
-        end = end + ", Metro Manila";
+        start = start + ", Philippines";
+        end = end + ", Philippines";
         console.log(this.address.destination);
         console.log(start);
         console.log(end);
@@ -468,9 +488,7 @@ export class RoutesPage {
             this.getRest(start, end, id, markers);
           }
         })
-        break;
       }
-    }
   }
   getRest(start, end, id, markers){
     
@@ -506,9 +524,9 @@ export class RoutesPage {
                 let steps = [];
                 for(let num=0; num<leg['steps'].length; num++){
                   if((leg['steps'][num]['absoluteDirection']=="RIGHT")||(leg['steps'][num]['absoluteDirection']=="LEFT"))
-                    steps.push("Turn " + leg['steps'][num]['absoluteDirection'] + " onto " + leg['steps'][num]['streetName']);
+                    steps.push("Turn " + (leg['steps'][num]['absoluteDirection']).toLowerCase() + " onto " + leg['steps'][num]['streetName']);
                   else
-                    steps.push("Head " + leg['steps'][num]['absoluteDirection'] + " on " + leg['steps'][num]['streetName']);
+                    steps.push("Head " + (leg['steps'][num]['absoluteDirection']).toLowerCase() + " on " + leg['steps'][num]['streetName']);
                 }
                 this.legWalk.push({ 
                   tripID: id+1,
@@ -540,6 +558,13 @@ export class RoutesPage {
                     fare += 10+((distance-5)*1.75);
                   else
                     fare += 10;
+                }
+                else if(mode.includes("TODA")){
+                  mode = "TODA";
+                  if(distance>1)
+                    fare += 9+(distance-1);
+                  else
+                    fare += 9;
                 }
                 else{
                   let orig: string = leg['from']['name'];
@@ -621,9 +646,9 @@ export class RoutesPage {
                 let steps = [];
                 for(let num=0; num<leg['steps'].length; num++){
                   if((leg['steps'][num]['absoluteDirection']=="RIGHT")||(leg['steps'][num]['absoluteDirection']=="LEFT"))
-                    steps.push("Turn " + leg['steps'][num]['absoluteDirection'] + " onto " + leg['steps'][num]['streetName']);
+                    steps.push("Turn " + (leg['steps'][num]['absoluteDirection']).toLowerCase() + " onto " + leg['steps'][num]['streetName']);
                   else
-                    steps.push("Head " + leg['steps'][num]['absoluteDirection'] + " on " + leg['steps'][num]['streetName']);
+                    steps.push("Head " + (leg['steps'][num]['absoluteDirection']).toLowerCase() + " on " + leg['steps'][num]['streetName']);
                 }
                 this.legWalk.push({ 
                   tripID: id+1,
@@ -655,6 +680,14 @@ export class RoutesPage {
                     fare += 10+((distance-5)*1.75);
                   else
                     fare += 10;
+                }
+                else if(mode.includes("TODA")){
+                  mode = "TODA";
+                  if(distance>1)
+                    fare += 9+(distance-1);
+                  else
+                    fare += 9;
+                  console.log("tryke");
                 }
                 else{
                   let orig: string = leg['from']['name'];
@@ -790,6 +823,13 @@ export class RoutesPage {
                   else
                     fare += 10;
                 }
+                else if(mode.includes("TODA")){
+                  mode = "TODA";
+                  if(distance>1)
+                    fare += 9+(distance-1);
+                  else
+                    fare += 9;
+                }
                 else{
                   let orig: string = leg['from']['name'];
                   let dest: string = leg['to']['name'];
@@ -904,6 +944,13 @@ export class RoutesPage {
                     fare += 10+((distance-5)*1.75);
                   else
                     fare += 10;
+                }
+                else if(mode.includes("TODA")){
+                  mode = "TODA";
+                  if(distance>1)
+                    fare += 9+(distance-1);
+                  else
+                    fare += 9;
                 }
                 else{
                   let orig: string = leg['from']['name'];

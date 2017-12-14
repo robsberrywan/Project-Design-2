@@ -59,7 +59,7 @@ export class HomePage {
   }
 
   loadMap(){
-    let locationOptions = {timeout: 10000, enableHighAccuracy: false};
+    let locationOptions = {timeout: 10000, enableHighAccuracy: true};
     this.geolocation.getCurrentPosition(locationOptions).then((position) => {
       let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
       let mapOptions = {

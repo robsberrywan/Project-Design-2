@@ -388,6 +388,26 @@ export class DetailsPage {
               });
               this.modeIcons.push("./assets/imgs/bus.png");
             }
+            else if(this.legTransit[k].transMode=="TODA"){
+              if(distance>1){
+                fare = 9+(distance-1);
+                fare2 = 17+(distance-1);
+              }
+              else{
+                fare = 9;
+                fare2 = 17;
+              }
+              this.description.push({
+                distance: parseFloat(this.legTransit[k].distance).toPrecision(2)+ " km\n",
+                time: parseFloat(this.legTransit[k].time.toPrecision(2)) + " min",
+                fare: "Regular trip: P"+ parseInt(fare) + ".00",
+                fare2: "Special trip: P"+ parseInt(fare2)  + ".00",
+                route: this.legTransit[k].route,
+                from: orig,
+                to: this.legTransit[k].to
+              });
+              this.modeIcons.push("./assets/imgs/tricycle.png");
+            }
             else{
               let x = 0;
               let y = 0;
