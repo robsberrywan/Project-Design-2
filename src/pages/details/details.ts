@@ -181,7 +181,7 @@ export class DetailsPage {
           if((this.legWalk[j].tripID==this.trip[index].id)&&(this.legWalk[j].seq==i)){
             console.log("walk");
             this.decode(this.legWalk[j].legGeom)
-            this.drawSnappedPolyline('blue');
+            this.drawSnappedPolylineWalk('black');
           }
         }
         for(let k=0; k<this.legTransit.length; k++){
@@ -189,11 +189,11 @@ export class DetailsPage {
             console.log("transit");
             if(this.legTransit[k].transMode=="PUJ"){
               this.decode(this.legTransit[k].legGeom);
-              this.drawSnappedPolyline('green')
+              this.drawSnappedPolyline('#1C75BC')
             }
             else if(this.legTransit[k].transMode=="PUB"){
               this.decode(this.legTransit[k].legGeom);
-              this.drawSnappedPolyline('yellow')
+              this.drawSnappedPolyline('#006838')
             }
             else{
               this.decode(this.legTransit[k].legGeom);
@@ -238,8 +238,30 @@ export class DetailsPage {
       });
       
       snappedPolyline.setMap(this.map);
-      this.polylines.push(snappedPolyline);
+      this.polylines.push(snappedPolyline)
     }
+    drawSnappedPolylineWalk(color){
+     let lineSymbol = {
+          path: google.maps.SymbolPath.CIRCLE,
+          fillOpacity: 1,
+          strokeOpacity: 1,
+          scale: 2
+        };
+
+      let snappedPolyline = new google.maps.Polyline({
+        path: this.points,
+        strokeColor: color,
+        strokeOpacity: 0,
+        icons: [{
+            icon: lineSymbol,
+            offset: '2',
+            repeat: '20px'
+          }]
+      });
+      snappedPolyline.setMap(this.map);
+      this.polylines.push(snappedPolyline);
+      }
+
     buildlist(){
       let orig: any;
       this.leg.length = 0;
