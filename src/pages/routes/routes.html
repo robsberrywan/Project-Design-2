@@ -9,16 +9,16 @@
             <ion-item>
                 <ion-toolbar>
                     <ion-segment color=secondary>
-                        <ion-segment-button value="lessfare">
+                        <ion-segment-button value="lessfare" (click)="sortFare()">
                             <ion-img width="20" height="20" src="./assets/imgs/lessfare.png">Less Fare</ion-img>
                         </ion-segment-button>
-                        <ion-segment-button value="lesswalk">
+                        <ion-segment-button value="lesswalk" (click)="sortWalk()">
                             <ion-img width="20" height="20" src="./assets/imgs/lesswalk.png">Less Walk</ion-img>
                         </ion-segment-button>
-                        <ion-segment-button value="lesstransfer">
+                        <ion-segment-button value="lesstransfer" (click)="sortTransfer()">
                             Less Transfer
                         </ion-segment-button>
-                        <ion-segment-button value="round-trip">
+                        <ion-segment-button value="lesstime" (click)="sortTime()">
                             <ion-img width="20" height="20" src="./assets/imgs/roundtrip.png">Round-trip</ion-img>
                         </ion-segment-button>
                     </ion-segment>

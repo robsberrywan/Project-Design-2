@@ -127,7 +127,7 @@ export class RoutesPage {
         ["Ayala", 24, 24, 24, 20, 20, 20, 16, 16, 13, 13, 0, 13, 13],
         ["Magallanes", 28, 24, 24, 24, 24, 20, 20, 16, 16, 13, 13, 0, 13],
         ["Taft Ave", 28, 28, 24, 24, 24, 20, 20, 20, 16, 16, 13, 13, 0]
-      ];
+      ]
       this.pnr = [
         [0, "Tutuban", "Blumentritt", "Dapitan/Laon Laan", "España", "Santa Mesa", "Pandacan", "Paco", "San Andres", "Vito Cruz", "Buendia", "Pasay Road", "EDSA", "Nichols", "FTI", "Bicutan", "Sucat", "Alabang", "Muntinlupa", "San Pedro", "Pacita", "Golden City 1", "Biñan"],
         ["Tutuban", 0, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 16, 16, 16, 20, 24, 28, 32, 32, 32, 36, 36, 40, 44, 44],
@@ -201,6 +201,70 @@ export class RoutesPage {
         alert("No route found.");
     })
   }
+  sortFare(){
+    let tripSwap = [];
+    let lessFare: any;
+    lessFare = -1;
+    for(let i = 0; i<this.trip.length; i++){
+      lessFare = this.trip[i].fare;
+      for(let j = 0; j<this.trip.length; j++){
+        if(lessFare<this.trip[j].fare){
+          lessFare = this.trip[j].fare;
+          tripSwap = this.trip[i];
+          this.trip[i] = this.trip[j];
+          this.trip[j] = tripSwap;
+        }
+      }
+    }
+  }
+  sortTime(){
+    let tripSwap = [];
+    let lessTime: any;
+    lessTime = -1;
+    for(let i = 0; i<this.trip.length; i++){
+      lessTime = this.trip[i].totalTime;
+      for(let j = 0; j<this.trip.length; j++){
+        if(lessTime<this.trip[j].totalTime){
+          lessTime = this.trip[j].totalTime;
+          tripSwap = this.trip[i];
+          this.trip[i] = this.trip[j];
+          this.trip[j] = tripSwap;
+        }
+      }
+    }
+  }
+  sortWalk(){
+    let tripSwap = [];
+    let lessWalk: any;
+    lessWalk = -1;
+    for(let i = 0; i<this.trip.length; i++){
+      lessWalk = this.trip[i].totalWalkDistance;
+      for(let j = 0; j<this.trip.length; j++){
+        if(lessWalk<this.trip[j].totalWalkDistance){
+          lessWalk = this.trip[j].totalWalkDistance;
+          tripSwap = this.trip[i];
+          this.trip[i] = this.trip[j];
+          this.trip[j] = tripSwap;
+        }
+      }
+    }
+  }
+  sortTransfer(){
+    let tripSwap = [];
+    let lessTransfer: any;
+    lessTransfer = -1;
+    for(let i = 0; i<this.trip.length; i++){
+      lessTransfer = this.trip[i].transfer;
+      for(let j = 0; j<this.trip.length; j++){
+        if(lessTransfer<this.trip[j].transfer){
+          lessTransfer = this.trip[j].transfer;
+          tripSwap = this.trip[i];
+          this.trip[i] = this.trip[j];
+          this.trip[j] = tripSwap;
+        }
+      }
+    }
+  }
   /*
     processInput function receives objects in json requested from otp server.
     This function will divide itineraries for array to filter and display results properly.
@@ -225,9 +289,9 @@ export class RoutesPage {
           let steps = [];
           for(let num=0; num<leg['steps'].length; num++){
             if((leg['steps'][num]['absoluteDirection']=="RIGHT")||(leg['steps'][num]['absoluteDirection']=="LEFT"))
-              steps.push("Turn " + leg['steps'][num]['absoluteDirection'] + " onto " + leg['steps'][num]['streetName']);
+              steps.push("Turn " + (leg['steps'][num]['absoluteDirection']).toLowerCase() + " onto " + leg['steps'][num]['streetName']);
             else
-              steps.push("Head " + leg['steps'][num]['absoluteDirection'] + " on " + leg['steps'][num]['streetName']);
+              steps.push("Head " + (leg['steps'][num]['absoluteDirection']).toLowerCase() + " on " + leg['steps'][num]['streetName']);
           }
           this.legWalk.push({ 
             tripID: id,
@@ -351,8 +415,8 @@ export class RoutesPage {
     let markers = [];
 
     for(let i = 0; i<this.legTransit.length; i++){
-      //console.log(this.legTransit[i].route);
       if((this.legTransit[i].tripID==id)&&(this.legTransit[i].distance>2)){
+        console.log(this.legTransit[i].route);
         start = this.legTransit[i].route;
         end = this.legTransit[i].route;
         if(start.indexOf("/")>-1)
@@ -404,6 +468,7 @@ export class RoutesPage {
             this.getRest(start, end, id, markers);
           }
         })
+        break;
       }
     }
   }
