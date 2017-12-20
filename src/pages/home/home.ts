@@ -140,14 +140,14 @@ export class HomePage {
       this.autocompleteItems1 = [];
   }
   findRoute(address: address): void{
-    /*
+    
     if((address.destination)&&(address.origin))
       this.navCtrl.push(RoutesPage, {address});
-      */
+      /*
       let modal = this.modCtrl.create(RoutesPage, {address});
       if((address.destination)&&(address.origin)){
         modal.present();
-      }
+      }*/
   }
 	openPage(page) {
     if(page.component==LoginPage){

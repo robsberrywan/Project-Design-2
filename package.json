@@ -34,6 +34,7 @@
     "cordova-plugin-add-swift-support": "^1.7.0",
     "cordova-plugin-device": "^1.1.7",
     "cordova-plugin-facebook4": "^1.9.1",
+    "cordova-plugin-geolocation": "^3.0.0",
     "cordova-plugin-googleplus": "^5.1.1",
     "cordova-plugin-ionic-webview": "^1.1.16",
     "cordova-plugin-nativegeocoder": "^2.0.4",
@@ -70,7 +71,8 @@
       "cordova-plugin-facebook4": {
         "APP_ID": "407839889634958",
         "APP_NAME": "Project-Design"
-      }
+      },
+      "cordova-plugin-geolocation": {}
     },
     "platforms": [
       "android",

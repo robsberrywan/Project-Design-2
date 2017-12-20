@@ -171,7 +171,7 @@ export class DetailsPage {
         bounds.extend(markers[i].getPosition());
       }
       this.map.fitBounds(bounds);
-      this.map.setZoom(15);
+      this.map.setZoom(12);
     }
 
     plotted(index){
@@ -194,6 +194,10 @@ export class DetailsPage {
             else if(this.legTransit[k].transMode=="PUB"){
               this.decode(this.legTransit[k].legGeom);
               this.drawSnappedPolyline('#006838')
+            }
+            else if(this.legTransit[k].transMode=="TODA"){
+              this.decode(this.legTransit[k].legGeom);
+              this.drawSnappedPolyline('#D52BFB')
             }
             else{
               this.decode(this.legTransit[k].legGeom);
@@ -254,7 +258,7 @@ export class DetailsPage {
         strokeOpacity: 0,
         icons: [{
             icon: lineSymbol,
-            offset: '2',
+            offset: '1',
             repeat: '20px'
           }]
       });
@@ -270,11 +274,12 @@ export class DetailsPage {
         for(let j=0; j<this.legWalk.length; j++){
           if((this.legWalk[j].tripID==this.trip[this.index].id)&&(this.legWalk[j].seq==i)){
 
+            
             if(this.description.length==0)
               orig = this.address.origin;
             else{
-              orig = this.legWalk[j].from;
-              if(this.trip[this.index].transMode=="RAIL"){
+              orig = String(this.legWalk[j].from);
+              if(this.description[this.description.length-1].route==''){
                 if(orig.includes("MRT")){
                   for(let i = 0; i<this.mrt3.length; i++){
                     if(orig.includes(this.mrt3[0][i]))
@@ -352,9 +357,9 @@ export class DetailsPage {
             
             if(this.legTransit[k].transMode=="PUJ"){
               if(distance>4)
-                fare = (8.00+(distance-4)*1.50).toPrecision(3);
+                fare = (8+(distance-4)*1.50);
               else
-                fare = (8.00).toPrecision(3);  
+                fare = 8;  
 
               this.description.push({
                 distance: parseFloat(this.legTransit[k].distance).toPrecision(2)+ " km\n",
@@ -370,8 +375,8 @@ export class DetailsPage {
             else if(this.legTransit[k].transMode=="PUB"){
               
               if(distance>5){
-                fare = (10.00+(distance-5)*1.75).toPrecision(4);
-                fare2 = (12.00+(distance-5)*2.35).toPrecision(4);
+                fare = (10+(distance-5)*1.75).toPrecision(4);
+                fare2 = (12+(distance-5)*2.35).toPrecision(4);
               }
               else{
                 fare = (10.00).toPrecision(4);
@@ -382,7 +387,7 @@ export class DetailsPage {
                 time: parseFloat(this.legTransit[k].time.toPrecision(2)) + " min",
                 fare: "Ordinary: P"+ parseInt(fare) + ".00",
                 fare2: "Aircon: P"+ parseInt(fare2)  + ".00",
-                route: this.legTransit[k].route,
+                route: "Route: " + this.legTransit[k].route,
                 from: orig,
                 to: this.legTransit[k].to
               });
@@ -402,7 +407,7 @@ export class DetailsPage {
                 time: parseFloat(this.legTransit[k].time.toPrecision(2)) + " min",
                 fare: "Regular trip: P"+ parseInt(fare) + ".00",
                 fare2: "Special trip: P"+ parseInt(fare2)  + ".00",
-                route: this.legTransit[k].route,
+                route: "Route: " + this.legTransit[k].route,
                 from: orig,
                 to: this.legTransit[k].to
               });

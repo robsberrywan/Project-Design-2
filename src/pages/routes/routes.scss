@@ -6,4 +6,14 @@ page-routes {
         width: 83%;
         margin-left: 17%;
     }
+    .title{
+        font-size: 25px;
+        background-color: rgba(66, 65, 65, 0.1);
+        font-weight: bold;
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+    }
+    .opt:hover > div {
+        background-color:rgba(66, 65, 65, 0.1);
+    }
 }

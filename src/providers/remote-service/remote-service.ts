@@ -11,6 +11,7 @@ import 'rxjs/add/operator/map';
 export class RemoteServiceProvider {
   data: any;
   rounddata: any;
+  rounddata2: any;
   data1: any;
   data2: any;
   snap: any;
@@ -78,7 +79,7 @@ export class RemoteServiceProvider {
     if (this.rounddata) {
       return Promise.resolve(this.rounddata);
     }
-    let opt: RequestOptions;
+    let opt: RequestOptions;  
     let myHeaders: Headers = new Headers;
 
     myHeaders.set('Accept', 'application/json');
@@ -92,6 +93,28 @@ export class RemoteServiceProvider {
         .subscribe(rounddata => {
           this.rounddata = rounddata.plan;
           resolve(this.rounddata);
+        });
+    });
+  }
+  loadRound2(origin, dest){
+    this.rbaseUrl = 'http://192.168.1.6:8080/otp/routers/default/plan?fromPlace='+origin+'&toPlace='+dest+'&date=2017/01/09&time=11:00:00&mode=TRANSIT%2CWALK&numItineraries=5&maxWalkDistance=1000&arriveBy=false&wheelchair=false';
+    if (this.rounddata2) {
+      return Promise.resolve(this.rounddata2);
+    }
+    let opt: RequestOptions;  
+    let myHeaders: Headers = new Headers;
+
+    myHeaders.set('Accept', 'application/json');
+    myHeaders.append('Content-type', 'application/json');
+    opt = new RequestOptions({
+      headers: myHeaders
+    })
+    return new Promise(resolve => {
+      this.http.get(this.rbaseUrl, opt)
+        .map(res => res.json())
+        .subscribe(rounddata2 => {
+          this.rounddata2 = rounddata2.plan;
+          resolve(this.rounddata2);
         });
     });
   }
@@ -119,7 +142,7 @@ export class RemoteServiceProvider {
   }
   
   load2(origin, dest){
-    this.baseUrl2 = 'http://192.168.1.6:8080/otp/routers/default/plan?fromPlace='+origin+'&toPlace='+dest+'&date=2017/01/09&time=11:00:00&mode=TRANSIT%2CWALK&numItineraries=5&maxWalkDistance=1000&arriveBy=false&wheelchair=false';
+    this.baseUrl2 = 'http://192.168.1.6:8080/otp/routers/default/plan?fromPlace='+origin+'&toPlace='+dest+' mode=TRANSIT%2CWALK&numItineraries=5&maxWalkDistance=1000&arriveBy=false&wheelchair=false';
     if (this.data2) {
       return Promise.resolve(this.data2);
     }

@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, NgZone } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { NavController, NavParams, ViewController } from 'ionic-angular';
 
 import { Geolocation } from '@ionic-native/geolocation';
@@ -48,7 +48,8 @@ export class RoutesPage {
     to: '',
     time: '',
     transMode: '',
-    route: ''
+    route: '',
+    routeLongName: ''
   }];
 
   lrtLine2;
@@ -56,8 +57,6 @@ export class RoutesPage {
   mrt3;
   pnr;
 
-  map: any;
-  @ViewChild('map') mapElement: ElementRef;
   routeType = [
     { name: "Less Transfer" }, 
     { name: "Less Fair" },
@@ -156,15 +155,7 @@ export class RoutesPage {
     }
 
   ionViewDidLoad(){
-    this.loadMap();
     this.setOrgDes();
-  }
-  loadMap(){
-    let mapOptions = {
-        zoom: 15,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-    }
-    this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
   }
   /*
     Geocode address string into latitude and longitude for markers.
@@ -175,7 +166,6 @@ export class RoutesPage {
       if(status == 'OK' && results[0]){
         let marker = new google.maps.Marker({
           position: results[0].geometry.location,
-          map: this.map,
         });
         this.markers.push(marker);
       }
@@ -184,7 +174,6 @@ export class RoutesPage {
       if(status == 'OK' && results[0]){
         let marker = new google.maps.Marker({
           position: results[0].geometry.location,
-          map: this.map,
         });
         this.markers.push(marker);
         this.setMapFocus(this.markers);
@@ -336,6 +325,7 @@ export class RoutesPage {
             let orig: string = leg['from']['name'];
             let dest: string = leg['to']['name'];
             x = 0, y = 0;
+            mode = "RAIL";
             if(orig.includes("MRT")){
               for(let i = 0; i<this.mrt3.length; i++){
                 if(orig.includes(this.mrt3[0][i])){
@@ -394,14 +384,15 @@ export class RoutesPage {
             to: leg['to']['name'],
             time: leg['duration']/60,
             transMode: mode,
-            route: leg['route']
+            route: leg['route'],
+            routeLongName: leg['routeLongName']
           });
           totaldistance+=distance;
         }
       }
       totaldistance = parseFloat(totaldistance.toPrecision(3));
       walkDistance = parseFloat(walkDistance.toPrecision(2));
-      fare = parseInt(fare);
+      fare = parseFloat(fare.toPrecision(4));
       this.trip.push({
         id: id,
         transfer: data.itineraries[id].transfers,
@@ -417,7 +408,6 @@ export class RoutesPage {
   }
   
   createTrip(id){
-    let seq = 0;
     let start: string = "";
     let end: string = "";
     let markers = [];
@@ -425,33 +415,26 @@ export class RoutesPage {
     let highDistance: any;
     highDistance = 0;
     for(let i = 0; i<this.legTransit.length; i++){
+      console.log(this.legTransit[i].distance);
       if(this.legTransit[i].tripID==id){
         highDistance = this.legTransit[i].distance;
+        index = i;
         for(let j=0; j<this.legTransit.length; j++){
-          if(highDistance<this.legTransit[j].distance){
+          if((highDistance<this.legTransit[j].distance)&&(this.legTransit[j].transMode!="RAIL")){
             index = j;
             highDistance = this.legTransit[j].distance;
           }
         }
       }
     }
-      if((this.legTransit[index].tripID==id)&&(this.legTransit[index].distance>2)){
-        console.log(this.legTransit[index].route);
-        start = this.legTransit[index].route;
-        end = this.legTransit[index].route;
-        if(start.indexOf("/")>-1)
-          start = start.slice(0, start.indexOf("/"));
-        else if(start.indexOf("-")>-1)
-          start = start.slice(0,start.indexOf("-"));
-        
-        if(end.includes("via"))
-          end = end.slice(end.indexOf("-")+1, end.indexOf("via"));
-        else
-          end = end.slice(end.indexOf("-")+1);
-        
-        start = start + ", Philippines";
-        end = end + ", Philippines";
-        console.log(this.address.destination);
+    console.log(highDistance);
+    
+      if(this.legTransit[index].distance>2){
+        start = String(this.legTransit[index].routeLongName);
+        end = String(this.legTransit[index].routeLongName);
+
+        start = start.slice(0, start.indexOf("/"));
+        end = end.slice(end.indexOf("/")+1);
         console.log(start);
         console.log(end);
 
@@ -478,6 +461,8 @@ export class RoutesPage {
             });
             markers.push(marker);
           }
+          else
+            console.log("start " + status + ": " + results.length);
         })
         this.geocoder.geocode({'address': end}, (results, status) => {
           if(status == 'OK' && results[0]){
@@ -487,28 +472,35 @@ export class RoutesPage {
             markers.push(marker);
             this.getRest(start, end, id, markers);
           }
+          else
+          console.log("end " + status + ": " + results.length);
         })
       }
   }
   getRest(start, end, id, markers){
-    
+    console.log(this.trip.length);
     let walkDistance = 0;
     let totaldistance = 0;
     let fare: any;
     let transfers = 0;
     let time: any;
     fare = 0;
-    this.rsp.loadRound(markers[2].getPosition(), markers[1].getPosition())
+    this.rsp.loadRound(markers[2].getPosition(), markers[0].getPosition())
     .then(rounddata => {
-      let distance = 0;
       if(rounddata){
+        this.rsp.loadRound2(markers[2].getPosition(), markers[1].getPosition())
+        .then(rounddata2 => {
+          let distance = 0;
+          let distance2 = 0;
         for(let i=0; i<rounddata.itineraries[0].legs.length; i++){
           let leg = rounddata.itineraries[0].legs[i];
           distance += (leg['distance'])/1000;
         }
-        console.log(distance);
-        console.log(this.trip[id].totaldistance);
-        if(distance>this.trip[id].totaldistance){
+        for(let i=0; i<rounddata2.itineraries[0].legs.length; i++){
+          let leg = rounddata2.itineraries[0].legs[i];
+          distance2 += (leg['distance'])/1000;
+        }
+        if(distance<distance2){
           //get direction from origin to terminal
           let lastIndex = 0 ;
           this.rsp.load1(markers[0].getPosition(), markers[2].getPosition())
@@ -516,7 +508,7 @@ export class RoutesPage {
             console.log(data1);
             lastIndex = data1.itineraries[0].legs.length;
             transfers = data1.itineraries[0].transfers;
-            time  = ((data1.itineraries[0].duration)/60).toPrecision(3);
+            time  = data1.itineraries[0].duration;
             console.log(lastIndex);
             for(let i=0; i<data1.itineraries[0].legs.length; i++){
               let leg = data1.itineraries[0].legs[i];
@@ -570,6 +562,7 @@ export class RoutesPage {
                   let orig: string = leg['from']['name'];
                   let dest: string = leg['to']['name'];
                   let x = 0, y = 0;
+                  mode = "RAIL";
                   if(orig.includes("MRT")){
                     for(let i = 0; i<this.mrt3.length; i++){
                       if(orig.includes(this.mrt3[0][i])){
@@ -628,7 +621,8 @@ export class RoutesPage {
                   to: leg['to']['name'],
                   time: leg['duration']/60,
                   transMode: mode,
-                  route: leg['route']
+                  route: leg['route'],
+                  routeLongName: leg['routeLongName']
                 });
                 totaldistance+=distance;
               }
@@ -680,6 +674,7 @@ export class RoutesPage {
                     fare += 10+((distance-5)*1.75);
                   else
                     fare += 10;
+                  console.log(fare);
                 }
                 else if(mode.includes("TODA")){
                   mode = "TODA";
@@ -693,6 +688,7 @@ export class RoutesPage {
                   let orig: string = leg['from']['name'];
                   let dest: string = leg['to']['name'];
                   let x = 0, y = 0;
+                  mode = "RAIL";
                   if(orig.includes("MRT")){
                     for(let i = 0; i<this.mrt3.length; i++){
                       if(orig.includes(this.mrt3[0][i])){
@@ -751,7 +747,8 @@ export class RoutesPage {
                   to: leg['to']['name'],
                   time: leg['duration']/60,
                   transMode: mode,
-                  route: leg['route']
+                  route: leg['route'],
+                  routeLongName: leg['routeLongName']
                 });
                 totaldistance+=distance;
               }
@@ -759,15 +756,17 @@ export class RoutesPage {
             }
             totaldistance = parseFloat(totaldistance.toPrecision(3));
             walkDistance = parseFloat(walkDistance.toPrecision(2));
-            fare = parseInt(fare);
+            fare = parseFloat(fare.toPrecision(4));
+            time = (time + data2.itineraries[0].duration)/60;
+            time = parseFloat(time.toPrecision(2));
             this.trip.push({
               id: id+1,
-              transfer: data2.itineraries[0].transfers + transfers,
+              transfer: data2.itineraries[0].transfers + transfers + 1,
               fare: fare,
               totalWalkDistance: walkDistance,
               totaldistance: totaldistance,
               legs: data2.itineraries[0].legs.length + lastIndex,
-              totalTime: ((data2.itineraries[0].duration)/60).toPrecision(3) + time,
+              totalTime: time,
               roundtrip: true
             });
           })
@@ -780,7 +779,7 @@ export class RoutesPage {
             console.log(data1);
             lastIndex = data1.itineraries[0].legs.length;
             transfers = data1.itineraries[0].transfers;
-            time  = ((data1.itineraries[0].duration)/60).toPrecision(3);
+            time  = data1.itineraries[0].duration;
             console.log(lastIndex);
             for(let i=0; i<data1.itineraries[0].legs.length; i++){
               let leg = data1.itineraries[0].legs[i];
@@ -834,6 +833,7 @@ export class RoutesPage {
                   let orig: string = leg['from']['name'];
                   let dest: string = leg['to']['name'];
                   let x = 0, y = 0;
+                  mode = "RAIL";
                   if(orig.includes("MRT")){
                     for(let i = 0; i<this.mrt3.length; i++){
                       if(orig.includes(this.mrt3[0][i])){
@@ -892,7 +892,8 @@ export class RoutesPage {
                   to: leg['to']['name'],
                   time: leg['duration']/60,
                   transMode: mode,
-                  route: leg['route']
+                  route: leg['route'],
+                  routeLongName: leg['routeLongName']
                 });
                 totaldistance+=distance;
               }
@@ -956,6 +957,7 @@ export class RoutesPage {
                   let orig: string = leg['from']['name'];
                   let dest: string = leg['to']['name'];
                   let x = 0, y = 0;
+                  mode = "RAIL";
                   if(orig.includes("MRT")){
                     for(let i = 0; i<this.mrt3.length; i++){
                       if(orig.includes(this.mrt3[0][i])){
@@ -1014,7 +1016,8 @@ export class RoutesPage {
                   to: leg['to']['name'],
                   time: leg['duration']/60,
                   transMode: mode,
-                  route: leg['route']
+                  route: leg['route'],
+                  routeLongName: leg['routeLongName']
                 });
                 totaldistance+=distance;
               }
@@ -1022,19 +1025,22 @@ export class RoutesPage {
             }
             totaldistance = parseFloat(totaldistance.toPrecision(3));
             walkDistance = parseFloat(walkDistance.toPrecision(2));
-            fare = parseInt(fare);
+            fare = parseFloat(fare.toPrecision(4));
+            time = (time + data2.itineraries[0].duration)/60;
+            time = parseFloat(time.toPrecision(2));
             this.trip.push({
               id: id+1,
-              transfer: data2.itineraries[0].transfers + transfers,
+              transfer: data2.itineraries[0].transfers + transfers + 1,
               fare: fare,
               totalWalkDistance: walkDistance,
               totaldistance: totaldistance,
               legs: data2.itineraries[0].legs.length + lastIndex,
-              totalTime: ((data2.itineraries[0].duration)/60).toPrecision(3) + time,
+              totalTime: time,
               roundtrip: true
             });
           })
         }
+        })
       }
       else
         alert("No route found.");

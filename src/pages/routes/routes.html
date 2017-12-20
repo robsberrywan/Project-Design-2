@@ -8,32 +8,38 @@
         <ion-list scrollable=true>
             <ion-item>
                 <ion-toolbar>
-                    <ion-segment color=secondary>
+                    <ion-segment color=primary>
                         <ion-segment-button value="lessfare" (click)="sortFare()">
-                            <ion-img width="20" height="20" src="./assets/imgs/lessfare.png">Less Fare</ion-img>
+                            <!-- <ion-img width="20" height="20" src="./assets/imgs/lessfare.png">Less Fare</ion-img> -->
+                            Less fare
                         </ion-segment-button>
                         <ion-segment-button value="lesswalk" (click)="sortWalk()">
-                            <ion-img width="20" height="20" src="./assets/imgs/lesswalk.png">Less Walk</ion-img>
+                            <!-- <ion-img width="20" height="20" src="./assets/imgs/lesswalk.png">Less Walk</ion-img> -->
+                            Less walk
                         </ion-segment-button>
                         <ion-segment-button value="lesstransfer" (click)="sortTransfer()">
-                            Less Transfer
+                            Less transfer
                         </ion-segment-button>
                         <ion-segment-button value="lesstime" (click)="sortTime()">
-                            <ion-img width="20" height="20" src="./assets/imgs/roundtrip.png">Round-trip</ion-img>
+                            <!-- <ion-img width="20" height="20" src="./assets/imgs/roundtrip.png">Round-trip</ion-img> -->
+                            Less travel time
                         </ion-segment-button>
                     </ion-segment>
                 </ion-toolbar>
             </ion-item>
             <ion-list>
-                <ion-item text-wrap *ngFor="let t of trip; let i = index" tappable (click)="seeDetails(i)">
-                    <p item-end>{{ t.totalTime }} min</p>
+                <ion-item class="opt" text-wrap *ngFor="let t of trip; let i = index" tappable (click)="seeDetails(i)">
+                    <ion-list-header class="title">
+                        Route #{{ i+1 }}
+                    </ion-list-header>
+                    <p item-right>{{ t.totalTime }} min</p>
                     <p>Transfers: {{ t.transfer }}</p>
-                    <p>Fare: P{{ t.fare }}.00</p>
+                    <p>Fare: P{{ t.fare }}</p>
                     <p>Distance: {{ t.totaldistance }} km</p>
                     <p>Walk, about {{ t.totalWalkDistance }} km</p>
+                    <p [hidden]="!t.roundtrip">This is a round-trip feature. This will direct you to the nearest terminal.</p>
                 </ion-item>
             </ion-list>
         </ion-list>
     </div>
-    <div #map [hidden]=true id="map"></div>
 </ion-content>
