@@ -132,24 +132,24 @@ export class DetailsPage {
       ];
     }
     ionViewDidLoad(){
-      this.loadMap();
       this.buildlist();
+      this.loadMap();
     }
     loadMap(){
       let mapOptions = {
           zoom: 15,
           mapTypeId: google.maps.MapTypeId.ROADMAP
       }
-      this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+      this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);;
       this.setOrgDes();
-      this.plotted(this.index);
+      this.plotted(this.index)
     }
     setOrgDes(){
+      this.markers = [];
       this.geocoder.geocode({'address': this.address.origin}, (results, status) => {
         if(status == 'OK' && results[0]){
           let marker = new google.maps.Marker({
-            position: results[0].geometry.location,
-            map: this.map,
+            position: results[0].geometry.location
           });
           this.markers.push(marker);
         }
@@ -159,11 +159,24 @@ export class DetailsPage {
           let marker = new google.maps.Marker({
             position: results[0].geometry.location,
             map: this.map,
+            animation: google.maps.Animation.DROP,
+            label: {text: String(this.description.length+1), color: 'white'},
+            icon: this.pinSymbol("#FFF")
           });
           this.markers.push(marker);
           this.setMapFocus(this.markers);
         }
       })
+    }
+    pinSymbol(color){
+      return {
+          path: 'M 0,0 C -2,-20 -10,-22 -10,-30 A 10,10 0 1,1 10,-30 C 10,-22 2,-20 0,0 z M -2,-30 a 2,2 0 1,1 4,0 2,2 0 1,1 -4,0',
+          fillColor: color,
+          fillOpacity: 1,
+          strokeColor: '#000',
+          strokeWeight: 2,
+          scale: 1,
+     };
     }
     setMapFocus(markers){
       let bounds = new google.maps.LatLngBounds();
@@ -175,13 +188,23 @@ export class DetailsPage {
     }
 
     plotted(index){
+      let color = '';
       for(let i=0; i<this.trip[index].legs; i++){
         this.points = [];
         for(let j=0; j<this.legWalk.length; j++){
           if((this.legWalk[j].tripID==this.trip[index].id)&&(this.legWalk[j].seq==i)){
             console.log("walk");
             this.decode(this.legWalk[j].legGeom)
-            this.drawSnappedPolylineWalk('black');
+            color = 'black';
+            this.drawSnappedPolylineWalk(color);
+
+            let marker = new google.maps.Marker({
+              position: this.points[0],
+              map: this.map,
+              animation: google.maps.Animation.DROP,
+              icon: this.pinSymbol(color)
+            });
+            this.markers.push(marker);
           }
         }
         for(let k=0; k<this.legTransit.length; k++){
@@ -189,20 +212,32 @@ export class DetailsPage {
             console.log("transit");
             if(this.legTransit[k].transMode=="PUJ"){
               this.decode(this.legTransit[k].legGeom);
-              this.drawSnappedPolyline('#1C75BC')
+              color = '#1C75BC';
+              this.drawSnappedPolyline(color)
             }
             else if(this.legTransit[k].transMode=="PUB"){
               this.decode(this.legTransit[k].legGeom);
-              this.drawSnappedPolyline('#006838')
+              color = '#006838';
+              this.drawSnappedPolyline(color)
             }
             else if(this.legTransit[k].transMode=="TODA"){
               this.decode(this.legTransit[k].legGeom);
-              this.drawSnappedPolyline('#D52BFB')
+              color = '#D52BFB';
+              this.drawSnappedPolyline(color)
             }
             else{
               this.decode(this.legTransit[k].legGeom);
-              this.drawSnappedPolyline('red')
+              color = 'red';
+              this.drawSnappedPolyline(color)
             }
+            
+            let marker = new google.maps.Marker({
+              position: this.points[0],
+              map: this.map,
+              animation: google.maps.Animation.DROP,
+              icon: this.pinSymbol(color)
+            });
+            this.markers.push(marker);
           }
         }
       }
@@ -211,6 +246,7 @@ export class DetailsPage {
       // array that holds the points
       let index = 0, len = leggeom.length;
       let lat = 0, lng = 0;
+
       while (index < len) {
         let b, shift = 0, result = 0;
         do {    
@@ -233,6 +269,7 @@ export class DetailsPage {
         let latlng = new google.maps.LatLng(( lat / 1E5),( lng / 1E5));
         this.points.push(latlng);
       }
+      
     }
     drawSnappedPolyline(color){
       let snappedPolyline = new google.maps.Polyline({
@@ -264,7 +301,7 @@ export class DetailsPage {
       });
       snappedPolyline.setMap(this.map);
       this.polylines.push(snappedPolyline);
-      }
+    }
 
     buildlist(){
       let orig: any;

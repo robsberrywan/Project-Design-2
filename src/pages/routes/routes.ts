@@ -16,7 +16,7 @@ declare var google;
 export class RoutesPage {
   address;
   geocoder;
-  markers;
+  plotmarkers;
 
   trip: any = [{
     id: '',
@@ -57,12 +57,6 @@ export class RoutesPage {
   mrt3;
   pnr;
 
-  routeType = [
-    { name: "Less Transfer" }, 
-    { name: "Less Fair" },
-    { name: "Less Walking" },
-    { name: "Round-Trip" }
-  ];
   constructor(
     public geolocation: Geolocation, 
     public navCtrl: NavController,
@@ -72,7 +66,7 @@ export class RoutesPage {
     public viewCtrl: ViewController) {
       this.address = this.navParams.get('address');
       this.geocoder = new google.maps.Geocoder;
-      this.markers = [];
+      this.plotmarkers = [];
 
       this.lrtLine2 = [
         [0, "Recto", "Legarda", "Pureza", "V. Mapa", "J. Ruiz", "Gilmore", "Betty Go", "Cubao", "Anonas", "Katipunan", "Santolan"],
@@ -167,7 +161,7 @@ export class RoutesPage {
         let marker = new google.maps.Marker({
           position: results[0].geometry.location,
         });
-        this.markers.push(marker);
+        this.plotmarkers.push(marker);
       }
     })
     this.geocoder.geocode({'address': this.address.destination}, (results, status) => {
@@ -175,8 +169,8 @@ export class RoutesPage {
         let marker = new google.maps.Marker({
           position: results[0].geometry.location,
         });
-        this.markers.push(marker);
-        this.setMapFocus(this.markers);
+        this.plotmarkers.push(marker);
+        this.setMapFocus(this.plotmarkers);
       }
     })
   }
@@ -316,9 +310,9 @@ export class RoutesPage {
           else if(mode.includes("TODA")){
             mode = "TODA";
             if(distance>1)
-              fare += 9+(distance-1);
+              fare += 8.50+(distance-1);
             else
-              fare += 9;
+              fare += 8.50;
             console.log("Tryke");
           }
           else{
@@ -554,9 +548,9 @@ export class RoutesPage {
                 else if(mode.includes("TODA")){
                   mode = "TODA";
                   if(distance>1)
-                    fare += 9+(distance-1);
+                    fare += 8.50+(distance-1);
                   else
-                    fare += 9;
+                    fare += 8.50;
                 }
                 else{
                   let orig: string = leg['from']['name'];
@@ -633,7 +627,7 @@ export class RoutesPage {
           .then(data2 => {
             let ind: any;
             ind = 1;
-            console.log(lastIndex);
+            console.log(data2);
             for(let i=lastIndex; i<data2.itineraries[0].legs.length+lastIndex-1; i++){
               let leg = data2.itineraries[0].legs[ind];
               if(leg['mode']=="WALK"){
@@ -679,9 +673,9 @@ export class RoutesPage {
                 else if(mode.includes("TODA")){
                   mode = "TODA";
                   if(distance>1)
-                    fare += 9+(distance-1);
+                    fare += 8.50+(distance-1);
                   else
-                    fare += 9;
+                    fare += 8.50;
                   console.log("tryke");
                 }
                 else{
@@ -825,9 +819,9 @@ export class RoutesPage {
                 else if(mode.includes("TODA")){
                   mode = "TODA";
                   if(distance>1)
-                    fare += 9+(distance-1);
+                    fare += 8.50+(distance-1);
                   else
-                    fare += 9;
+                    fare += 8.50;
                 }
                 else{
                   let orig: string = leg['from']['name'];
@@ -904,7 +898,7 @@ export class RoutesPage {
           .then(data2 => {
             let ind: any;
             ind = 1;
-            console.log(lastIndex);
+            console.log(data2);
             for(let i=lastIndex; i<data2.itineraries[0].legs.length+lastIndex-1; i++){
               let leg = data2.itineraries[0].legs[ind];
               if(leg['mode']=="WALK"){
@@ -949,9 +943,9 @@ export class RoutesPage {
                 else if(mode.includes("TODA")){
                   mode = "TODA";
                   if(distance>1)
-                    fare += 9+(distance-1);
+                    fare += 8.50+(distance-1);
                   else
-                    fare += 9;
+                    fare += 8.50;
                 }
                 else{
                   let orig: string = leg['from']['name'];

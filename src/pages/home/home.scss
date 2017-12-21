@@ -15,7 +15,6 @@ page-home {
         padding-left: 0px !important;
     }
     ion-item {
-        padding: 0px !important;
         background-color: transparent !important;
     }
     .no-padding{
@@ -24,5 +23,18 @@ page-home {
     .limit-item {
         width: 83%;
         margin-left: 17%;
+    }
+
+    .title{
+        font-size: 25px;
+        background-color: rgba(66, 65, 65, 0.1);
+        font-weight: bold;
+    }
+    .opt:hover > div {
+        background-color:rgba(66, 65, 65, 0.1);
+    }
+    #results{
+        width: 100%;
+        height: 100%;
     }
 }
