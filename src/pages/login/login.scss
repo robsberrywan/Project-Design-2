@@ -1,4 +1,9 @@
 page-login {
+  .startLogin{
+    background-image: url('../assets/imgs/bluebg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
 	ion-img {
 		background-color: transparent !important;
 		size: 200px;
@@ -8,7 +13,19 @@ page-login {
 	}
 	ion-label{
 		font-size: 18px;
-	}
+    background-color: transparent !important;
+    color: lightgray;
+  }
+  ion-item{
+    background-color: transparent !important;
+  }
+  ion-input{
+    color: lightgray;
+  }
+  p{
+		font-size: 15px;
+    color: lightgray;
+  }
 }
 #custom-overlay {
   position: fixed;

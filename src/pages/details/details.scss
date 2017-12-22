@@ -6,6 +6,9 @@ page-details {
     ion-item{
         white-space: pre-line;
     }
+    .btn-save{
+        font-size: 30px;
+    }
     .legIcon{
         font-size: 30px;
     }
@@ -135,7 +138,7 @@ page-details {
         display: flex;
         justify-content: center;
     }
-    ion-img, ion-icon, ion-item{
+    ion-img, ion-icon, ion-item, button{
         background-color: transparent !important;
     }
 }

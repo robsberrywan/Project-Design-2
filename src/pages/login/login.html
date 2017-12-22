@@ -1,4 +1,4 @@
-<ion-content padding>
+<ion-content padding class="startLogin">
 	<br /><br />
 	<div text-center>
 		<ion-img width="120" height="120" src="./assets/imgs/login.png"></ion-img>
@@ -7,25 +7,25 @@
 	<ion-list>
 		<ion-item>
 			<ion-label floating>Email</ion-label>
-			<ion-input type="text" [(ngModel)]="user.email"></ion-input>
+			<ion-input class="input" type="text" [(ngModel)]="user.email"></ion-input>
 		</ion-item>
 		<ion-item>
 			<ion-label floating>Password</ion-label>
-			<ion-input type="password" [(ngModel)]="user.password"></ion-input>
+			<ion-input  type="password" [(ngModel)]="user.password"></ion-input>
 		</ion-item>
 	</ion-list>
 	<div text-center>
   		<button color=primary (click)="signIn(user);" ion-button block>Sign In</button>
 	</div>
-	<br /><br />
+	<br />
 	<div text-center>
 		<ion-icon name="ios-arrow-dropdown-circle" class="or"></ion-icon>
 	</div>
-	<br /><br />
+	<br />
 	<div text-center>
 		<ion-label>Sign In with:</ion-label>
 		<button ion-button (click)="facebooklogin()"><ion-icon name="logo-facebook"></ion-icon></button>
 		<button ion-button (click)="googlelogin()"><ion-icon name="logo-googleplus"></ion-icon></button>
 	</div>
-	<br/><br/><br/><br/><p (click)="register();"><u>Don't have an account?</u></p>
+	<br/><br/><p (click)="register();"><u>Don't have an account?</u></p>
 </ion-content>

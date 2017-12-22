@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 
 declare var google;
 
@@ -30,7 +30,7 @@ export class DetailsPage {
   drop;
   map: any;
   @ViewChild('map') mapElement: ElementRef;
-    constructor(public navCtrl: NavController, public navParams: NavParams){
+    constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController){
       this.index = this.navParams.get("i");
       this.trip = this.navParams.get("trip");
       this.legWalk = this.navParams.get("legW");
@@ -531,5 +531,27 @@ export class DetailsPage {
         this.drop = false;
       else
         this.drop = true;
+    }
+    saveTrip(){
+      let alert = this.alertCtrl.create({
+        title: 'Save Route',
+        message: 'Do you want to save this route?',
+        buttons: [
+          {
+            text: 'Cancel',
+            role: 'cancel',
+            handler: () => {
+              console.log('Cancel clicked');
+            }
+          },
+          {
+            text: 'Yes',
+            handler: () => {
+              console.log('Route saved!');
+            }
+          }
+        ]
+      });
+      alert.present();
     }
 }

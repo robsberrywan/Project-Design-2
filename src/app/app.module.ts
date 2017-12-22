@@ -16,7 +16,6 @@ import { RegisterPage } from '../pages/register/register';
 import { HomePage } from '../pages/home/home';
 import { MytripPage } from '../pages/myTrips/mytrip';
 import { SettingsPage } from '../pages/settings/settings';
-import { RoutesPage } from '../pages/routes/routes';
 import { DetailsPage } from '../pages/details/details';
 import { RemoteServiceProvider } from '../providers/remote-service/remote-service';
 
@@ -43,7 +42,6 @@ firebase.initializeApp(FIREBASE_CONF)
     HomePage,
     MytripPage,
     SettingsPage,
-    RoutesPage,
     DetailsPage
   ],
   imports: [
@@ -61,7 +59,6 @@ firebase.initializeApp(FIREBASE_CONF)
     HomePage,
     MytripPage,
     SettingsPage,
-    RoutesPage,
     DetailsPage
   ],
   providers: [
