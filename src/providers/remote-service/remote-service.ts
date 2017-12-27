@@ -22,7 +22,7 @@ export class RemoteServiceProvider {
   constructor(public http: Http) {
   }
   load(origin, dest){
-    var url = 'http://192.168.1.6:8080/otp/routers/default/plan?fromPlace='+origin+'&toPlace='+dest+'&date=2017/01/09&time=11:00:00&mode=TRANSIT%2CWALK&numItineraries=5&maxWalkDistance=1000&arriveBy=false&wheelchair=false';
+    var url = 'http://192.168.1.14:8080/otp/routers/default/plan?fromPlace='+origin+'&toPlace='+dest+'&date=2017/01/09&time=11:00:00&mode=TRANSIT%2CWALK&numItineraries=5&maxWalkDistance=1000&arriveBy=false&wheelchair=false';
     var response = this.http.get(url).map(res => res.json());
     return response;
   }

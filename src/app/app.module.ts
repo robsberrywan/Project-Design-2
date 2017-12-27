@@ -14,7 +14,7 @@ import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 import { HomePage } from '../pages/home/home';
-import { MytripPage } from '../pages/myTrips/mytrip';
+import { MytripPage } from '../pages/mytrip/mytrip';
 import { SettingsPage } from '../pages/settings/settings';
 import { DetailsPage } from '../pages/details/details';
 import { RemoteServiceProvider } from '../providers/remote-service/remote-service';
