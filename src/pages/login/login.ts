@@ -26,7 +26,7 @@ export class LoginPage {
   	async signIn(user: User){
       this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password)
       .then(res => {
-        this.navCtrl.setRoot(HomePage);
+        this.navCtrl.setRoot(HomePage, { "email" : user.email });
       }, err => {
         let alert = this.alertCtrl.create({
           title: 'Login Failed!',

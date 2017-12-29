@@ -6,8 +6,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { AngularFireModule } from 'angularfire2';
-import { AngularFireAuth } from 'angularfire2/auth';
-import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireAuth, AngularFireAuthModule} from 'angularfire2/auth';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { Geolocation } from '@ionic-native/geolocation';
 
 import { MyApp } from './app.component';
@@ -20,7 +20,7 @@ import { DetailsPage } from '../pages/details/details';
 import { RemoteServiceProvider } from '../providers/remote-service/remote-service';
 
 import { GooglePlus } from '@ionic-native/google-plus';
-import firebase from 'firebase';
+import * as firebase from 'firebase';
 import { Facebook } from '@ionic-native/facebook';
 
 export const FIREBASE_CONF = {
@@ -49,7 +49,8 @@ firebase.initializeApp(FIREBASE_CONF)
     IonicModule.forRoot(MyApp),
     HttpModule,
     AngularFireModule.initializeApp(FIREBASE_CONF),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    AngularFireDatabaseModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -66,6 +67,7 @@ firebase.initializeApp(FIREBASE_CONF)
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AngularFireAuth,
+    AngularFireDatabaseModule,
     Geolocation,
     RemoteServiceProvider,
     GooglePlus,

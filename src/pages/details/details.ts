@@ -1,5 +1,7 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database-deprecated';
+import { FirebaseListFactoryOpts } from 'angularfire2/database-deprecated/interfaces';
 
 declare var google;
 
@@ -8,6 +10,11 @@ declare var google;
   templateUrl: 'details.html'
 })
 export class DetailsPage {
+  sTrip: FirebaseListObservable<any>;
+  slegWalk: FirebaseListObservable<any>;
+  slegTransit: FirebaseListObservable<any>;
+
+  email;
   geocoder;
   markers;
   address;
@@ -30,12 +37,18 @@ export class DetailsPage {
   drop;
   map: any;
   @ViewChild('map') mapElement: ElementRef;
-    constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController){
+    constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, angFire: AngularFireDatabase){
+      this.email = this.navParams.get("email");
       this.index = this.navParams.get("i");
       this.trip = this.navParams.get("trip");
       this.legWalk = this.navParams.get("legW");
       this.legTransit = this.navParams.get("legT");
       this.address = this.navParams.get('address');
+
+      this.sTrip = angFire.list('/trip');
+      this.slegWalk = angFire.list('/legWalk');
+      this.slegTransit = angFire.list('/legTransit');
+
       this.markers = [];
       this.geocoder = new google.maps.Geocoder;
       this.description = [{
@@ -222,7 +235,7 @@ export class DetailsPage {
             }
             else if(this.legTransit[k].transMode=="TODA"){
               this.decode(this.legTransit[k].legGeom);
-              color = '#D52BFB';
+              color = '#FF4500';
               this.drawSnappedPolyline(color)
             }
             else{
@@ -547,7 +560,20 @@ export class DetailsPage {
           {
             text: 'Yes',
             handler: () => {
+              this.sTrip.push({
+                email: this.email,
+                id: this.trip[this.index].id,
+                transfer: this.trip[this.index].transfer,
+                fare: this.trip[this.index].fare,
+                totalWalkDistance: this.trip[this.index].totalWalkDistance,
+                totaldistance: this.trip[this.index].totaldistance,
+                legs: this.trip[this.index].legs,
+                totalTime: this.trip[this.index].totalTime,
+                roundtrip: this.trip[this.index].roundtrip
+              });
+              
               console.log('Route saved!');
+              
             }
           }
         ]

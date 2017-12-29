@@ -1,11 +1,11 @@
 import { Component, ViewChild, ElementRef, NgZone } from '@angular/core';
-import { NavController, ModalController } from 'ionic-angular';
+import { NavController, ModalController, NavParams } from 'ionic-angular';
 
 import { AngularFireAuth } from "angularfire2/auth";
 import { Geolocation } from '@ionic-native/geolocation';
 import { RemoteServiceProvider } from "../../providers/remote-service/remote-service"
 
-import { MytripPage } from '../myTrips/mytrip';
+import { MytripPage } from '../mytrip/mytrip';
 import { SettingsPage } from '../settings/settings';
 import { LoginPage } from '../login/login';
 import { DetailsPage } from '../details/details';
@@ -16,9 +16,10 @@ declare var google;
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
-  providers: [RemoteServiceProvider] 
+  providers: [RemoteServiceProvider]
 })
 export class HomePage {
+  email;
   address;
   geocoder;
   GoogleAutocomplete;
@@ -85,7 +86,9 @@ export class HomePage {
     public navCtrl: NavController,
     public zone: NgZone,
     public rsp: RemoteServiceProvider,
-    public modCtrl: ModalController) {
+    public modCtrl: ModalController,
+    public navParams: NavParams) {
+      this.email = this.navParams.get('email');
       this.GoogleAutocomplete = new google.maps.places.AutocompleteService();
       this.autocompleteItems1 = [];
       this.autocompleteItems2= [];
@@ -1195,7 +1198,7 @@ export class HomePage {
     let legW: any;
     let legT: any;
     trip = this.trip, legW = this.legWalk, legT  = this.legTransit;
-    this.navCtrl.push(DetailsPage, {"i": i, "trip": trip, "legW": legW, "legT": legT, "address": this.address}).catch( err => {
+    this.navCtrl.push(DetailsPage, { "email": this.email, "i": i, "trip": trip, "legW": legW, "legT": legT, "address": this.address }).catch( err => {
       console.log(err)});
   }
 }

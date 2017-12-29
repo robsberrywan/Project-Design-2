@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 
 @Component({
     selector: 'page-mytrip',
@@ -7,7 +8,11 @@ import { NavController } from 'ionic-angular';
 })
 
 export class MytripPage {
-    
-    constructor(public navCtrl: NavController) {}
-    
+    trip: FirebaseListObservable<any>;
+    constructor(public navCtrl: NavController, angFire: AngularFireDatabase) {
+        this.trip = angFire.database.list('/trip');
+    }
+    ionViewDidLoad(){
+        console.log(this.trip);
+    }
 }
