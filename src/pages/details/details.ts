@@ -1,6 +1,6 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database-deprecated';
+//import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database-deprecated';
 import { FirebaseListFactoryOpts } from 'angularfire2/database-deprecated/interfaces';
 
 declare var google;
@@ -10,9 +10,9 @@ declare var google;
   templateUrl: 'details.html'
 })
 export class DetailsPage {
-  sTrip: FirebaseListObservable<any>;
-  slegWalk: FirebaseListObservable<any>;
-  slegTransit: FirebaseListObservable<any>;
+  //sTrip: FirebaseListObservable<any>;
+  //slegWalk: FirebaseListObservable<any>;
+  //slegTransit: FirebaseListObservable<any>;
 
   email;
   geocoder;
@@ -37,7 +37,7 @@ export class DetailsPage {
   drop;
   map: any;
   @ViewChild('map') mapElement: ElementRef;
-    constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, angFire: AngularFireDatabase){
+    constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController){
       this.email = this.navParams.get("email");
       this.index = this.navParams.get("i");
       this.trip = this.navParams.get("trip");
@@ -45,9 +45,9 @@ export class DetailsPage {
       this.legTransit = this.navParams.get("legT");
       this.address = this.navParams.get('address');
 
-      this.sTrip = angFire.list('/trip');
-      this.slegWalk = angFire.list('/legWalk');
-      this.slegTransit = angFire.list('/legTransit');
+      //this.sTrip = angFire.list('/trip');
+      //this.slegWalk = angFire.list('/legWalk');
+      //this.slegTransit = angFire.list('/legTransit');
 
       this.markers = [];
       this.geocoder = new google.maps.Geocoder;
@@ -560,6 +560,7 @@ export class DetailsPage {
           {
             text: 'Yes',
             handler: () => {
+              /*
               this.sTrip.push({
                 email: this.email,
                 id: this.trip[this.index].id,
@@ -571,7 +572,43 @@ export class DetailsPage {
                 totalTime: this.trip[this.index].totalTime,
                 roundtrip: this.trip[this.index].roundtrip
               });
-              
+
+              for(let i=0; i<this.trip[this.index].legs; i++){
+                for(let j=0; j<this.legWalk.length; j++){
+                  if((this.legWalk[j].tripID==this.trip[this.index].id)&&(this.legWalk[j].seq==i)){
+                    this.slegWalk.push({
+                      email: this.email,
+                      tripID: this.legWalk[j].tripID,
+                      seq: i,
+                      distance: this.legWalk[j].distance,
+                      legGeom: this.legWalk[j].legGeom,
+                      from: this.legWalk[j].from,
+                      to: this.legWalk[j].to,
+                      time: this.legWalk[j].time,
+                      transMode: this.legWalk[j].transMode,
+                      steps: this.legWalk[j].steps
+                    });
+                  }
+                }
+                for(let k=0; k<this.legTransit.length; k++){
+                  if((this.legTransit[k].tripID==this.trip[this.index].id)&&(this.legTransit[k].seq==i)){
+                    this.slegTransit.push({
+                      email: this.email,
+                      tripID: this.legTransit[k].tripID,
+                      seq: i,
+                      distance: this.legTransit[k].distance,
+                      legGeom: this.legTransit[k].legGeom,
+                      from: this.legTransit[k].from,
+                      to: this.legTransit[k].to,
+                      time: this.legTransit[k].time,
+                      transMode: this.legTransit[k].transMode,
+                      route: this.legTransit[k].route,
+                      routeLongName: this.legTransit[k].routeLongName
+                    });
+                  }
+                }
+              }
+              */
               console.log('Route saved!');
               
             }
