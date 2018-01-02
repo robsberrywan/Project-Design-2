@@ -633,7 +633,7 @@ export class HomePage {
         this.rsp.load(markers[2].getPosition(), markers[1].getPosition()).subscribe(
           data => {
             rounddata2 = data.plan;
-            let distance = 0;
+            let distance:any = 0;
             let distance2 = 0;
             for(let i=0; i<rounddata.itineraries[0].legs.length; i++){
               let leg = rounddata.itineraries[0].legs[i];
