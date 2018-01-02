@@ -373,10 +373,6 @@ export class DetailsPage {
             fare = 0;
             fare2 = 0;
             let distance = this.legTransit[k].distance;
-<<<<<<< HEAD
-=======
-
->>>>>>> ad07b6ad8d76f49fad8ad721cd72977ae2c84741
             if(this.description.length==0)
               orig = this.address.origin;
             else{
