@@ -1,0 +1,9 @@
+npm install xml2js --save
+typings install dt~xml2js --global --save
+
+npm install angular firebase angularfire2 angularfire2-offline --save
+
+
+plugins:
+
+cordova plugin add corodova-plugin-geolocation
