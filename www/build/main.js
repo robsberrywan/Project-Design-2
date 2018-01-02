@@ -235,56 +235,39 @@ var RegisterPage = (function () {
     RegisterPage.prototype.signUp = function (user, cpass) {
         return __awaiter(this, void 0, void 0, function () {
             var _this = this;
-            var alert, alert, alert;
+            var alert_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (!(String(user.password).length < 6)) return [3 /*break*/, 1];
-                        alert = this.alertCtrl.create({
-                            title: 'Register Failed!',
-                            subTitle: 'Password must contain at least 6 characters.',
-                            buttons: ['Retry']
-                        });
-                        alert.present();
-                        return [3 /*break*/, 5];
+                        if (!(user.password == cpass)) return [3 /*break*/, 2];
+                        return [4 /*yield*/, this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.password)
+                                .then(function (res) {
+                                var alert = _this.alertCtrl.create({
+                                    subTitle: 'You are now successfully registered!',
+                                    buttons: ['OK']
+                                });
+                                alert.present();
+                                _this.navCtrl.pop();
+                            }, function (err) {
+                                var alert = _this.alertCtrl.create({
+                                    title: 'Register Failed!',
+                                    subTitle: 'Please try again.',
+                                    buttons: ['Retry']
+                                });
+                                alert.present();
+                            })];
                     case 1:
-                        if (!(user.password != cpass)) return [3 /*break*/, 2];
-                        alert = this.alertCtrl.create({
+                        _a.sent();
+                        return [3 /*break*/, 3];
+                    case 2:
+                        alert_1 = this.alertCtrl.create({
                             title: 'Register Failed!',
                             subTitle: 'Password does not match.',
                             buttons: ['Retry']
                         });
-                        alert.present();
-                        return [3 /*break*/, 5];
-                    case 2:
-                        if (!((!user.email) || (!user.password))) return [3 /*break*/, 3];
-                        alert = this.alertCtrl.create({
-                            title: 'Register Failed!',
-                            subTitle: 'All fields must be filled.',
-                            buttons: ['Retry']
-                        });
-                        alert.present();
-                        return [3 /*break*/, 5];
-                    case 3: return [4 /*yield*/, this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.password)
-                            .then(function (res) {
-                            var alert = _this.alertCtrl.create({
-                                subTitle: 'You are now successfully registered!',
-                                buttons: ['OK']
-                            });
-                            alert.present();
-                            _this.navCtrl.pop();
-                        }, function (err) {
-                            var alert = _this.alertCtrl.create({
-                                title: 'Register Failed!',
-                                subTitle: 'Please try again.',
-                                buttons: ['Retry']
-                            });
-                            alert.present();
-                        })];
-                    case 4:
-                        _a.sent();
-                        _a.label = 5;
-                    case 5: return [2 /*return*/];
+                        alert_1.present();
+                        _a.label = 3;
+                    case 3: return [2 /*return*/];
                 }
             });
         });
@@ -296,10 +279,9 @@ var RegisterPage = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-register',template:/*ion-inline-start:"/home/robrobirobin/Documents/backup/project-design-2/src/pages/register/register.html"*/'<ion-content padding>\n\n	<div text-right>\n\n		<ion-icon name="heart" class="reglogo"></ion-icon>\n\n	</div>\n\n	<ion-list>\n\n		<ion-item>\n\n			<ion-label floating>Email</ion-label>\n\n			<ion-input type="text" [(ngModel)]="user.email"></ion-input>\n\n		</ion-item>\n\n		<ion-item>\n\n			<ion-label floating>Password</ion-label>\n\n			<ion-input type="password" [(ngModel)]="user.password"></ion-input>\n\n		</ion-item>\n\n		<ion-item>\n\n			<ion-label floating>Re-type Password</ion-label>\n\n			<ion-input type="password" [(ngModel)]="cpass"></ion-input>\n\n		</ion-item>\n\n	</ion-list>\n\n	<div text-center>\n\n  		<button color=dark ion-button round (click)="signUp(user, cpass);">Sign me up!</button>\n\n	</div>\n\n	<br/><br/><br/><br/><p (click)="toSignIn();">Already have an account? <u>Sign In</u></p>\n\n</ion-content>'/*ion-inline-end:"/home/robrobirobin/Documents/backup/project-design-2/src/pages/register/register.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__["a" /* AngularFireAuth */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__["a" /* AngularFireAuth */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _c || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__["a" /* AngularFireAuth */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
     ], RegisterPage);
     return RegisterPage;
-    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=register.js.map
@@ -1998,13 +1980,13 @@ var DetailsPage = (function () {
                     }
                     if (this.legTransit[k].transMode == "PUJ") {
                         if (distance > 4)
-                            fare = (8 + (parseInt(distance) - 4) * 1.50);
+                            fare = (8 + (distance - 4) * 1.50);
                         else
                             fare = 8;
                         this.description.push({
-                            distance: parseFloat(this.legTransit[k].distance).toPrecision(3) + " km\n",
+                            distance: parseFloat(this.legTransit[k].distance).toPrecision(2) + " km\n",
                             time: parseFloat(this.legTransit[k].time.toPrecision(2)) + " min",
-                            fare: "P" + parseFloat(fare.toPrecision(4)),
+                            fare: "P" + parseInt(fare) + ".00",
                             fare2: '',
                             route: this.legTransit[k].route,
                             from: orig,
@@ -2014,18 +1996,18 @@ var DetailsPage = (function () {
                     }
                     else if (this.legTransit[k].transMode == "PUB") {
                         if (distance > 5) {
-                            fare = (10 + (parseInt(distance) - 5) * 1.75).toPrecision(4);
-                            fare2 = (12 + (parseInt(distance) - 5) * 2.35).toPrecision(4);
+                            fare = (10 + (distance - 5) * 1.75).toPrecision(4);
+                            fare2 = (12 + (distance - 5) * 2.35).toPrecision(4);
                         }
                         else {
-                            fare = 10;
-                            fare2 = 12;
+                            fare = (10.00).toPrecision(4);
+                            fare2 = (12.00).toPrecision(4);
                         }
                         this.description.push({
                             distance: parseFloat(this.legTransit[k].distance).toPrecision(2) + " km\n",
                             time: parseFloat(this.legTransit[k].time.toPrecision(2)) + " min",
-                            fare: "Ordinary: P" + parseInt(fare.toPrecision(4)),
-                            fare2: "Aircon: P" + parseInt(fare2.toPrecision(4)),
+                            fare: "Ordinary: P" + parseInt(fare) + ".00",
+                            fare2: "Aircon: P" + parseInt(fare2) + ".00",
                             route: "Route: " + this.legTransit[k].route,
                             from: orig,
                             to: this.legTransit[k].to
@@ -2034,18 +2016,18 @@ var DetailsPage = (function () {
                     }
                     else if (this.legTransit[k].transMode == "TODA") {
                         if (distance > 1) {
-                            fare = 8.50 + (parseInt(distance) - 1);
-                            fare2 = 17 + (parseInt(distance) - 1);
+                            fare = 9 + (distance - 1);
+                            fare2 = 17 + (distance - 1);
                         }
                         else {
-                            fare = 8;
+                            fare = 9;
                             fare2 = 17;
                         }
                         this.description.push({
                             distance: parseFloat(this.legTransit[k].distance).toPrecision(2) + " km\n",
                             time: parseFloat(this.legTransit[k].time.toPrecision(2)) + " min",
-                            fare: "Regular trip: P" + parseFloat(fare.toPrecision(4)),
-                            fare2: "Special trip: P" + parseFloat(fare2.toPrecision(4)),
+                            fare: "Regular trip: P" + parseInt(fare) + ".00",
+                            fare2: "Special trip: P" + parseInt(fare2) + ".00",
                             route: "Route: " + this.legTransit[k].route,
                             from: orig,
                             to: this.legTransit[k].to
@@ -2206,16 +2188,15 @@ var DetailsPage = (function () {
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('map'),
-        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* ElementRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* ElementRef */]) === "function" && _a || Object)
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* ElementRef */])
     ], DetailsPage.prototype, "mapElement", void 0);
     DetailsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-details',template:/*ion-inline-start:"/home/robrobirobin/Documents/backup/project-design-2/src/pages/details/details.html"*/'<ion-header>\n    <ion-navbar color=primary>\n        <ion-buttons end>\n          <button (click)="saveTrip()">\n              <ion-icon class="btn-save" ios="ios-add-circle" md="md-add-circle"></ion-icon>\n          </button>\n        </ion-buttons>\n    </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <div #map id="map"></div>\n  <div scrollable=true>\n    <ion-grid>\n      <ion-row *ngFor="let item of description; let i = index;" class=\'cell-{{i}}\' text-wrap no-padding no-margin>\n        <ion-col col-2 class="col icon-col">\n          <img width="50" height="50" src="{{ modeIcons[i] }}" />\n        </ion-col>      \n        <ion-col col-95>\n          <p>{{ description[i].from }}</p>\n          <p>{{ description[i].route }}</p>\n          <p>{{ description[i].fare }}</p>\n          <p>{{ description[i].fare2 }}</p>\n          <button [hidden]="!description[i].steps" (click)="setDrop()">\n            <ion-icon ios="ios-arrow-dropdown" md="md-arrow-dropdown"></ion-icon>\n          </button>\n\n          <ion-list [hidden]="drop" no-padding>\n            <ion-item no-padding *ngFor="let step of description[i].steps">{{ step }}</ion-item>\n          </ion-list>\n        </ion-col>\n        <ion-col col-2 no-padding>\n          <p>{{ description[i].distance }}</p>\n          <p>{{ description[i].time }}</p>\n        </ion-col>\n      </ion-row>\n      <ion-row class=\'cell-{{ description.length }}\' text-wrap no-padding no-margin>\n        <ion-col col-2 class="col icon-col">\n        </ion-col>\n        <ion-col col-95>\n          <p>{{ address.destination }}</p>\n        </ion-col>\n      </ion-row>\n      <ion-row>\n        <ion-col>\n          <p>Travel Summary:</p>\n          <p>Estimated Time: {{trip[index].totalTime }} min</p>\n          <p>Total Fare: P{{ trip[index].fare }}</p>\n          <p>Distance: {{ trip[index].totaldistance }} km</p>\n          <p>Walk Distance: {{ trip[index].totalWalkDistance }} km</p>\n          <p>Transfers: {{ trip[index].transfer }}</p>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n\n  </div>\n</ion-content>'/*ion-inline-end:"/home/robrobirobin/Documents/backup/project-design-2/src/pages/details/details.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _d || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
     ], DetailsPage);
     return DetailsPage;
-    var _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=details.js.map

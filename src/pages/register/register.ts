@@ -13,6 +13,7 @@ export class RegisterPage {
   	constructor(private afAuth: AngularFireAuth, public navCtrl: NavController, public alertCtrl: AlertController) {
   	}
   	async signUp(user: User, cpass){
+<<<<<<< HEAD
 		if(String(user.password).length < 6){
 			let alert = this.alertCtrl.create({
 				title: 'Register Failed!',
@@ -38,6 +39,9 @@ export class RegisterPage {
 			alert.present();
 		}  
   		else{
+=======
+  		if(user.password==cpass){
+>>>>>>> ad07b6ad8d76f49fad8ad721cd72977ae2c84741
 			await this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.password)
 			.then( res => {
 				let alert = this.alertCtrl.create({
@@ -55,6 +59,17 @@ export class RegisterPage {
 			alert.present();
 		  });
   		}
+<<<<<<< HEAD
+=======
+  		else{
+			let alert = this.alertCtrl.create({
+				title: 'Register Failed!',
+				subTitle: 'Password does not match.',
+				buttons: ['Retry']
+			});
+			alert.present();
+  		}
+>>>>>>> ad07b6ad8d76f49fad8ad721cd72977ae2c84741
   	}
   	toSignIn(){
   		this.navCtrl.pop();
