@@ -1,12 +1,14 @@
 npm install xml2js --save
 typings install dt~xml2js --global --save
 
-<<<<<<< HEAD
 npm install angular firebase angularfire2 angularfire2-offline --save
 
-
+npm install --save @ionic-native/in-app-browser
+npm install --save @ionic-native/twitter-connect
+npm install --save ng2-twitter
+ 
 plugins:
 
 cordova plugin add corodova-plugin-geolocation
-=======
->>>>>>> ad07b6ad8d76f49fad8ad721cd72977ae2c84741
+ionic cordova plugin add twitter-connect-plugin --variable FABRIC_KEY=fabric_API_key
+ionic cordova plugin add cordova-plugin-inappbrowser
