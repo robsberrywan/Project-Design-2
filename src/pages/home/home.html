@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar color="primary">
+  <ion-navbar color = custom-yellow>
     <ion-grid no-padding no-margin>
       <ion-row>
         <ion-col col-2>
@@ -20,7 +20,7 @@
         </ion-row>
         <ion-row>
           <ion-col text-center no-padding>
-            <button color=dark ion-button block (click)="findRoute(address)">GO</button>
+            <button color=secondary-yellow ion-button block (click)="findRoute(address)">GO</button>
           </ion-col>
         </ion-row>
       </ion-col>
@@ -68,18 +68,18 @@
                 <ion-toolbar>
                     <ion-segment color=primary>
                         <ion-segment-button value="lessfare" (click)="sortFare()">
-                            <!-- <ion-img width="20" height="20" src="./assets/imgs/lessfare.png">Less Fare</ion-img> -->
+                             <ion-img width="30" height="30" src="./assets/imgs/lessfare.png">Less Fare</ion-img>
                             Less fare
                         </ion-segment-button>
                         <ion-segment-button value="lesswalk" (click)="sortWalk()">
-                            <!-- <ion-img width="20" height="20" src="./assets/imgs/lesswalk.png">Less Walk</ion-img> -->
+                            <ion-img width="20" height="20" src="./assets/imgs/lesswalk.png">Less Walk</ion-img> 
                             Less walk
                         </ion-segment-button>
                         <ion-segment-button value="lesstransfer" (click)="sortTransfer()">
                             Less transfer
                         </ion-segment-button>
                         <ion-segment-button value="lesstime" (click)="sortTime()">
-                            <!-- <ion-img width="20" height="20" src="./assets/imgs/roundtrip.png">Round-trip</ion-img> -->
+                            <ion-img width="20" height="20" src="./assets/imgs/roundtrip.png">Round-trip</ion-img> 
                             Less time
                         </ion-segment-button>
                     </ion-segment>
@@ -99,7 +99,7 @@
                 </ion-item>
             </ion-list>
         </ion-list>
-        <button class="close-button" color=dark ion-button block (click)="close()">Close</button>
+        <button class="close-button" color=secondary-yellow ion-button block (click)="close()">Close</button>
       </div>
     </div>
 </ion-content>

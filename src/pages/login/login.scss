@@ -1,6 +1,6 @@
 page-login {
   .startLogin{
-    background-image: url('../assets/imgs/bluebg.png');
+    background-color: #FFDD01;
     background-repeat: no-repeat;
     background-size: cover;
   }
@@ -14,17 +14,17 @@ page-login {
 	ion-label{
 		font-size: 18px;
     background-color: transparent !important;
-    color: lightgray;
+    color: white;
   }
   ion-item{
     background-color: transparent !important;
   }
   ion-input{
-    color: lightgray;
+    color: white;
   }
   p{
 		font-size: 15px;
-    color: lightgray;
+    color: white;
   }
 }
 #custom-overlay {
@@ -35,11 +35,11 @@ page-login {
   left: 0;
   z-index: 100000;
   width:100%;
-  background-color: #002a3e;
+  background-color: #FFE540;
 }
 
 .flb {
-  background-color: #3ebffb;
+  background-color: #FFE540;
   height:100%;
   width:100%;
   animation: pulse 1s linear forwards;
