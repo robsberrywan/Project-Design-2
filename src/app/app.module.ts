@@ -23,6 +23,10 @@ import { GooglePlus } from '@ionic-native/google-plus';
 import * as firebase from 'firebase';
 import { Facebook } from '@ionic-native/facebook';
 
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { TwitterConnect } from '@ionic-native/twitter-connect';
+import { TwitterService } from 'ng2-twitter';
+
 export const FIREBASE_CONF = {
   apiKey: "AIzaSyDXJtxVDEFknxJYwWAjKCce-mHuDxY2gqU",
   authDomain: "project-design-2018d.firebaseapp.com",
@@ -71,7 +75,10 @@ firebase.initializeApp(FIREBASE_CONF)
     Geolocation,
     RemoteServiceProvider,
     GooglePlus,
-    Facebook
+    Facebook,
+    TwitterConnect,
+    TwitterService,
+    InAppBrowser
   ]
 })
 export class AppModule {}

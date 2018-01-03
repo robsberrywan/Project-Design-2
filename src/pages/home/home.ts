@@ -439,18 +439,26 @@ export class HomePage {
         }
         else{
           distance = (leg['distance'])/1000;
+          
           let mode: string = leg['routeId'];
           if(mode.includes("PUJ")){
             mode = "PUJ";
-            if(distance>4)
-              fare += 8+((parseInt(distance)-4)*1.50);
+            if(distance>4){
+              if(distance-parseInt(distance)>0.49)
+                fare += 8+((parseInt(distance)-3)*1.50);
+              else
+                fare += 8+((parseInt(distance)-4)*1.50);
+            }
             else
               fare += 8;
           }
           else if(mode.includes("PUB")){
             mode = "PUB";
             if(distance>5)
-              fare += 10+((parseInt(distance)-5)*1.75);
+              if(distance-parseInt(distance)>0.49)
+                fare += 10+((parseInt(distance)-4)*1.85);
+              else
+                fare += 10+((parseInt(distance)-5)*1.85);
             else
               fare += 10;
           }

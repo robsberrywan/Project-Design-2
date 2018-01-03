@@ -372,7 +372,7 @@ export class DetailsPage {
           if((this.legTransit[k].tripID==this.trip[this.index].id)&&(this.legTransit[k].seq==i)){
             fare = 0;
             fare2 = 0;
-            let distance = this.legTransit[k].distance;
+            let distance: any = parseFloat(this.legTransit[k].distance).toPrecision(2);
             if(this.description.length==0)
               orig = this.address.origin;
             else{
@@ -402,8 +402,12 @@ export class DetailsPage {
             }
             
             if(this.legTransit[k].transMode=="PUJ"){
-              if(distance>4)
-                fare = (8+(parseInt(distance)-4)*1.50);
+              if(distance>4){
+                if(distance-parseInt(distance)>0.49)
+                  fare = 8+((parseInt(distance)-3)*1.50);
+                else
+                  fare = 8+((parseInt(distance)-4)*1.50);
+              }
               else
                 fare = 8;  
 
@@ -421,8 +425,28 @@ export class DetailsPage {
             else if(this.legTransit[k].transMode=="PUB"){
               
               if(distance>5){
-                fare = (10+(parseInt(distance)-5)*1.75).toPrecision(4);
-                fare2 = (12+(parseInt(distance)-5)*2.35).toPrecision(4);
+                fare = 10+((parseInt(distance)-5)*1.85);
+                if(fare-parseInt(fare)<0.13)
+                  fare = parseInt(fare);
+                else if(fare-parseInt(fare)<0.38)
+                  fare = parseInt(fare)+0.25;
+                else if(fare-parseInt(fare)<0.88)
+                  fare = parseInt(fare)+0.50;
+                else
+                  fare = parseInt(fare)+1;
+                  
+                
+                fare2 = 12+((parseInt(distance)-5)*2.2);
+                console.log(distance);
+                console.log(fare2);
+                if(fare2-parseInt(fare2)<0.13)
+                  fare2 = parseInt(fare2);
+                else if(fare2-parseInt(fare2)<0.38)
+                  fare2 = parseInt(fare2)+0.25;
+                else if(fare2-parseInt(fare2)<0.88)
+                  fare2 = parseInt(fare2)+0.50;
+                else
+                  fare2 = parseInt(fare2)+1;
               }
               else{
                 fare = 10;

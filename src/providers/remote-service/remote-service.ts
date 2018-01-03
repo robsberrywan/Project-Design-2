@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, RequestOptions, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { TwitterService } from 'ng2-twitter';
 /*
   Generated class for the RemoteServiceProvider provider.
 
@@ -19,12 +20,39 @@ export class RemoteServiceProvider {
   rbaseUrl;
   baseUrl1;
   baseUrl2;
-  constructor(public http: Http) {
+
+  token = null;
+  tokenSecret = null;
+  consumerKey = '	IZ8IT77kPfcpF3L7BZuWdkiXd';
+  consumerSecret = '	rlO4tWDmlujHTHoN3WIUW5AXVM4OtTgCcpE28SBUBn8aDrnsxa';
+  constructor(public http: Http, private twitter: TwitterService) {
   }
   load(origin, dest){
     var url = 'http://13.71.136.189:8080/otp/routers/default/plan?fromPlace='+origin+'&toPlace='+dest+'&date=2017/01/09&time=11:00:00&mode=TRANSIT%2CWALK&numItineraries=5&maxWalkDistance=1000&arriveBy=false&wheelchair=false';
     var response = this.http.get(url).map(res => res.json());
     return response;
+  }
+  setTokens(token, tokenSecret) {
+    this.token = token;
+    this.tokenSecret = tokenSecret;
+  }
+  getTwitterStatus(){
+    return this.twitter.get(
+      'https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=MMDA&count=2',
+      {
+        count: 2
+      },
+      {
+        consumerKey: this.consumerKey,
+        consumerSecret: this.consumerSecret
+      },
+      {
+        token: this.token,
+        tokenSecret: this.tokenSecret
+      }
+    )
+      .map(res => res.json());
+    };
   }
   /*load(origin, dest){
     this.baseUrl = 'http://192.168.1.6:8080/otp/routers/default/plan?fromPlace='+origin+'&toPlace='+dest+'&date=2017/01/09&time=11:00:00&mode=TRANSIT%2CWALK&numItineraries=5&maxWalkDistance=1000&arriveBy=false&wheelchair=false';
