@@ -70,6 +70,15 @@ module.exports = [
       "cordova.plugins.Keyboard"
     ],
     "runs": true
+  },
+  {
+    "id": "cordova-plugin-inappbrowser.inappbrowser",
+    "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
+    "pluginId": "cordova-plugin-inappbrowser",
+    "clobbers": [
+      "cordova.InAppBrowser.open",
+      "window.open"
+    ]
   }
 ];
 module.exports.metadata = 
@@ -84,7 +93,8 @@ module.exports.metadata =
   "cordova-plugin-request-location-accuracy": "2.2.2",
   "cordova-plugin-splashscreen": "4.1.0",
   "cordova-plugin-whitelist": "1.3.3",
-  "ionic-plugin-keyboard": "2.2.1"
+  "ionic-plugin-keyboard": "2.2.1",
+  "cordova-plugin-inappbrowser": "2.0.1"
 };
 // BOTTOM OF METADATA
 });

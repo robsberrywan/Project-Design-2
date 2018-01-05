@@ -480,6 +480,11 @@ var HomePage = (function () {
     }
     HomePage.prototype.ionViewDidLoad = function () {
         this.loadMap();
+        this.rsp.getTwitterStatus().subscribe(function (data) {
+            console.log(data);
+        }, function (err) {
+            console.log(err);
+        }, function () { return console.log('Success'); });
     };
     HomePage.prototype.loadMap = function () {
         var _this = this;
@@ -1631,43 +1636,40 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-/*
-  Generated class for the RemoteServiceProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 var RemoteServiceProvider = (function () {
     function RemoteServiceProvider(http, twitter) {
         this.http = http;
         this.twitter = twitter;
-        this.token = null;
-        this.tokenSecret = null;
-        this.consumerKey = '	IZ8IT77kPfcpF3L7BZuWdkiXd';
-        this.consumerSecret = '	rlO4tWDmlujHTHoN3WIUW5AXVM4OtTgCcpE28SBUBn8aDrnsxa';
     }
     RemoteServiceProvider.prototype.load = function (origin, dest) {
         var url = 'http://13.71.136.189:8080/otp/routers/default/plan?fromPlace=' + origin + '&toPlace=' + dest + '&date=2017/01/09&time=12:00:00&mode=TRANSIT%2CWALK&numItineraries=5&maxWalkDistance=1000&arriveBy=false&wheelchair=false';
         var response = this.http.get(url).map(function (res) { return res.json(); });
         return response;
     };
-    RemoteServiceProvider.prototype.setTokens = function (token, tokenSecret) {
-        this.token = token;
-        this.tokenSecret = tokenSecret;
-    };
     RemoteServiceProvider.prototype.getTwitterStatus = function () {
-        return this.twitter.get('https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=MMDA&count=2', {
-            count: 2
+        /*var Twit = require('twit')
+    
+        var T = new Twit({
+          consumer_key:         'IZ8IT77kPfcpF3L7BZuWdkiXd',
+          consumer_secret:      'rlO4tWDmlujHTHoN3WIUW5AXVM4OtTgCcpE28SBUBn8aDrnsxa',
+          access_token:         '947804321613103104-qxT4wcGGDq6Ejy9ahrkx7uUSbGdymq8',
+          access_token_secret:  '4GsGpqUJjWLu961fPvNf8nDeXxY3JATv5SbLFsM7zhDHD',
+          timeout_ms:           60*1000,  // optional HTTP request timeout to apply to all requests.
+        })
+        T.get('search/tweets', { q: 'MMDA since:2017-01-4', count: 5 }, function(err, data, response) {
+          console.log(data)
+        })*/
+        return this.twitter.get('https://api.twitter.com/1.1/search/tweets.json?q=MMDA', {
+            count: 10
         }, {
-            consumerKey: this.consumerKey,
-            consumerSecret: this.consumerSecret
+            consumerKey: 'IZ8IT77kPfcpF3L7BZuWdkiXd',
+            consumerSecret: 'rlO4tWDmlujHTHoN3WIUW5AXVM4OtTgCcpE28SBUBn8aDrnsxa',
         }, {
-            token: this.token,
-            tokenSecret: this.tokenSecret
+            token: '947804321613103104-qxT4wcGGDq6Ejy9ahrkx7uUSbGdymq8',
+            tokenSecret: '4GsGpqUJjWLu961fPvNf8nDeXxY3JATv5SbLFsM7zhDHD',
         })
             .map(function (res) { return res.json(); });
     };
-    ;
     RemoteServiceProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */], __WEBPACK_IMPORTED_MODULE_3_ng2_twitter__["a" /* TwitterService */]])
