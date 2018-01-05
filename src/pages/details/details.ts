@@ -1,7 +1,6 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 //import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database-deprecated';
-import { FirebaseListFactoryOpts } from 'angularfire2/database-deprecated/interfaces';
 
 declare var google;
 
@@ -323,8 +322,6 @@ export class DetailsPage {
       for(let i=0; i<this.trip[this.index].legs; i++){
         for(let j=0; j<this.legWalk.length; j++){
           if((this.legWalk[j].tripID==this.trip[this.index].id)&&(this.legWalk[j].seq==i)){
-
-            
             if(this.description.length==0)
               orig = this.address.origin;
             else{
@@ -375,8 +372,7 @@ export class DetailsPage {
           if((this.legTransit[k].tripID==this.trip[this.index].id)&&(this.legTransit[k].seq==i)){
             fare = 0;
             fare2 = 0;
-            let distance = this.legTransit[k].distance;
-
+            let distance: any = this.legTransit[k].distance;
             if(this.description.length==0)
               orig = this.address.origin;
             else{
@@ -406,15 +402,19 @@ export class DetailsPage {
             }
             
             if(this.legTransit[k].transMode=="PUJ"){
-              if(distance>4)
-                fare = (8+(distance-4)*1.50);
+              if(distance>4){
+                if(distance-parseInt(distance)>0.49)
+                  fare = 8+((parseInt(distance)-3)*1.50);
+                else
+                  fare = 8+((parseInt(distance)-4)*1.50);
+              }
               else
                 fare = 8;  
 
               this.description.push({
-                distance: parseFloat(this.legTransit[k].distance).toPrecision(2)+ " km\n",
+                distance: parseFloat(this.legTransit[k].distance).toPrecision(3)+ " km\n",
                 time: parseFloat(this.legTransit[k].time.toPrecision(2)) + " min",
-                fare: "P" + parseInt(fare) + ".00",
+                fare: "P" + parseFloat(fare.toPrecision(4)),
                 fare2: '',
                 route: this.legTransit[k].route,
                 from: orig,
@@ -425,18 +425,44 @@ export class DetailsPage {
             else if(this.legTransit[k].transMode=="PUB"){
               
               if(distance>5){
-                fare = (10+(distance-5)*1.75).toPrecision(4);
-                fare2 = (12+(distance-5)*2.35).toPrecision(4);
+                if(distance-parseInt(distance)>0.49){
+                  fare = 10+((parseInt(distance)-4)*1.85);
+                  fare2 = 12+((parseInt(distance)-4)*2.2);
+                }
+                else{
+                  fare = 10+((parseInt(distance)-5)*1.85);
+                  fare2 = 12+((parseInt(distance)-5)*2.2);
+                }
+
+                if(fare-parseInt(fare)<0.13)
+                  fare = parseInt(fare);
+                else if(fare-parseInt(fare)<0.38)
+                  fare = parseInt(fare)+0.25;
+                else if(fare-parseInt(fare)<0.88)
+                  fare = parseInt(fare)+0.50;
+                else
+                  fare = parseInt(fare)+1;
+                
+                console.log(distance);
+                console.log(fare2);
+                if(fare2-parseInt(fare2)<0.13)
+                  fare2 = parseInt(fare2);
+                else if(fare2-parseInt(fare2)<0.38)
+                  fare2 = parseInt(fare2)+0.25;
+                else if(fare2-parseInt(fare2)<0.88)
+                  fare2 = parseInt(fare2)+0.50;
+                else
+                  fare2 = parseInt(fare2)+1;
               }
               else{
-                fare = (10.00).toPrecision(4);
-                fare2 = (12.00).toPrecision(4);             
+                fare = 10;
+                fare2 = 12; 
               }
               this.description.push({
-                distance: parseFloat(this.legTransit[k].distance).toPrecision(2)+ " km\n",
+                distance: parseFloat(this.legTransit[k].distance).toPrecision(3)+ " km\n",
                 time: parseFloat(this.legTransit[k].time.toPrecision(2)) + " min",
-                fare: "Ordinary: P"+ parseInt(fare) + ".00",
-                fare2: "Aircon: P"+ parseInt(fare2)  + ".00",
+                fare: "Ordinary: P"+ parseFloat(fare.toPrecision(4)),
+                fare2: "Aircon: P"+ parseFloat(fare2.toPrecision(4)),
                 route: "Route: " + this.legTransit[k].route,
                 from: orig,
                 to: this.legTransit[k].to
@@ -445,18 +471,18 @@ export class DetailsPage {
             }
             else if(this.legTransit[k].transMode=="TODA"){
               if(distance>1){
-                fare = 9+(distance-1);
-                fare2 = 17+(distance-1);
+                fare = 8.50+(parseInt(distance)-1);
+                fare2 = 17+(parseInt(distance)-1);
               }
               else{
-                fare = 9;
+                fare = 8;
                 fare2 = 17;
               }
               this.description.push({
-                distance: parseFloat(this.legTransit[k].distance).toPrecision(2)+ " km\n",
+                distance: parseFloat(this.legTransit[k].distance).toPrecision(3)+ " km\n",
                 time: parseFloat(this.legTransit[k].time.toPrecision(2)) + " min",
-                fare: "Regular trip: P"+ parseInt(fare) + ".00",
-                fare2: "Special trip: P"+ parseInt(fare2)  + ".00",
+                fare: "Regular trip: P"+ parseFloat(fare.toPrecision(4)),
+                fare2: "Special trip: P"+ parseFloat(fare2.toPrecision(4)),
                 route: "Route: " + this.legTransit[k].route,
                 from: orig,
                 to: this.legTransit[k].to
@@ -525,7 +551,7 @@ export class DetailsPage {
                   fare = this.lrtLine2[x][y];
               }
               this.description.push({
-                distance: parseFloat(this.legTransit[k].distance).toPrecision(2)+ " km\n",
+                distance: parseFloat(this.legTransit[k].distance).toPrecision(3)+ " km\n",
                 time: parseFloat(this.legTransit[k].time.toPrecision(2)) + " min",
                 fare: "P" + fare,
                 fare2: '',

@@ -1,12 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Http, RequestOptions, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { TwitterService } from 'ng2-twitter';
 /*
   Generated class for the RemoteServiceProvider provider.
 
   See https://angular.io/guide/dependency-injection for more info on providers
   and Angular DI.
 */
+
+declare function require(name:string);
+
 @Injectable()
 export class RemoteServiceProvider {
   data: any;
@@ -19,12 +23,43 @@ export class RemoteServiceProvider {
   rbaseUrl;
   baseUrl1;
   baseUrl2;
-  constructor(public http: Http) {
+
+  constructor(public http: Http, private twitter: TwitterService) {
   }
   load(origin, dest){
-    var url = 'http://13.71.136.189:8080/otp/routers/default/plan?fromPlace='+origin+'&toPlace='+dest+'&date=2017/01/09&time=11:00:00&mode=TRANSIT%2CWALK&numItineraries=5&maxWalkDistance=1000&arriveBy=false&wheelchair=false';
+    var url = 'http://13.71.136.189:8080/otp/routers/default/plan?fromPlace='+origin+'&toPlace='+dest+'&date=2017/01/09&time=12:00:00&mode=TRANSIT%2CWALK&numItineraries=5&maxWalkDistance=1000&arriveBy=false&wheelchair=false';
     var response = this.http.get(url).map(res => res.json());
     return response;
+  }
+  getTwitterStatus(){
+    /*var Twit = require('twit')
+
+    var T = new Twit({
+      consumer_key:         'IZ8IT77kPfcpF3L7BZuWdkiXd',
+      consumer_secret:      'rlO4tWDmlujHTHoN3WIUW5AXVM4OtTgCcpE28SBUBn8aDrnsxa',
+      access_token:         '947804321613103104-qxT4wcGGDq6Ejy9ahrkx7uUSbGdymq8',
+      access_token_secret:  '4GsGpqUJjWLu961fPvNf8nDeXxY3JATv5SbLFsM7zhDHD',
+      timeout_ms:           60*1000,  // optional HTTP request timeout to apply to all requests.
+    })
+    T.get('search/tweets', { q: 'MMDA since:2017-01-4', count: 5 }, function(err, data, response) {
+      console.log(data)
+    })*/
+    return this.twitter.get(
+      
+      'https://api.twitter.com/1.1/search/tweets.json?q=MMDA',
+      {
+        count: 10
+      },
+      { 
+        consumerKey: 'IZ8IT77kPfcpF3L7BZuWdkiXd',
+        consumerSecret: 'rlO4tWDmlujHTHoN3WIUW5AXVM4OtTgCcpE28SBUBn8aDrnsxa',
+      },
+      {
+        token: '947804321613103104-qxT4wcGGDq6Ejy9ahrkx7uUSbGdymq8',
+        tokenSecret: '4GsGpqUJjWLu961fPvNf8nDeXxY3JATv5SbLFsM7zhDHD',
+      }
+    )
+      .map(res => res.json());
   }
   /*load(origin, dest){
     this.baseUrl = 'http://192.168.1.6:8080/otp/routers/default/plan?fromPlace='+origin+'&toPlace='+dest+'&date=2017/01/09&time=11:00:00&mode=TRANSIT%2CWALK&numItineraries=5&maxWalkDistance=1000&arriveBy=false&wheelchair=false';
@@ -79,5 +114,6 @@ export class RemoteServiceProvider {
           resolve(this.snap);
         });
     });
-  }*/
+  }
+}*/
 }
