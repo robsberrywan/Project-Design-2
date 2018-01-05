@@ -454,18 +454,35 @@ export class HomePage {
           }
           else if(mode.includes("PUB")){
             mode = "PUB";
-            if(distance>5)
+            let tempFare: any;
+            console.log(distance);
+            if(distance>5){
               if(distance-parseInt(distance)>0.49)
-                fare += 10+((parseInt(distance)-4)*1.85);
+                tempFare = 10+((parseInt(distance)-4)*1.85);
               else
-                fare += 10+((parseInt(distance)-5)*1.85);
+                tempFare = 10+((parseInt(distance)-5)*1.85);
+
+              if(tempFare-parseInt(tempFare)<0.13)
+                fare += parseInt(tempFare);
+              else if(tempFare-parseInt(tempFare)<0.38)
+                fare += parseInt(tempFare)+0.25;
+              else if(tempFare-parseInt(tempFare)<0.88)
+                fare += parseInt(tempFare)+0.50;
+              else
+                fare += parseInt(tempFare)+1;
+              console.log(parseInt(tempFare));
+            }
             else
               fare += 10;
           }
           else if(mode.includes("TODA")){
             mode = "TODA";
-            if(distance>1)
-              fare += 8.50+(parseInt(distance)-1);
+            if(distance>1){
+              if(distance-parseInt(distance)>0.49)
+                fare += 8.50+(parseInt(distance));
+              else
+                fare += 8.50+(parseInt(distance)-1);
+            }
             else
               fare += 8.50;
             console.log("Tryke");
@@ -539,7 +556,7 @@ export class HomePage {
           totaldistance+=distance;
         }
       }
-      totaldistance = parseFloat(totaldistance.toPrecision(3));
+      totaldistance = parseFloat(totaldistance.toPrecision(4));
       walkDistance = parseFloat(walkDistance.toPrecision(2));
       fare = parseFloat(fare.toPrecision(4));
       this.trip.push({
@@ -691,22 +708,44 @@ export class HomePage {
                       let mode: string = leg['routeId'];
                       if(mode.includes("PUJ")){
                         mode = "PUJ";
-                        if(distance>4)
-                          fare += 8+((parseInt(distance)-4)*1.50);
+                        if(distance>4){
+                          if(distance-parseInt(distance)>0.49)
+                            fare += 8+((parseInt(distance)-3)*1.50);
+                          else
+                            fare += 8+((parseInt(distance)-4)*1.50);
+                        }
                         else
                           fare += 8;
                       }
                       else if(mode.includes("PUB")){
                         mode = "PUB";
-                        if(distance>5)
-                          fare += 10+((parseInt(distance)-5)*1.75);
+                        let tempFare: any;
+                        if(distance>5){
+                          if(distance-parseInt(distance)>0.49)
+                            tempFare = 10+((parseInt(distance)-4)*1.85);
+                          else
+                            tempFare = 10+((parseInt(distance)-5)*1.85);
+
+                          if(tempFare-parseInt(tempFare)<0.13)
+                            fare += parseInt(tempFare);
+                          else if(tempFare-parseInt(tempFare)<0.38)
+                            fare += parseInt(tempFare)+0.25;
+                          else if(tempFare-parseInt(tempFare)<0.88)
+                            fare += parseInt(tempFare)+0.50;
+                          else
+                            fare += parseInt(tempFare)+1;
+                        }
                         else
                           fare += 10;
                       }
                       else if(mode.includes("TODA")){
                         mode = "TODA";
-                        if(distance>1)
-                          fare += 8.50+(parseInt(distance)-1);
+                        if(distance>1){
+                          if(distance-parseInt(distance)>0.49)
+                            fare += 8.50+(parseInt(distance));
+                          else
+                            fare += 8.50+(parseInt(distance)-1);
+                        }
                         else
                           fare += 8.50;
                       }
@@ -816,22 +855,44 @@ export class HomePage {
                       let mode: string = leg['routeId'];
                       if(mode.includes("PUJ")){
                         mode = "PUJ";
-                        if(distance>4)
-                          fare += 8+((parseInt(distance)-4)*1.50);
+                        if(distance>4){
+                          if(distance-parseInt(distance)>0.49)
+                            fare += 8+((parseInt(distance)-3)*1.50);
+                          else
+                            fare += 8+((parseInt(distance)-4)*1.50);
+                        }
                         else
                           fare += 8;
                       }
                       else if(mode.includes("PUB")){
                         mode = "PUB";
-                        if(distance>5)
-                          fare += 10+((parseInt(distance)-5)*1.75);
+                        let tempFare: any;
+                        if(distance>5){
+                          if(distance-parseInt(distance)>0.49)
+                            tempFare = 10+((parseInt(distance)-4)*1.85);
+                          else
+                            tempFare = 10+((parseInt(distance)-5)*1.85);
+
+                          if(tempFare-parseInt(tempFare)<0.13)
+                            fare += parseInt(tempFare);
+                          else if(tempFare-parseInt(tempFare)<0.38)
+                            fare += parseInt(tempFare)+0.25;
+                          else if(tempFare-parseInt(tempFare)<0.88)
+                            fare += parseInt(tempFare)+0.50;
+                          else
+                            fare += parseInt(tempFare)+1;
+                        }
                         else
                           fare += 10;
                       }
                       else if(mode.includes("TODA")){
                         mode = "TODA";
-                        if(distance>1)
-                          fare += 8.50+(parseInt(distance)-1);
+                        if(distance>1){
+                          if(distance-parseInt(distance)>0.49)
+                            fare += 8.50+(parseInt(distance));
+                          else
+                            fare += 8.50+(parseInt(distance)-1);
+                        }
                         else
                           fare += 8.50;
                       }
@@ -932,7 +993,6 @@ export class HomePage {
                   lastIndex = data1.itineraries[0].legs.length;
                   transfers = data1.itineraries[0].transfers;
                   time  = data1.itineraries[0].duration;
-                  console.log(lastIndex);
                   for(let i=0; i<data1.itineraries[0].legs.length; i++){
                     let leg = data1.itineraries[0].legs[i];
                     if(leg['mode']=="WALK"){
@@ -962,22 +1022,44 @@ export class HomePage {
                       let mode: string = leg['routeId'];
                       if(mode.includes("PUJ")){
                         mode = "PUJ";
-                        if(distance>4)
-                          fare += 8+((parseInt(distance)-4)*1.50);
+                        if(distance>4){
+                          if(distance-parseInt(distance)>0.49)
+                            fare += 8+((parseInt(distance)-3)*1.50);
+                          else
+                            fare += 8+((parseInt(distance)-4)*1.50);
+                        }
                         else
                           fare += 8;
                       }
                       else if(mode.includes("PUB")){
                         mode = "PUB";
-                        if(distance>5)
-                          fare += 10+((parseInt(distance)-5)*1.75);
+                        let tempFare: any;
+                        if(distance>5){
+                          if(distance-parseInt(distance)>0.49)
+                            tempFare = 10+((parseInt(distance)-4)*1.85);
+                          else
+                            tempFare = 10+((parseInt(distance)-5)*1.85);
+
+                          if(tempFare-parseInt(tempFare)<0.13)
+                            fare += parseInt(tempFare);
+                          else if(tempFare-parseInt(tempFare)<0.38)
+                            fare += parseInt(tempFare)+0.25;
+                          else if(tempFare-parseInt(tempFare)<0.88)
+                            fare += parseInt(tempFare)+0.50;
+                          else
+                            fare += parseInt(tempFare)+1;
+                        }
                         else
                           fare += 10;
                       }
                       else if(mode.includes("TODA")){
                         mode = "TODA";
-                        if(distance>1)
-                          fare += 8.50+(parseInt(distance)-1);
+                        if(distance>1){
+                          if(distance-parseInt(distance)>0.49)
+                            fare += 8.50+(parseInt(distance));
+                          else
+                            fare += 8.50+(parseInt(distance)-1);
+                        }
                         else
                           fare += 8.50;
                       }
@@ -1087,22 +1169,44 @@ export class HomePage {
                       let mode: string = leg['routeId'];
                       if(mode.includes("PUJ")){
                         mode = "PUJ";
-                        if(distance>4)
-                          fare += 8+((distance-4)*1.50);
+                        if(distance>4){
+                          if(distance-parseInt(distance)>0.49)
+                            fare += 8+((parseInt(distance)-3)*1.50);
+                          else
+                            fare += 8+((parseInt(distance)-4)*1.50);
+                        }
                         else
                           fare += 8;
                       }
                       else if(mode.includes("PUB")){
                         mode = "PUB";
-                        if(distance>5)
-                          fare += 10+((distance-5)*1.75);
+                        let tempFare: any;
+                        if(distance>5){
+                          if(distance-parseInt(distance)>0.49)
+                            tempFare = 10+((parseInt(distance)-4)*1.85);
+                          else
+                            tempFare = 10+((parseInt(distance)-5)*1.85);
+
+                          if(tempFare-parseInt(tempFare)<0.13)
+                            fare += parseInt(tempFare);
+                          else if(tempFare-parseInt(tempFare)<0.38)
+                            fare += parseInt(tempFare)+0.25;
+                          else if(tempFare-parseInt(tempFare)<0.88)
+                            fare += parseInt(tempFare)+0.50;
+                          else
+                            fare += parseInt(tempFare)+1;
+                        }
                         else
                           fare += 10;
                       }
                       else if(mode.includes("TODA")){
                         mode = "TODA";
-                        if(distance>1)
-                          fare += 8.50+(distance-1);
+                        if(distance>1){
+                          if(distance-parseInt(distance)>0.49)
+                            fare += 8.50+(parseInt(distance));
+                          else
+                            fare += 8.50+(parseInt(distance)-1);
+                        }
                         else
                           fare += 8.50;
                       }

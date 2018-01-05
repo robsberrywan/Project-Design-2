@@ -372,7 +372,7 @@ export class DetailsPage {
           if((this.legTransit[k].tripID==this.trip[this.index].id)&&(this.legTransit[k].seq==i)){
             fare = 0;
             fare2 = 0;
-            let distance: any = parseFloat(this.legTransit[k].distance).toPrecision(2);
+            let distance: any = this.legTransit[k].distance;
             if(this.description.length==0)
               orig = this.address.origin;
             else{
@@ -425,7 +425,15 @@ export class DetailsPage {
             else if(this.legTransit[k].transMode=="PUB"){
               
               if(distance>5){
-                fare = 10+((parseInt(distance)-5)*1.85);
+                if(distance-parseInt(distance)>0.49){
+                  fare = 10+((parseInt(distance)-4)*1.85);
+                  fare2 = 12+((parseInt(distance)-4)*2.2);
+                }
+                else{
+                  fare = 10+((parseInt(distance)-5)*1.85);
+                  fare2 = 12+((parseInt(distance)-5)*2.2);
+                }
+
                 if(fare-parseInt(fare)<0.13)
                   fare = parseInt(fare);
                 else if(fare-parseInt(fare)<0.38)
@@ -434,9 +442,7 @@ export class DetailsPage {
                   fare = parseInt(fare)+0.50;
                 else
                   fare = parseInt(fare)+1;
-                  
                 
-                fare2 = 12+((parseInt(distance)-5)*2.2);
                 console.log(distance);
                 console.log(fare2);
                 if(fare2-parseInt(fare2)<0.13)
@@ -453,7 +459,7 @@ export class DetailsPage {
                 fare2 = 12; 
               }
               this.description.push({
-                distance: parseFloat(this.legTransit[k].distance).toPrecision(2)+ " km\n",
+                distance: parseFloat(this.legTransit[k].distance).toPrecision(3)+ " km\n",
                 time: parseFloat(this.legTransit[k].time.toPrecision(2)) + " min",
                 fare: "Ordinary: P"+ parseFloat(fare.toPrecision(4)),
                 fare2: "Aircon: P"+ parseFloat(fare2.toPrecision(4)),
@@ -473,7 +479,7 @@ export class DetailsPage {
                 fare2 = 17;
               }
               this.description.push({
-                distance: parseFloat(this.legTransit[k].distance).toPrecision(2)+ " km\n",
+                distance: parseFloat(this.legTransit[k].distance).toPrecision(3)+ " km\n",
                 time: parseFloat(this.legTransit[k].time.toPrecision(2)) + " min",
                 fare: "Regular trip: P"+ parseFloat(fare.toPrecision(4)),
                 fare2: "Special trip: P"+ parseFloat(fare2.toPrecision(4)),
@@ -545,7 +551,7 @@ export class DetailsPage {
                   fare = this.lrtLine2[x][y];
               }
               this.description.push({
-                distance: parseFloat(this.legTransit[k].distance).toPrecision(2)+ " km\n",
+                distance: parseFloat(this.legTransit[k].distance).toPrecision(3)+ " km\n",
                 time: parseFloat(this.legTransit[k].time.toPrecision(2)) + " min",
                 fare: "P" + fare,
                 fare2: '',
