@@ -489,15 +489,9 @@ export class HomePage {
             mode = "TODA";
             if(distance>1){
               if(distance-parseInt(distance)>0.49)
-<<<<<<< HEAD
                 fare += 8.50+(parseInt(distance));
               else
                 fare += 8.50+(parseInt(distance)-1);
-=======
-              fare += 8.50+(parseInt(distance));
-              else
-              fare += 8.50+(parseInt(distance)-1);
->>>>>>> 10ef9ce478f66c11394f08da6c2f41d872546608
             }
             else
               fare += 8.50;
