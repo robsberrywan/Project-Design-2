@@ -27,7 +27,7 @@ export class RemoteServiceProvider {
   constructor(public http: Http, private twitter: TwitterService) {
   }
   load(origin, dest){
-    var url = 'http://13.71.136.189:8080/otp/routers/default/plan?fromPlace='+origin+'&toPlace='+dest+'&date=2017/01/09&time=11:00:00&mode=TRANSIT%2CWALK&numItineraries=5&maxWalkDistance=1000&arriveBy=false&wheelchair=false';
+    var url = 'http://13.71.136.189:8080/otp/routers/default/plan?fromPlace='+origin+'&toPlace='+dest+'&date=2017/01/09&time=12:00:00&mode=TRANSIT%2CWALK&numItineraries=5&maxWalkDistance=1000&arriveBy=false&wheelchair=false';
     var response = this.http.get(url).map(res => res.json());
     return response;
   }
@@ -114,5 +114,6 @@ export class RemoteServiceProvider {
           resolve(this.snap);
         });
     });
-  }*/
+  }
+}*/
 }

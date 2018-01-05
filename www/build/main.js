@@ -125,7 +125,7 @@ var LoginPage = (function () {
     };
     LoginPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-login',template:/*ion-inline-start:"/home/robrobirobin/Documents/backup/project-design-2/src/pages/login/login.html"*/'<ion-content padding class="startLogin">\n\n	<br /><br />\n\n	<div text-center>\n\n		<ion-img width="120" height="120" src="./assets/imgs/login.png"></ion-img>\n\n	</div>\n\n	<br /><br />\n\n	<ion-list>\n\n		<ion-item>\n\n			<ion-label floating>Email</ion-label>\n\n			<ion-input class="input" type="text" [(ngModel)]="user.email"></ion-input>\n\n		</ion-item>\n\n		<ion-item>\n\n			<ion-label floating>Password</ion-label>\n\n			<ion-input  type="password" [(ngModel)]="user.password"></ion-input>\n\n		</ion-item>\n\n	</ion-list>\n\n	<div text-center>\n\n  		<button color=primary (click)="signIn(user);" ion-button block>Sign In</button>\n\n	</div>\n\n	<br />\n\n	<div text-center>\n\n		<ion-icon name="ios-arrow-dropdown-circle" class="or"></ion-icon>\n\n	</div>\n\n	<br />\n\n	<div text-center>\n\n		<ion-label>Sign In with:</ion-label>\n\n		<button ion-button (click)="facebooklogin()"><ion-icon name="logo-facebook"></ion-icon></button>\n\n		<button ion-button (click)="googlelogin()"><ion-icon name="logo-googleplus"></ion-icon></button>\n\n	</div>\n\n	<br/><br/><p (click)="register();"><u>Don\'t have an account?</u></p>\n\n</ion-content>\n\n'/*ion-inline-end:"/home/robrobirobin/Documents/backup/project-design-2/src/pages/login/login.html"*/
+            selector: 'page-login',template:/*ion-inline-start:"C:\Users\Mark Samson\Documents\GitHub\Project-design-2\src\pages\login\login.html"*/'<ion-content padding class="startLogin">\n\n	<br /><br />\n\n	<div text-center>\n\n		<ion-img width="120" height="120" src="./assets/imgs/login.png"></ion-img>\n\n	</div>\n\n	<br /><br />\n\n	<ion-list>\n\n		<ion-item>\n\n			<ion-label floating>Email</ion-label>\n\n			<ion-input class="input" type="text" [(ngModel)]="user.email"></ion-input>\n\n		</ion-item>\n\n		<ion-item>\n\n			<ion-label floating>Password</ion-label>\n\n			<ion-input  type="password" [(ngModel)]="user.password"></ion-input>\n\n		</ion-item>\n\n	</ion-list>\n\n	<div text-center>\n\n  		<button color=primary (click)="signIn(user);" ion-button block>Sign In</button>\n\n	</div>\n\n	<br />\n\n	<div text-center>\n\n		<ion-icon name="ios-arrow-dropdown-circle" class="or"></ion-icon>\n\n	</div>\n\n	<br />\n\n	<div text-center>\n\n		<ion-label>Sign In with:</ion-label>\n\n		<button ion-button (click)="facebooklogin()"><ion-icon name="logo-facebook"></ion-icon></button>\n\n		<button ion-button (click)="googlelogin()"><ion-icon name="logo-googleplus"></ion-icon></button>\n\n	</div>\n\n	<br/><br/><p (click)="register();"><u>Don\'t have an account?</u></p>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Mark Samson\Documents\GitHub\Project-design-2\src\pages\login\login.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_4_angularfire2_auth__["a" /* AngularFireAuth */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_5__ionic_native_google_plus__["a" /* GooglePlus */], __WEBPACK_IMPORTED_MODULE_7__ionic_native_facebook__["a" /* Facebook */]])
     ], LoginPage);
@@ -294,7 +294,7 @@ var RegisterPage = (function () {
     };
     RegisterPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-register',template:/*ion-inline-start:"/home/robrobirobin/Documents/backup/project-design-2/src/pages/register/register.html"*/'<ion-content padding>\n\n	<div text-right>\n\n		<ion-icon name="heart" class="reglogo"></ion-icon>\n\n	</div>\n\n	<ion-list>\n\n		<ion-item>\n\n			<ion-label floating>Email</ion-label>\n\n			<ion-input type="text" [(ngModel)]="user.email"></ion-input>\n\n		</ion-item>\n\n		<ion-item>\n\n			<ion-label floating>Password</ion-label>\n\n			<ion-input type="password" [(ngModel)]="user.password"></ion-input>\n\n		</ion-item>\n\n		<ion-item>\n\n			<ion-label floating>Re-type Password</ion-label>\n\n			<ion-input type="password" [(ngModel)]="cpass"></ion-input>\n\n		</ion-item>\n\n	</ion-list>\n\n	<div text-center>\n\n  		<button color=dark ion-button round (click)="signUp(user, cpass);">Sign me up!</button>\n\n	</div>\n\n	<br/><br/><br/><br/><p (click)="toSignIn();">Already have an account? <u>Sign In</u></p>\n\n</ion-content>'/*ion-inline-end:"/home/robrobirobin/Documents/backup/project-design-2/src/pages/register/register.html"*/
+            selector: 'page-register',template:/*ion-inline-start:"C:\Users\Mark Samson\Documents\GitHub\Project-design-2\src\pages\register\register.html"*/'<ion-content padding>\n\n	<div text-right>\n\n		<ion-icon name="heart" class="reglogo"></ion-icon>\n\n	</div>\n\n	<ion-list>\n\n		<ion-item>\n\n			<ion-label floating>Email</ion-label>\n\n			<ion-input type="text" [(ngModel)]="user.email"></ion-input>\n\n		</ion-item>\n\n		<ion-item>\n\n			<ion-label floating>Password</ion-label>\n\n			<ion-input type="password" [(ngModel)]="user.password"></ion-input>\n\n		</ion-item>\n\n		<ion-item>\n\n			<ion-label floating>Re-type Password</ion-label>\n\n			<ion-input type="password" [(ngModel)]="cpass"></ion-input>\n\n		</ion-item>\n\n	</ion-list>\n\n	<div text-center>\n\n  		<button color=dark ion-button round (click)="signUp(user, cpass);">Sign me up!</button>\n\n	</div>\n\n	<br/><br/><br/><br/><p (click)="toSignIn();">Already have an account? <u>Sign In</u></p>\n\n</ion-content>'/*ion-inline-end:"C:\Users\Mark Samson\Documents\GitHub\Project-design-2\src\pages\register\register.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__["a" /* AngularFireAuth */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
     ], RegisterPage);
@@ -754,11 +754,23 @@ var HomePage = (function () {
                     }
                     else if (mode.includes("PUB")) {
                         mode = "PUB";
-                        if (distance > 5)
+                        var tempFare = void 0;
+                        console.log(distance);
+                        if (distance > 5) {
                             if (distance - parseInt(distance) > 0.49)
-                                fare += 10 + ((parseInt(distance) - 4) * 1.85);
+                                tempFare = 10 + ((parseInt(distance) - 4) * 1.85);
                             else
-                                fare += 10 + ((parseInt(distance) - 5) * 1.85);
+                                tempFare = 10 + ((parseInt(distance) - 5) * 1.85);
+                            if (tempFare - parseInt(tempFare) < 0.13)
+                                fare += parseInt(tempFare);
+                            else if (tempFare - parseInt(tempFare) < 0.38)
+                                fare += parseInt(tempFare) + 0.25;
+                            else if (tempFare - parseInt(tempFare) < 0.88)
+                                fare += parseInt(tempFare) + 0.50;
+                            else
+                                fare += parseInt(tempFare) + 1;
+                            console.log(parseInt(tempFare));
+                        }
                         else
                             fare += 10;
                     }
@@ -842,7 +854,7 @@ var HomePage = (function () {
                     totaldistance += distance;
                 }
             }
-            totaldistance = parseFloat(totaldistance.toPrecision(3));
+            totaldistance = parseFloat(totaldistance.toPrecision(4));
             walkDistance = parseFloat(walkDistance.toPrecision(2));
             fare = parseFloat(fare.toPrecision(4));
             this.trip.push({
@@ -989,22 +1001,43 @@ var HomePage = (function () {
                                 var mode = leg['routeId'];
                                 if (mode.includes("PUJ")) {
                                     mode = "PUJ";
-                                    if (distance > 4)
-                                        fare += 8 + ((parseInt(distance) - 4) * 1.50);
+                                    if (distance > 4) {
+                                        if (distance - parseInt(distance) > 0.49)
+                                            fare += 8 + ((parseInt(distance) - 3) * 1.50);
+                                        else
+                                            fare += 8 + ((parseInt(distance) - 4) * 1.50);
+                                    }
                                     else
                                         fare += 8;
                                 }
                                 else if (mode.includes("PUB")) {
                                     mode = "PUB";
-                                    if (distance > 5)
-                                        fare += 10 + ((parseInt(distance) - 5) * 1.75);
+                                    var tempFare = void 0;
+                                    if (distance > 5) {
+                                        if (distance - parseInt(distance) > 0.49)
+                                            tempFare = 10 + ((parseInt(distance) - 4) * 1.85);
+                                        else
+                                            tempFare = 10 + ((parseInt(distance) - 5) * 1.85);
+                                        if (tempFare - parseInt(tempFare) < 0.13)
+                                            fare += parseInt(tempFare);
+                                        else if (tempFare - parseInt(tempFare) < 0.38)
+                                            fare += parseInt(tempFare) + 0.25;
+                                        else if (tempFare - parseInt(tempFare) < 0.88)
+                                            fare += parseInt(tempFare) + 0.50;
+                                        else
+                                            fare += parseInt(tempFare) + 1;
+                                    }
                                     else
                                         fare += 10;
                                 }
                                 else if (mode.includes("TODA")) {
                                     mode = "TODA";
-                                    if (distance > 1)
-                                        fare += 8.50 + (parseInt(distance) - 1);
+                                    if (distance > 1) {
+                                        if (distance - parseInt(distance) > 0.49)
+                                            fare += 8.50 + (parseInt(distance));
+                                        else
+                                            fare += 8.50 + (parseInt(distance) - 1);
+                                    }
                                     else
                                         fare += 8.50;
                                 }
@@ -1111,22 +1144,43 @@ var HomePage = (function () {
                                 var mode = leg['routeId'];
                                 if (mode.includes("PUJ")) {
                                     mode = "PUJ";
-                                    if (distance > 4)
-                                        fare += 8 + ((parseInt(distance) - 4) * 1.50);
+                                    if (distance > 4) {
+                                        if (distance - parseInt(distance) > 0.49)
+                                            fare += 8 + ((parseInt(distance) - 3) * 1.50);
+                                        else
+                                            fare += 8 + ((parseInt(distance) - 4) * 1.50);
+                                    }
                                     else
                                         fare += 8;
                                 }
                                 else if (mode.includes("PUB")) {
                                     mode = "PUB";
-                                    if (distance > 5)
-                                        fare += 10 + ((parseInt(distance) - 5) * 1.75);
+                                    var tempFare = void 0;
+                                    if (distance > 5) {
+                                        if (distance - parseInt(distance) > 0.49)
+                                            tempFare = 10 + ((parseInt(distance) - 4) * 1.85);
+                                        else
+                                            tempFare = 10 + ((parseInt(distance) - 5) * 1.85);
+                                        if (tempFare - parseInt(tempFare) < 0.13)
+                                            fare += parseInt(tempFare);
+                                        else if (tempFare - parseInt(tempFare) < 0.38)
+                                            fare += parseInt(tempFare) + 0.25;
+                                        else if (tempFare - parseInt(tempFare) < 0.88)
+                                            fare += parseInt(tempFare) + 0.50;
+                                        else
+                                            fare += parseInt(tempFare) + 1;
+                                    }
                                     else
                                         fare += 10;
                                 }
                                 else if (mode.includes("TODA")) {
                                     mode = "TODA";
-                                    if (distance > 1)
-                                        fare += 8.50 + (parseInt(distance) - 1);
+                                    if (distance > 1) {
+                                        if (distance - parseInt(distance) > 0.49)
+                                            fare += 8.50 + (parseInt(distance));
+                                        else
+                                            fare += 8.50 + (parseInt(distance) - 1);
+                                    }
                                     else
                                         fare += 8.50;
                                 }
@@ -1225,7 +1279,6 @@ var HomePage = (function () {
                         lastIndex_2 = data1.itineraries[0].legs.length;
                         transfers = data1.itineraries[0].transfers;
                         time = data1.itineraries[0].duration;
-                        console.log(lastIndex_2);
                         for (var i = 0; i < data1.itineraries[0].legs.length; i++) {
                             var leg = data1.itineraries[0].legs[i];
                             if (leg['mode'] == "WALK") {
@@ -1255,22 +1308,43 @@ var HomePage = (function () {
                                 var mode = leg['routeId'];
                                 if (mode.includes("PUJ")) {
                                     mode = "PUJ";
-                                    if (distance > 4)
-                                        fare += 8 + ((parseInt(distance) - 4) * 1.50);
+                                    if (distance > 4) {
+                                        if (distance - parseInt(distance) > 0.49)
+                                            fare += 8 + ((parseInt(distance) - 3) * 1.50);
+                                        else
+                                            fare += 8 + ((parseInt(distance) - 4) * 1.50);
+                                    }
                                     else
                                         fare += 8;
                                 }
                                 else if (mode.includes("PUB")) {
                                     mode = "PUB";
-                                    if (distance > 5)
-                                        fare += 10 + ((parseInt(distance) - 5) * 1.75);
+                                    var tempFare = void 0;
+                                    if (distance > 5) {
+                                        if (distance - parseInt(distance) > 0.49)
+                                            tempFare = 10 + ((parseInt(distance) - 4) * 1.85);
+                                        else
+                                            tempFare = 10 + ((parseInt(distance) - 5) * 1.85);
+                                        if (tempFare - parseInt(tempFare) < 0.13)
+                                            fare += parseInt(tempFare);
+                                        else if (tempFare - parseInt(tempFare) < 0.38)
+                                            fare += parseInt(tempFare) + 0.25;
+                                        else if (tempFare - parseInt(tempFare) < 0.88)
+                                            fare += parseInt(tempFare) + 0.50;
+                                        else
+                                            fare += parseInt(tempFare) + 1;
+                                    }
                                     else
                                         fare += 10;
                                 }
                                 else if (mode.includes("TODA")) {
                                     mode = "TODA";
-                                    if (distance > 1)
-                                        fare += 8.50 + (parseInt(distance) - 1);
+                                    if (distance > 1) {
+                                        if (distance - parseInt(distance) > 0.49)
+                                            fare += 8.50 + (parseInt(distance));
+                                        else
+                                            fare += 8.50 + (parseInt(distance) - 1);
+                                    }
                                     else
                                         fare += 8.50;
                                 }
@@ -1377,22 +1451,43 @@ var HomePage = (function () {
                                 var mode = leg['routeId'];
                                 if (mode.includes("PUJ")) {
                                     mode = "PUJ";
-                                    if (distance > 4)
-                                        fare += 8 + ((distance - 4) * 1.50);
+                                    if (distance > 4) {
+                                        if (distance - parseInt(distance) > 0.49)
+                                            fare += 8 + ((parseInt(distance) - 3) * 1.50);
+                                        else
+                                            fare += 8 + ((parseInt(distance) - 4) * 1.50);
+                                    }
                                     else
                                         fare += 8;
                                 }
                                 else if (mode.includes("PUB")) {
                                     mode = "PUB";
-                                    if (distance > 5)
-                                        fare += 10 + ((distance - 5) * 1.75);
+                                    var tempFare = void 0;
+                                    if (distance > 5) {
+                                        if (distance - parseInt(distance) > 0.49)
+                                            tempFare = 10 + ((parseInt(distance) - 4) * 1.85);
+                                        else
+                                            tempFare = 10 + ((parseInt(distance) - 5) * 1.85);
+                                        if (tempFare - parseInt(tempFare) < 0.13)
+                                            fare += parseInt(tempFare);
+                                        else if (tempFare - parseInt(tempFare) < 0.38)
+                                            fare += parseInt(tempFare) + 0.25;
+                                        else if (tempFare - parseInt(tempFare) < 0.88)
+                                            fare += parseInt(tempFare) + 0.50;
+                                        else
+                                            fare += parseInt(tempFare) + 1;
+                                    }
                                     else
                                         fare += 10;
                                 }
                                 else if (mode.includes("TODA")) {
                                     mode = "TODA";
-                                    if (distance > 1)
-                                        fare += 8.50 + (distance - 1);
+                                    if (distance > 1) {
+                                        if (distance - parseInt(distance) > 0.49)
+                                            fare += 8.50 + (parseInt(distance));
+                                        else
+                                            fare += 8.50 + (parseInt(distance) - 1);
+                                    }
                                     else
                                         fare += 8.50;
                                 }
@@ -1500,7 +1595,7 @@ var HomePage = (function () {
     ], HomePage.prototype, "mapElement", void 0);
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"/home/robrobirobin/Documents/backup/project-design-2/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar color="primary">\n    <ion-grid no-padding no-margin>\n      <ion-row>\n        <ion-col col-2>\n          <button ion-button menuToggle>\n            <ion-icon name="menu"></ion-icon>\n          </button>\n        </ion-col>\n      <ion-col col-98>\n        <ion-row>\n          <ion-col>\n            <ion-searchbar placeholder="Origin" type="text" (ionInput)="showAddress1()" (ionFocus)="checkFocus(1)" [(ngModel)]="address.origin"></ion-searchbar>\n          </ion-col>\n        </ion-row>\n        <ion-row>\n          <ion-col>\n            <ion-searchbar placeholder="Destination" type="text" (ionInput)="showAddress2()" (ionFocus)="checkFocus(2)" [(ngModel)]="address.destination"></ion-searchbar>\n          </ion-col>\n        </ion-row>\n        <ion-row>\n          <ion-col text-center no-padding>\n            <button color=dark ion-button block (click)="findRoute(address)">GO</button>\n          </ion-col>\n        </ion-row>\n      </ion-col>\n    </ion-row>\n    </ion-grid>\n  </ion-navbar>\n</ion-header>\n\n<ion-menu [content]="content">\n  <ion-header>\n    <ion-navbar>\n      <button ion-button menuToggle icon-only class="menu-button" >\n        <ion-icon name=\'menu\'></ion-icon>\n      </button>\n      <ion-title>Menus</ion-title>\n    </ion-navbar>\n  </ion-header>\n  <ion-content>\n    <ion-list>\n      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n        {{ p.title }}\n      </button>\n  </ion-list>\n  </ion-content>\n</ion-menu>\n\n<ion-content>\n    <div>\n      <ion-list [hidden]="autocompleteItems1.length == 0">\n        <ion-item class="limit-item" *ngFor="let item1 of autocompleteItems1" tappable (click)="selectOrigin(item1)">\n          {{ item1 }}\n        </ion-item>\n      </ion-list>\n      <ion-list [hidden]="autocompleteItems2.length == 0">\n        <ion-item class="limit-item" *ngFor="let item2 of autocompleteItems2" tappable (click)="selectDest(item2)">\n          {{ item2 }}\n        </ion-item>\n      </ion-list>\n    </div>\n    <div [hidden]="!showMap" #map id="map"></div>\n    <div [hidden]="!showResults" class="results">\n      <div>\n        <ion-list scrollable=true>\n            <ion-item>\n                <ion-toolbar>\n                    <ion-segment color=primary>\n                        <ion-segment-button value="lessfare" (click)="sortFare()">\n                            <!-- <ion-img width="20" height="20" src="./assets/imgs/lessfare.png">Less Fare</ion-img> -->\n                            Less fare\n                        </ion-segment-button>\n                        <ion-segment-button value="lesswalk" (click)="sortWalk()">\n                            <!-- <ion-img width="20" height="20" src="./assets/imgs/lesswalk.png">Less Walk</ion-img> -->\n                            Less walk\n                        </ion-segment-button>\n                        <ion-segment-button value="lesstransfer" (click)="sortTransfer()">\n                            Less transfer\n                        </ion-segment-button>\n                        <ion-segment-button value="lesstime" (click)="sortTime()">\n                            <!-- <ion-img width="20" height="20" src="./assets/imgs/roundtrip.png">Round-trip</ion-img> -->\n                            Less time\n                        </ion-segment-button>\n                    </ion-segment>\n                </ion-toolbar>\n            </ion-item>\n            <ion-list>\n                <ion-item class="opt" text-wrap *ngFor="let t of trip; let i = index" tappable (click)="seeDetails(i)">\n                    <ion-list-header class="title">\n                        Route #{{ t.id+1 }}\n                    </ion-list-header>\n                    <p item-right>{{ t.totalTime }} min</p>\n                    <p>Transfers: {{ t.transfer }}</p>\n                    <p>Fare: P{{ t.fare }}</p>\n                    <p>Distance: {{ t.totaldistance }} km</p>\n                    <p>Walk, about {{ t.totalWalkDistance }} km</p>\n                    <p [hidden]="!t.roundtrip">This is a round-trip feature. This will direct you to the nearest terminal.</p>\n                </ion-item>\n            </ion-list>\n        </ion-list>\n        <button class="close-button" color=dark ion-button block (click)="close()">Close</button>\n      </div>\n    </div>\n</ion-content>\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>'/*ion-inline-end:"/home/robrobirobin/Documents/backup/project-design-2/src/pages/home/home.html"*/,
+            selector: 'page-home',template:/*ion-inline-start:"C:\Users\Mark Samson\Documents\GitHub\Project-design-2\src\pages\home\home.html"*/'<ion-header>\n\n  <ion-navbar color="primary">\n\n    <ion-grid no-padding no-margin>\n\n      <ion-row>\n\n        <ion-col col-2>\n\n          <button ion-button menuToggle>\n\n            <ion-icon name="menu"></ion-icon>\n\n          </button>\n\n        </ion-col>\n\n      <ion-col col-98>\n\n        <ion-row>\n\n          <ion-col>\n\n            <ion-searchbar placeholder="Origin" type="text" (ionInput)="showAddress1()" (ionFocus)="checkFocus(1)" [(ngModel)]="address.origin"></ion-searchbar>\n\n          </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col>\n\n            <ion-searchbar placeholder="Destination" type="text" (ionInput)="showAddress2()" (ionFocus)="checkFocus(2)" [(ngModel)]="address.destination"></ion-searchbar>\n\n          </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col text-center no-padding>\n\n            <button color=dark ion-button block (click)="findRoute(address)">GO</button>\n\n          </ion-col>\n\n        </ion-row>\n\n      </ion-col>\n\n    </ion-row>\n\n    </ion-grid>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-menu [content]="content">\n\n  <ion-header>\n\n    <ion-navbar>\n\n      <button ion-button menuToggle icon-only class="menu-button" >\n\n        <ion-icon name=\'menu\'></ion-icon>\n\n      </button>\n\n      <ion-title>Menus</ion-title>\n\n    </ion-navbar>\n\n  </ion-header>\n\n  <ion-content>\n\n    <ion-list>\n\n      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n\n        {{ p.title }}\n\n      </button>\n\n  </ion-list>\n\n  </ion-content>\n\n</ion-menu>\n\n\n\n<ion-content>\n\n    <div>\n\n      <ion-list [hidden]="autocompleteItems1.length == 0">\n\n        <ion-item class="limit-item" *ngFor="let item1 of autocompleteItems1" tappable (click)="selectOrigin(item1)">\n\n          {{ item1 }}\n\n        </ion-item>\n\n      </ion-list>\n\n      <ion-list [hidden]="autocompleteItems2.length == 0">\n\n        <ion-item class="limit-item" *ngFor="let item2 of autocompleteItems2" tappable (click)="selectDest(item2)">\n\n          {{ item2 }}\n\n        </ion-item>\n\n      </ion-list>\n\n    </div>\n\n    <div [hidden]="!showMap" #map id="map"></div>\n\n    <div [hidden]="!showResults" class="results">\n\n      <div>\n\n        <ion-list scrollable=true>\n\n            <ion-item>\n\n                <ion-toolbar>\n\n                    <ion-segment color=primary>\n\n                        <ion-segment-button value="lessfare" (click)="sortFare()">\n\n                            <!-- <ion-img width="20" height="20" src="./assets/imgs/lessfare.png">Less Fare</ion-img> -->\n\n                            Less fare\n\n                        </ion-segment-button>\n\n                        <ion-segment-button value="lesswalk" (click)="sortWalk()">\n\n                            <!-- <ion-img width="20" height="20" src="./assets/imgs/lesswalk.png">Less Walk</ion-img> -->\n\n                            Less walk\n\n                        </ion-segment-button>\n\n                        <ion-segment-button value="lesstransfer" (click)="sortTransfer()">\n\n                            Less transfer\n\n                        </ion-segment-button>\n\n                        <ion-segment-button value="lesstime" (click)="sortTime()">\n\n                            <!-- <ion-img width="20" height="20" src="./assets/imgs/roundtrip.png">Round-trip</ion-img> -->\n\n                            Less time\n\n                        </ion-segment-button>\n\n                    </ion-segment>\n\n                </ion-toolbar>\n\n            </ion-item>\n\n            <ion-list>\n\n                <ion-item class="opt" text-wrap *ngFor="let t of trip; let i = index" tappable (click)="seeDetails(i)">\n\n                    <ion-list-header class="title">\n\n                        Route #{{ t.id+1 }}\n\n                    </ion-list-header>\n\n                    <p item-right>{{ t.totalTime }} min</p>\n\n                    <p>Transfers: {{ t.transfer }}</p>\n\n                    <p>Fare: P{{ t.fare }}</p>\n\n                    <p>Distance: {{ t.totaldistance }} km</p>\n\n                    <p>Walk, about {{ t.totalWalkDistance }} km</p>\n\n                    <p [hidden]="!t.roundtrip">This is a round-trip feature. This will direct you to the nearest terminal.</p>\n\n                </ion-item>\n\n            </ion-list>\n\n        </ion-list>\n\n        <button class="close-button" color=dark ion-button block (click)="close()">Close</button>\n\n      </div>\n\n    </div>\n\n</ion-content>\n\n\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>'/*ion-inline-end:"C:\Users\Mark Samson\Documents\GitHub\Project-design-2\src\pages\home\home.html"*/,
             providers: [__WEBPACK_IMPORTED_MODULE_4__providers_remote_service_remote_service__["a" /* RemoteServiceProvider */]]
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__ionic_native_geolocation__["a" /* Geolocation */],
@@ -1547,7 +1642,7 @@ var RemoteServiceProvider = (function () {
         this.twitter = twitter;
     }
     RemoteServiceProvider.prototype.load = function (origin, dest) {
-        var url = 'http://13.71.136.189:8080/otp/routers/default/plan?fromPlace=' + origin + '&toPlace=' + dest + '&date=2017/01/09&time=11:00:00&mode=TRANSIT%2CWALK&numItineraries=5&maxWalkDistance=1000&arriveBy=false&wheelchair=false';
+        var url = 'http://13.71.136.189:8080/otp/routers/default/plan?fromPlace=' + origin + '&toPlace=' + dest + '&date=2017/01/09&time=12:00:00&mode=TRANSIT%2CWALK&numItineraries=5&maxWalkDistance=1000&arriveBy=false&wheelchair=false';
         var response = this.http.get(url).map(function (res) { return res.json(); });
         return response;
     };
@@ -1582,6 +1677,61 @@ var RemoteServiceProvider = (function () {
     return RemoteServiceProvider;
 }());
 
+/*load(origin, dest){
+  this.baseUrl = 'http://192.168.1.6:8080/otp/routers/default/plan?fromPlace='+origin+'&toPlace='+dest+'&date=2017/01/09&time=11:00:00&mode=TRANSIT%2CWALK&numItineraries=5&maxWalkDistance=1000&arriveBy=false&wheelchair=false';
+  if (this.data) {
+    for (var entry in this.data) delete this.data[entry];
+    return Promise.resolve(this.data);
+  }
+  let opt: RequestOptions;
+  let myHeaders: Headers = new Headers;
+
+  myHeaders.set('Accept', 'application/json');
+  myHeaders.append('Content-type', 'application/json');
+  opt = new RequestOptions({
+    headers: myHeaders
+  })
+  return new Promise(resolve => {
+    this.http.get(this.baseUrl, opt)
+      .map(res => res.json())
+      .subscribe(data => {
+        this.data = data.plan;
+        resolve(this.data);
+      });
+  });
+}
+runSnapToRoad(path) {
+  let url: any;
+  url= 'https://roads.googleapis.com/v1/snapToRoads?path=';
+  for (let i = 0; i < path.length; i++) {
+    if(i==0)
+      url= url + path[i].latitude + "," + path[i].longitude ;
+    else
+      url= url + '|' + path[i].latitude + "," + path[i].longitude ;
+  }
+  url = url + '&interpolate=true&key=AIzaSyCEGIORWkWAkATmL3elnWiGD3SnVCYQzyU';
+
+  if (this.snap) {
+    return Promise.resolve(this.snap);
+  }
+  let opt: RequestOptions;
+  let myHeaders: Headers = new Headers;
+
+  myHeaders.set('Accept', 'application/json');
+  myHeaders.append('Content-type', 'application/json');
+  opt = new RequestOptions({
+    headers: myHeaders
+  })
+  return new Promise(resolve => {
+    this.http.get(url, opt)
+      .map(res => res.json())
+      .subscribe(snap => {
+        this.snap = snap;
+        resolve(this.snap);
+      });
+  });
+}
+}*/
 //# sourceMappingURL=remote-service.js.map
 
 /***/ }),
@@ -1616,7 +1766,7 @@ var MytripPage = (function () {
     };
     MytripPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-mytrip',template:/*ion-inline-start:"/home/robrobirobin/Documents/backup/project-design-2/src/pages/mytrip/mytrip.html"*/'<ion-header>\n\n    <ion-navbar>\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n    <div>\n\n        <ion-list>\n\n            <ion-item>\n\n                \n\n            </ion-item>\n\n        </ion-list>\n\n    </div>\n\n</ion-content>'/*ion-inline-end:"/home/robrobirobin/Documents/backup/project-design-2/src/pages/mytrip/mytrip.html"*/
+            selector: 'page-mytrip',template:/*ion-inline-start:"C:\Users\Mark Samson\Documents\GitHub\Project-design-2\src\pages\mytrip\mytrip.html"*/'<ion-header>\n\n    <ion-navbar>\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n    <div>\n\n        <ion-list>\n\n            <ion-item>\n\n                \n\n            </ion-item>\n\n        </ion-list>\n\n    </div>\n\n</ion-content>'/*ion-inline-end:"C:\Users\Mark Samson\Documents\GitHub\Project-design-2\src\pages\mytrip\mytrip.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]])
     ], MytripPage);
@@ -1651,7 +1801,7 @@ var SettingsPage = (function () {
     }
     SettingsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-settings',template:/*ion-inline-start:"/home/robrobirobin/Documents/backup/project-design-2/src/pages/settings/settings.html"*/'<ion-header>\n\n    <ion-navbar>\n\n    </ion-navbar>\n\n</ion-header>'/*ion-inline-end:"/home/robrobirobin/Documents/backup/project-design-2/src/pages/settings/settings.html"*/
+            selector: 'page-settings',template:/*ion-inline-start:"C:\Users\Mark Samson\Documents\GitHub\Project-design-2\src\pages\settings\settings.html"*/'<ion-header>\n\n    <ion-navbar>\n\n    </ion-navbar>\n\n</ion-header>'/*ion-inline-end:"C:\Users\Mark Samson\Documents\GitHub\Project-design-2\src\pages\settings\settings.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]])
     ], SettingsPage);
@@ -2009,7 +2159,7 @@ var DetailsPage = (function () {
                 if ((this.legTransit[k].tripID == this.trip[this.index].id) && (this.legTransit[k].seq == i)) {
                     fare = 0;
                     fare2 = 0;
-                    var distance = parseFloat(this.legTransit[k].distance).toPrecision(2);
+                    var distance = this.legTransit[k].distance;
                     if (this.description.length == 0)
                         orig = this.address.origin;
                     else {
@@ -2059,7 +2209,14 @@ var DetailsPage = (function () {
                     }
                     else if (this.legTransit[k].transMode == "PUB") {
                         if (distance > 5) {
-                            fare = 10 + ((parseInt(distance) - 5) * 1.85);
+                            if (distance - parseInt(distance) > 0.49) {
+                                fare = 10 + ((parseInt(distance) - 4) * 1.85);
+                                fare2 = 12 + ((parseInt(distance) - 4) * 2.2);
+                            }
+                            else {
+                                fare = 10 + ((parseInt(distance) - 5) * 1.85);
+                                fare2 = 12 + ((parseInt(distance) - 5) * 2.2);
+                            }
                             if (fare - parseInt(fare) < 0.13)
                                 fare = parseInt(fare);
                             else if (fare - parseInt(fare) < 0.38)
@@ -2068,7 +2225,6 @@ var DetailsPage = (function () {
                                 fare = parseInt(fare) + 0.50;
                             else
                                 fare = parseInt(fare) + 1;
-                            fare2 = 12 + ((parseInt(distance) - 5) * 2.2);
                             console.log(distance);
                             console.log(fare2);
                             if (fare2 - parseInt(fare2) < 0.13)
@@ -2085,7 +2241,7 @@ var DetailsPage = (function () {
                             fare2 = 12;
                         }
                         this.description.push({
-                            distance: parseFloat(this.legTransit[k].distance).toPrecision(2) + " km\n",
+                            distance: parseFloat(this.legTransit[k].distance).toPrecision(3) + " km\n",
                             time: parseFloat(this.legTransit[k].time.toPrecision(2)) + " min",
                             fare: "Ordinary: P" + parseFloat(fare.toPrecision(4)),
                             fare2: "Aircon: P" + parseFloat(fare2.toPrecision(4)),
@@ -2105,7 +2261,7 @@ var DetailsPage = (function () {
                             fare2 = 17;
                         }
                         this.description.push({
-                            distance: parseFloat(this.legTransit[k].distance).toPrecision(2) + " km\n",
+                            distance: parseFloat(this.legTransit[k].distance).toPrecision(3) + " km\n",
                             time: parseFloat(this.legTransit[k].time.toPrecision(2)) + " min",
                             fare: "Regular trip: P" + parseFloat(fare.toPrecision(4)),
                             fare2: "Special trip: P" + parseFloat(fare2.toPrecision(4)),
@@ -2176,7 +2332,7 @@ var DetailsPage = (function () {
                                 fare = this.lrtLine2[x][y];
                         }
                         this.description.push({
-                            distance: parseFloat(this.legTransit[k].distance).toPrecision(2) + " km\n",
+                            distance: parseFloat(this.legTransit[k].distance).toPrecision(3) + " km\n",
                             time: parseFloat(this.legTransit[k].time.toPrecision(2)) + " min",
                             fare: "P" + fare,
                             fare2: '',
@@ -2273,7 +2429,7 @@ var DetailsPage = (function () {
     ], DetailsPage.prototype, "mapElement", void 0);
     DetailsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-details',template:/*ion-inline-start:"/home/robrobirobin/Documents/backup/project-design-2/src/pages/details/details.html"*/'<ion-header>\n    <ion-navbar color=primary>\n        <ion-buttons end>\n          <button (click)="saveTrip()">\n              <ion-icon class="btn-save" ios="ios-add-circle" md="md-add-circle"></ion-icon>\n          </button>\n        </ion-buttons>\n    </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <div #map id="map"></div>\n  <div scrollable=true>\n    <ion-grid>\n      <ion-row *ngFor="let item of description; let i = index;" class=\'cell-{{i}}\' text-wrap no-padding no-margin>\n        <ion-col col-2 class="col icon-col">\n          <img width="50" height="50" src="{{ modeIcons[i] }}" />\n        </ion-col>      \n        <ion-col col-95>\n          <p>{{ description[i].from }}</p>\n          <p>{{ description[i].route }}</p>\n          <p>{{ description[i].fare }}</p>\n          <p>{{ description[i].fare2 }}</p>\n          <button [hidden]="!description[i].steps" (click)="setDrop()">\n            <ion-icon ios="ios-arrow-dropdown" md="md-arrow-dropdown"></ion-icon>\n          </button>\n\n          <ion-list [hidden]="drop" no-padding>\n            <ion-item no-padding *ngFor="let step of description[i].steps">{{ step }}</ion-item>\n          </ion-list>\n        </ion-col>\n        <ion-col col-2 no-padding>\n          <p>{{ description[i].distance }}</p>\n          <p>{{ description[i].time }}</p>\n        </ion-col>\n      </ion-row>\n      <ion-row class=\'cell-{{ description.length }}\' text-wrap no-padding no-margin>\n        <ion-col col-2 class="col icon-col">\n        </ion-col>\n        <ion-col col-95>\n          <p>{{ address.destination }}</p>\n        </ion-col>\n      </ion-row>\n      <ion-row>\n        <ion-col>\n          <p>Travel Summary:</p>\n          <p>Estimated Time: {{trip[index].totalTime }} min</p>\n          <p>Total Fare: P{{ trip[index].fare }}</p>\n          <p>Distance: {{ trip[index].totaldistance }} km</p>\n          <p>Walk Distance: {{ trip[index].totalWalkDistance }} km</p>\n          <p>Transfers: {{ trip[index].transfer }}</p>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n\n  </div>\n</ion-content>'/*ion-inline-end:"/home/robrobirobin/Documents/backup/project-design-2/src/pages/details/details.html"*/
+            selector: 'page-details',template:/*ion-inline-start:"C:\Users\Mark Samson\Documents\GitHub\Project-design-2\src\pages\details\details.html"*/'<ion-header>\n\n    <ion-navbar color=primary>\n\n        <ion-buttons end>\n\n          <button (click)="saveTrip()">\n\n              <ion-icon class="btn-save" ios="ios-add-circle" md="md-add-circle"></ion-icon>\n\n          </button>\n\n        </ion-buttons>\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n  <div #map id="map"></div>\n\n  <div scrollable=true>\n\n    <ion-grid>\n\n      <ion-row *ngFor="let item of description; let i = index;" class=\'cell-{{i}}\' text-wrap no-padding no-margin>\n\n        <ion-col col-2 class="col icon-col">\n\n          <img width="50" height="50" src="{{ modeIcons[i] }}" />\n\n        </ion-col>      \n\n        <ion-col col-95>\n\n          <p>{{ description[i].from }}</p>\n\n          <p>{{ description[i].route }}</p>\n\n          <p>{{ description[i].fare }}</p>\n\n          <p>{{ description[i].fare2 }}</p>\n\n          <button [hidden]="!description[i].steps" (click)="setDrop()">\n\n            <ion-icon ios="ios-arrow-dropdown" md="md-arrow-dropdown"></ion-icon>\n\n          </button>\n\n\n\n          <ion-list [hidden]="drop" no-padding>\n\n            <ion-item no-padding *ngFor="let step of description[i].steps">{{ step }}</ion-item>\n\n          </ion-list>\n\n        </ion-col>\n\n        <ion-col col-2 no-padding>\n\n          <p>{{ description[i].distance }}</p>\n\n          <p>{{ description[i].time }}</p>\n\n        </ion-col>\n\n      </ion-row>\n\n      <ion-row class=\'cell-{{ description.length }}\' text-wrap no-padding no-margin>\n\n        <ion-col col-2 class="col icon-col">\n\n        </ion-col>\n\n        <ion-col col-95>\n\n          <p>{{ address.destination }}</p>\n\n        </ion-col>\n\n      </ion-row>\n\n      <ion-row>\n\n        <ion-col>\n\n          <p>Travel Summary:</p>\n\n          <p>Estimated Time: {{trip[index].totalTime }} min</p>\n\n          <p>Total Fare: P{{ trip[index].fare }}</p>\n\n          <p>Distance: {{ trip[index].totaldistance }} km</p>\n\n          <p>Walk Distance: {{ trip[index].totalWalkDistance }} km</p>\n\n          <p>Transfers: {{ trip[index].transfer }}</p>\n\n        </ion-col>\n\n      </ion-row>\n\n    </ion-grid>\n\n\n\n  </div>\n\n</ion-content>'/*ion-inline-end:"C:\Users\Mark Samson\Documents\GitHub\Project-design-2\src\pages\details\details.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
     ], DetailsPage);
@@ -2460,7 +2616,7 @@ var MyApp = (function () {
         });
     }
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/home/robrobirobin/Documents/backup/project-design-2/src/app/app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"/home/robrobirobin/Documents/backup/project-design-2/src/app/app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\Users\Mark Samson\Documents\GitHub\Project-design-2\src\app\app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n\n'/*ion-inline-end:"C:\Users\Mark Samson\Documents\GitHub\Project-design-2\src\app\app.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
     ], MyApp);
