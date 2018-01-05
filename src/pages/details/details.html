@@ -1,5 +1,7 @@
 <ion-header>
-    <ion-navbar color=primary>
+    <ion-navbar color=custom-yellow>
+      <ion-title >From: {{ address.origin }} <br/> To: {{ address.destination }}
+      </ion-title>
         <ion-buttons end>
           <button (click)="saveTrip()">
               <ion-icon class="btn-save" ios="ios-add-circle" md="md-add-circle"></ion-icon>
@@ -43,7 +45,7 @@
       </ion-row>
       <ion-row>
         <ion-col>
-          <p>Travel Summary:</p>
+          <p class="Travel-Summary">Travel Summary:</p>
           <p>Estimated Time: {{trip[index].totalTime }} min</p>
           <p>Total Fare: P{{ trip[index].fare }}</p>
           <p>Distance: {{ trip[index].totaldistance }} km</p>

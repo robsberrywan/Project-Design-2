@@ -1,9 +1,9 @@
 <ion-content padding class="startLogin">
-	<br /><br />
+	<br />
 	<div text-center>
-		<ion-img width="120" height="120" src="./assets/imgs/login.png"></ion-img>
+		<ion-img width="200" height="200" src="./assets/imgs/login4.png"></ion-img>
 	</div>
-	<br /><br />
+	<br />
 	<ion-list>
 		<ion-item>
 			<ion-label floating>Email</ion-label>
@@ -15,7 +15,7 @@
 		</ion-item>
 	</ion-list>
 	<div text-center>
-  		<button color=primary (click)="signIn(user);" ion-button block>Sign In</button>
+  		<button color=secondary-yellow (click)="signIn(user);" ion-button block>Sign In</button>
 	</div>
 	<br />
 	<div text-center>
@@ -27,5 +27,5 @@
 		<button ion-button (click)="facebooklogin()"><ion-icon name="logo-facebook"></ion-icon></button>
 		<button ion-button (click)="googlelogin()"><ion-icon name="logo-googleplus"></ion-icon></button>
 	</div>
-	<br/><br/><p (click)="register();"><u>Don't have an account?</u></p>
+	<br/><p (click)="register();"><u>Don't have an account?</u></p>
 </ion-content>

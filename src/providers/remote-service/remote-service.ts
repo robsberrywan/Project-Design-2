@@ -115,4 +115,9 @@ export class RemoteServiceProvider {
         });
     });
   }
+<<<<<<< HEAD
 }*/}
+=======
+}*/
+}
+>>>>>>> b85ad06358d5b2bf8e175e9df97d80ee5c348bff

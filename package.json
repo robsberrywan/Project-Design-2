@@ -46,11 +46,20 @@
     "cordova-plugin-request-location-accuracy": "^2.2.2",
     "cordova-plugin-splashscreen": "^4.1.0",
     "cordova-plugin-whitelist": "^1.3.3",
+<<<<<<< HEAD
+    "firebase": "4.8.0",
+    "ionic-angular": "3.9.2",
+    "ionic-plugin-keyboard": "^2.2.1",
+    "ionicons": "3.0.0",
+    "node-sass": "^4.7.2",
+=======
     "firebase": "^4.8.0",
     "ionic-angular": "3.9.2",
     "ionic-plugin-keyboard": "^2.2.1",
     "ionicons": "3.0.0",
     "ng2-twitter": "^0.3.0",
+    "nodesass": "0.0.2-security",
+>>>>>>> 30be0b0acd272a5215196b1b90b9d432d439b96c
     "rxjs": "5.5.2",
     "sdk": "^0.5.0",
     "sw-toolbox": "3.6.0",
