@@ -235,35 +235,35 @@ var RegisterPage = (function () {
     RegisterPage.prototype.signUp = function (user, cpass) {
         return __awaiter(this, void 0, void 0, function () {
             var _this = this;
-            var alert, alert, alert;
+            var alert_1, alert_2, alert_3;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         if (!(String(user.password).length < 6)) return [3 /*break*/, 1];
-                        alert = this.alertCtrl.create({
+                        alert_1 = this.alertCtrl.create({
                             title: 'Register Failed!',
                             subTitle: 'Password must contain at least 6 characters.',
                             buttons: ['Retry']
                         });
-                        alert.present();
+                        alert_1.present();
                         return [3 /*break*/, 5];
                     case 1:
                         if (!(user.password != cpass)) return [3 /*break*/, 2];
-                        alert = this.alertCtrl.create({
+                        alert_2 = this.alertCtrl.create({
                             title: 'Register Failed!',
                             subTitle: 'Password does not match.',
                             buttons: ['Retry']
                         });
-                        alert.present();
+                        alert_2.present();
                         return [3 /*break*/, 5];
                     case 2:
                         if (!((!user.email) || (!user.password))) return [3 /*break*/, 3];
-                        alert = this.alertCtrl.create({
+                        alert_3 = this.alertCtrl.create({
                             title: 'Register Failed!',
                             subTitle: 'All fields must be filled.',
                             buttons: ['Retry']
                         });
-                        alert.present();
+                        alert_3.present();
                         return [3 /*break*/, 5];
                     case 3: return [4 /*yield*/, this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.password)
                             .then(function (res) {
@@ -296,10 +296,9 @@ var RegisterPage = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-register',template:/*ion-inline-start:"/home/robrobirobin/Documents/backup/project-design-2/src/pages/register/register.html"*/'<ion-content padding>\n\n	<div text-right>\n\n		<ion-icon name="heart" class="reglogo"></ion-icon>\n\n	</div>\n\n	<ion-list>\n\n		<ion-item>\n\n			<ion-label floating>Email</ion-label>\n\n			<ion-input type="text" [(ngModel)]="user.email"></ion-input>\n\n		</ion-item>\n\n		<ion-item>\n\n			<ion-label floating>Password</ion-label>\n\n			<ion-input type="password" [(ngModel)]="user.password"></ion-input>\n\n		</ion-item>\n\n		<ion-item>\n\n			<ion-label floating>Re-type Password</ion-label>\n\n			<ion-input type="password" [(ngModel)]="cpass"></ion-input>\n\n		</ion-item>\n\n	</ion-list>\n\n	<div text-center>\n\n  		<button color=dark ion-button round (click)="signUp(user, cpass);">Sign me up!</button>\n\n	</div>\n\n	<br/><br/><br/><br/><p (click)="toSignIn();">Already have an account? <u>Sign In</u></p>\n\n</ion-content>'/*ion-inline-end:"/home/robrobirobin/Documents/backup/project-design-2/src/pages/register/register.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__["a" /* AngularFireAuth */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__["a" /* AngularFireAuth */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _c || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__["a" /* AngularFireAuth */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
     ], RegisterPage);
     return RegisterPage;
-    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=register.js.map
@@ -481,6 +480,11 @@ var HomePage = (function () {
     }
     HomePage.prototype.ionViewDidLoad = function () {
         this.loadMap();
+        this.rsp.getTwitterStatus().subscribe(function (data) {
+            console.log(data);
+        }, function (err) {
+            console.log(err);
+        }, function () { return console.log('Success'); });
     };
     HomePage.prototype.loadMap = function () {
         var _this = this;
@@ -760,8 +764,12 @@ var HomePage = (function () {
                     }
                     else if (mode.includes("TODA")) {
                         mode = "TODA";
-                        if (distance > 1)
-                            fare += 8.50 + (parseInt(distance) - 1);
+                        if (distance > 1) {
+                            if (distance - parseInt(distance) > 0.49)
+                                fare += 8.50 + (parseInt(distance));
+                            else
+                                fare += 8.50 + (parseInt(distance) - 1);
+                        }
                         else
                             fare += 8.50;
                         console.log("Tryke");
@@ -1533,43 +1541,40 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-/*
-  Generated class for the RemoteServiceProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 var RemoteServiceProvider = (function () {
     function RemoteServiceProvider(http, twitter) {
         this.http = http;
         this.twitter = twitter;
-        this.token = null;
-        this.tokenSecret = null;
-        this.consumerKey = '	IZ8IT77kPfcpF3L7BZuWdkiXd';
-        this.consumerSecret = '	rlO4tWDmlujHTHoN3WIUW5AXVM4OtTgCcpE28SBUBn8aDrnsxa';
     }
     RemoteServiceProvider.prototype.load = function (origin, dest) {
         var url = 'http://13.71.136.189:8080/otp/routers/default/plan?fromPlace=' + origin + '&toPlace=' + dest + '&date=2017/01/09&time=11:00:00&mode=TRANSIT%2CWALK&numItineraries=5&maxWalkDistance=1000&arriveBy=false&wheelchair=false';
         var response = this.http.get(url).map(function (res) { return res.json(); });
         return response;
     };
-    RemoteServiceProvider.prototype.setTokens = function (token, tokenSecret) {
-        this.token = token;
-        this.tokenSecret = tokenSecret;
-    };
     RemoteServiceProvider.prototype.getTwitterStatus = function () {
-        return this.twitter.get('https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=MMDA&count=2', {
-            count: 2
+        /*var Twit = require('twit')
+    
+        var T = new Twit({
+          consumer_key:         'IZ8IT77kPfcpF3L7BZuWdkiXd',
+          consumer_secret:      'rlO4tWDmlujHTHoN3WIUW5AXVM4OtTgCcpE28SBUBn8aDrnsxa',
+          access_token:         '947804321613103104-qxT4wcGGDq6Ejy9ahrkx7uUSbGdymq8',
+          access_token_secret:  '4GsGpqUJjWLu961fPvNf8nDeXxY3JATv5SbLFsM7zhDHD',
+          timeout_ms:           60*1000,  // optional HTTP request timeout to apply to all requests.
+        })
+        T.get('search/tweets', { q: 'MMDA since:2017-01-4', count: 5 }, function(err, data, response) {
+          console.log(data)
+        })*/
+        return this.twitter.get('https://api.twitter.com/1.1/search/tweets.json?q=MMDA', {
+            count: 10
         }, {
-            consumerKey: this.consumerKey,
-            consumerSecret: this.consumerSecret
+            consumerKey: 'IZ8IT77kPfcpF3L7BZuWdkiXd',
+            consumerSecret: 'rlO4tWDmlujHTHoN3WIUW5AXVM4OtTgCcpE28SBUBn8aDrnsxa',
         }, {
-            token: this.token,
-            tokenSecret: this.tokenSecret
+            token: '947804321613103104-qxT4wcGGDq6Ejy9ahrkx7uUSbGdymq8',
+            tokenSecret: '4GsGpqUJjWLu961fPvNf8nDeXxY3JATv5SbLFsM7zhDHD',
         })
             .map(function (res) { return res.json(); });
     };
-    ;
     RemoteServiceProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */], __WEBPACK_IMPORTED_MODULE_3_ng2_twitter__["a" /* TwitterService */]])

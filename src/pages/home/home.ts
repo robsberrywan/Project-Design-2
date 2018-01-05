@@ -185,6 +185,16 @@ export class HomePage {
 
   ionViewDidLoad(){
     this.loadMap();
+
+    this.rsp.getTwitterStatus().subscribe(
+      data => {
+          console.log(data);
+      },
+      err => {
+          console.log(err);
+      },
+      () => console.log('Success')
+    );
   }
 
   loadMap(){
@@ -464,8 +474,12 @@ export class HomePage {
           }
           else if(mode.includes("TODA")){
             mode = "TODA";
-            if(distance>1)
+            if(distance>1){
+              if(distance-parseInt(distance)>0.49)
+              fare += 8.50+(parseInt(distance));
+              else
               fare += 8.50+(parseInt(distance)-1);
+            }
             else
               fare += 8.50;
             console.log("Tryke");
