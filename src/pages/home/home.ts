@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef, NgZone } from '@angular/core';
-import { NavController, ModalController, NavParams } from 'ionic-angular';
+import { NavController, ModalController, NavParams, AlertController } from 'ionic-angular';
 
 import { AngularFireAuth } from "angularfire2/auth";
 import { Geolocation } from '@ionic-native/geolocation';
@@ -88,7 +88,8 @@ export class HomePage {
     public zone: NgZone,
     public rsp: RemoteServiceProvider,
     public modCtrl: ModalController,
-    public navParams: NavParams) {
+    public navParams: NavParams,
+    public alertCtrl: AlertController) {
       this.email = this.navParams.get('email');
       this.GoogleAutocomplete = new google.maps.places.AutocompleteService();
       this.autocompleteItems1 = [];
@@ -185,16 +186,14 @@ export class HomePage {
 
   ionViewDidLoad(){
     this.loadMap();
-
-    this.rsp.getTwitterStatus().subscribe(
-      data => {
-          console.log(data);
-      },
-      err => {
-          console.log(err);
-      },
-      () => console.log('Success')
-    );
+    
+    /*let alert = this.alertCtrl.create({
+      title: 'Login Failed!',
+      subTitle: String(this.rsp.getFacebookStatus()),
+      buttons: ['Retry']
+    });
+    alert.present();*/
+    this.trafficUpdate();
   }
 
   loadMap(){
@@ -206,7 +205,6 @@ export class HomePage {
         zoom: 15,
         mapTypeId: google.maps.MapTypeId.ROADMAP
       }
-      console.log(position);
       this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
       let marker = new google.maps.Marker({
         map: this.map,
@@ -336,7 +334,6 @@ export class HomePage {
     this.rsp.load(markers[0].getPosition(), markers[1].getPosition()).subscribe(
       data => {
           this.processInput(data.plan);
-          console.log(data.plan);
       },
       err => {
           console.log(err);
@@ -465,7 +462,6 @@ export class HomePage {
           else if(mode.includes("PUB")){
             mode = "PUB";
             let tempFare: any;
-            console.log(distance);
             if(distance>5){
               if(distance-parseInt(distance)>0.49)
                 tempFare = 10+((parseInt(distance)-4)*1.85);
@@ -480,7 +476,6 @@ export class HomePage {
                 fare += parseInt(tempFare)+0.50;
               else
                 fare += parseInt(tempFare)+1;
-              console.log(parseInt(tempFare));
             }
             else
               fare += 10;
@@ -495,7 +490,6 @@ export class HomePage {
             }
             else
               fare += 8.50;
-            console.log("Tryke");
           }
           else{
             let orig: string = leg['from']['name'];
@@ -591,7 +585,6 @@ export class HomePage {
     let highDistance: any;
     highDistance = 0;
     for(let i = 0; i<this.legTransit.length; i++){
-      console.log(this.legTransit[i].distance);
       if(this.legTransit[i].tripID==id){
         highDistance = this.legTransit[i].distance;
         index = i;
@@ -603,7 +596,6 @@ export class HomePage {
         }
       }
     }
-    console.log(highDistance);
     
       if(this.legTransit[index].distance>2){
         start = String(this.legTransit[index].routeLongName);
@@ -654,7 +646,6 @@ export class HomePage {
       }
   }
   getRest(start, end, id, markers){
-    console.log(this.trip.length);
     let walkDistance = 0;
     let totaldistance = 0;
     let fare: any;
@@ -688,7 +679,6 @@ export class HomePage {
                   lastIndex = data1.itineraries[0].legs.length;
                   transfers = data1.itineraries[0].transfers;
                   time  = data1.itineraries[0].duration;
-                  console.log(lastIndex);
                   for(let i=0; i<data1.itineraries[0].legs.length; i++){
                     let leg = data1.itineraries[0].legs[i];
                     if(leg['mode']=="WALK"){
@@ -1313,6 +1303,15 @@ export class HomePage {
       }
     );
   }
+  trafficUpdate(){
+    let message: any = "[Admin 20] MMDA ALERT: Vehicular accident at Commonwealth Ever Gotesco EB involving UV express and MC as of 5:35 PM. 1 lane occupied. MMDA enforcer on site.";
+    let sampDate : any = "2018-01-07T09:49:20+0000";
+    let today: any = new Date();
+    today = today.getDate();
+
+    console.log(today);
+  }
+
   seeDetails(i){
     let trip: any;
     let legW: any;

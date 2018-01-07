@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, RequestOptions, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
-import { TwitterService } from 'ng2-twitter';
+import { Facebook } from '@ionic-native/facebook';
 /*
   Generated class for the RemoteServiceProvider provider.
 
@@ -9,7 +9,6 @@ import { TwitterService } from 'ng2-twitter';
   and Angular DI.
 */
 
-declare function require(name:string);
 
 @Injectable()
 export class RemoteServiceProvider {
@@ -23,13 +22,23 @@ export class RemoteServiceProvider {
   rbaseUrl;
   baseUrl1;
   baseUrl2;
-
-  constructor(public http: Http, private twitter: TwitterService) {
+  APP_ID: number = 407839889634958;
+  constructor(public http: Http, public fb: Facebook) {
+    this.fb.browserInit(this.APP_ID, "v2.11");
   }
   load(origin, dest){
     var url = 'http://13.71.136.189:8080/otp/routers/default/plan?fromPlace='+origin+'&toPlace='+dest+'&date=2017/01/09&time=12:00:00&mode=TRANSIT%2CWALK&numItineraries=5&maxWalkDistance=1000&arriveBy=false&wheelchair=false';
     var response = this.http.get(url).map(res => res.json());
     return response;
+  }
+  getFacebookStatus(){
+    let params: any ='EAACEdEose0cBAI6F9NekbZCP1sG0GZCqpYvbQZAFFt7WwnYlpiWRpkXghpJF6vqnjsV3VcbudTKecCVyOe6ck0iYcpenFB7c33D3a8htBitkG8bdjteV1RwSHZAlvxt26RZA6hwJycK1FSMZBAVQyBijiq4QQZC5JyeSWxxZCxrZAutbKNiwq3BM3haHF0qcIUmPYgOjeddSfsAZDZD';
+    
+    this.fb.api("/MMDA/posts", params).then((response) => {
+      if(response){
+        return response;
+      }
+    })
   }
   getTwitterStatus(){
     /*var Twit = require('twit')
@@ -46,13 +55,13 @@ export class RemoteServiceProvider {
     })*/
     return this.twitter.get(
       
-      'https://api.twitter.com/1.1/search/tweets.json?q=MMDA',
+      'https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=MMDA&count=3',
       {
-        count: 10
+        
       },
       { 
-        consumerKey: 'IZ8IT77kPfcpF3L7BZuWdkiXd',
-        consumerSecret: 'rlO4tWDmlujHTHoN3WIUW5AXVM4OtTgCcpE28SBUBn8aDrnsxa',
+        consumerKey: '5irm3Two4gykO7MSl3rQ3vWEH',
+        consumerSecret: 'b7xOlUUOp7JtD02KnGx7DHQ1cTvMIVr8K47NFGUTvtH9Ma8MsM',
       },
       {
         token: '947804321613103104-qxT4wcGGDq6Ejy9ahrkx7uUSbGdymq8',
@@ -115,9 +124,4 @@ export class RemoteServiceProvider {
         });
     });
   }
-<<<<<<< HEAD
 }*/}
-=======
-}*/
-}
->>>>>>> b85ad06358d5b2bf8e175e9df97d80ee5c348bff

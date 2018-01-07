@@ -1,28 +1,23 @@
-<ion-header>
-		<ion-navbar color=custom-yellow >
-				<div class="titleicon">
-						<img src="./assets/imgs/login3.png" width="25px" />
-				   </div>
-		  <ion-title class = "SignUp" > Sign Up </ion-title>
-		</ion-navbar>
-	</ion-header>
-	<ion-content padding>
-		<ion-list>
-			<ion-item>
-				<ion-label floating>Email</ion-label>
-				<ion-input type="text" [(ngModel)]="user.email"></ion-input>
-			</ion-item>
-			<ion-item>
-				<ion-label floating>Password</ion-label>
-				<ion-input type="password" [(ngModel)]="user.password"></ion-input>
-			</ion-item>
-			<ion-item>
-				<ion-label floating>Re-type Password</ion-label>
-				<ion-input type="password" [(ngModel)]="cpass"></ion-input>
-			</ion-item>
-		</ion-list>
-		<div text-center>
-			  <button color=custom-yellow ion-button round (click)="signUp(user, cpass);">Sign me up!</button>
-		</div>
-		<br/><br/><br/><br/><p (click)="toSignIn();">Already have an account? <u>Sign In</u></p>
-	</ion-content>
+<ion-content padding>
+	<div text-right>
+		<ion-icon name="heart" class="reglogo"></ion-icon>
+	</div>
+	<ion-list>
+		<ion-item>
+			<ion-label floating>Email</ion-label>
+			<ion-input type="text" [(ngModel)]="user.email"></ion-input>
+		</ion-item>
+		<ion-item>
+			<ion-label floating>Password</ion-label>
+			<ion-input type="password" [(ngModel)]="user.password"></ion-input>
+		</ion-item>
+		<ion-item>
+			<ion-label floating>Re-type Password</ion-label>
+			<ion-input type="password" [(ngModel)]="cpass"></ion-input>
+		</ion-item>
+	</ion-list>
+	<div text-center>
+  		<button color=dark ion-button round (click)="signUp(user, cpass);">Sign me up!</button>
+	</div>
+	<br/><br/><br/><br/><p (click)="toSignIn();">Already have an account? <u>Sign In</u></p>
+</ion-content>

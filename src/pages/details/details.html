@@ -1,59 +1,59 @@
 <ion-header>
-    <ion-navbar color=custom-yellow>
-      <ion-title >From: {{ address.origin }} <br/> To: {{ address.destination }}
-      </ion-title>
-        <ion-buttons end>
-          <button (click)="saveTrip()">
-              <ion-icon class="btn-save" ios="ios-add-circle" md="md-add-circle"></ion-icon>
-          </button>
-        </ion-buttons>
-    </ion-navbar>
+  <ion-navbar color=custom-yellow>
+    <ion-title >From: {{ address.origin }} <br/> To: {{ address.destination }}
+    </ion-title>
+      <ion-buttons end>
+        <button (click)="saveTrip()">
+            <ion-icon class="btn-save" ios="ios-add-circle" md="md-add-circle"></ion-icon>
+        </button>
+      </ion-buttons>
+  </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <div #map id="map"></div>
-  <div scrollable=true>
-    <ion-grid>
-      <ion-row *ngFor="let item of description; let i = index;" class='cell-{{i}}' text-wrap no-padding no-margin>
-        <ion-col col-2 class="col icon-col">
-          <img width="50" height="50" src="{{ modeIcons[i] }}" />
-        </ion-col>      
-        <ion-col col-95>
-          <p>{{ description[i].from }}</p>
-          <p>{{ description[i].route }}</p>
-          <p>{{ description[i].fare }}</p>
-          <p>{{ description[i].fare2 }}</p>
-          <button [hidden]="!description[i].steps" (click)="setDrop()">
-            <ion-icon ios="ios-arrow-dropdown" md="md-arrow-dropdown"></ion-icon>
-          </button>
+<div #map id="map"></div>
+<div scrollable=true>
+  <ion-grid>
+    <ion-row *ngFor="let item of description; let i = index;" class='cell-{{i}}' text-wrap no-padding no-margin>
+      <ion-col col-2 class="col icon-col">
+        <img width="50" height="50" src="{{ modeIcons[i] }}" />
+      </ion-col>      
+      <ion-col col-95>
+        <p>{{ description[i].from }}</p>
+        <p>{{ description[i].route }}</p>
+        <p>{{ description[i].fare }}</p>
+        <p>{{ description[i].fare2 }}</p>
+        <button [hidden]="!description[i].steps" (click)="setDrop()">
+          <ion-icon ios="ios-arrow-dropdown" md="md-arrow-dropdown"></ion-icon>
+        </button>
 
-          <ion-list [hidden]="drop" no-padding>
-            <ion-item no-padding *ngFor="let step of description[i].steps">{{ step }}</ion-item>
-          </ion-list>
-        </ion-col>
-        <ion-col col-2 no-padding>
-          <p>{{ description[i].distance }}</p>
-          <p>{{ description[i].time }}</p>
-        </ion-col>
-      </ion-row>
-      <ion-row class='cell-{{ description.length }}' text-wrap no-padding no-margin>
-        <ion-col col-2 class="col icon-col">
-        </ion-col>
-        <ion-col col-95>
-          <p>{{ address.destination }}</p>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
-          <p class="Travel-Summary">Travel Summary:</p>
-          <p>Estimated Time: {{trip[index].totalTime }} min</p>
-          <p>Total Fare: P{{ trip[index].fare }}</p>
-          <p>Distance: {{ trip[index].totaldistance }} km</p>
-          <p>Walk Distance: {{ trip[index].totalWalkDistance }} km</p>
-          <p>Transfers: {{ trip[index].transfer }}</p>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+        <ion-list [hidden]="drop" no-padding>
+          <ion-item no-padding *ngFor="let step of description[i].steps">{{ step }}</ion-item>
+        </ion-list>
+      </ion-col>
+      <ion-col col-2 no-padding>
+        <p>{{ description[i].distance }}</p>
+        <p>{{ description[i].time }}</p>
+      </ion-col>
+    </ion-row>
+    <ion-row class='cell-{{ description.length }}' text-wrap no-padding no-margin>
+      <ion-col col-2 class="col icon-col">
+      </ion-col>
+      <ion-col col-95>
+        <p>{{ address.destination }}</p>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <p class="Travel-Summary">Travel Summary:</p>
+        <p>Estimated Time: {{trip[index].totalTime }} min</p>
+        <p>Total Fare: P{{ trip[index].fare }}</p>
+        <p>Distance: {{ trip[index].totaldistance }} km</p>
+        <p>Walk Distance: {{ trip[index].totalWalkDistance }} km</p>
+        <p>Transfers: {{ trip[index].transfer }}</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
-  </div>
+</div>
 </ion-content>
