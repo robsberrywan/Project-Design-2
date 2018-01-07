@@ -1,0 +1,17 @@
+Is CN=m sams, OU=tip, O=tipqc, L=rizal, ST=rizal, C=ph correct?
+alias: pdkey.keystore
+pass: pd2key
+
+BUILDING APKs
+1. ionic cordova build --release android
+2. jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore pdkey.keystore android-release-unsigned.apk pdkey
+3. zipalign -v 4 android-release-unsigned.apk truFare.apk
+
+login: try@g.com
+pass: tryme1
+
+GENERATE SHA1:
+keytool -list -v -keystore "C:\Users\Mark Samson\Documents\GitHub\Project-Design-2\APKs\pdkey.keystore" -alias pdkey -storepass pd2key -keypass pd2key
+
+hash: tv4PB+UYzCLVOuG/1M3ZUM1qnz0=
+Sha1: EC:21:1C:B8:9C:D7:07:09:6C:0E:3C:4A:A6:56:04:A6:98:8D:6A:42
