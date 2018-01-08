@@ -99,6 +99,7 @@
                     <p>Fare: P{{ t.fare }}</p>
                     <p>Distance: {{ t.totaldistance }} km</p>
                     <p>Walk, about {{ t.totalWalkDistance }} km</p>
+                    <p style="font-weight: bold; color: red;" *ngFor="let tr of t.traffic">*{{ tr }}</p>
                     <p [hidden]="!t.roundtrip">This is a round-trip feature. This will direct you to the nearest terminal.</p>
                 </ion-item>
             </ion-list>

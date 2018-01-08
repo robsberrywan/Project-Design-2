@@ -42,7 +42,8 @@ export class HomePage {
     totaldistance: '',
     legs: '',
     totalTime: '',
-    roundtrip: ''
+    roundtrip: '',
+    traffic: [],
   }];
   legWalk: any = [{
     tripID: '',
@@ -193,7 +194,6 @@ export class HomePage {
       buttons: ['Retry']
     });
     alert.present();*/
-    this.trafficUpdate();
   }
 
   loadMap(){
@@ -575,6 +575,7 @@ export class HomePage {
       });
     }
     this.createTrip(this.trip[this.trip.length-1].id);
+    this.trafficUpdate();
   }
   
   createTrip(id){
@@ -1304,14 +1305,88 @@ export class HomePage {
     );
   }
   trafficUpdate(){
-    let message: any = "[Admin 20] MMDA ALERT: Vehicular accident at Commonwealth Ever Gotesco EB involving UV express and MC as of 5:35 PM. 1 lane occupied. MMDA enforcer on site.";
-    let sampDate : any = "2018-01-07T09:49:20+0000";
+    let message: any = "[Admin 22] MMDA ALERT: Vehicular accident at EDSA Pasay rd. SB involving car and SUV as of 10:18 AM. 1 lane occupied. MMDA on site.";
+    let report: any = "";
+    let sampDate : any = "2018-01-08T11:49:20+0000";
     let today: any = new Date();
-    today = today.getDate();
-
-    console.log(today);
+    let mm: any = parseInt(today.getMonth()+1), yr: any = today.getFullYear(), day: any = today.getDate();
+    let cyr: any = sampDate.slice(0,4), cmm: any = sampDate.slice(5,7), cday: any = sampDate.slice(8,10);
+    let hr: any = today.getHours(), chr: any = sampDate.slice(11,13);
+    let reports = [];
+    let traffic = false;
+    if(message.includes("accident"))
+      report = "Vehicular accident";
+    else 
+      report = "Vehicle stalled";
+    if((yr==cyr)&&(mm==cmm)&&(day==cday)){
+      console.log(yr + "-" + mm + "-" + day);
+      if(message.includes("MMDA ALERT")){
+        console.log(hr + ":" + chr);
+        if(message.includes("SB"))
+          message = message.slice(message.indexOf("at")+3, message.indexOf("SB")-1);
+        else if(message.includes("NB"))
+          message = message.slice(message.indexOf("at")+3, message.indexOf("NB")-1);
+        else if(message.includes("EB"))
+          message = message.slice(message.indexOf("at")+3, message.indexOf("EB")-1);
+        else 
+          message = message.slice(message.indexOf("at")+3, message.indexOf("WB")-1);
+        
+        this.geocoder.geocode({'address': message}, (results, status) => {
+          if(status == 'OK' && results[0]){
+            
+            for(let j=0; j<this.trip.length; j++){
+              reports = [];
+              for(let i=0; i<this.legTransit.length; i++){
+                if(this.legTransit[i].tripID==this.trip[j].id){
+                  traffic = this.decode(this.legTransit[i].legGeom, results[0].geometry.location.lat(), results[0].geometry.location.lng());
+                  console.log(traffic);
+                  if(traffic)
+                    reports.push(report + " at " + message + ". Expect traffic.");
+                }
+              }
+              this.trip[j].traffic = reports;
+            }
+          }
+        })
+      }
+    }
   }
-
+  decode(leggeom, loclat, loclng){
+    // array that holds the points
+    let index = 0, len = leggeom.length;
+    let lat = 0, lng = 0;
+    let traf = false;
+    while (index < len) {
+      let b, shift = 0, result = 0;
+      do {    
+        b = leggeom.charAt(index++).charCodeAt(0) - 63;//finds ascii                                                                                    //and substract it by 63
+        result |= (b & 0x1f) << shift;
+        shift += 5;
+      } while (b >= 0x20);
+    
+      let dlat = ((result & 1) != 0 ? ~(result >> 1) : (result >> 1));
+      lat += dlat;
+      shift = 0;
+      result = 0;
+      do {
+        b = leggeom.charAt(index++).charCodeAt(0) - 63;
+        result |= (b & 0x1f) << shift;
+        shift += 5;
+      } while (b >= 0x20);
+      let dlng = ((result & 1) != 0 ? ~(result >> 1) : (result >> 1));
+      lng += dlng;
+      let latlng = new google.maps.LatLng(( lat / 1E5),( lng / 1E5));
+      
+      let p = 0.017453292519943295;    // Math.PI / 180
+      let c = Math.cos;
+      let a = 0.5 - c((loclat-(lat/1E5)) * p) / 2 + c((lat/1E5) * p) *c((loclat) * p) * (1 - c(((loclng- (lng/1E5)) * p))) / 2;
+      let dis = (12742 * Math.asin(Math.sqrt(a))); // 2 * R; R = 6371 km
+      if(dis<1){
+        traf = true;
+      }
+    }
+    return traf;
+  }
   seeDetails(i){
     let trip: any;
     let legW: any;
