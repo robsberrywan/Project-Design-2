@@ -7,7 +7,7 @@ import { AngularFireAuth } from "angularfire2/auth";
 import { User } from "../../models/user";
 
 import { GooglePlus } from '@ionic-native/google-plus';
-import { AngularFireModule } from 'angularfire2';
+//import { AngularFireModule } from 'angularfire2';
 import firebase from 'firebase';
 
 import { Facebook } from '@ionic-native/facebook';
@@ -36,7 +36,7 @@ export class LoginPage {
         alert.present();
       });
     }
-    
+
     googlelogin(){
       this.googleplus.login({
         'webClientID':'308539296287-elic70lfie8pct2l8q9t5im6djs2oi62.apps.googleusercontent.com',
@@ -49,7 +49,7 @@ export class LoginPage {
         })
       })
     }
-    
+
     facebooklogin(){
       this.facebook.login(['email']).then(res=>{
         const fc=firebase.auth.FacebookAuthProvider.credential(res.authResponse.accessToken)

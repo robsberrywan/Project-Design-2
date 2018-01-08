@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, RequestOptions, Headers } from '@angular/http';
+import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { TwitterService } from 'ng2-twitter';
 /*
@@ -9,7 +9,7 @@ import { TwitterService } from 'ng2-twitter';
   and Angular DI.
 */
 
-declare function require(name:string);
+//declare function require(name:string);
 
 @Injectable()
 export class RemoteServiceProvider {
@@ -45,12 +45,12 @@ export class RemoteServiceProvider {
       console.log(data)
     })*/
     return this.twitter.get(
-      
+
       'https://api.twitter.com/1.1/search/tweets.json?q=MMDA',
       {
         count: 10
       },
-      { 
+      {
         consumerKey: 'IZ8IT77kPfcpF3L7BZuWdkiXd',
         consumerSecret: 'rlO4tWDmlujHTHoN3WIUW5AXVM4OtTgCcpE28SBUBn8aDrnsxa',
       },
@@ -116,8 +116,5 @@ export class RemoteServiceProvider {
     });
   }
 <<<<<<< HEAD
-}*/}
-=======
 }*/
 }
->>>>>>> b85ad06358d5b2bf8e175e9df97d80ee5c348bff
