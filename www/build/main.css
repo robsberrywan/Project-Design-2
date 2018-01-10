@@ -33691,6 +33691,7 @@ page-home .TruFare {
   width: 55%;
   height: 40px;
   text-align: center;
+  background-color: transparent !important;
 }
 
 page-login .startLogin {
@@ -33771,4 +33772,21 @@ page-login p {
   -webkit-align-self: flex-end;
   -ms-flex-item-align: end;
   align-self: flex-end;
+}
+
+.titleicon {
+  position: absolute;
+  width: 40%;
+  height: 40px;
+  left: 0;
+  bottom: 0;
+  text-align: center;
+}
+
+.SignUp {
+  width: 43%;
+  height: 40px;
+  text-align: center;
+  font-size: 50px;
+  font-weight: bold;
 }

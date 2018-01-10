@@ -67,28 +67,22 @@
     <div [hidden]="!showResults" class="results">
       <div>
         <ion-list scrollable=true>
-            <ion-item>
-                <ion-toolbar>
-                    <ion-segment color=primary>
-                      <ion-segment-button value="lessfare" (click)="sortFare()">
-                            <ion-img width="30" height="30" src="./assets/imgs/lessfare.png">Less Fare</ion-img>
-                            Less fare
+                <ion-toolbar color="custom-yellow">
+                    <ion-segment color="dark">
+                      <ion-segment-button  value="lessfare" (click)="sortFare()">
+                          <img src="./assets/imgs/lessfare1.png" height="30px" width="30px" />
                         </ion-segment-button>
                         <ion-segment-button value="lesswalk" (click)="sortWalk()">
-                            <ion-img width="20" height="20" src="./assets/imgs/lesswalk.png">Less Walk</ion-img> 
-                            Less walk
+                            <img src="./assets/imgs/lesswalk1.png" height="30px" width="30px" />
                         </ion-segment-button>
                         <ion-segment-button value="lesstransfer" (click)="sortTransfer()">
-                            <ion-img width="20" height="20" src="./assets/imgs/lesstransfer.png">Less Walk</ion-img>
-                            Less transfer
+                            <img src="./assets/imgs/lesstransfer1.png" height="30px" width="30px" />
                         </ion-segment-button>
                         <ion-segment-button value="lesstime" (click)="sortTime()">
-                            <ion-img width="20" height="20" src="./assets/imgs/roundtrip.png">Round-trip</ion-img> 
-                            Less time
+                            <img src="./assets/imgs/lesstime1.png" height="30px" width="30px" />
                         </ion-segment-button>
                     </ion-segment>
                 </ion-toolbar>
-            </ion-item>
             <ion-list>
                 <ion-item class="opt" text-wrap *ngFor="let t of trip; let i = index" tappable (click)="seeDetails(i)">
                     <ion-list-header class="title">

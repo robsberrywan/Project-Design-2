@@ -1,6 +1,6 @@
 webpackJsonp([0],{
 
-/***/ 146:
+/***/ 145:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9,11 +9,11 @@ webpackJsonp([0],{
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__register_register__ = __webpack_require__(299);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__home_home__ = __webpack_require__(300);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angularfire2_auth__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_google_plus__ = __webpack_require__(307);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_firebase__ = __webpack_require__(308);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angularfire2_auth__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_google_plus__ = __webpack_require__(305);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_firebase__ = __webpack_require__(306);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_firebase__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_facebook__ = __webpack_require__(147);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_facebook__ = __webpack_require__(146);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -125,7 +125,7 @@ var LoginPage = (function () {
     };
     LoginPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-login',template:/*ion-inline-start:"/home/robrobirobin/Documents/gawa mo/Project-Design-2/src/pages/login/login.html"*/'<ion-content padding class="startLogin">\n\n	<br />\n\n	<div text-center>\n\n		<ion-img width="200" height="200" src="./assets/imgs/login4.png"></ion-img>\n\n	</div>\n\n	<br />\n\n	<ion-list>\n\n		<ion-item>\n\n			<ion-label floating>Email</ion-label>\n\n			<ion-input class="input" type="text" [(ngModel)]="user.email"></ion-input>\n\n		</ion-item>\n\n		<ion-item>\n\n			<ion-label floating>Password</ion-label>\n\n			<ion-input  type="password" [(ngModel)]="user.password"></ion-input>\n\n		</ion-item>\n\n	</ion-list>\n\n	<div text-center>\n\n  		<button color=secondary-yellow (click)="signIn(user);" ion-button block>Sign In</button>\n\n	</div>\n\n	<br />\n\n	<div text-center>\n\n		<ion-icon name="ios-arrow-dropdown-circle" class="or"></ion-icon>\n\n	</div>\n\n	<br />\n\n	<div text-center>\n\n		<ion-label>Sign In with:</ion-label>\n\n		<button ion-button (click)="facebooklogin()"><ion-icon name="logo-facebook"></ion-icon></button>\n\n		<button ion-button (click)="googlelogin()"><ion-icon name="logo-googleplus"></ion-icon></button>\n\n	</div>\n\n	<br/><p (click)="register();"><u>Don\'t have an account?</u></p>\n\n</ion-content>\n\n'/*ion-inline-end:"/home/robrobirobin/Documents/gawa mo/Project-Design-2/src/pages/login/login.html"*/
+            selector: 'page-login',template:/*ion-inline-start:"C:\Users\Garcera\Documents\GitHub\Project-Design-2\src\pages\login\login.html"*/'<ion-content padding class="startLogin">\n\n	<div text-center>\n\n		<ion-img width="150" height="150" src="./assets/imgs/login4.png"></ion-img>\n\n	</div>\n\n	<ion-list>\n\n		<ion-item>\n\n			<ion-label floating>Email</ion-label>\n\n			<ion-input class="input" type="text" [(ngModel)]="user.email"></ion-input>\n\n		</ion-item>\n\n		<ion-item>\n\n			<ion-label floating>Password</ion-label>\n\n			<ion-input  type="password" [(ngModel)]="user.password"></ion-input>\n\n		</ion-item>\n\n	</ion-list>\n\n	<div text-center>\n\n  		<button color=secondary-yellow (click)="signIn(user);" ion-button block>Sign In</button>\n\n	</div>\n\n	<br />\n\n	<div text-center>\n\n		<ion-label>Sign In with:</ion-label>\n\n		<button ion-button (click)="facebooklogin()"><ion-icon name="logo-facebook"></ion-icon></button>\n\n		<button ion-button (click)="googlelogin()"><ion-icon name="logo-googleplus"></ion-icon></button>\n\n	</div>\n\n	<br/>\n\n	<p (click)="register();"><u>Don\'t have an account?</u></p>\n\n</ion-content>\n\n\n\n'/*ion-inline-end:"C:\Users\Garcera\Documents\GitHub\Project-Design-2\src\pages\login\login.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_4_angularfire2_auth__["a" /* AngularFireAuth */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_5__ionic_native_google_plus__["a" /* GooglePlus */], __WEBPACK_IMPORTED_MODULE_7__ionic_native_facebook__["a" /* Facebook */]])
     ], LoginPage);
@@ -136,7 +136,7 @@ var LoginPage = (function () {
 
 /***/ }),
 
-/***/ 163:
+/***/ 162:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -149,7 +149,7 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 163;
+webpackEmptyAsyncContext.id = 162;
 
 /***/ }),
 
@@ -177,7 +177,7 @@ webpackEmptyAsyncContext.id = 206;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RegisterPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__ = __webpack_require__(76);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -294,7 +294,7 @@ var RegisterPage = (function () {
     };
     RegisterPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-register',template:/*ion-inline-start:"/home/robrobirobin/Documents/gawa mo/Project-Design-2/src/pages/register/register.html"*/'<ion-content padding>\n\n	<div text-right>\n\n		<ion-icon name="heart" class="reglogo"></ion-icon>\n\n	</div>\n\n	<ion-list>\n\n		<ion-item>\n\n			<ion-label floating>Email</ion-label>\n\n			<ion-input type="text" [(ngModel)]="user.email"></ion-input>\n\n		</ion-item>\n\n		<ion-item>\n\n			<ion-label floating>Password</ion-label>\n\n			<ion-input type="password" [(ngModel)]="user.password"></ion-input>\n\n		</ion-item>\n\n		<ion-item>\n\n			<ion-label floating>Re-type Password</ion-label>\n\n			<ion-input type="password" [(ngModel)]="cpass"></ion-input>\n\n		</ion-item>\n\n	</ion-list>\n\n	<div text-center>\n\n  		<button color=dark ion-button round (click)="signUp(user, cpass);">Sign me up!</button>\n\n	</div>\n\n	<br/><br/><br/><br/><p (click)="toSignIn();">Already have an account? <u>Sign In</u></p>\n\n</ion-content>'/*ion-inline-end:"/home/robrobirobin/Documents/gawa mo/Project-Design-2/src/pages/register/register.html"*/
+            selector: 'page-register',template:/*ion-inline-start:"C:\Users\Garcera\Documents\GitHub\Project-Design-2\src\pages\register\register.html"*/'<ion-header>\n\n		<ion-navbar color=custom-yellow >\n\n				<div class="titleicon">\n\n						<img src="./assets/imgs/login3.png" width="25px" />\n\n				   </div>\n\n		  <ion-title class = "SignUp" > Sign Up </ion-title>\n\n		</ion-navbar>\n\n	</ion-header>\n\n	<ion-content padding>\n\n		<ion-list>\n\n			<ion-item>\n\n				<ion-label floating>Email</ion-label>\n\n				<ion-input type="text" [(ngModel)]="user.email"></ion-input>\n\n			</ion-item>\n\n			<ion-item>\n\n				<ion-label floating>Password</ion-label>\n\n				<ion-input type="password" [(ngModel)]="user.password"></ion-input>\n\n			</ion-item>\n\n			<ion-item>\n\n				<ion-label floating>Re-type Password</ion-label>\n\n				<ion-input type="password" [(ngModel)]="cpass"></ion-input>\n\n			</ion-item>\n\n		</ion-list>\n\n		<div text-center>\n\n			  <button color=custom-yellow ion-button round (click)="signUp(user, cpass);">Sign me up!</button>\n\n		</div>\n\n		<br/><br/><br/><br/><p (click)="toSignIn();">Already have an account? <u>Sign In</u></p>\n\n	</ion-content>'/*ion-inline-end:"C:\Users\Garcera\Documents\GitHub\Project-Design-2\src\pages\register\register.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__["a" /* AngularFireAuth */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
     ], RegisterPage);
@@ -312,13 +312,13 @@ var RegisterPage = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__ = __webpack_require__(76);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_geolocation__ = __webpack_require__(298);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_remote_service_remote_service__ = __webpack_require__(301);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__mytrip_mytrip__ = __webpack_require__(304);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__settings_settings__ = __webpack_require__(305);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__login_login__ = __webpack_require__(146);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__details_details__ = __webpack_require__(306);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__mytrip_mytrip__ = __webpack_require__(302);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__settings_settings__ = __webpack_require__(303);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__login_login__ = __webpack_require__(145);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__details_details__ = __webpack_require__(304);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -357,7 +357,8 @@ var HomePage = (function () {
                 totaldistance: '',
                 legs: '',
                 totalTime: '',
-                roundtrip: ''
+                roundtrip: '',
+                traffic: [],
             }];
         this.legWalk = [{
                 tripID: '',
@@ -487,7 +488,6 @@ var HomePage = (function () {
           buttons: ['Retry']
         });
         alert.present();*/
-        this.trafficUpdate();
     };
     HomePage.prototype.loadMap = function () {
         var _this = this;
@@ -867,6 +867,7 @@ var HomePage = (function () {
             });
         }
         this.createTrip(this.trip[this.trip.length - 1].id);
+        this.trafficUpdate();
     };
     HomePage.prototype.createTrip = function (id) {
         var _this = this;
@@ -1575,11 +1576,84 @@ var HomePage = (function () {
         });
     };
     HomePage.prototype.trafficUpdate = function () {
-        var message = "[Admin 20] MMDA ALERT: Vehicular accident at Commonwealth Ever Gotesco EB involving UV express and MC as of 5:35 PM. 1 lane occupied. MMDA enforcer on site.";
-        var sampDate = "2018-01-07T09:49:20+0000";
+        var _this = this;
+        var message = "[Admin 22] MMDA ALERT: Vehicular accident at EDSA Pasay rd. SB involving car and SUV as of 10:18 AM. 1 lane occupied. MMDA on site.";
+        var report = "";
+        var sampDate = "2018-01-08T11:49:20+0000";
         var today = new Date();
-        today = today.getDate();
-        console.log(today);
+        var mm = parseInt(today.getMonth() + 1), yr = today.getFullYear(), day = today.getDate();
+        var cyr = sampDate.slice(0, 4), cmm = sampDate.slice(5, 7), cday = sampDate.slice(8, 10);
+        var hr = today.getHours(), chr = sampDate.slice(11, 13);
+        var reports = [];
+        var traffic = false;
+        if (message.includes("accident"))
+            report = "Vehicular accident";
+        else
+            report = "Vehicle stalled";
+        if ((yr == cyr) && (mm == cmm) && (day == cday)) {
+            console.log(yr + "-" + mm + "-" + day);
+            if (message.includes("MMDA ALERT")) {
+                console.log(hr + ":" + chr);
+                if (message.includes("SB"))
+                    message = message.slice(message.indexOf("at") + 3, message.indexOf("SB") - 1);
+                else if (message.includes("NB"))
+                    message = message.slice(message.indexOf("at") + 3, message.indexOf("NB") - 1);
+                else if (message.includes("EB"))
+                    message = message.slice(message.indexOf("at") + 3, message.indexOf("EB") - 1);
+                else
+                    message = message.slice(message.indexOf("at") + 3, message.indexOf("WB") - 1);
+                this.geocoder.geocode({ 'address': message }, function (results, status) {
+                    if (status == 'OK' && results[0]) {
+                        for (var j = 0; j < _this.trip.length; j++) {
+                            reports = [];
+                            for (var i = 0; i < _this.legTransit.length; i++) {
+                                if (_this.legTransit[i].tripID == _this.trip[j].id) {
+                                    traffic = _this.decode(_this.legTransit[i].legGeom, results[0].geometry.location.lat(), results[0].geometry.location.lng());
+                                    console.log(traffic);
+                                    if (traffic)
+                                        reports.push(report + " at " + message + ". Expect traffic.");
+                                }
+                            }
+                            _this.trip[j].traffic = reports;
+                        }
+                    }
+                });
+            }
+        }
+    };
+    HomePage.prototype.decode = function (leggeom, loclat, loclng) {
+        // array that holds the points
+        var index = 0, len = leggeom.length;
+        var lat = 0, lng = 0;
+        var traf = false;
+        while (index < len) {
+            var b = void 0, shift = 0, result = 0;
+            do {
+                b = leggeom.charAt(index++).charCodeAt(0) - 63; //finds ascii                                                                                    //and substract it by 63
+                result |= (b & 0x1f) << shift;
+                shift += 5;
+            } while (b >= 0x20);
+            var dlat = ((result & 1) != 0 ? ~(result >> 1) : (result >> 1));
+            lat += dlat;
+            shift = 0;
+            result = 0;
+            do {
+                b = leggeom.charAt(index++).charCodeAt(0) - 63;
+                result |= (b & 0x1f) << shift;
+                shift += 5;
+            } while (b >= 0x20);
+            var dlng = ((result & 1) != 0 ? ~(result >> 1) : (result >> 1));
+            lng += dlng;
+            var latlng = new google.maps.LatLng((lat / 1E5), (lng / 1E5));
+            var p = 0.017453292519943295; // Math.PI / 180
+            var c = Math.cos;
+            var a = 0.5 - c((loclat - (lat / 1E5)) * p) / 2 + c((lat / 1E5) * p) * c((loclat) * p) * (1 - c(((loclng - (lng / 1E5)) * p))) / 2;
+            var dis = (12742 * Math.asin(Math.sqrt(a))); // 2 * R; R = 6371 km
+            if (dis < 1) {
+                traf = true;
+            }
+        }
+        return traf;
     };
     HomePage.prototype.seeDetails = function (i) {
         var trip;
@@ -1592,17 +1666,23 @@ var HomePage = (function () {
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('map'),
-        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* ElementRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* ElementRef */]) === "function" && _a || Object)
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* ElementRef */])
     ], HomePage.prototype, "mapElement", void 0);
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"/home/robrobirobin/Documents/gawa mo/Project-Design-2/src/pages/home/home.html"*/'<ion-header>\n\n  <ion-navbar color = custom-yellow>\n\n    <ion-grid no-padding no-margin>\n\n      <ion-row>\n\n        <ion-col col-2>\n\n          <button ion-button menuToggle>\n\n            <ion-icon name="menu"></ion-icon>\n\n          </button>\n\n        </ion-col>\n\n      <ion-col col-98>\n\n        <ion-row>\n\n          <ion-col>\n\n            <ion-searchbar placeholder="Origin" type="text" (ionInput)="showAddress1()" (ionFocus)="checkFocus(1)" [(ngModel)]="address.origin"></ion-searchbar>\n\n          </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col>\n\n            <ion-searchbar placeholder="Destination" type="text" (ionInput)="showAddress2()" (ionFocus)="checkFocus(2)" [(ngModel)]="address.destination"></ion-searchbar>\n\n          </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col text-center no-padding>\n\n            <button color=secondary-yellow ion-button block (click)="findRoute(address)">GO</button>\n\n          </ion-col>\n\n        </ion-row>\n\n      </ion-col>\n\n    </ion-row>\n\n    </ion-grid>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-menu [content]="content">\n\n  <ion-header>\n\n    <ion-navbar>\n\n      <button ion-button menuToggle icon-only class="menu-button" >\n\n        <ion-icon name=\'menu\'></ion-icon>\n\n      </button>\n\n      <div class="titleicon">\n\n          <img src="./assets/imgs/login3.png" width="25px"  />\n\n         </div>\n\n         <ion-title class="TruFare">TruFare</ion-title>\n\n    </ion-navbar>\n\n  </ion-header>\n\n  <ion-content>\n\n    <ion-list>\n\n      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n\n        {{ p.title }}\n\n      </button>\n\n  </ion-list>\n\n  </ion-content>\n\n</ion-menu>\n\n\n\n<ion-content>\n\n    <div>\n\n      <ion-list [hidden]="autocompleteItems1.length == 0">\n\n        <ion-item class="limit-item" *ngFor="let item1 of autocompleteItems1" tappable (click)="selectOrigin(item1)">\n\n          {{ item1 }}\n\n        </ion-item>\n\n      </ion-list>\n\n      <ion-list [hidden]="autocompleteItems2.length == 0">\n\n        <ion-item class="limit-item" *ngFor="let item2 of autocompleteItems2" tappable (click)="selectDest(item2)">\n\n          {{ item2 }}\n\n        </ion-item>\n\n      </ion-list>\n\n    </div>\n\n    <div [hidden]="!showMap" #map id="map"></div>\n\n    <div [hidden]="!showResults" class="results">\n\n      <div>\n\n        <ion-list scrollable=true>\n\n            <ion-item>\n\n                <ion-toolbar>\n\n                    <ion-segment color=primary>\n\n                      <ion-segment-button value="lessfare" (click)="sortFare()">\n\n                            <ion-img width="30" height="30" src="./assets/imgs/lessfare.png">Less Fare</ion-img>\n\n                            Less fare\n\n                        </ion-segment-button>\n\n                        <ion-segment-button value="lesswalk" (click)="sortWalk()">\n\n                            <ion-img width="20" height="20" src="./assets/imgs/lesswalk.png">Less Walk</ion-img> \n\n                            Less walk\n\n                        </ion-segment-button>\n\n                        <ion-segment-button value="lesstransfer" (click)="sortTransfer()">\n\n                            <ion-img width="20" height="20" src="./assets/imgs/lesstransfer.png">Less Walk</ion-img>\n\n                            Less transfer\n\n                        </ion-segment-button>\n\n                        <ion-segment-button value="lesstime" (click)="sortTime()">\n\n                            <ion-img width="20" height="20" src="./assets/imgs/roundtrip.png">Round-trip</ion-img> \n\n                            Less time\n\n                        </ion-segment-button>\n\n                    </ion-segment>\n\n                </ion-toolbar>\n\n            </ion-item>\n\n            <ion-list>\n\n                <ion-item class="opt" text-wrap *ngFor="let t of trip; let i = index" tappable (click)="seeDetails(i)">\n\n                    <ion-list-header class="title">\n\n                        Route #{{ t.id+1 }}\n\n                    </ion-list-header>\n\n                    <p item-right>{{ t.totalTime }} min</p>\n\n                    <p>Transfers: {{ t.transfer }}</p>\n\n                    <p>Fare: P{{ t.fare }}</p>\n\n                    <p>Distance: {{ t.totaldistance }} km</p>\n\n                    <p>Walk, about {{ t.totalWalkDistance }} km</p>\n\n                    <p [hidden]="!t.roundtrip">This is a round-trip feature. This will direct you to the nearest terminal.</p>\n\n                </ion-item>\n\n            </ion-list>\n\n        </ion-list>\n\n        <button class="close-button" color=secondary-yellow ion-button block (click)="close()">Close</button>\n\n      </div>\n\n    </div>\n\n</ion-content>\n\n\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>'/*ion-inline-end:"/home/robrobirobin/Documents/gawa mo/Project-Design-2/src/pages/home/home.html"*/,
+            selector: 'page-home',template:/*ion-inline-start:"C:\Users\Garcera\Documents\GitHub\Project-Design-2\src\pages\home\home.html"*/'<ion-header>\n\n  <ion-navbar color = custom-yellow>\n\n    <ion-grid no-padding no-margin>\n\n      <ion-row>\n\n        <ion-col col-2>\n\n          <button ion-button menuToggle>\n\n            <ion-icon name="menu"></ion-icon>\n\n          </button>\n\n        </ion-col>\n\n      <ion-col col-98>\n\n        <ion-row>\n\n          <ion-col>\n\n            <ion-searchbar placeholder="Origin" type="text" (ionInput)="showAddress1()" (ionFocus)="checkFocus(1)" [(ngModel)]="address.origin"></ion-searchbar>\n\n          </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col>\n\n            <ion-searchbar placeholder="Destination" type="text" (ionInput)="showAddress2()" (ionFocus)="checkFocus(2)" [(ngModel)]="address.destination"></ion-searchbar>\n\n          </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col text-center no-padding>\n\n            <button color=secondary-yellow ion-button block (click)="findRoute(address)">GO</button>\n\n          </ion-col>\n\n        </ion-row>\n\n      </ion-col>\n\n    </ion-row>\n\n    </ion-grid>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-menu [content]="content">\n\n  <ion-header>\n\n    <ion-navbar>\n\n      <button ion-button menuToggle icon-only class="menu-button" >\n\n        <ion-icon name=\'menu\'></ion-icon>\n\n      </button>\n\n      <div class="titleicon">\n\n          <img src="./assets/imgs/login3.png" width="25px"  />\n\n         </div>\n\n         <ion-title class="TruFare">TruFare</ion-title>\n\n    </ion-navbar>\n\n  </ion-header>\n\n  <ion-content>\n\n    <ion-list>\n\n      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n\n        {{ p.title }}\n\n      </button>\n\n  </ion-list>\n\n  </ion-content>\n\n</ion-menu>\n\n\n\n<ion-content>\n\n    <div>\n\n      <ion-list [hidden]="autocompleteItems1.length == 0">\n\n        <ion-item class="limit-item" *ngFor="let item1 of autocompleteItems1" tappable (click)="selectOrigin(item1)">\n\n          {{ item1 }}\n\n        </ion-item>\n\n      </ion-list>\n\n      <ion-list [hidden]="autocompleteItems2.length == 0">\n\n        <ion-item class="limit-item" *ngFor="let item2 of autocompleteItems2" tappable (click)="selectDest(item2)">\n\n          {{ item2 }}\n\n        </ion-item>\n\n      </ion-list>\n\n    </div>\n\n    <div [hidden]="!showMap" #map id="map"></div>\n\n    <div [hidden]="!showResults" class="results">\n\n      <div>\n\n        <ion-list scrollable=true>\n\n                <ion-toolbar color="custom-yellow">\n\n                    <ion-segment color="dark">\n\n                      <ion-segment-button  value="lessfare" (click)="sortFare()">\n\n                          <img src="./assets/imgs/lessfare1.png" height="30px" width="30px" />\n\n                        </ion-segment-button>\n\n                        <ion-segment-button value="lesswalk" (click)="sortWalk()">\n\n                            <img src="./assets/imgs/lesswalk1.png" height="30px" width="30px" />\n\n                        </ion-segment-button>\n\n                        <ion-segment-button value="lesstransfer" (click)="sortTransfer()">\n\n                            <img src="./assets/imgs/lesstransfer1.png" height="30px" width="30px" />\n\n                        </ion-segment-button>\n\n                        <ion-segment-button value="lesstime" (click)="sortTime()">\n\n                            <img src="./assets/imgs/lesstime1.png" height="30px" width="30px" />\n\n                        </ion-segment-button>\n\n                    </ion-segment>\n\n                </ion-toolbar>\n\n            <ion-list>\n\n                <ion-item class="opt" text-wrap *ngFor="let t of trip; let i = index" tappable (click)="seeDetails(i)">\n\n                    <ion-list-header class="title">\n\n                        Route #{{ t.id+1 }}\n\n                    </ion-list-header>\n\n                    <p item-right>{{ t.totalTime }} min</p>\n\n                    <p>Transfers: {{ t.transfer }}</p>\n\n                    <p>Fare: P{{ t.fare }}</p>\n\n                    <p>Distance: {{ t.totaldistance }} km</p>\n\n                    <p>Walk, about {{ t.totalWalkDistance }} km</p>\n\n                    <p style="font-weight: bold; color: red;" *ngFor="let tr of t.traffic">*{{ tr }}</p>\n\n                    <p [hidden]="!t.roundtrip">This is a round-trip feature. This will direct you to the nearest terminal.</p>\n\n                </ion-item>\n\n            </ion-list>\n\n        </ion-list>\n\n        <button class="close-button" color=secondary-yellow ion-button block (click)="close()">Close</button>\n\n      </div>\n\n    </div>\n\n</ion-content>\n\n\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>'/*ion-inline-end:"C:\Users\Garcera\Documents\GitHub\Project-Design-2\src\pages\home\home.html"*/,
             providers: [__WEBPACK_IMPORTED_MODULE_4__providers_remote_service_remote_service__["a" /* RemoteServiceProvider */]]
         }),
-        __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_geolocation__["a" /* Geolocation */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_geolocation__["a" /* Geolocation */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__["a" /* AngularFireAuth */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__["a" /* AngularFireAuth */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* NgZone */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* NgZone */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_4__providers_remote_service_remote_service__["a" /* RemoteServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers_remote_service_remote_service__["a" /* RemoteServiceProvider */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* ModalController */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _j || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__ionic_native_geolocation__["a" /* Geolocation */],
+            __WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__["a" /* AngularFireAuth */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* NgZone */],
+            __WEBPACK_IMPORTED_MODULE_4__providers_remote_service_remote_service__["a" /* RemoteServiceProvider */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* ModalController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
     ], HomePage);
     return HomePage;
-    var _a, _b, _c, _d, _e, _f, _g, _h, _j;
 }());
 
 //# sourceMappingURL=home.js.map
@@ -1615,10 +1695,10 @@ var HomePage = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RemoteServiceProvider; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(67);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(163);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(84);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_facebook__ = __webpack_require__(147);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_facebook__ = __webpack_require__(146);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1658,41 +1738,18 @@ var RemoteServiceProvider = (function () {
             }
         });
     };
-    RemoteServiceProvider.prototype.getTwitterStatus = function () {
-        /*var Twit = require('twit')
-    
-        var T = new Twit({
-          consumer_key:         'IZ8IT77kPfcpF3L7BZuWdkiXd',
-          consumer_secret:      'rlO4tWDmlujHTHoN3WIUW5AXVM4OtTgCcpE28SBUBn8aDrnsxa',
-          access_token:         '947804321613103104-qxT4wcGGDq6Ejy9ahrkx7uUSbGdymq8',
-          access_token_secret:  '4GsGpqUJjWLu961fPvNf8nDeXxY3JATv5SbLFsM7zhDHD',
-          timeout_ms:           60*1000,  // optional HTTP request timeout to apply to all requests.
-        })
-        T.get('search/tweets', { q: 'MMDA since:2017-01-4', count: 5 }, function(err, data, response) {
-          console.log(data)
-        })*/
-        return this.twitter.get('https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=MMDA&count=3', {}, {
-            consumerKey: '5irm3Two4gykO7MSl3rQ3vWEH',
-            consumerSecret: 'b7xOlUUOp7JtD02KnGx7DHQ1cTvMIVr8K47NFGUTvtH9Ma8MsM',
-        }, {
-            token: '947804321613103104-qxT4wcGGDq6Ejy9ahrkx7uUSbGdymq8',
-            tokenSecret: '4GsGpqUJjWLu961fPvNf8nDeXxY3JATv5SbLFsM7zhDHD',
-        })
-            .map(function (res) { return res.json(); });
-    };
     RemoteServiceProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_facebook__["a" /* Facebook */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_facebook__["a" /* Facebook */]) === "function" && _b || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_facebook__["a" /* Facebook */]])
     ], RemoteServiceProvider);
     return RemoteServiceProvider;
-    var _a, _b;
 }());
 
 //# sourceMappingURL=remote-service.js.map
 
 /***/ }),
 
-/***/ 304:
+/***/ 302:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1722,7 +1779,7 @@ var MytripPage = (function () {
     };
     MytripPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-mytrip',template:/*ion-inline-start:"/home/robrobirobin/Documents/gawa mo/Project-Design-2/src/pages/mytrip/mytrip.html"*/'<ion-header>\n\n    <ion-navbar>\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n    <div>\n\n        <ion-list>\n\n            <ion-item>\n\n                \n\n            </ion-item>\n\n        </ion-list>\n\n    </div>\n\n</ion-content>'/*ion-inline-end:"/home/robrobirobin/Documents/gawa mo/Project-Design-2/src/pages/mytrip/mytrip.html"*/
+            selector: 'page-mytrip',template:/*ion-inline-start:"C:\Users\Garcera\Documents\GitHub\Project-Design-2\src\pages\mytrip\mytrip.html"*/'<ion-header>\n\n    <ion-navbar>\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n    <div>\n\n        <ion-list>\n\n            <ion-item>\n\n                \n\n            </ion-item>\n\n        </ion-list>\n\n    </div>\n\n</ion-content>'/*ion-inline-end:"C:\Users\Garcera\Documents\GitHub\Project-Design-2\src\pages\mytrip\mytrip.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]])
     ], MytripPage);
@@ -1733,7 +1790,7 @@ var MytripPage = (function () {
 
 /***/ }),
 
-/***/ 305:
+/***/ 303:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1757,7 +1814,7 @@ var SettingsPage = (function () {
     }
     SettingsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-settings',template:/*ion-inline-start:"/home/robrobirobin/Documents/gawa mo/Project-Design-2/src/pages/settings/settings.html"*/'<ion-header>\n\n    <ion-navbar>\n\n    </ion-navbar>\n\n</ion-header>'/*ion-inline-end:"/home/robrobirobin/Documents/gawa mo/Project-Design-2/src/pages/settings/settings.html"*/
+            selector: 'page-settings',template:/*ion-inline-start:"C:\Users\Garcera\Documents\GitHub\Project-Design-2\src\pages\settings\settings.html"*/'<ion-header>\n\n    <ion-navbar>\n\n    </ion-navbar>\n\n</ion-header>'/*ion-inline-end:"C:\Users\Garcera\Documents\GitHub\Project-Design-2\src\pages\settings\settings.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]])
     ], SettingsPage);
@@ -1768,7 +1825,7 @@ var SettingsPage = (function () {
 
 /***/ }),
 
-/***/ 306:
+/***/ 304:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2385,7 +2442,7 @@ var DetailsPage = (function () {
     ], DetailsPage.prototype, "mapElement", void 0);
     DetailsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-details',template:/*ion-inline-start:"/home/robrobirobin/Documents/gawa mo/Project-Design-2/src/pages/details/details.html"*/'<ion-header>\n\n  <ion-navbar color=custom-yellow>\n\n    <ion-title >From: {{ address.origin }} <br/> To: {{ address.destination }}\n\n    </ion-title>\n\n      <ion-buttons end>\n\n        <button (click)="saveTrip()">\n\n            <ion-icon class="btn-save" ios="ios-add-circle" md="md-add-circle"></ion-icon>\n\n        </button>\n\n      </ion-buttons>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n<div #map id="map"></div>\n\n<div scrollable=true>\n\n  <ion-grid>\n\n    <ion-row *ngFor="let item of description; let i = index;" class=\'cell-{{i}}\' text-wrap no-padding no-margin>\n\n      <ion-col col-2 class="col icon-col">\n\n        <img width="50" height="50" src="{{ modeIcons[i] }}" />\n\n      </ion-col>      \n\n      <ion-col col-95>\n\n        <p>{{ description[i].from }}</p>\n\n        <p>{{ description[i].route }}</p>\n\n        <p>{{ description[i].fare }}</p>\n\n        <p>{{ description[i].fare2 }}</p>\n\n        <button [hidden]="!description[i].steps" (click)="setDrop()">\n\n          <ion-icon ios="ios-arrow-dropdown" md="md-arrow-dropdown"></ion-icon>\n\n        </button>\n\n\n\n        <ion-list [hidden]="drop" no-padding>\n\n          <ion-item no-padding *ngFor="let step of description[i].steps">{{ step }}</ion-item>\n\n        </ion-list>\n\n      </ion-col>\n\n      <ion-col col-2 no-padding>\n\n        <p>{{ description[i].distance }}</p>\n\n        <p>{{ description[i].time }}</p>\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row class=\'cell-{{ description.length }}\' text-wrap no-padding no-margin>\n\n      <ion-col col-2 class="col icon-col">\n\n      </ion-col>\n\n      <ion-col col-95>\n\n        <p>{{ address.destination }}</p>\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row>\n\n      <ion-col>\n\n        <p class="Travel-Summary">Travel Summary:</p>\n\n        <p>Estimated Time: {{trip[index].totalTime }} min</p>\n\n        <p>Total Fare: P{{ trip[index].fare }}</p>\n\n        <p>Distance: {{ trip[index].totaldistance }} km</p>\n\n        <p>Walk Distance: {{ trip[index].totalWalkDistance }} km</p>\n\n        <p>Transfers: {{ trip[index].transfer }}</p>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n</div>\n\n</ion-content>'/*ion-inline-end:"/home/robrobirobin/Documents/gawa mo/Project-Design-2/src/pages/details/details.html"*/
+            selector: 'page-details',template:/*ion-inline-start:"C:\Users\Garcera\Documents\GitHub\Project-Design-2\src\pages\details\details.html"*/'<ion-header>\n\n  <ion-navbar color=custom-yellow>\n\n    <ion-title >From: {{ address.origin }} <br/> To: {{ address.destination }}\n\n    </ion-title>\n\n      <ion-buttons end>\n\n        <button (click)="saveTrip()">\n\n            <ion-icon class="btn-save" ios="ios-add-circle" md="md-add-circle"></ion-icon>\n\n        </button>\n\n      </ion-buttons>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n<div #map id="map"></div>\n\n<div scrollable=true>\n\n  <ion-grid>\n\n    <ion-row *ngFor="let item of description; let i = index;" class=\'cell-{{i}}\' text-wrap no-padding no-margin>\n\n      <ion-col col-2 class="col icon-col">\n\n        <img width="50" height="50" src="{{ modeIcons[i] }}" />\n\n      </ion-col>      \n\n      <ion-col col-95>\n\n        <p>{{ description[i].from }}</p>\n\n        <p>{{ description[i].route }}</p>\n\n        <p>{{ description[i].fare }}</p>\n\n        <p>{{ description[i].fare2 }}</p>\n\n        <button [hidden]="!description[i].steps" (click)="setDrop()">\n\n          <ion-icon ios="ios-arrow-dropdown" md="md-arrow-dropdown"></ion-icon>\n\n        </button>\n\n\n\n        <ion-list [hidden]="drop" no-padding>\n\n          <ion-item no-padding *ngFor="let step of description[i].steps">{{ step }}</ion-item>\n\n        </ion-list>\n\n      </ion-col>\n\n      <ion-col col-2 no-padding>\n\n        <p>{{ description[i].distance }}</p>\n\n        <p>{{ description[i].time }}</p>\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row class=\'cell-{{ description.length }}\' text-wrap no-padding no-margin>\n\n      <ion-col col-2 class="col icon-col">\n\n      </ion-col>\n\n      <ion-col col-95>\n\n        <p>{{ address.destination }}</p>\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row>\n\n      <ion-col>\n\n        <p class="Travel-Summary">Travel Summary:</p>\n\n        <p>Estimated Time: {{trip[index].totalTime }} min</p>\n\n        <p>Total Fare: P{{ trip[index].fare }}</p>\n\n        <p>Distance: {{ trip[index].totaldistance }} km</p>\n\n        <p>Walk Distance: {{ trip[index].totalWalkDistance }} km</p>\n\n        <p>Transfers: {{ trip[index].transfer }}</p>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n</div>\n\n</ion-content>'/*ion-inline-end:"C:\Users\Garcera\Documents\GitHub\Project-Design-2\src\pages\details\details.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
     ], DetailsPage);
@@ -2396,13 +2453,13 @@ var DetailsPage = (function () {
 
 /***/ }),
 
-/***/ 318:
+/***/ 316:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(319);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(339);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(317);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(337);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -2410,7 +2467,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 339:
+/***/ 337:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2418,26 +2475,26 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(163);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_splash_screen__ = __webpack_require__(246);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_status_bar__ = __webpack_require__(248);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_angularfire2__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_angularfire2_auth__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_angularfire2_database__ = __webpack_require__(422);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_angularfire2__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_angularfire2_auth__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_angularfire2_database__ = __webpack_require__(420);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_geolocation__ = __webpack_require__(298);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__app_component__ = __webpack_require__(481);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_login_login__ = __webpack_require__(146);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__app_component__ = __webpack_require__(479);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_login_login__ = __webpack_require__(145);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_register_register__ = __webpack_require__(299);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_home_home__ = __webpack_require__(300);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_mytrip_mytrip__ = __webpack_require__(304);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_settings_settings__ = __webpack_require__(305);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_details_details__ = __webpack_require__(306);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_mytrip_mytrip__ = __webpack_require__(302);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_settings_settings__ = __webpack_require__(303);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_details_details__ = __webpack_require__(304);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__providers_remote_service_remote_service__ = __webpack_require__(301);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__ionic_native_google_plus__ = __webpack_require__(307);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_firebase__ = __webpack_require__(308);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__ionic_native_google_plus__ = __webpack_require__(305);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_firebase__ = __webpack_require__(306);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_19_firebase__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__ionic_native_facebook__ = __webpack_require__(147);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__ionic_native_facebook__ = __webpack_require__(146);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2528,7 +2585,7 @@ var AppModule = (function () {
 
 /***/ }),
 
-/***/ 481:
+/***/ 479:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2537,7 +2594,7 @@ var AppModule = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(248);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(246);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_login_login__ = __webpack_require__(146);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_login_login__ = __webpack_require__(145);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2563,7 +2620,7 @@ var MyApp = (function () {
         });
     }
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/home/robrobirobin/Documents/gawa mo/Project-Design-2/src/app/app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n\n'/*ion-inline-end:"/home/robrobirobin/Documents/gawa mo/Project-Design-2/src/app/app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\Users\Garcera\Documents\GitHub\Project-Design-2\src\app\app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n\n'/*ion-inline-end:"C:\Users\Garcera\Documents\GitHub\Project-Design-2\src\app\app.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
     ], MyApp);
@@ -2574,5 +2631,5 @@ var MyApp = (function () {
 
 /***/ })
 
-},[318]);
+},[316]);
 //# sourceMappingURL=main.js.map
